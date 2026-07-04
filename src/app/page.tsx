@@ -28,21 +28,25 @@ const projects = [
     headline: "Scaling parcel tracking across European markets",
     color: "#F5C518",
     visual: <TrackingDetailVisual />,
+    href: "/projects/scaling-parcel-tracking",
   },
   {
     headline: "Launching parcel tracking app for customers in UK",
     color: "#3355FF",
     visual: <TrackingListVisual />,
+    href: "/work",
   },
   {
     headline: "Enabling 2M+ users to send parcels in app",
     color: "#00C853",
     visual: <SendParcelVisual />,
+    href: "/projects/send-parcel-in-app",
   },
   {
     headline: "Establishing design metrics for key flow in the app",
     color: "#7C3AED",
     visual: <ResearchVisual />,
+    href: "/work",
   },
 ];
 
@@ -74,7 +78,7 @@ export default function Home() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7">
           {projects.map((project, i) => (
             <Reveal key={project.headline} delay={i * 0.08} y={24}>
-              <ProjectCard headline={project.headline} href="/work" color={project.color} visual={project.visual} />
+              <ProjectCard headline={project.headline} href={project.href} color={project.color} visual={project.visual} />
             </Reveal>
           ))}
         </div>
