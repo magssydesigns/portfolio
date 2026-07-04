@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "About",
@@ -72,7 +73,7 @@ export default function AboutPage() {
             </h1>
             <div className="mt-10 max-w-xl space-y-5 text-lg leading-relaxed text-ink-soft">
               <p>
-                I&rsquo;m Mags, a Senior Product Designer with twelve years
+                I&rsquo;m Magda, a Senior Product Designer with twelve years
                 spent inside complicated products — banking apps, claims
                 platforms, enterprise systems, and more recently, tools built
                 on top of language models.
@@ -182,6 +183,7 @@ export default function AboutPage() {
           </Reveal>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

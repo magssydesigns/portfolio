@@ -14,10 +14,10 @@ export default function Footer() {
               <span className="italic text-accent">shipping.</span>
             </h2>
             <a
-              href="mailto:hello@magsmarsh.design"
+              href="mailto:magssydesigns@gmail.com"
               className="link-underline mt-8 inline-block font-display text-2xl italic text-ink"
             >
-              hello@magsmarsh.design
+              magssydesigns@gmail.com
             </a>
           </div>
 
@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-24 flex flex-col gap-4 border-t border-line pt-8 text-[13px] text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Mags Marsh. Senior Product Designer.</p>
+          <p>© {new Date().getFullYear()} Magdalena Marczewska. Product Designer.</p>
           <div className="flex gap-8">
             <Link className="link-underline hover:text-ink" href="/work">
               Work

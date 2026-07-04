@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
 import Cover from "@/components/Cover";
+import Footer from "@/components/Footer";
 import {
   getAllCaseStudies,
   getCaseStudyBySlug,
@@ -47,6 +48,7 @@ export default async function CaseStudyPage({
   ];
 
   return (
+    <>
     <article>
       <section className="mx-auto max-w-[1400px] px-6 pb-16 pt-40 sm:px-10 sm:pt-56">
         <Reveal>
@@ -165,5 +167,7 @@ export default async function CaseStudyPage({
         </Link>
       </section>
     </article>
+    <Footer />
+    </>
   );
 }

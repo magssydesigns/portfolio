@@ -1,0 +1,66 @@
+import Link from "next/link";
+import clsx from "clsx";
+import type { ReactNode } from "react";
+
+export default function Button({
+  href,
+  children,
+  variant = "outline",
+  chevron = false,
+  external = false,
+  className,
+}: {
+  href: string;
+  children: ReactNode;
+  variant?: "outline" | "solid";
+  chevron?: boolean;
+  external?: boolean;
+  className?: string;
+}) {
+  const classes = clsx(
+    "inline-flex items-center gap-1.5 rounded-lg px-4 py-2.5 text-[13px] transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98]",
+    variant === "outline"
+      ? "border border-ink/15 bg-white text-ink hover:border-ink/30 hover:bg-paper-dim"
+      : "bg-ink text-paper hover:opacity-85",
+    className
+  );
+
+  const content = (
+    <>
+      {children}
+      {chevron && (
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden>
+          <path
+            d="M1 1L5 5L9 1"
+            stroke="currentColor"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      )}
+    </>
+  );
+
+  const isExternalLike =
+    external || href.startsWith("mailto:") || href.startsWith("http") || href.endsWith(".pdf");
+
+  if (isExternalLike) {
+    return (
+      <a
+        href={href}
+        target={href.startsWith("mailto:") ? undefined : "_blank"}
+        rel={href.startsWith("mailto:") ? undefined : "noreferrer"}
+        className={classes}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className={classes}>
+      {content}
+    </Link>
+  );
+}

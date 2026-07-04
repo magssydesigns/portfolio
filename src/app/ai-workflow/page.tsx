@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
+import Footer from "@/components/Footer";
 import { getCaseStudyBySlug } from "@/lib/case-studies";
 
 export const metadata: Metadata = {
@@ -186,6 +187,7 @@ export default function AIWorkflowPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 }

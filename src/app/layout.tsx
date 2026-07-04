@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -20,15 +19,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://mags-portfolio.vercel.app"),
   title: {
-    default: "Mags Marsh — Senior Product Designer",
-    template: "%s — Mags Marsh",
+    default: "Magdalena Marczewska — Product Designer",
+    template: "%s — Magdalena Marczewska",
   },
   description:
-    "Senior Product Designer working across mobile, systems, and AI-assisted workflows. Case studies, process, and craft.",
+    "Designing products that simplify everyday life. Product design work across mobile, systems, and AI-assisted workflows.",
   openGraph: {
-    title: "Mags Marsh — Senior Product Designer",
-    description:
-      "Senior Product Designer working across mobile, systems, and AI-assisted workflows.",
+    title: "Magdalena Marczewska — Product Designer",
+    description: "Designing products that simplify everyday life.",
     type: "website",
   },
 };
@@ -43,7 +41,6 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col bg-paper font-sans text-ink antialiased">
         <Nav />
         <main className="flex-1">{children}</main>
-        <Footer />
       </body>
     </html>
   );
