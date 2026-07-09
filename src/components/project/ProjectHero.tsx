@@ -1,5 +1,5 @@
 import Image from "next/image";
-import type { ProjectImage } from "@/lib/projects";
+import type { ProjectImage, ProjectVideo } from "@/lib/projects";
 
 export default function ProjectHero({
   title,
@@ -7,12 +7,14 @@ export default function ProjectHero({
   client,
   color,
   image,
+  video,
 }: {
   title: string;
   tagline: string;
   client: string;
   color: string;
   image: ProjectImage;
+  video?: ProjectVideo;
 }) {
   return (
     <section className="pt-32 sm:pt-40" style={{ backgroundColor: color }}>
@@ -25,14 +27,30 @@ export default function ProjectHero({
           <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">{tagline}</p>
         </div>
         <div className="flex justify-center lg:justify-end">
-          <Image
-            src={image.src}
-            alt={image.alt}
-            width={image.width}
-            height={image.height}
-            priority
-            className="h-auto w-[240px] rounded-2xl sm:w-[300px]"
-          />
+          {video ? (
+            <video
+              src={video.src}
+              poster={video.poster}
+              width={video.width}
+              height={video.height}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              aria-label={image.alt}
+              className="h-auto w-[240px] rounded-2xl sm:w-[300px]"
+            />
+          ) : (
+            <Image
+              src={image.src}
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+              priority
+              className="h-auto w-[240px] rounded-2xl sm:w-[300px]"
+            />
+          )}
         </div>
       </div>
     </section>

@@ -17,9 +17,17 @@ export type Block =
   | { kind: "steps"; heading?: string; items: { title: string; body: string }[] }
   | { kind: "twoCol"; items: { label: string; body: string }[] };
 
+export type ProjectVideo = {
+  src: string;
+  width: number;
+  height: number;
+  poster?: string;
+};
+
 export type QuickRead = {
   tagline: string;
   heroImage: ProjectImage;
+  heroVideo?: ProjectVideo;
   challenge: string[];
   role?: string;
   constraints?: string[];
@@ -35,6 +43,7 @@ export type Project = {
   shortTitle: string;
   client: string;
   color: string;
+  heroBackground?: string;
   darkText?: boolean;
   quickRead: QuickRead;
   fullCaseStudy: Block[];
@@ -47,6 +56,7 @@ export const projects: Project[] = [
     shortTitle: "Scaling parcel tracking",
     client: "InPost",
     color: "#F7D60F",
+    heroBackground: "#E0E1E4",
     quickRead: {
       tagline:
         "Designed a scalable multi-market parcel tracking experience across European delivery flows",
@@ -55,6 +65,11 @@ export const projects: Project[] = [
         width: 378,
         height: 915,
         alt: "InPost parcel tracking detail screen showing a map, pickup status, and locker QR code",
+      },
+      heroVideo: {
+        src: "/projects/scaling-parcel-tracking/SLIDER10211_1.mp4",
+        width: 1080,
+        height: 1136,
       },
       challenge: [
         "Stakeholders wanted to scale an existing Polish parcel tracking flow globally.",

@@ -49,8 +49,9 @@ export default async function ProjectPage({
           title={project.title}
           tagline={project.quickRead.tagline}
           client={project.client}
-          color={project.color}
+          color={project.heroBackground ?? project.color}
           image={project.quickRead.heroImage}
+          video={project.quickRead.heroVideo}
         />
 
         <QuickRead data={project.quickRead} color={project.color} />
