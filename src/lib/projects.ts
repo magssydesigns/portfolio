@@ -6,17 +6,6 @@ export type ProjectImage = {
   caption?: string;
 };
 
-export type Block =
-  | { kind: "lead"; items: { label: string; body: string }[] }
-  | { kind: "heading"; text: string; tone?: "dark" | "light" }
-  | { kind: "statement"; text: string; tone?: "dark" | "light" }
-  | { kind: "numbered"; heading?: string; intro?: string; items: { title: string; body: string }[] }
-  | { kind: "image"; image: ProjectImage; size?: "medium" | "wide" | "full" }
-  | { kind: "beforeAfterStats"; heading: string; items: { label: string; before: string; after: string; description: string }[] }
-  | { kind: "quote"; text: string; attribution?: string }
-  | { kind: "steps"; heading?: string; items: { title: string; body: string }[] }
-  | { kind: "twoCol"; items: { label: string; body: string }[] };
-
 export type ProjectVideo = {
   src: string;
   width: number;
@@ -24,18 +13,42 @@ export type ProjectVideo = {
   poster?: string;
 };
 
+/** A media slot that may still be a placeholder awaiting a final asset. */
+export type MediaSlot =
+  | { kind: "image"; image: ProjectImage }
+  | { kind: "video"; video: ProjectVideo; alt: string }
+  | { kind: "placeholder"; label: string };
+
+export type Block =
+  | { kind: "lead"; id?: string; items: { label: string; body: string }[] }
+  | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light" }
+  | { kind: "statement"; id?: string; text: string; tone?: "dark" | "light" }
+  | { kind: "numbered"; id?: string; heading?: string; intro?: string; items: { title: string; body: string }[] }
+  | { kind: "image"; id?: string; image: ProjectImage; size?: "medium" | "wide" | "full" }
+  | { kind: "beforeAfterStats"; id?: string; heading?: string; items: { label: string; before: string; after: string; description: string }[] }
+  | { kind: "quote"; id?: string; text: string; attribution?: string }
+  | { kind: "steps"; id?: string; heading?: string; items: { title: string; body: string }[] }
+  | { kind: "twoCol"; id?: string; items: { label: string; body: string }[] }
+  | { kind: "mediaNumbered"; id?: string; heading?: string; media: MediaSlot; items: { title: string; body: string }[] }
+  | { kind: "beforeAfterImages"; id?: string; heading?: string; items: { label: string; media: MediaSlot }[] };
+
 export type QuickRead = {
   tagline: string;
   heroImage: ProjectImage;
   heroVideo?: ProjectVideo;
   challenge: string[];
+  bulletedChallenge?: boolean;
   role?: string;
   constraints?: string[];
   process?: { intro?: string; items: string[] };
+  midMedia?: MediaSlot;
   keyDecisions: string[];
   outcomes: { value: string; label: string }[];
   qualitative?: { title?: string; body: string }[];
+  impactStats?: { items: { label: string; before: string; after: string; description: string }[] };
 };
+
+export type TocEntry = { id: string; label: string };
 
 export type Project = {
   slug: string;
@@ -47,6 +60,8 @@ export type Project = {
   darkText?: boolean;
   quickRead: QuickRead;
   fullCaseStudy: Block[];
+  /** Presence of this field opts the project into the reveal-on-click + sticky TOC behaviour. */
+  toc?: TocEntry[];
 };
 
 export const projects: Project[] = [
@@ -57,6 +72,16 @@ export const projects: Project[] = [
     client: "InPost",
     color: "#F7D60F",
     heroBackground: "#E0E1E4",
+    toc: [
+      { id: "quick-summary", label: "Quick Summary" },
+      { id: "process", label: "Process" },
+      { id: "impact", label: "Impact" },
+      { id: "business-objectives", label: "Business Objectives" },
+      { id: "research-insights", label: "Research Insights" },
+      { id: "design-changes", label: "Design changes" },
+      { id: "user-feedback", label: "User feedback" },
+      { id: "before-and-after", label: "Before and after" },
+    ],
     quickRead: {
       tagline:
         "Designed a scalable multi-market parcel tracking experience across European delivery flows",
@@ -67,13 +92,15 @@ export const projects: Project[] = [
         alt: "InPost parcel tracking detail screen showing a map, pickup status, and locker QR code",
       },
       heroVideo: {
-        src: "/projects/scaling-parcel-tracking/SLIDER10211_2.mp4",
-        width: 1628,
+        src: "/projects/scaling-parcel-tracking/mobile-app-showcase.mp4",
+        width: 1440,
         height: 1080,
       },
+      bulletedChallenge: true,
       challenge: [
         "Stakeholders wanted to scale an existing Polish parcel tracking flow globally.",
         "I identified that delivery behaviours, carrier logic, and user expectations differed significantly between markets, making a direct rollout risky.",
+        "As a Product Designer for UK app team, I initiated the project of unifying app tracking experience into one from different markets (UK, France, Poland).",
         "Instead of adapting screens market by market, I redesigned the tracking structure for international scale.",
       ],
       process: {
@@ -87,6 +114,15 @@ export const projects: Project[] = [
           "iterating on parcel states, action visibility, and pickup interactions based on feedback",
         ],
       },
+      midMedia: {
+        kind: "video",
+        video: {
+          src: "/projects/scaling-parcel-tracking/scene.mp4",
+          width: 1440,
+          height: 1080,
+        },
+        alt: "InPost parcel tracking experience shown in context",
+      },
       keyDecisions: [
         "Simplified parcel states and delivery communication",
         "Prioritised next actions and pickup visibility",
@@ -94,10 +130,7 @@ export const projects: Project[] = [
         "Reduced ambiguity across delivery scenarios",
         "Improved locker and QR-based interaction",
       ],
-      outcomes: [
-        { value: "66%", label: "drop in complaints about missing pickup information" },
-        { value: "50%", label: "improvement in “unable to find address” usability task" },
-      ],
+      outcomes: [],
       qualitative: [
         {
           title: "Faster decision-making",
@@ -112,29 +145,33 @@ export const projects: Project[] = [
           body: "Reduced ambiguity around parcel states, pickup timing, and delivery expectations",
         },
       ],
-    },
-    fullCaseStudy: [
-      {
-        kind: "lead",
+      impactStats: {
         items: [
           {
-            label: "My role",
-            body: "As a Product Designer for UK app team, I initiated the project of unifying app experience into one from different markets (UK, France, Poland).",
+            label: "About delivery address",
+            before: "50%",
+            after: "0%",
+            description: "of users reported that this information is “unavailable” or not easy enough to find.",
           },
           {
-            label: "Overview",
-            body: "We have different apps on different markets which, in future, we plan to unify into one app. However, we do not have any in-depth research which would help us to unify this experience for the users.",
+            label: "About sender details",
+            before: "33%",
+            after: "0%",
+            description: "of users reported that this information is “unavailable” or not easy enough to find.",
+          },
+          {
+            label: "Hierarchy of the Parcel Details page",
+            before: "66%",
+            after: "33%",
+            description: "of users generally mentioned “issues with the hierarchy” of information on the Parcel Details page.",
           },
         ],
       },
-      {
-        kind: "statement",
-        tone: "dark",
-        text:
-          "Existing parcel tracking information architecture lacks consistency and hierarchy across markets, leading to users' inability to determine parcel status and delivery times. It either overwhelms users with unnecessary information or fails to provide enough at crucial steps of the journey.",
-      },
+    },
+    fullCaseStudy: [
       {
         kind: "numbered",
+        id: "business-objectives",
         heading: "Business Objectives",
         items: [
           {
@@ -142,17 +179,18 @@ export const projects: Project[] = [
             body: "by unifying parcel tracking interfaces across markets, minimizing duplicate design and engineering work.",
           },
           {
-            title: "Increase customer satisfaction and retention",
-            body: "by providing a more intuitive, consistent tracking experience that addresses key pain points.",
-          },
-          {
             title: "Gather actionable cross-market user data",
             body: "through a standardized interface, enabling more effective product decisions based on consistent metrics.",
+          },
+          {
+            title: "Increase customer satisfaction and retention",
+            body: "by providing a more intuitive, consistent tracking experience that addresses key pain points.",
           },
         ],
       },
       {
         kind: "numbered",
+        id: "research-insights",
         heading: "Research Insights",
         intro:
           "I prepared UX Research Plan to conduct survey and usability test on existing Polish app. The Research was conducted on 10 users from each market (Poland, France, UK, Italy). Test included survey part and prototype part where users performed tasks on prototypes on existing app.",
@@ -162,20 +200,20 @@ export const projects: Project[] = [
             body: "Users prefer clear, visual timelines with easy-to-understand steps — not technical jargon like 'heading off to warehouse.'",
           },
           {
-            title: "De-emphasize package ID details",
-            body: "Parcel numbers matter, but users focus more on delivery status and pickup info.",
-          },
-          {
             title: "Be transparent about delays",
             body: "Users appreciate seeing delays in real time — even when things go wrong.",
           },
           {
-            title: "Include clear, step-by-step pickup instructions",
-            body: "Guided collection steps make users feel confident and informed.",
-          },
-          {
             title: "Prioritize ETA and status",
             body: "Across markets, ETA ranks highest in importance, followed by pickup address and parcel status.",
+          },
+          {
+            title: "De-emphasize package ID details",
+            body: "Parcel numbers matter, but users focus more on delivery status and pickup info.",
+          },
+          {
+            title: "Include clear, step-by-step pickup instructions",
+            body: "Guided collection steps make users feel confident and informed.",
           },
           {
             title: "Give more prominence to the pick up location and mention collection requirements",
@@ -185,75 +223,117 @@ export const projects: Project[] = [
       },
       {
         kind: "heading",
-        text: "New design — parcel list",
+        id: "design-changes",
+        text: "Design changes",
       },
       {
-        kind: "image",
-        size: "medium",
-        image: {
-          src: "/projects/scaling-parcel-tracking/new-design-list.png",
-          width: 440,
-          height: 2030,
-          alt: "Redesigned parcel list showing out for delivery, ready to collect, redirected, and delivered states",
+        kind: "mediaNumbered",
+        heading: "New design — parcel list",
+        media: {
+          kind: "placeholder",
+          label: "Image — redesigned parcel list, annotated 1–9",
         },
-      },
-      {
-        kind: "heading",
-        text: "New design — parcel details page",
-      },
-      {
-        kind: "image",
-        size: "medium",
-        image: {
-          src: "/projects/scaling-parcel-tracking/new-design-details.png",
-          width: 545,
-          height: 2100,
-          alt: "Redesigned parcel details page with map, locker QR code, and pickup instructions, annotated 1 to 8",
-        },
-      },
-      {
-        kind: "beforeAfterStats",
-        heading: "Round 2 of usability testing — the effect of the new design on UX",
         items: [
           {
-            label: "About delivery address",
-            before: "50%",
-            after: "0%",
-            description: "of users reported that this information is “unavailable” or not easy enough to find",
+            title: "1. Labels",
+            body: "Clear labels added for communicating most important actions for the users (eg. out for delivery, redirected parcel).",
           },
           {
-            label: "About sender details",
-            before: "33%",
-            after: "0%",
-            description: "of users reported that this information is “unavailable” or not easy enough to find",
+            title: "2. Location Prominence",
+            body: "Location information added on the list as it was described as missing by users.",
           },
           {
-            label: "Hierarchy of the Parcel Details page",
-            before: "66%",
-            after: "33%",
-            description: "of users generally mentioned “issues with the hierarchy” of information",
+            title: "3. Key action button",
+            body: "There's been added button next to the location (in this case home address) when the parcel can be managed (redirected, left in safe place or delivered on another day).",
+          },
+          {
+            title: "4. Key action button — open remotely",
+            body: "Open remotely button stayed in the same position as it's been used by users significantly.",
+          },
+          {
+            title: "5. Clear number of parcels",
+            body: "Clear number of parcels for multiparcel has been added on the card. Multiparcel was proven to be a new and unfamiliar concept on different markets. Thanks to this number it's more understandable for users.",
+          },
+          {
+            title: "6. Directions button",
+            body: "Directions button is placed next to address for quick access to Google Maps and navigating to desired locker.",
+          },
+          {
+            title: "7. Colours adjusted",
+            body: "All 'open remotely' buttons are being kept yellow for consistency. The time bar changes colour from yellow to black (and red when collection is nearing the limit). This is to make it more prominent and stand out from the yellow buttons more.",
+          },
+          {
+            title: "8. Shipped label",
+            body: "Exact shipping time has been mentioned by users as key information therefore it has been placed on the card.",
+          },
+          {
+            title: "9. Archive button",
+            body: "Archive button appears on delivered parcels. It helps to manage the parcel on the list faster and makes delivered parcels to stand out more.",
+          },
+        ],
+      },
+      {
+        kind: "mediaNumbered",
+        heading: "New design — parcel details page",
+        media: {
+          kind: "placeholder",
+          label: "Image — redesigned parcel details page, annotated 1–8",
+        },
+        items: [
+          {
+            title: "1. Tracking Number Placement",
+            body: "Give tracking number less prominence but place it at the top of the page to still provide parcel identification.",
+          },
+          {
+            title: "2. Location Prominence",
+            body: "Location more prominent with map and Directions button included.",
+          },
+          {
+            title: "3. Information Clustering",
+            body: "Cluster important information on one component, use tracking component as a way to communicate most recent and any immediate action that needs to be taken next to the status.",
+          },
+          {
+            title: "4. Progressive Disclosure",
+            body: "Full tracking details are available upon clicking 'view details'.",
+          },
+          {
+            title: "5. Clear section headers",
+            body: "Add clear headers for the sections of the page to divide information more clearly. This helps especially when the pages are really long and helps to find information easier.",
+          },
+          {
+            title: "6. Instructive Headers",
+            body: "Keep the headers instructive like 'collect at' or 'scan at the locker' to emphasize better what user needs to do.",
+          },
+          {
+            title: "7. Parcel Details",
+            body: "Keep full parcel details lower down the page.",
+          },
+          {
+            title: "8. Instructions Component",
+            body: "Add component with instructions on eg. how to pick up.",
           },
         ],
       },
       {
         kind: "quote",
+        id: "user-feedback",
         text:
-          "this seems to be more comprehensive in terms of details of features when compared to major firm parcel apps I've seen in thee UK",
-        attribution: "Participant ZRZR0",
+          "this seems to be more comprehensive in terms of details of features when compared to major firm parcel apps I've seen in the UK",
       },
       {
-        kind: "heading",
-        text: "Before & after",
-      },
-      {
-        kind: "image",
-        size: "full",
-        image: {
-          src: "/projects/scaling-parcel-tracking/before-after.png",
-          width: 1710,
-          height: 850,
-          alt: "Before and after comparison of the parcel details screen across the Polish and redesigned UK experience",
-        },
+        kind: "beforeAfterImages",
+        id: "before-and-after",
+        heading: "Before and after",
+        items: [
+          {
+            label: "Before",
+            media: { kind: "placeholder", label: "Image — “Shipment tracking” list screen" },
+          },
+          {
+            label: "After",
+            media: { kind: "placeholder", label: "Image — “Parcel tracking” list screen" },
+          },
+        ],
       },
     ],
   },

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import ProjectHero from "@/components/project/ProjectHero";
 import QuickRead from "@/components/project/QuickRead";
 import CaseStudyBlocks from "@/components/project/CaseStudyBlocks";
+import FullCaseStudyReveal from "@/components/project/FullCaseStudyReveal";
 import PrevNextNav from "@/components/project/PrevNextNav";
 import Footer from "@/components/Footer";
 import {
@@ -54,14 +55,25 @@ export default async function ProjectPage({
           video={project.quickRead.heroVideo}
         />
 
-        <QuickRead data={project.quickRead} color={project.color} />
+        {project.toc ? (
+          <FullCaseStudyReveal
+            quickRead={project.quickRead}
+            color={project.color}
+            blocks={project.fullCaseStudy}
+            toc={project.toc}
+          />
+        ) : (
+          <>
+            <QuickRead data={project.quickRead} color={project.color} />
 
-        <div id="full-case-study" className="scroll-mt-24 border-t border-line">
-          <div className="mx-auto max-w-[1400px] px-6 pt-16 sm:px-10">
-            <p className="text-[13px] uppercase tracking-[0.14em] text-muted">Full case study</p>
-          </div>
-          <CaseStudyBlocks blocks={project.fullCaseStudy} color={project.color} />
-        </div>
+            <div id="full-case-study" className="scroll-mt-24 border-t border-line">
+              <div className="mx-auto max-w-[1400px] px-6 pt-16 sm:px-10">
+                <p className="text-[13px] uppercase tracking-[0.14em] text-muted">Full case study</p>
+              </div>
+              <CaseStudyBlocks blocks={project.fullCaseStudy} color={project.color} />
+            </div>
+          </>
+        )}
       </article>
 
       <PrevNextNav previous={previous} next={next} />
