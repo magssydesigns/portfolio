@@ -1,6 +1,7 @@
 import Reveal from "@/components/Reveal";
 import Button from "@/components/Button";
 import ProjectCard from "@/components/ProjectCard";
+import Footer from "@/components/Footer";
 import {
   TrackingDetailVisual,
   TrackingListVisual,
@@ -90,55 +91,7 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
-        <div className="border-t border-line" />
-      </div>
-
-      <section className="mx-auto max-w-[1400px] px-6 py-20 sm:px-10 sm:py-28">
-        <Reveal>
-          <p className="max-w-2xl font-display text-xl leading-relaxed text-ink-soft sm:text-2xl">
-            Hey there, I&rsquo;m Magda &mdash; a product designer currently leading
-            the full design process for a consumer app &mdash; the InPost UK app
-            with ~3M active users. I am also designing web experiences and
-            interfaces for smart hardware.
-          </p>
-        </Reveal>
-
-        <Reveal delay={0.1}>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Button href="/resume.pdf" chevron>
-              Download my resume
-            </Button>
-            <Button href="mailto:magssydesigns@gmail.com">Let&rsquo;s connect</Button>
-          </div>
-        </Reveal>
-      </section>
-
-      <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
-        <div className="border-t border-line" />
-      </div>
-
-      <section className="mx-auto max-w-[1400px] px-6 py-20 sm:px-10 sm:py-28">
-        <Reveal>
-          <h2 className="max-w-xl font-display text-4xl leading-[1.1] tracking-tight sm:text-6xl">
-            Thanks for stopping by!
-          </h2>
-          <a
-            href="mailto:magssydesigns@gmail.com"
-            className="link-underline mt-8 inline-flex items-center gap-2.5 text-lg text-ink"
-          >
-            <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden>
-              <rect x="1" y="1" width="16" height="12" rx="2" stroke="currentColor" strokeWidth="1.3" />
-              <path d="M1.5 2L9 8L16.5 2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-            </svg>
-            magssydesigns@gmail.com
-          </a>
-        </Reveal>
-
-        <p className="mt-24 text-[13px] text-muted">
-          {`© ${new Date().getFullYear()} by Magdalena Marczewska and Claude Code <3`}
-        </p>
-      </section>
+      <Footer />
     </>
   );
 }
