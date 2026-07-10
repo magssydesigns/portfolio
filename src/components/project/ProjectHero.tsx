@@ -41,8 +41,11 @@ export default function ProjectHero({
 
   if (video) {
     return (
-      <section className="relative overflow-hidden pt-32 sm:pt-40 lg:pt-0" style={{ backgroundColor: color }}>
-        <div className="mx-auto max-w-[1400px] px-6 pb-16 sm:px-10 sm:pb-24 lg:pb-24 lg:pt-40 lg:pr-[42%]">
+      <section
+        className="relative overflow-hidden pt-32 sm:pt-40 2xl:pt-0 2xl:min-h-[720px] 2xl:flex 2xl:items-center"
+        style={{ backgroundColor: color }}
+      >
+        <div className="mx-auto max-w-[1400px] px-6 pb-16 sm:px-10 sm:pb-24 2xl:w-full 2xl:pb-0 2xl:pr-[46%]">
           <p className="text-[13px] uppercase tracking-[0.14em] text-ink/60">{client}</p>
           <h1 className="mt-6 max-w-xl font-display text-4xl leading-[1.08] tracking-tight text-ink sm:text-6xl lg:text-[3.4rem] lg:leading-[1.05]">
             {title}
@@ -50,7 +53,7 @@ export default function ProjectHero({
           <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">{tagline}</p>
         </div>
 
-        <div className="px-6 pb-16 sm:px-10 sm:pb-24 lg:contents">
+        <div className="px-6 pb-16 sm:px-10 sm:pb-24 lg:pb-32 2xl:contents">
           <video
             ref={videoRef}
             src={video.src}
@@ -62,7 +65,7 @@ export default function ProjectHero({
             playsInline
             preload="auto"
             aria-label={image.alt}
-            className="mx-auto block h-auto w-full max-w-[320px] object-contain sm:max-w-[380px] lg:absolute lg:inset-y-0 lg:right-0 lg:mx-0 lg:h-full lg:w-auto lg:max-w-[640px]"
+            className="mx-auto block h-auto w-full max-w-[320px] object-contain sm:max-w-[500px] md:max-w-[640px] lg:max-w-[760px] xl:max-w-[900px] 2xl:absolute 2xl:inset-y-0 2xl:right-0 2xl:mx-0 2xl:h-full 2xl:w-auto 2xl:max-w-[1150px]"
           />
         </div>
       </section>
