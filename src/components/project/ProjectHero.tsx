@@ -41,19 +41,8 @@ export default function ProjectHero({
 
   if (video) {
     return (
-      <section
-        className="relative overflow-hidden pt-32 sm:pt-40 2xl:pt-0 2xl:min-h-[720px] 2xl:flex 2xl:items-center"
-        style={{ backgroundColor: color }}
-      >
-        <div className="mx-auto max-w-[1400px] px-6 pb-16 sm:px-10 sm:pb-24 2xl:w-full 2xl:pb-0 2xl:pr-[46%]">
-          <p className="text-[13px] uppercase tracking-[0.14em] text-ink/60">{client}</p>
-          <h1 className="mt-6 max-w-xl font-display text-4xl leading-[1.08] tracking-tight text-ink sm:text-6xl lg:text-[3.4rem] lg:leading-[1.05]">
-            {title}
-          </h1>
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">{tagline}</p>
-        </div>
-
-        <div className="px-6 pb-16 sm:px-10 sm:pb-24 lg:pb-32 2xl:contents">
+      <section className="pt-32 sm:pt-40" style={{ backgroundColor: color }}>
+        <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
           <video
             ref={videoRef}
             src={video.src}
@@ -65,8 +54,16 @@ export default function ProjectHero({
             playsInline
             preload="auto"
             aria-label={image.alt}
-            className="mx-auto block h-auto w-full max-w-[320px] object-contain sm:max-w-[500px] md:max-w-[640px] lg:max-w-[760px] xl:max-w-[900px] 2xl:absolute 2xl:inset-y-0 2xl:right-0 2xl:mx-0 2xl:h-full 2xl:w-auto 2xl:max-w-[1150px]"
+            className="mx-auto block h-auto w-full rounded-2xl"
           />
+        </div>
+
+        <div className="mx-auto max-w-[1400px] px-6 pb-16 pt-10 sm:px-10 sm:pb-24 sm:pt-12">
+          <p className="text-[13px] uppercase tracking-[0.14em] text-ink/60">{client}</p>
+          <h1 className="mt-6 max-w-xl font-display text-4xl leading-[1.08] tracking-tight text-ink sm:text-6xl lg:text-[3.4rem] lg:leading-[1.05]">
+            {title}
+          </h1>
+          <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">{tagline}</p>
         </div>
       </section>
     );

@@ -197,11 +197,11 @@ export const projects: Project[] = [
         items: [
           {
             title: "Make parcel tracking visual and simple",
-            body: "Users prefer clear, visual timelines with easy-to-understand steps — not technical jargon like 'heading off to warehouse.'",
+            body: "Users prefer clear, visual timelines with easy-to-understand steps - not technical jargon like 'heading off to warehouse.'",
           },
           {
             title: "Be transparent about delays",
-            body: "Users appreciate seeing delays in real time — even when things go wrong.",
+            body: "Users appreciate seeing delays in real time - even when things go wrong.",
           },
           {
             title: "Prioritize ETA and status",
@@ -247,7 +247,7 @@ export const projects: Project[] = [
             body: "There's been added button next to the location (in this case home address) when the parcel can be managed (redirected, left in safe place or delivered on another day).",
           },
           {
-            title: "4. Key action button — open remotely",
+            title: "4. Key action button - open remotely",
             body: "Open remotely button stayed in the same position as it's been used by users significantly.",
           },
           {
@@ -353,10 +353,10 @@ export const projects: Project[] = [
         alt: "InPost send a parcel screen showing locker or home address delivery options and size selection",
       },
       challenge: [
-        "The UK InPost app didn't yet allow users to send parcels, even though the feature existed in the Polish version. The business needed to launch the feature quickly in the UK, reusing the existing flow — but the UX wasn't fully aligned to UK users' expectations, market behaviour, or pricing model.",
+        "The UK InPost app didn't yet allow users to send parcels, even though the feature existed in the Polish version. The business needed to launch the feature quickly in the UK, reusing the existing flow - but the UX wasn't fully aligned to UK users' expectations, market behaviour, or pricing model.",
         "Goal: adapt and enhance the existing Polish “Send a Parcel” flow for the UK market, introduce new features like parcel cover, and improve UX friction points without rebuilding the entire experience.",
       ],
-      role: "Product Designer — led UX, UI, benchmarking, prototyping, usability testing, design improvements, and design hand-off.",
+      role: "Product Designer - led UX, UI, benchmarking, prototyping, usability testing, design improvements, and design hand-off.",
       constraints: [
         "Very short delivery timeline",
         "Required to reuse most of the original flow",
@@ -388,7 +388,7 @@ export const projects: Project[] = [
         { body: "Added new revenue stream via parcel cover + promo functionality" },
         { body: "9/10 users successfully edited parcel size and details during testing" },
         { body: "Improved clarity around ETA and parcel value, reducing decision hesitation on the new market" },
-        { body: "Created foundation for future UX metric tracking across send flow — followed with a UX Metrics Workshop with the team" },
+        { body: "Created foundation for future UX metric tracking across send flow - followed with a UX Metrics Workshop with the team" },
       ],
     },
     fullCaseStudy: [
@@ -420,14 +420,14 @@ export const projects: Project[] = [
             body: "by introducing feature which is already existing in Poland. The feature would bring significant earnings.",
           },
           {
-            title: "Introduce extra feature inside send — parcel cover",
+            title: "Introduce extra feature inside send - parcel cover",
             body: "which is not available in Poland but widely used in UK market. That would bring extra earnings.",
           },
         ],
       },
       {
         kind: "heading",
-        text: "Flow overview — final design",
+        text: "Flow overview - final design",
       },
       {
         kind: "image",
@@ -489,7 +489,7 @@ export const projects: Project[] = [
           },
           {
             title: "Make options in summary page fully editable from that page",
-            body: "Users need to be able to edit all details before proceeding with payment. This prevents from users dropping off at this step and starting new process of sending. Allow users to edit data directly at the “Order Review” step (38% get it wrong) — source: Baymard Institute.",
+            body: "Users need to be able to edit all details before proceeding with payment. This prevents from users dropping off at this step and starting new process of sending. Allow users to edit data directly at the “Order Review” step (38% get it wrong) - source: Baymard Institute.",
           },
           {
             title: "Include clear, step-by-step 'send a parcel' information at the end",
@@ -501,13 +501,13 @@ export const projects: Project[] = [
           },
           {
             title: "Inform about any price changes during the process",
-            body: "Communicate clearly any price changes when user changes size or delivery method. This will prevent from uncertainty and abandoned checkouts. What information to display at the “Order Review” step (12% get it wrong) — source: Baymard Institute. Display visually a change in price after editing information in order review.",
+            body: "Communicate clearly any price changes when user changes size or delivery method. This will prevent from uncertainty and abandoned checkouts. What information to display at the “Order Review” step (12% get it wrong) - source: Baymard Institute. Display visually a change in price after editing information in order review.",
           },
         ],
       },
       {
         kind: "heading",
-        text: "New designs — parcel cover",
+        text: "New designs - parcel cover",
       },
       {
         kind: "image",
@@ -521,7 +521,7 @@ export const projects: Project[] = [
       },
       {
         kind: "numbered",
-        heading: "Key changes — parcel cover, a new section",
+        heading: "Key changes - parcel cover, a new section",
         items: [
           {
             title: "Extra cover block",
@@ -539,7 +539,7 @@ export const projects: Project[] = [
       },
       {
         kind: "numbered",
-        heading: "Key changes — summary page",
+        heading: "Key changes - summary page",
         items: [
           {
             title: "Message block",
@@ -567,7 +567,7 @@ export const projects: Project[] = [
           },
           {
             title: "Promotion",
-            body: "New feature added — users can apply promo code before continuing to the payment.",
+            body: "New feature added - users can apply promo code before continuing to the payment.",
           },
         ],
       },
@@ -578,7 +578,7 @@ export const projects: Project[] = [
         items: [
           {
             title: "In how many days is the parcel expected to arrive when sent directly to door?",
-            body: "More than 50% of users answered correctly, though some didn't find the answer right away — several missed the estimated dates being at the top (4/9), 2 users checked whether estimated delivery times would change if they changed the parcel size, and only 3/9 answered without any hesitation. The reviewed design, with estimated dates and address options made more prominent, caused no confusion.",
+            body: "More than 50% of users answered correctly, though some didn't find the answer right away - several missed the estimated dates being at the top (4/9), 2 users checked whether estimated delivery times would change if they changed the parcel size, and only 3/9 answered without any hesitation. The reviewed design, with estimated dates and address options made more prominent, caused no confusion.",
           },
           {
             title: "Preferred icon for the 'Send' feature on the navigation bar",

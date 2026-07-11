@@ -18,13 +18,13 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL("https://mags-portfolio.vercel.app"),
   title: {
-    default: "Magdalena Marczewska — Product Designer",
-    template: "%s — Magdalena Marczewska",
+    default: "Magdalena Marczewska - Product Designer",
+    template: "%s - Magdalena Marczewska",
   },
   description:
     "Designing products that simplify everyday life. Product design work across mobile, systems, and AI-assisted workflows.",
   openGraph: {
-    title: "Magdalena Marczewska — Product Designer",
+    title: "Magdalena Marczewska - Product Designer",
     description: "Designing products that simplify everyday life.",
     type: "website",
   },

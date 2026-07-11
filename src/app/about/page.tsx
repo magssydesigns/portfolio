@@ -10,25 +10,25 @@ export const metadata: Metadata = {
 
 const timeline = [
   {
-    range: "2024 — Present",
+    range: "2024 - Present",
     role: "Senior Product Designer, AI Experience",
     place: "Independent / contract",
     body: "Leading design for AI-assisted products across fintech and healthcare, focused on calibrated trust and human-in-the-loop workflows.",
   },
   {
-    range: "2021 — 2024",
+    range: "2021 - 2024",
     role: "Design Systems Lead",
     place: "Enterprise logistics platform",
     body: "Built and governed a company-wide design system spanning four product lines and a 40-engineer platform team.",
   },
   {
-    range: "2018 — 2021",
+    range: "2018 - 2021",
     role: "Senior Product Designer",
     place: "Digital health & fintech scale-ups",
     body: "End-to-end mobile product design, from onboarding through core transactional flows, across two Series B/C startups.",
   },
   {
-    range: "2014 — 2018",
+    range: "2014 - 2018",
     role: "Product Designer",
     place: "Digital product studio",
     body: "Cross-client product and UX design across consumer and B2B mobile apps, developing the systems-thinking approach that shapes my work today.",
@@ -38,15 +38,15 @@ const timeline = [
 const principles = [
   {
     title: "Complexity is a material, not a flaw",
-    body: "Most of the products I work on are inherently complicated — money, health, claims, infrastructure. The job isn't to pretend that complexity away; it's to give it an honest, legible shape.",
+    body: "Most of the products I work on are inherently complicated - money, health, claims, infrastructure. The job isn't to pretend that complexity away; it's to give it an honest, legible shape.",
   },
   {
     title: "Systems before screens",
-    body: "A screen is a snapshot of a system's current state. I design the underlying model — states, permissions, data — before I design what it looks like, because that order rarely works in reverse.",
+    body: "A screen is a snapshot of a system's current state. I design the underlying model - states, permissions, data - before I design what it looks like, because that order rarely works in reverse.",
   },
   {
     title: "AI changes the process, not the standard",
-    body: "Working with models has changed how fast I can explore and how rigorously I can critique. It hasn't changed what a considered, trustworthy interface looks like — if anything, it's raised the bar.",
+    body: "Working with models has changed how fast I can explore and how rigorously I can critique. It hasn't changed what a considered, trustworthy interface looks like - if anything, it's raised the bar.",
   },
 ];
 
@@ -74,7 +74,7 @@ export default function AboutPage() {
             <div className="mt-10 max-w-xl space-y-5 text-lg leading-relaxed text-ink-soft">
               <p>
                 I&rsquo;m Magda, a Senior Product Designer with twelve years
-                spent inside complicated products — banking apps, claims
+                spent inside complicated products - banking apps, claims
                 platforms, enterprise systems, and more recently, tools built
                 on top of language models.
               </p>
@@ -86,7 +86,7 @@ export default function AboutPage() {
               </p>
               <p>
                 For the last four years, that&rsquo;s increasingly meant
-                designing around AI — not adding a chat window to an
+                designing around AI - not adding a chat window to an
                 existing product, but rethinking how interfaces communicate
                 uncertainty, explain reasoning, and earn the right to be
                 trusted with real decisions.
@@ -149,7 +149,7 @@ export default function AboutPage() {
                   </p>
                   <div>
                     <h3 className="font-display text-xl tracking-tight">
-                      {item.role} <span className="text-ink-soft">— {item.place}</span>
+                      {item.role} <span className="text-ink-soft">- {item.place}</span>
                     </h3>
                     <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-ink-soft">
                       {item.body}

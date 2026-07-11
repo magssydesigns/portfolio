@@ -61,7 +61,7 @@ export default function QuickRead({
               <ul className="space-y-3">
                 {data.challenge.map((p, i) => (
                   <li key={i} className="flex gap-3 text-lg leading-relaxed text-ink-soft">
-                    <span className="text-accent">—</span>
+                    <span className="text-accent">-</span>
                     {p}
                   </li>
                 ))}
@@ -77,7 +77,7 @@ export default function QuickRead({
               <ul className="space-y-2 pt-2">
                 {data.constraints.map((c) => (
                   <li key={c} className="flex gap-3 text-[15px] text-ink-soft">
-                    <span className="text-accent">—</span>
+                    <span className="text-accent">-</span>
                     {c}
                   </li>
                 ))}
@@ -98,7 +98,7 @@ export default function QuickRead({
               <ul className="space-y-3">
                 {data.process.items.map((item) => (
                   <li key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink-soft">
-                    <span className="text-accent">—</span>
+                    <span className="text-accent">-</span>
                     {item}
                   </li>
                 ))}
@@ -124,7 +124,7 @@ export default function QuickRead({
           <div className={`${contentClass} grid max-w-2xl grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2`}>
             {data.keyDecisions.map((item) => (
               <div key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink-soft">
-                <span className="text-accent">—</span>
+                <span className="text-accent">-</span>
                 {item}
               </div>
             ))}

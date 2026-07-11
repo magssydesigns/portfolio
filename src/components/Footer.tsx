@@ -5,8 +5,8 @@ export default function Footer() {
     <footer className="border-t border-line">
       <div className="mx-auto max-w-[1400px] px-6 py-20 sm:px-10 sm:py-28">
         <p className="max-w-2xl font-display text-xl leading-relaxed text-ink-soft sm:text-2xl">
-          Hey there, I&rsquo;m Magda &mdash; a product designer currently
-          leading the full design process for a consumer app &mdash; the
+          Hey there, I&rsquo;m Magda - a product designer currently
+          leading the full design process for a consumer app - the
           InPost UK app with ~3M active users. I am also designing web
           experiences and interfaces for smart hardware.
         </p>
@@ -14,7 +14,9 @@ export default function Footer() {
           <Button href="/resume.pdf" chevron>
             Download my resume
           </Button>
-          <Button href="mailto:magssydesigns@gmail.com">Let&rsquo;s connect</Button>
+          <Button href="https://www.linkedin.com/in/magdalena-marczewska-3b33b750/">
+            Let&rsquo;s connect
+          </Button>
         </div>
       </div>
 
@@ -40,7 +42,7 @@ export default function Footer() {
               magssydesigns@gmail.com
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/magdalena-marczewska-3b33b750/"
               target="_blank"
               rel="noreferrer"
               className="link-underline inline-flex items-center gap-2.5 text-lg text-ink"

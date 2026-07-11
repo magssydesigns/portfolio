@@ -7,24 +7,24 @@ import { getCaseStudyBySlug } from "@/lib/case-studies";
 export const metadata: Metadata = {
   title: "AI Workflow",
   description:
-    "How I integrate AI into product design work — constraint-setting, structured critique, and calibrated trust in the interface.",
+    "How I integrate AI into product design work - constraint-setting, structured critique, and calibrated trust in the interface.",
 };
 
 const steps = [
   {
     n: "01",
     title: "Frame the constraints, in writing",
-    body: "Before any generation happens, I write down the real constraints — technical limits, accessibility requirements, brand voice, business rules — as plain text. This is the step most workflows skip, and it's the one that determines whether AI output is useful or just fast.",
+    body: "Before any generation happens, I write down the real constraints - technical limits, accessibility requirements, brand voice, business rules - as plain text. This is the step most workflows skip, and it's the one that determines whether AI output is useful or just fast.",
   },
   {
     n: "02",
     title: "Generate wide, on purpose",
-    body: "With constraints established, I use AI to explore a much wider option space than I would alone in the same amount of time — variations in structure, tone, and layout logic, not just visual styling.",
+    body: "With constraints established, I use AI to explore a much wider option space than I would alone in the same amount of time - variations in structure, tone, and layout logic, not just visual styling.",
   },
   {
     n: "03",
     title: "Structured critique, both directions",
-    body: "I use the model as a rigorous first-pass critic against the original constraints, and I critique its output the same way I'd critique a junior designer's — specifically, and against stated reasoning, not vibes.",
+    body: "I use the model as a rigorous first-pass critic against the original constraints, and I critique its output the same way I'd critique a junior designer's - specifically, and against stated reasoning, not vibes.",
   },
   {
     n: "04",
@@ -34,7 +34,7 @@ const steps = [
   {
     n: "05",
     title: "Documentation as a byproduct",
-    body: "Because the constraint-setting and critique happen as explicit text, the rationale for a design decision is captured automatically — instead of living only in a designer's head and disappearing after the file is archived.",
+    body: "Because the constraint-setting and critique happen as explicit text, the rationale for a design decision is captured automatically - instead of living only in a designer's head and disappearing after the file is archived.",
   },
 ];
 
@@ -49,7 +49,7 @@ const principles = [
   },
   {
     title: "Disagreement is a feature",
-    body: "A good AI-assisted interface makes it easy for a skilled human to override the model, quickly and without friction — and treats that override as signal, not failure.",
+    body: "A good AI-assisted interface makes it easy for a skilled human to override the model, quickly and without friction - and treats that override as signal, not failure.",
   },
 ];
 
@@ -75,7 +75,7 @@ export default function AIWorkflowPage() {
           </h1>
           <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft">
             Over the last four years, AI has changed how I explore, critique,
-            and document design work — and it has changed what I design when
+            and document design work - and it has changed what I design when
             the product itself is built on a model. This is the working
             method behind both.
           </p>
@@ -142,7 +142,7 @@ export default function AIWorkflowPage() {
               <ul className="space-y-5">
                 {notList.map((item) => (
                   <li key={item} className="flex gap-4 border-t border-ink/15 pt-5 text-[15px] text-ink-soft">
-                    <span className="font-display italic text-accent">—</span>
+                    <span className="font-display italic text-accent">-</span>
                     {item}
                   </li>
                 ))}
