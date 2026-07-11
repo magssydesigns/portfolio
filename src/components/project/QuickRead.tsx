@@ -127,7 +127,7 @@ export default function QuickRead({
           <div className="mt-8 flex justify-center">
             <MediaSlotView
               media={data.midMedia}
-              className="h-auto w-full max-w-[720px] rounded-2xl border"
+              className="h-auto w-full max-w-[864px] rounded-2xl border"
               style={{ borderColor: "rgb(221, 216, 203)" }}
             />
           </div>

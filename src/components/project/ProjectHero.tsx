@@ -54,7 +54,7 @@ export default function ProjectHero({
             playsInline
             preload="auto"
             aria-label={image.alt}
-            className="mx-auto block h-auto w-full max-w-[50%] rounded-2xl border"
+            className="mx-auto block h-auto w-full max-w-[60%] rounded-2xl border"
             style={{ borderColor: "rgb(221, 216, 203)" }}
           />
         </div>

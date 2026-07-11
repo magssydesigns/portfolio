@@ -117,8 +117,8 @@ export const projects: Project[] = [
       midMedia: {
         kind: "video",
         video: {
-          src: "/projects/scaling-parcel-tracking/mobile-app-showcase.mp4",
-          width: 1440,
+          src: "/projects/scaling-parcel-tracking/mobile-app-showcase-1.mp4",
+          width: 1412,
           height: 1080,
         },
         alt: "InPost parcel tracking experience shown in context",
