@@ -39,11 +39,14 @@ export default function QuickRead({
   /** "heading" promotes section labels to full-width h2s matching the full case study's section titles. */
   headingStyle?: "sidebar" | "heading";
 }) {
-  const firstWrapClass = headingStyle === "heading" ? "" : "grid grid-cols-1 gap-8 lg:grid-cols-[200px_1fr]";
+  const firstWrapClass =
+    headingStyle === "heading" ? "mx-auto max-w-2xl" : "grid grid-cols-1 gap-8 lg:grid-cols-[200px_1fr]";
   const wrapClass =
     headingStyle === "heading"
-      ? "mt-16 border-t border-line pt-16"
+      ? "mx-auto mt-16 max-w-2xl border-t border-line pt-16"
       : "mt-16 grid grid-cols-1 gap-8 border-t border-line pt-16 lg:grid-cols-[200px_1fr]";
+  // Impact stays full-width (its grids need the room), so it isn't wrapped in the narrow centred column.
+  const wideWrapClass = "mt-16 border-t border-line pt-16";
   const contentClass = headingStyle === "heading" ? "mt-6" : "";
 
   return (
@@ -133,7 +136,7 @@ export default function QuickRead({
       </Reveal>
 
       <Reveal delay={0.14}>
-        <div className={wrapClass}>
+        <div className={headingStyle === "heading" ? wideWrapClass : wrapClass}>
           <SectionLabel headingStyle={headingStyle} id="impact" text="Impact" />
           <div className={contentClass}>
             {data.outcomes.length > 0 && (

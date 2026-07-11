@@ -230,8 +230,13 @@ export const projects: Project[] = [
         kind: "mediaNumbered",
         heading: "New design: parcel list",
         media: {
-          kind: "placeholder",
-          label: "Parcel_list1-1a@4x",
+          kind: "image",
+          image: {
+            src: "/projects/scaling-parcel-tracking/parcel-list-annotated.png",
+            width: 2543,
+            height: 11788,
+            alt: "Redesigned parcel list showing out for delivery, ready to collect, redirected, and delivered states, annotated 1 to 9",
+          },
         },
         items: [
           {
@@ -276,8 +281,13 @@ export const projects: Project[] = [
         kind: "mediaNumbered",
         heading: "New design: parcel details page",
         media: {
-          kind: "placeholder",
-          label: "ParcelInfo_1@4x",
+          kind: "image",
+          image: {
+            src: "/projects/scaling-parcel-tracking/parcel-info-annotated.png",
+            width: 2471,
+            height: 13155,
+            alt: "Redesigned parcel details page with map, locker QR code, and pickup instructions, annotated 1 to 8",
+          },
         },
         items: [
           {
@@ -328,11 +338,27 @@ export const projects: Project[] = [
         items: [
           {
             label: "Before",
-            media: { kind: "placeholder", label: "PArcel list_before@4x" },
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/scaling-parcel-tracking/parcel-list-before.png",
+                width: 2044,
+                height: 9745,
+                alt: "Before: the old “Shipment tracking” parcel list screen",
+              },
+            },
           },
           {
             label: "After",
-            media: { kind: "placeholder", label: "Parcellist_after@4x" },
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/scaling-parcel-tracking/parcel-list-after.png",
+                width: 2044,
+                height: 11789,
+                alt: "After: the redesigned “Parcel tracking” parcel list screen",
+              },
+            },
           },
         ],
       },

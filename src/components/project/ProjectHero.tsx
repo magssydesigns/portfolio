@@ -54,7 +54,7 @@ export default function ProjectHero({
             playsInline
             preload="auto"
             aria-label={image.alt}
-            className="mx-auto block h-auto w-full rounded-2xl"
+            className="mx-auto block h-auto w-full max-w-[50%] rounded-2xl"
           />
         </div>
 
