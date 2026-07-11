@@ -41,6 +41,7 @@ export type QuickRead = {
   role?: string;
   constraints?: string[];
   process?: { intro?: string; items: string[] };
+  challenges?: { intro?: string; items: string[] };
   midMedia?: MediaSlot;
   keyDecisionsLabel?: string;
   keyDecisions: string[];
@@ -374,6 +375,7 @@ export const projects: Project[] = [
     toc: [
       { id: "quick-summary", label: "Quick Summary" },
       { id: "process", label: "Process" },
+      { id: "challenges", label: "Challenges" },
       { id: "impact", label: "Impact" },
       { id: "key-changes", label: "Key changes" },
       { id: "onboarding", label: "Onboarding" },
@@ -391,22 +393,11 @@ export const projects: Project[] = [
         height: 1000,
         alt: "InPost UK app 'Ready to collect' parcel tracking screen on a yellow background",
       },
-      bulletedChallenge: true,
-      challenge: [
-        "InPost was preparing to launch its Polish consumer app into the UK market. The existing product was functional, but built on outdated architecture, inconsistent design patterns, and legacy branding.",
-        "The business goal was clear: ship the UK app fast, without a full rebuild, while still meeting new brand, market and user expectations.",
-        "The challenge wasn't just visual localisation - it was turning a legacy product into something usable, accessible, and scalable, under tight time and technical constraints.",
-      ],
+      bulletedChallenge: false,
       role:
-        "Senior Product Designer - UX, UI, Design System Lead. I was responsible for defining the design approach, prioritising what could realistically ship in phase 1, rebuilding the design system, and collaborating with product, engineering, and brand teams to deliver the launch.",
-      constraints: [
-        "3-month deadline to launch in the UK market",
-        "Existing app built on old XML architecture (limited UI flexibility)",
-        "Could not change core flows in phase 1 - only “surgical” UX/UI fixes",
-        "Design system was fragmented: 60+ text styles, duplicated colours, multiple component variants",
-        "Developers split across UK + Polish teams, working with different standards",
-        "Needed complex marketing sign-off on brand updates before build",
-        "No documentation, inconsistent handoff, zero accessibility compliance",
+        "InPost planned to launch its successful Polish consumer app in the UK within three months. Rather than redesigning the product from scratch, the challenge was to localise and modernise a legacy experience while working within the constraints of an outdated architecture and an evolving product strategy.",
+      challenge: [
+        "I led the UX and design system work, auditing the existing product, defining a phased roadmap, rebuilding the design system, and redesigning key customer journeys to create a scalable foundation for future releases.",
       ],
       process: {
         intro: "My ownership included:",
@@ -416,6 +407,17 @@ export const projects: Project[] = [
           "rebuilding the design system for the UK team",
           "aligning with marketing, web, and global stakeholder expectations",
           "guiding a newly formed squad through delivery",
+        ],
+      },
+      challenges: {
+        items: [
+          "Launch the UK version of the app within a 3-month deadline while maintaining a high-quality user experience.",
+          "Modernise a legacy XML-based application with limited flexibility for structural UX changes.",
+          "Balance immediate launch requirements with a long-term product and design system vision.",
+          "Consolidate a fragmented design system with 60+ text styles, duplicated components and inconsistent design patterns.",
+          "Improve accessibility and ensure the new experience met WCAG AA standards without delaying delivery.",
+          "Align product decisions across UK and Polish product, engineering, marketing and brand teams, each with different priorities.",
+          "Define a phased roadmap, deciding what needed to ship for launch and what could be postponed to future releases.",
         ],
       },
       keyDecisions: [

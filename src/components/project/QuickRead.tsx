@@ -122,6 +122,27 @@ export default function QuickRead({
         </Reveal>
       )}
 
+      {data.challenges && (
+        <Reveal delay={0.07}>
+          <div className={wrapClass}>
+            <SectionLabel headingStyle={headingStyle} id="challenges" text="Challenges" />
+            <div className={`${contentClass} max-w-2xl`}>
+              {data.challenges.intro && (
+                <p className="mb-5 text-lg leading-relaxed text-ink-soft">{data.challenges.intro}</p>
+              )}
+              <ul className="space-y-3">
+                {data.challenges.items.map((item) => (
+                  <li key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink-soft">
+                    <span className="text-accent">-</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </Reveal>
+      )}
+
       {data.midMedia && (
         <Reveal delay={0.08} y={30}>
           <div className="mt-8 flex justify-center">
