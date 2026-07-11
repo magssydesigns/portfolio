@@ -2,8 +2,8 @@ import Reveal from "@/components/Reveal";
 import Button from "@/components/Button";
 import ProjectCard from "@/components/ProjectCard";
 import Footer from "@/components/Footer";
+import MediaSlotView from "@/components/project/MediaSlotView";
 import {
-  TrackingDetailVisual,
   TrackingListVisual,
   SendParcelVisual,
   ResearchVisual,
@@ -28,7 +28,20 @@ const projects = [
   {
     headline: "Scaling parcel tracking across European markets",
     color: "#F5C518",
-    visual: <TrackingDetailVisual />,
+    visual: (
+      <MediaSlotView
+        media={{
+          kind: "video",
+          video: {
+            src: "/projects/scaling-parcel-tracking/scene.mp4",
+            width: 1440,
+            height: 1080,
+          },
+          alt: "InPost parcel tracking experience shown in context",
+        }}
+        className="h-full w-full object-cover"
+      />
+    ),
     href: "/projects/scaling-parcel-tracking",
   },
   {

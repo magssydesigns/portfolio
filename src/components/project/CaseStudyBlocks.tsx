@@ -308,11 +308,11 @@ function BlockRenderer({
             <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8">
               {block.items.map((item) => (
                 <div key={item.label}>
-                  <p className="mb-4 text-center font-display text-xl italic tracking-tight">
+                  <p className="mb-4 text-center font-sans text-xl font-semibold">
                     {item.label}
                   </p>
                   <div className="flex justify-center rounded-2xl p-6 sm:p-8">
-                    <MediaSlotView media={item.media} className="h-auto w-full" />
+                    <MediaSlotView media={item.media} className="mx-auto h-auto w-full max-w-[50%]" />
                   </div>
                 </div>
               ))}
