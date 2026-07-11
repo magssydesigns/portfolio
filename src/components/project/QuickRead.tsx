@@ -111,10 +111,7 @@ export default function QuickRead({
       {data.midMedia && (
         <Reveal delay={0.08} y={30}>
           <div className="mt-16">
-            <div
-              className="flex justify-center rounded-2xl p-8 sm:p-12"
-              style={{ backgroundColor: `${color}14` }}
-            >
+            <div className="flex justify-center rounded-2xl p-8 sm:p-12">
               <MediaSlotView media={data.midMedia} className="h-auto w-full max-w-[720px]" />
             </div>
           </div>

@@ -71,7 +71,7 @@ export const projects: Project[] = [
     shortTitle: "Scaling parcel tracking",
     client: "InPost",
     color: "#F7D60F",
-    heroBackground: "#E0E1E4",
+    heroBackground: "#F8F4EE",
     toc: [
       { id: "quick-summary", label: "Quick Summary" },
       { id: "process", label: "Process" },

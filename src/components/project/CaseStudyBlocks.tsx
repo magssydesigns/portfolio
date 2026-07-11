@@ -270,10 +270,7 @@ function BlockRenderer({
             )}
             <div className="mt-10 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,320px)_1fr] lg:gap-12">
               <div className="lg:sticky lg:top-28 lg:self-start">
-                <div
-                  className="flex justify-center rounded-2xl p-6 sm:p-8"
-                  style={{ backgroundColor: `${color}14` }}
-                >
+                <div className="flex justify-center rounded-2xl p-6 sm:p-8">
                   <MediaSlotView media={block.media} className="h-auto w-full max-w-[320px]" />
                 </div>
               </div>
@@ -314,10 +311,7 @@ function BlockRenderer({
                   <p className="mb-4 text-center font-display text-xl italic tracking-tight">
                     {item.label}
                   </p>
-                  <div
-                    className="flex justify-center rounded-2xl p-6 sm:p-8"
-                    style={{ backgroundColor: `${color}14` }}
-                  >
+                  <div className="flex justify-center rounded-2xl p-6 sm:p-8">
                     <MediaSlotView media={item.media} className="h-auto w-full" />
                   </div>
                 </div>
