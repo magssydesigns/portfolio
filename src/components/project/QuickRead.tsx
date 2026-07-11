@@ -136,7 +136,7 @@ export default function QuickRead({
 
       <Reveal delay={0.1}>
         <div className={keyDecisionsWrapClass}>
-          <SectionLabel headingStyle={headingStyle} text="Key design decisions" />
+          <SectionLabel headingStyle={headingStyle} text={data.keyDecisionsLabel ?? "Key design decisions"} />
           <div className={`${contentClass} grid max-w-2xl grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2`}>
             {data.keyDecisions.map((item) => (
               <div key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink-soft">

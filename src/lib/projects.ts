@@ -42,6 +42,7 @@ export type QuickRead = {
   constraints?: string[];
   process?: { intro?: string; items: string[] };
   midMedia?: MediaSlot;
+  keyDecisionsLabel?: string;
   keyDecisions: string[];
   outcomes: { value: string; label: string }[];
   qualitative?: { title?: string; body: string }[];
@@ -365,11 +366,397 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "rapid-uk-launch",
+    title: "Rapid UK app launch & design system rebuild",
+    shortTitle: "Rapid UK app launch",
+    client: "InPost",
+    color: "#3355FF",
+    toc: [
+      { id: "quick-summary", label: "Quick Summary" },
+      { id: "process", label: "Process" },
+      { id: "impact", label: "Impact" },
+      { id: "key-changes", label: "Key changes" },
+      { id: "onboarding", label: "Onboarding" },
+      { id: "parcel-tracking", label: "Parcel tracking" },
+      { id: "locker-search", label: "Locker search" },
+      { id: "design-system-rebuild", label: "Design System Rebuild" },
+      { id: "collaboration", label: "Collaboration" },
+    ],
+    quickRead: {
+      tagline:
+        "Redesigned and localised a legacy Polish app for the UK market while unifying the design system, resolving accessibility issues, and defining a phased product roadmap.",
+      heroImage: {
+        src: "/projects/rapid-uk-launch/hero.png",
+        width: 580,
+        height: 1000,
+        alt: "InPost UK app 'Ready to collect' parcel tracking screen on a yellow background",
+      },
+      bulletedChallenge: true,
+      challenge: [
+        "InPost was preparing to launch its Polish consumer app into the UK market. The existing product was functional, but built on outdated architecture, inconsistent design patterns, and legacy branding.",
+        "The business goal was clear: ship the UK app fast, without a full rebuild, while still meeting new brand, market and user expectations.",
+        "The challenge wasn't just visual localisation - it was turning a legacy product into something usable, accessible, and scalable, under tight time and technical constraints.",
+      ],
+      role:
+        "Senior Product Designer - UX, UI, Design System Lead. I was responsible for defining the design approach, prioritising what could realistically ship in phase 1, rebuilding the design system, and collaborating with product, engineering, and brand teams to deliver the launch.",
+      constraints: [
+        "3-month deadline to launch in the UK market",
+        "Existing app built on old XML architecture (limited UI flexibility)",
+        "Could not change core flows in phase 1 - only “surgical” UX/UI fixes",
+        "Design system was fragmented: 60+ text styles, duplicated colours, multiple component variants",
+        "Developers split across UK + Polish teams, working with different standards",
+        "Needed complex marketing sign-off on brand updates before build",
+        "No documentation, inconsistent handoff, zero accessibility compliance",
+      ],
+      process: {
+        intro: "My ownership included:",
+        items: [
+          "scoping the phased product plan (what now vs later)",
+          "leading UX/UI decisions and defining the MVP feature set",
+          "rebuilding the design system for the UK team",
+          "aligning with marketing, web, and global stakeholder expectations",
+          "guiding a newly formed squad through delivery",
+        ],
+      },
+      keyDecisions: [
+        "New onboarding experience with motion + visual refresh",
+        "Redesigned parcel tracking components for clarity & hierarchy",
+        "Capacity checker for lockers integrated into map view",
+        "Brand adapted for UK market (colours, typography, tone)",
+        "Accessibility fixes to reach WCAG AA contrast levels",
+      ],
+      outcomes: [],
+      qualitative: [
+        {
+          title: "Launched on time",
+          body: "UK app launched on time within the 3-month deadline",
+        },
+        {
+          title: "Design system adopted",
+          body: "New design system adopted by design and dev teams, used as the base for future releases",
+        },
+        {
+          title: "Accessibility improved",
+          body: "Accessibility improved from non-compliant to WCAG AA contrast",
+        },
+        {
+          title: "Reduced UI debt",
+          body: "Reduced UI debt and increased delivery speed for next sprints",
+        },
+        {
+          title: "Clean first release",
+          body: "First release shipped without critical UX issues, enabling faster iteration instead of rebuild delays",
+        },
+      ],
+      impactStats: {
+        items: [
+          {
+            label: "Text styles",
+            before: "40+",
+            after: "12",
+            description: "fragmented text styles consolidated into a semantic type scale.",
+          },
+          {
+            label: "Colour tokens",
+            before: "60+",
+            after: "16",
+            description: "colour tokens consolidated and renamed by function, with dark mode built in.",
+          },
+        ],
+      },
+    },
+    fullCaseStudy: [
+      {
+        kind: "numbered",
+        id: "key-changes",
+        heading: "Planned for later phases",
+        intro:
+          "Phase 1 focused on launch-critical fixes. The following were scoped into later phases of the roadmap:",
+        items: [
+          {
+            title: "Send a Parcel flow",
+            body: "Introducing the send a parcel flow to the UK app.",
+          },
+          {
+            title: "Empty & error states",
+            body: "Improved empty and error states throughout the app.",
+          },
+          {
+            title: "Map & locker finder redesign",
+            body: "A full visual redesign of the map and finding-a-locker flow.",
+          },
+          {
+            title: "Motion system",
+            body: "An animation and micro-interaction system, replacing one-off animations.",
+          },
+          {
+            title: "In-app service expansion",
+            body: "Expansion of in-app services and monetisation features.",
+          },
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        id: "onboarding",
+        heading: "Onboarding",
+        items: [
+          {
+            label: "Before",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/rapid-uk-launch/onboarding-before.png",
+                width: 635,
+                height: 950,
+                alt: "Old Polish onboarding screens with illustrated truck and locker graphics",
+              },
+            },
+          },
+          {
+            label: "After",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/rapid-uk-launch/onboarding-after.png",
+                width: 1170,
+                height: 1160,
+                alt: "New UK onboarding screen reading 'Drop, lock and off you pop' on a yellow background",
+              },
+            },
+          },
+        ],
+      },
+      {
+        kind: "lead",
+        id: "parcel-tracking",
+        items: [
+          {
+            label: "Why it mattered",
+            body: "This is the most important feature of the app - tracking parcels - so I tested this flow twice with users before deciding on evolving the inherited Polish design.",
+          },
+          {
+            label: "Round one findings",
+            body: "An initial usability test on the UK market uncovered issues with understanding the UI: users had varying interpretations of the progress bar, didn't find the collection window urgent enough, and were confused about how many parcels were waiting for them in the locker.",
+          },
+        ],
+      },
+      {
+        kind: "numbered",
+        heading: "New design recommendations",
+        items: [
+          {
+            title: "Progress bar colour",
+            body: "Changed progress bars to a light red/orange colour to signal urgency and fix a colour-accessibility issue - yellow wasn't accessible on the grey or white background.",
+          },
+          {
+            title: "Progress direction",
+            body: "Changed the direction of the progress bars to decrease rather than progress, indicating time running out.",
+          },
+          {
+            title: "Parcel counter",
+            body: "Added a parcel counter for parcels ready to collect, preventing misunderstandings about how many are waiting.",
+          },
+          {
+            title: "Time format",
+            body: "Changed the time-left format to a rough number of hours rather than an exact date - this felt more urgent to users and encouraged them to collect parcels promptly rather than leaving it to the last minute.",
+          },
+        ],
+      },
+      {
+        kind: "quote",
+        heading: "Second round of testing",
+        text: "100% of users mentioned they chose this design because of the colour red and the urgency it signifies.",
+        attribution: "Usability testing, round 2",
+      },
+      {
+        kind: "beforeAfterImages",
+        heading: "Tested design vs new design",
+        items: [
+          {
+            label: "Tested design",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/rapid-uk-launch/tracking-tested.png",
+                width: 440,
+                height: 940,
+                alt: "Tested parcel tracking design with grey progress bars",
+              },
+            },
+          },
+          {
+            label: "New design",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/rapid-uk-launch/tracking-new.png",
+                width: 450,
+                height: 940,
+                alt: "New parcel tracking design with red and orange urgency progress bars and a parcel counter",
+              },
+            },
+          },
+        ],
+      },
+      {
+        kind: "quote",
+        id: "locker-search",
+        heading: "Locker search",
+        text: "Another important flow, locker search, was redesigned with locker capacity. In the UK it's been important to show users locker capacity, as lockers would overfill quite often.",
+      },
+      {
+        kind: "beforeAfterImages",
+        heading: "Polish design vs new UK design",
+        items: [
+          {
+            label: "Polish design",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/rapid-uk-launch/locker-polish.png",
+                width: 430,
+                height: 945,
+                alt: "Polish locker map design showing a list of nearby InPost points",
+              },
+            },
+          },
+          {
+            label: "New UK design",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/rapid-uk-launch/locker-new.png",
+                width: 590,
+                height: 980,
+                alt: "New UK locker map design with capacity indicators shown on the map pins",
+              },
+            },
+          },
+        ],
+      },
+      {
+        kind: "heading",
+        id: "design-system-rebuild",
+        text: "Design System Rebuild",
+      },
+      {
+        kind: "twoCol",
+        items: [
+          {
+            label: "Typography - before",
+            body: "40+ text styles, many of which were nearly identical and could be merged.",
+          },
+          {
+            label: "Typography - after",
+            body: "Clustered styles into buckets by role - Title, Label, Caption - each with small, medium and large sizes, plus a dedicated style for large marketing slogans.",
+          },
+        ],
+      },
+      {
+        kind: "twoCol",
+        items: [
+          {
+            label: "Colour tokens - before",
+            body: "60+ colour tokens with no naming logic - colours were named things like 'Gray 1' or 'Gray 2' with no function specified.",
+          },
+          {
+            label: "Colour tokens - after",
+            body: "Renamed colours based on function (e.g. 'surface', 'on-surface'), designed with dark mode in mind, and adjusted for accessibility.",
+          },
+        ],
+      },
+      {
+        kind: "quote",
+        heading: "Colour accessibility",
+        text: "All new brand colours were tested against accessibility standards and adjusted with the right font styles they could be used with. Some colours had to be adjusted slightly to meet accessibility criteria.",
+      },
+      {
+        kind: "numbered",
+        heading: "Reworking & documenting components",
+        items: [
+          {
+            title: "Documentation",
+            body: "Created documentation for every component, describing its anatomy, spacing and colours.",
+          },
+          {
+            title: "Patterns",
+            body: "Created concise patterns for certain components, like error and success messages.",
+          },
+        ],
+      },
+      {
+        kind: "numbered",
+        id: "collaboration",
+        heading: "Collaboration",
+        items: [
+          {
+            title: "Product",
+            body: "Worked with the UK PM to define phased scope and product priorities.",
+          },
+          {
+            title: "Engineering",
+            body: "Coordinated with the Polish dev team to align on feasibility, and partnered with brand and marketing for UK visual alignment.",
+          },
+          {
+            title: "Remote support",
+            body: "Created async updates, video walkthroughs, and annotated files to support the remote team.",
+          },
+          {
+            title: "QA",
+            body: "Supported the QA team with accessibility test criteria.",
+          },
+        ],
+      },
+      {
+        kind: "numbered",
+        heading: "What I planned to do next",
+        items: [
+          {
+            title: "Structural redesign",
+            body: "Move from patch-layer UX to a full structural redesign of core flows.",
+          },
+          {
+            title: "Multi-platform design system",
+            body: "Expand the design system into a multi-platform tokenised system across web, app and parcel machine UI.",
+          },
+          {
+            title: "Design QA",
+            body: "Introduce design QA and developer-friendly documentation.",
+          },
+          {
+            title: "Post-launch testing",
+            body: "Run usability testing in the UK market to validate flow assumptions post-launch.",
+          },
+          {
+            title: "Motion guidelines",
+            body: "Build motion and interaction guidelines into the design system instead of one-off animations.",
+          },
+          {
+            title: "Localisation strategy",
+            body: "Create a scalable UX strategy for future localisation (e.g. DE, FR, ES).",
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "send-parcel-in-app",
     title: "Enabling 2M+ users to send parcels in app",
     shortTitle: "Enabling users to send parcels",
     client: "InPost",
     color: "#01D46B",
+    toc: [
+      { id: "quick-summary", label: "Quick Summary" },
+      { id: "process", label: "Process" },
+      { id: "impact", label: "Impact" },
+      { id: "business-objectives", label: "Business Objectives" },
+      { id: "flow-overview", label: "Flow overview" },
+      { id: "design-process", label: "Design process" },
+      { id: "benchmark-research", label: "Benchmark research" },
+      { id: "parcel-cover", label: "Parcel cover" },
+      { id: "summary-page", label: "Summary page" },
+      { id: "usability-testing", label: "Usability testing" },
+    ],
     quickRead: {
       tagline: "Providing customers with option of sending parcels inside the InPost app",
       heroImage: {
@@ -439,6 +826,7 @@ export const projects: Project[] = [
       },
       {
         kind: "numbered",
+        id: "business-objectives",
         heading: "Business Objectives",
         items: [
           {
@@ -453,6 +841,7 @@ export const projects: Project[] = [
       },
       {
         kind: "heading",
+        id: "flow-overview",
         text: "Flow overview - final design",
       },
       {
@@ -467,6 +856,7 @@ export const projects: Project[] = [
       },
       {
         kind: "steps",
+        id: "design-process",
         heading: "Design process",
         items: [
           {
@@ -501,6 +891,7 @@ export const projects: Project[] = [
       },
       {
         kind: "numbered",
+        id: "benchmark-research",
         heading: "Benchmark research & general UX recommendations",
         intro:
           "There's no current metrics being measured on this flow besides general conversion so I decided to do competitors' and UX research and see if I can include any good UX practices into this flow.",
@@ -533,6 +924,7 @@ export const projects: Project[] = [
       },
       {
         kind: "heading",
+        id: "parcel-cover",
         text: "New designs - parcel cover",
       },
       {
@@ -565,6 +957,7 @@ export const projects: Project[] = [
       },
       {
         kind: "numbered",
+        id: "summary-page",
         heading: "Key changes - summary page",
         items: [
           {
@@ -599,6 +992,7 @@ export const projects: Project[] = [
       },
       {
         kind: "numbered",
+        id: "usability-testing",
         heading: "Usability testing results",
         intro: "Example questions from usability testing and their impact on the final design.",
         items: [
@@ -613,6 +1007,158 @@ export const projects: Project[] = [
           {
             title: "Change the parcel size from Small to Medium at the summary step",
             body: "9/10 users changed the size successfully at the summary page. 1 user didn't realize right away that they could scroll down but in the end managed to choose the right size.",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "establishing-design-metrics",
+    title: "Establishing design metrics for key flow in the app",
+    shortTitle: "Establishing design metrics",
+    client: "InPost",
+    color: "#7C3AED",
+    toc: [
+      { id: "quick-summary", label: "Quick Summary" },
+      { id: "process", label: "Process" },
+      { id: "impact", label: "Impact" },
+      { id: "approach", label: "Approach" },
+      { id: "flow", label: "Send a parcel flow" },
+      { id: "key-metrics", label: "Key Metrics" },
+    ],
+    quickRead: {
+      tagline:
+        "Led a pilot Design Metrics Workshop to establish actionable UX metrics for the 'Send a Parcel' flow.",
+      heroImage: {
+        src: "/projects/establishing-design-metrics/hero.png",
+        width: 430,
+        height: 940,
+        alt: "InPost send a parcel screen showing locker or home address delivery options and size selection",
+      },
+      challenge: [
+        "Our teams often relied on anecdotal evidence or business KPIs like conversion or retention, without clear visibility into user-centered design metrics. There was no unified framework for tracking how design changes affect user experience or business value, which led to misalignment between product, data, and design teams.",
+        "Lack of shared metrics caused repeated work and inconsistent evaluation of feature success. Design impact was hard to prove - especially for UX optimisations that don't directly tie to revenue. Establishing a repeatable process for design metrics would help shift the culture toward data-informed design and accountability.",
+      ],
+      role:
+        "Senior Product Designer. To improve how our product team measures design impact, I led a pilot Design Metrics Workshop focused on the 'Send a Parcel' flow in our mobile app.",
+      process: {
+        intro:
+          "The goal was to identify actionable metrics tied to user experience and business outcomes, and to create a reusable workshop template for future use across other flows. The workshop was conducted with two groups of stakeholders - including designers, product managers, and engineers - to ensure metrics were both measurable and meaningful across functions.",
+        items: [
+          "framed the workshop goal: define measurable UX and behavioural metrics for each step of the Send a Parcel journey",
+          "ran two 90-minute collaborative sessions with cross-functional groups",
+          "defined ownership - each metric was linked to a data or product owner for implementation",
+          "held follow-up and retrospective sessions to discuss the format of the workshop",
+          "documented learnings in a shared template to guide future design metric workshops across the company",
+        ],
+      },
+      keyDecisionsLabel: "Metrics established",
+      keyDecisions: [
+        "Time on task for address lookup",
+        "% of users editing parcel details on the summary screen",
+        "Locker search speed",
+        "% of undelivered or returned parcels due to bad address",
+        "Draft conversion rate",
+        "Payment method conversion",
+        "Repeated recipient rate",
+      ],
+      outcomes: [],
+      qualitative: [
+        {
+          title: "8+ actionable UX metrics",
+          body: "A set of 8+ actionable UX metrics identified for the Send a Parcel flow",
+        },
+        {
+          title: "Reusable workshop template",
+          body: "Created for use across other product areas",
+        },
+        {
+          title: "Cross-team alignment",
+          body: "Achieved between design, product, and data stakeholders",
+        },
+        {
+          title: "Follow-up sessions initiated",
+          body: "With product managers and data teams to integrate the metrics into tracking dashboards",
+        },
+      ],
+    },
+    fullCaseStudy: [
+      {
+        kind: "steps",
+        id: "approach",
+        heading: "Approach",
+        items: [
+          {
+            title: "Framing the goal",
+            body: "Defined measurable UX and behavioural metrics for each step of the Send a Parcel journey.",
+          },
+          {
+            title: "Collaborative sessions",
+            body: "Ran two 90-minute workshops with cross-functional groups.",
+          },
+          {
+            title: "Defining ownership",
+            body: "Each metric was linked to a data or product owner for implementation.",
+          },
+          {
+            title: "Follow-up and retrospection",
+            body: "Shortly after the workshops, we held team follow-up sessions to discuss the format of the workshop.",
+          },
+          {
+            title: "Documenting learnings",
+            body: "Documented learnings in a shared template to guide future design metric workshops across the company.",
+          },
+        ],
+      },
+      {
+        kind: "heading",
+        id: "flow",
+        text: "Send a parcel flow",
+      },
+      {
+        kind: "image",
+        size: "full",
+        image: {
+          src: "/projects/send-parcel-in-app/flow-overview.png",
+          width: 1470,
+          height: 1710,
+          alt: "Six-screen Send a Parcel flow examined during the workshop: send to, recipient, parcel details, sender, summary, and ready to drop off",
+          caption: "The flow examined during the workshop.",
+        },
+      },
+      {
+        kind: "numbered",
+        id: "key-metrics",
+        heading: "Key Metrics",
+        intro: "Seven examples of the actionable UX metrics established during the workshop.",
+        items: [
+          {
+            title: "1. Time on task (address lookup)",
+            body: "Definition: time spent searching for the recipient's address, measured from when the user starts typing to selecting an address from the list. Why it matters: a long completion time may indicate low search accuracy or a confusing UI hierarchy.",
+          },
+          {
+            title: "2. % of users editing parcel details on the summary screen",
+            body: "Definition: percentage of users who return to edit parcel details (e.g. size or cover) after reaching the summary step. Why it matters: frequent edits at this stage may suggest earlier steps lack clarity, or that users are unsure about their previous choices.",
+          },
+          {
+            title: "3. Locker search speed",
+            body: "Definition: % of users who find their preferred locker or shop within 15 seconds during the recipient details step. Why it matters: slow searches may indicate poor search performance, unclear results, or decision overload.",
+          },
+          {
+            title: "4. % of undelivered or returned parcels due to bad address",
+            body: "Definition: proportion of parcels marked undelivered or returned because of incorrect or incomplete address data. Why it matters: a high rate signals that input validation and address accuracy need improvement, and it impacts customer satisfaction and support costs.",
+          },
+          {
+            title: "5. Draft conversion rate",
+            body: "Definition: % of users who save a parcel as a draft and later complete the purchase. Why it matters: shows whether users are abandoning due to friction or uncertainty, and how often they re-engage later.",
+          },
+          {
+            title: "6. Payment method conversion",
+            body: "Definition: % of successful label purchases broken down by payment method. Why it matters: identifies whether specific payment methods correlate with higher drop-offs or errors.",
+          },
+          {
+            title: "7. Repeated recipient rate",
+            body: "Definition: % of users sending multiple parcels to the same recipient (name + phone + postcode) within 180 days. Why it matters: shows potential for efficiency features, such as 'Saved Recipients', to reduce repetitive input.",
           },
         ],
       },

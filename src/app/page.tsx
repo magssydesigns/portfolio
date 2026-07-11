@@ -56,7 +56,7 @@ const projects = [
         className="h-full w-full object-cover"
       />
     ),
-    href: "/work",
+    href: "/projects/rapid-uk-launch",
   },
   {
     headline: "Enabling 2M+ users to send parcels in app",
@@ -94,7 +94,7 @@ const projects = [
         className="h-full w-full object-cover"
       />
     ),
-    href: "/work",
+    href: "/projects/establishing-design-metrics",
   },
 ];
 
