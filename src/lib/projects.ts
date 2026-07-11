@@ -59,6 +59,8 @@ export type Project = {
   client: string;
   color: string;
   heroBackground?: string;
+  /** Renders the hero image centered above the title/tagline (like a video hero) instead of side-by-side. */
+  heroStacked?: boolean;
   darkText?: boolean;
   quickRead: QuickRead;
   fullCaseStudy: Block[];
@@ -372,6 +374,8 @@ export const projects: Project[] = [
     shortTitle: "Rapid UK app launch",
     client: "InPost",
     color: "#3355FF",
+    heroBackground: "#F8F4EE",
+    heroStacked: true,
     toc: [
       { id: "quick-summary", label: "Quick Summary" },
       { id: "process", label: "Process" },

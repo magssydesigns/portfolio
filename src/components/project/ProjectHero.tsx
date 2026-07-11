@@ -11,6 +11,7 @@ export default function ProjectHero({
   color,
   image,
   video,
+  stacked,
 }: {
   title: string;
   tagline: string;
@@ -18,6 +19,8 @@ export default function ProjectHero({
   color: string;
   image: ProjectImage;
   video?: ProjectVideo;
+  /** Renders the image centered above the title/tagline (like a video hero) instead of side-by-side. */
+  stacked?: boolean;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -55,6 +58,34 @@ export default function ProjectHero({
             preload="auto"
             aria-label={image.alt}
             className="mx-auto block h-auto w-full max-w-[60%] rounded-2xl border"
+            style={{ borderColor: "rgb(221, 216, 203)" }}
+          />
+        </div>
+
+        <div className="mx-auto max-w-[1400px] px-6 pb-8 pt-10 sm:px-10 sm:pb-12 sm:pt-12">
+          <div className="mx-auto max-w-2xl">
+            <p className="text-[13px] uppercase tracking-[0.14em] text-ink/60">{client}</p>
+            <h1 className="mt-6 max-w-xl font-display text-4xl leading-[1.08] tracking-tight text-ink sm:text-6xl lg:text-[3.4rem] lg:leading-[1.05]">
+              {title}
+            </h1>
+            <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">{tagline}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (stacked) {
+    return (
+      <section className="pt-32 sm:pt-40" style={{ backgroundColor: color }}>
+        <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
+          <Image
+            src={image.src}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+            priority
+            className="mx-auto block h-auto w-full max-w-[280px] rounded-2xl border sm:max-w-[320px]"
             style={{ borderColor: "rgb(221, 216, 203)" }}
           />
         </div>

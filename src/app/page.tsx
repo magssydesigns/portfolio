@@ -40,7 +40,7 @@ const projects = [
     href: "/projects/scaling-parcel-tracking",
   },
   {
-    headline: "Launching parcel tracking app for customers in UK",
+    headline: "0 → 1: Launching InPost's UK parcel tracking app",
     color: "#3355FF",
     visual: (
       <MediaSlotView
