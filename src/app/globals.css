@@ -21,7 +21,7 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
 
-  --font-display: var(--font-frank-ruhl-libre);
+  --font-display: var(--font-gilda-display);
   --font-sans: var(--font-inter);
 
   --animate-marquee: marquee 32s linear infinite;
