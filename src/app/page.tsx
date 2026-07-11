@@ -3,11 +3,6 @@ import Button from "@/components/Button";
 import ProjectCard from "@/components/ProjectCard";
 import Footer from "@/components/Footer";
 import MediaSlotView from "@/components/project/MediaSlotView";
-import {
-  TrackingListVisual,
-  SendParcelVisual,
-  ResearchVisual,
-} from "@/components/ProjectVisuals";
 
 const masthead = [
   {
@@ -47,19 +42,58 @@ const projects = [
   {
     headline: "Launching parcel tracking app for customers in UK",
     color: "#3355FF",
-    visual: <TrackingListVisual />,
+    visual: (
+      <MediaSlotView
+        media={{
+          kind: "image",
+          image: {
+            src: "/homepage/tracking-launch.jpg",
+            width: 7406,
+            height: 5829,
+            alt: "InPost parcel tracking screen and design system colour tokens",
+          },
+        }}
+        className="h-full w-full object-cover"
+      />
+    ),
     href: "/work",
   },
   {
     headline: "Enabling 2M+ users to send parcels in app",
     color: "#00C853",
-    visual: <SendParcelVisual />,
+    visual: (
+      <MediaSlotView
+        media={{
+          kind: "image",
+          image: {
+            src: "/homepage/send-parcel.jpg",
+            width: 7406,
+            height: 5430,
+            alt: "InPost send a parcel screen showing locker or home address delivery options",
+          },
+        }}
+        className="h-full w-full object-cover"
+      />
+    ),
     href: "/projects/send-parcel-in-app",
   },
   {
     headline: "Establishing design metrics for key flow in the app",
     color: "#7C3AED",
-    visual: <ResearchVisual />,
+    visual: (
+      <MediaSlotView
+        media={{
+          kind: "image",
+          image: {
+            src: "/homepage/design-metrics.jpg",
+            width: 7406,
+            height: 5829,
+            alt: "Annotated research screens showing metrics tracked across the send-a-parcel flow",
+          },
+        }}
+        className="h-full w-full object-cover"
+      />
+    ),
     href: "/work",
   },
 ];
