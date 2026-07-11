@@ -17,11 +17,11 @@ export default function BeforeAfterStats({
       {items.map((item) => (
         <div key={item.label} className="border-t border-ink/15 pt-6">
           <div className="flex items-center gap-4">
-            <span className="font-display text-3xl italic text-muted line-through decoration-1">
+            <span className="font-display text-3xl text-muted line-through decoration-1">
               {item.before}
             </span>
             <span className="text-muted">→</span>
-            <span className="font-display text-3xl italic" style={{ color }}>
+            <span className="font-display text-3xl" style={{ color }}>
               {item.after}
             </span>
           </div>

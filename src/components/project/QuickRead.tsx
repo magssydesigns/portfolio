@@ -45,11 +45,15 @@ export default function QuickRead({
     headingStyle === "heading"
       ? "mx-auto mt-16 max-w-2xl border-t border-line pt-16"
       : "mt-16 grid grid-cols-1 gap-8 border-t border-line pt-16 lg:grid-cols-[200px_1fr]";
-  // After the mid-page video, halve the usual top margin to match the video's tighter spacing.
-  const afterMediaWrapClass =
-    headingStyle === "heading" ? "mx-auto mt-8 max-w-2xl border-t border-line pt-16" : wrapClass;
   // Impact stays full-width (its grids need the room), so it isn't wrapped in the narrow centred column.
   const wideWrapClass = "mt-16";
+  // Key design decisions has no divider above it.
+  const keyDecisionsWrapClass =
+    headingStyle === "heading"
+      ? data.midMedia
+        ? "mx-auto mt-8 max-w-2xl"
+        : "mx-auto mt-16 max-w-2xl"
+      : "mt-16 grid grid-cols-1 gap-8 lg:grid-cols-[200px_1fr]";
   const contentClass = headingStyle === "heading" ? "mt-6" : "";
   const sectionPaddingClass =
     headingStyle === "heading"
@@ -131,7 +135,7 @@ export default function QuickRead({
       )}
 
       <Reveal delay={0.1}>
-        <div className={data.midMedia ? afterMediaWrapClass : wrapClass}>
+        <div className={keyDecisionsWrapClass}>
           <SectionLabel headingStyle={headingStyle} text="Key design decisions" />
           <div className={`${contentClass} grid max-w-2xl grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2`}>
             {data.keyDecisions.map((item) => (
