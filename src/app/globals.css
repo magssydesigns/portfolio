@@ -46,7 +46,7 @@ body {
 }
 
 ::selection {
-  background: var(--accent);
+  background: var(--ink);
   color: var(--paper);
 }
 

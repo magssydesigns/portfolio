@@ -167,7 +167,7 @@ export default function QuickRead({
 
       {data.impactStats && (
         <Reveal delay={0.16}>
-          <div className="mt-16 border-t border-line pt-16">
+          <div className="mt-16">
             <BeforeAfterStats items={data.impactStats.items} color="#015523" />
           </div>
         </Reveal>
