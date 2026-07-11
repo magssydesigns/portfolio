@@ -50,7 +50,7 @@ export default function FullCaseStudyReveal({
 
   return (
     <>
-      <QuickRead data={quickRead} color={color} onContinue={handleContinue} />
+      <QuickRead data={quickRead} color={color} onContinue={handleContinue} headingStyle="heading" />
 
       {revealed && (
         <div id="full-case-study" className="scroll-mt-28 border-t border-line">

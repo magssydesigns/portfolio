@@ -3,27 +3,64 @@ import BeforeAfterStats from "@/components/project/BeforeAfterStats";
 import MediaSlotView from "@/components/project/MediaSlotView";
 import type { QuickRead as QuickReadType } from "@/lib/projects";
 
+function SectionLabel({
+  headingStyle,
+  id,
+  text,
+}: {
+  headingStyle: "sidebar" | "heading";
+  id?: string;
+  text: string;
+}) {
+  if (headingStyle === "heading") {
+    return (
+      <h2 id={id} className="scroll-mt-40 font-display text-3xl tracking-tight sm:text-4xl lg:scroll-mt-28">
+        {text}
+      </h2>
+    );
+  }
+  return (
+    <p id={id} className="scroll-mt-40 text-[13px] uppercase tracking-[0.14em] text-muted lg:scroll-mt-28">
+      {text}
+    </p>
+  );
+}
+
 export default function QuickRead({
   data,
   color,
   onContinue,
+  headingStyle = "sidebar",
 }: {
   data: QuickReadType;
   color: string;
   /** When provided, "Continue to full case study" triggers this instead of a plain hash link. */
   onContinue?: () => void;
+  /** "heading" promotes section labels to full-width h2s matching the full case study's section titles. */
+  headingStyle?: "sidebar" | "heading";
 }) {
+  const firstWrapClass = headingStyle === "heading" ? "" : "grid grid-cols-1 gap-8 lg:grid-cols-[200px_1fr]";
+  const wrapClass =
+    headingStyle === "heading"
+      ? "mt-16 border-t border-line pt-16"
+      : "mt-16 grid grid-cols-1 gap-8 border-t border-line pt-16 lg:grid-cols-[200px_1fr]";
+  const contentClass = headingStyle === "heading" ? "mt-6" : "";
+
   return (
     <section className="mx-auto max-w-[1400px] px-6 py-20 sm:px-10 sm:py-28">
       <Reveal>
-        <div id="quick-summary" className="grid scroll-mt-40 grid-cols-1 lg:scroll-mt-28 gap-8 lg:grid-cols-[200px_1fr]">
-          <p className="text-[13px] uppercase tracking-[0.14em] text-muted">Quick summary</p>
-          <div className="max-w-2xl space-y-5">
+        <div className={firstWrapClass}>
+          <SectionLabel
+            headingStyle={headingStyle}
+            id="quick-summary"
+            text={headingStyle === "heading" ? "Quick summary" : "Quick read"}
+          />
+          <div className={`${contentClass} max-w-2xl space-y-5`}>
             {data.role && <p className="text-lg leading-relaxed text-ink-soft">{data.role}</p>}
             {data.bulletedChallenge ? (
               <ul className="space-y-3">
                 {data.challenge.map((p, i) => (
-                  <li key={i} className="flex gap-3 text-lg leading-relaxed text-ink-soft sm:text-xl">
+                  <li key={i} className="flex gap-3 text-lg leading-relaxed text-ink-soft">
                     <span className="text-accent">—</span>
                     {p}
                   </li>
@@ -52,12 +89,9 @@ export default function QuickRead({
 
       {data.process && (
         <Reveal delay={0.06}>
-          <div
-            id="process"
-            className="mt-16 grid scroll-mt-40 grid-cols-1 lg:scroll-mt-28 gap-8 border-t border-line pt-16 lg:grid-cols-[200px_1fr]"
-          >
-            <p className="text-[13px] uppercase tracking-[0.14em] text-muted">Process</p>
-            <div className="max-w-2xl">
+          <div className={wrapClass}>
+            <SectionLabel headingStyle={headingStyle} id="process" text="Process" />
+            <div className={`${contentClass} max-w-2xl`}>
               {data.process.intro && (
                 <p className="mb-5 text-lg leading-relaxed text-ink-soft">{data.process.intro}</p>
               )}
@@ -88,9 +122,9 @@ export default function QuickRead({
       )}
 
       <Reveal delay={0.1}>
-        <div className="mt-16 grid grid-cols-1 gap-8 border-t border-line pt-16 lg:grid-cols-[200px_1fr]">
-          <p className="text-[13px] uppercase tracking-[0.14em] text-muted">Key design decisions</p>
-          <div className="grid max-w-2xl grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
+        <div className={wrapClass}>
+          <SectionLabel headingStyle={headingStyle} text="Key design decisions" />
+          <div className={`${contentClass} grid max-w-2xl grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2`}>
             {data.keyDecisions.map((item) => (
               <div key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink-soft">
                 <span className="text-accent">—</span>
@@ -102,12 +136,9 @@ export default function QuickRead({
       </Reveal>
 
       <Reveal delay={0.14}>
-        <div
-          id="impact"
-          className="mt-16 grid scroll-mt-40 grid-cols-1 lg:scroll-mt-28 gap-8 border-t border-line pt-16 lg:grid-cols-[200px_1fr]"
-        >
-          <p className="text-[13px] uppercase tracking-[0.14em] text-muted">Impact</p>
-          <div>
+        <div className={wrapClass}>
+          <SectionLabel headingStyle={headingStyle} id="impact" text="Impact" />
+          <div className={contentClass}>
             {data.outcomes.length > 0 && (
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
                 {data.outcomes.map((o) => (
@@ -137,7 +168,7 @@ export default function QuickRead({
       {data.impactStats && (
         <Reveal delay={0.16}>
           <div className="mt-16 border-t border-line pt-16">
-            <BeforeAfterStats items={data.impactStats.items} color={color} />
+            <BeforeAfterStats items={data.impactStats.items} color="#015523" />
           </div>
         </Reveal>
       )}

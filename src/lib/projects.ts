@@ -92,7 +92,7 @@ export const projects: Project[] = [
         alt: "InPost parcel tracking detail screen showing a map, pickup status, and locker QR code",
       },
       heroVideo: {
-        src: "/projects/scaling-parcel-tracking/mobile-app-showcase.mp4",
+        src: "/projects/scaling-parcel-tracking/scene.mp4",
         width: 1440,
         height: 1080,
       },
@@ -117,7 +117,7 @@ export const projects: Project[] = [
       midMedia: {
         kind: "video",
         video: {
-          src: "/projects/scaling-parcel-tracking/scene.mp4",
+          src: "/projects/scaling-parcel-tracking/mobile-app-showcase.mp4",
           width: 1440,
           height: 1080,
         },

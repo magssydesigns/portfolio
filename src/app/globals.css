@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #f7f4ee;
+  --paper: #f8f4ee;
   --paper-dim: #efebe1;
   --ink: #15140f;
   --ink-soft: #4a4842;
@@ -21,7 +21,7 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
 
-  --font-display: var(--font-fraunces);
+  --font-display: var(--font-gilda-display);
   --font-sans: var(--font-inter);
 
   --animate-marquee: marquee 32s linear infinite;
@@ -52,6 +52,7 @@ body {
 
 .font-display {
   font-family: var(--font-display);
+  letter-spacing: -0.08em;
 }
 
 /* Hairline underline link */

@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Gilda_Display, Inter } from "next/font/google";
 import Nav from "@/components/Nav";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const gildaDisplay = Gilda_Display({
+  variable: "--font-gilda-display",
   subsets: ["latin"],
-  axes: ["opsz", "SOFT"],
-  style: ["normal", "italic"],
+  weight: "400",
   display: "swap",
 });
 
@@ -37,7 +36,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${inter.variable} h-full`}>
+    <html lang="en" className={`${gildaDisplay.variable} ${inter.variable} h-full`}>
       <body className="flex min-h-full flex-col bg-paper font-sans text-ink antialiased">
         <Nav />
         <main className="flex-1">{children}</main>
