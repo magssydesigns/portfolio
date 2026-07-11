@@ -78,7 +78,15 @@ export default function Home() {
           <div className="mt-16 grid grid-cols-1 gap-10 sm:mt-20 sm:grid-cols-3 sm:gap-8">
             {masthead.map((item) => (
               <div key={item.label}>
-                <p className="text-[12px] uppercase tracking-[0.14em] text-muted">{item.label}</p>
+                <p className="flex items-center gap-2 text-[12px] uppercase tracking-[0.14em] text-muted">
+                  {item.label === "Currently" && (
+                    <span
+                      className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-green-500"
+                      aria-hidden
+                    />
+                  )}
+                  {item.label}
+                </p>
                 <p className="mt-3 max-w-xs text-[15px] leading-relaxed text-ink-soft">
                   {item.body}
                 </p>

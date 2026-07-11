@@ -191,7 +191,7 @@ export default function QuickRead({
           <button
             type="button"
             onClick={onContinue}
-            className="link-underline mx-auto mt-20 block w-fit cursor-pointer bg-transparent p-0 font-display text-xl italic text-ink"
+            className="link-underline mx-auto mt-20 block w-fit cursor-pointer bg-transparent p-0 font-display text-xl text-ink"
           >
             Continue to full case study ↓
           </button>
