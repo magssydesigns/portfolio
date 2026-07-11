@@ -126,7 +126,15 @@ function BlockRenderer({
             >
               {block.items.map((item, i) => (
                 <div key={i} className="border-t border-ink/15 pt-6">
-                  <p className="font-display text-lg tracking-tight sm:text-xl">{item.title}</p>
+                  <p
+                    className={
+                      layout === "toc"
+                        ? "font-sans text-lg font-semibold sm:text-xl"
+                        : "font-display text-lg tracking-tight sm:text-xl"
+                    }
+                  >
+                    {item.title}
+                  </p>
                   <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{item.body}</p>
                 </div>
               ))}
@@ -219,8 +227,11 @@ function BlockRenderer({
         <Reveal>
           {layout === "toc" ? (
             <div id={block.id} className="scroll-mt-40 py-12 lg:scroll-mt-28">
-              <div className="rounded-2xl bg-ink px-6 py-16 text-center text-paper sm:px-10 sm:py-20">
-                <p className="font-display text-xl italic leading-snug sm:text-2xl">
+              {block.heading && (
+                <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.heading}</h2>
+              )}
+              <div className={`rounded-2xl bg-ink px-6 py-16 text-center text-paper sm:px-10 sm:py-20 ${block.heading ? "mt-10" : ""}`}>
+                <p className="font-display text-[1.5rem] italic leading-snug sm:text-[1.8rem]">
                   “{block.text}”
                 </p>
                 {block.attribution && (
@@ -269,7 +280,7 @@ function BlockRenderer({
               <div className="space-y-8">
                 {block.items.map((item, i) => (
                   <div key={i} className="border-t border-ink/15 pt-5">
-                    <p className="font-display text-lg tracking-tight sm:text-xl">{item.title}</p>
+                    <p className="font-sans text-lg font-semibold sm:text-xl">{item.title}</p>
                     <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{item.body}</p>
                   </div>
                 ))}

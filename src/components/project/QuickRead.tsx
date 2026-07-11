@@ -155,7 +155,7 @@ export default function QuickRead({
               <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-3">
                 {data.qualitative.map((q, i) => (
                   <div key={i} className="border-t border-ink/15 pt-4">
-                    {q.title && <p className="font-display text-lg tracking-tight">{q.title}</p>}
+                    {q.title && <p className="font-sans text-lg font-semibold">{q.title}</p>}
                     <p className="mt-2 text-sm leading-relaxed text-ink-soft">{q.body}</p>
                   </div>
                 ))}

@@ -26,7 +26,7 @@ export type Block =
   | { kind: "numbered"; id?: string; heading?: string; intro?: string; items: { title: string; body: string }[] }
   | { kind: "image"; id?: string; image: ProjectImage; size?: "medium" | "wide" | "full" }
   | { kind: "beforeAfterStats"; id?: string; heading?: string; items: { label: string; before: string; after: string; description: string }[] }
-  | { kind: "quote"; id?: string; text: string; attribution?: string }
+  | { kind: "quote"; id?: string; heading?: string; text: string; attribution?: string }
   | { kind: "steps"; id?: string; heading?: string; items: { title: string; body: string }[] }
   | { kind: "twoCol"; id?: string; items: { label: string; body: string }[] }
   | { kind: "mediaNumbered"; id?: string; heading?: string; media: MediaSlot; items: { title: string; body: string }[] }
@@ -228,10 +228,10 @@ export const projects: Project[] = [
       },
       {
         kind: "mediaNumbered",
-        heading: "New design — parcel list",
+        heading: "New design: parcel list",
         media: {
           kind: "placeholder",
-          label: "Image — redesigned parcel list, annotated 1–9",
+          label: "Parcel_list1-1a@4x",
         },
         items: [
           {
@@ -274,10 +274,10 @@ export const projects: Project[] = [
       },
       {
         kind: "mediaNumbered",
-        heading: "New design — parcel details page",
+        heading: "New design: parcel details page",
         media: {
           kind: "placeholder",
-          label: "Image — redesigned parcel details page, annotated 1–8",
+          label: "ParcelInfo_1@4x",
         },
         items: [
           {
@@ -317,6 +317,7 @@ export const projects: Project[] = [
       {
         kind: "quote",
         id: "user-feedback",
+        heading: "User Feedback",
         text:
           "this seems to be more comprehensive in terms of details of features when compared to major firm parcel apps I've seen in the UK",
       },
@@ -327,11 +328,11 @@ export const projects: Project[] = [
         items: [
           {
             label: "Before",
-            media: { kind: "placeholder", label: "Image — “Shipment tracking” list screen" },
+            media: { kind: "placeholder", label: "PArcel list_before@4x" },
           },
           {
             label: "After",
-            media: { kind: "placeholder", label: "Image — “Parcel tracking” list screen" },
+            media: { kind: "placeholder", label: "Parcellist_after@4x" },
           },
         ],
       },
