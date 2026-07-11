@@ -45,12 +45,19 @@ export default function QuickRead({
     headingStyle === "heading"
       ? "mx-auto mt-16 max-w-2xl border-t border-line pt-16"
       : "mt-16 grid grid-cols-1 gap-8 border-t border-line pt-16 lg:grid-cols-[200px_1fr]";
+  // After the mid-page video, halve the usual top margin to match the video's tighter spacing.
+  const afterMediaWrapClass =
+    headingStyle === "heading" ? "mx-auto mt-8 max-w-2xl border-t border-line pt-16" : wrapClass;
   // Impact stays full-width (its grids need the room), so it isn't wrapped in the narrow centred column.
-  const wideWrapClass = "mt-16 border-t border-line pt-16";
+  const wideWrapClass = "mt-16";
   const contentClass = headingStyle === "heading" ? "mt-6" : "";
+  const sectionPaddingClass =
+    headingStyle === "heading"
+      ? "px-6 pt-10 pb-20 sm:px-10 sm:pt-14 sm:pb-28"
+      : "px-6 py-20 sm:px-10 sm:py-28";
 
   return (
-    <section className="mx-auto max-w-[1400px] px-6 py-20 sm:px-10 sm:py-28">
+    <section className={`mx-auto max-w-[1400px] ${sectionPaddingClass}`}>
       <Reveal>
         <div className={firstWrapClass}>
           <SectionLabel
@@ -113,16 +120,18 @@ export default function QuickRead({
 
       {data.midMedia && (
         <Reveal delay={0.08} y={30}>
-          <div className="mt-16">
-            <div className="flex justify-center rounded-2xl p-8 sm:p-12">
-              <MediaSlotView media={data.midMedia} className="h-auto w-full max-w-[720px]" />
-            </div>
+          <div className="mt-8 flex justify-center">
+            <MediaSlotView
+              media={data.midMedia}
+              className="h-auto w-full max-w-[720px] rounded-2xl border"
+              style={{ borderColor: "rgb(221, 216, 203)" }}
+            />
           </div>
         </Reveal>
       )}
 
       <Reveal delay={0.1}>
-        <div className={wrapClass}>
+        <div className={data.midMedia ? afterMediaWrapClass : wrapClass}>
           <SectionLabel headingStyle={headingStyle} text="Key design decisions" />
           <div className={`${contentClass} grid max-w-2xl grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2`}>
             {data.keyDecisions.map((item) => (
@@ -178,7 +187,7 @@ export default function QuickRead({
           <button
             type="button"
             onClick={onContinue}
-            className="link-underline mt-20 inline-block cursor-pointer bg-transparent p-0 font-display text-xl italic text-ink"
+            className="link-underline mx-auto mt-20 block w-fit cursor-pointer bg-transparent p-0 font-display text-xl italic text-ink"
           >
             Continue to full case study ↓
           </button>

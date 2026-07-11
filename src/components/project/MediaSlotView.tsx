@@ -1,15 +1,18 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import type { MediaSlot } from "@/lib/projects";
 
 export default function MediaSlotView({
   media,
   className,
+  style,
 }: {
   media: MediaSlot;
   className?: string;
+  style?: CSSProperties;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -45,6 +48,7 @@ export default function MediaSlotView({
         preload="auto"
         aria-label={media.alt}
         className={className ?? "h-auto w-full"}
+        style={style}
       />
     );
   }
@@ -57,6 +61,7 @@ export default function MediaSlotView({
         width={media.image.width}
         height={media.image.height}
         className={className ?? "h-auto w-full"}
+        style={style}
       />
     );
   }

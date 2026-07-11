@@ -21,7 +21,7 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
 
-  --font-display: var(--font-gilda-display);
+  --font-display: var(--font-frank-ruhl-libre);
   --font-sans: var(--font-inter);
 
   --animate-marquee: marquee 32s linear infinite;
@@ -46,6 +46,11 @@ body {
 }
 
 ::selection {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+::-moz-selection {
   background: var(--ink);
   color: var(--paper);
 }
