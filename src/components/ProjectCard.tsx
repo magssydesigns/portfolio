@@ -23,7 +23,7 @@ export default function ProjectCard({
         animate="rest"
         variants={{ rest: { y: 0 }, hover: { y: -5 } }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        className="flex h-full flex-col rounded-2xl bg-white p-6 sm:p-7"
+        className="flex h-full flex-col rounded-2xl bg-white/70 p-6 backdrop-blur-md backdrop-saturate-150 sm:p-7"
       >
         <div className="flex items-start justify-between gap-4">
           <h3 className="max-w-[85%] font-display text-2xl leading-[1.15] tracking-tight text-ink sm:text-[1.65rem]">

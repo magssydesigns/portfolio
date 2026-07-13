@@ -25,13 +25,18 @@ type BlobConfig = {
   driftDelay: string;
   /** Hide on small screens to keep mobile lightweight. */
   hideOnMobile?: boolean;
+  /** Subtly scales up as the pointer moves further from centre - used for the one "hero" interactive blob. */
+  reactiveScale?: boolean;
 };
 
+// Positions are fixed px from the top of the shared hero+cards container (not %),
+// so the composition stays consistent regardless of how tall that container is -
+// several blobs are pushed down deliberately so the wash bleeds behind the project cards.
 const BLOBS: BlobConfig[] = [
   {
     color: "#FDB3C6",
     size: "620px",
-    position: { top: "-14%", left: "-8%" },
+    position: { top: "-90px", left: "-8%" },
     blur: 90,
     opacity: 0.72,
     depth: 30,
@@ -43,7 +48,7 @@ const BLOBS: BlobConfig[] = [
   {
     color: "#FFDC7B",
     size: "560px",
-    position: { top: "-10%", right: "-10%" },
+    position: { top: "-70px", right: "-10%" },
     blur: 85,
     opacity: 0.66,
     depth: 18,
@@ -53,22 +58,23 @@ const BLOBS: BlobConfig[] = [
     driftDelay: "-9s",
   },
   {
-    color: "#B9D7FD",
-    size: "640px",
-    position: { bottom: "-22%", right: "0%" },
+    color: "#7AB5FF",
+    size: "820px",
+    position: { top: "820px", right: "-6%" },
     blur: 100,
-    opacity: 0.66,
-    depth: 22,
-    stiffness: 26,
-    damping: 20,
+    opacity: 0.78,
+    depth: 60,
+    stiffness: 55,
+    damping: 14,
     driftClass: "animate-drift-c",
     driftDelay: "-6s",
+    reactiveScale: true,
   },
   {
     color: "#D5C3FB",
-    size: "520px",
-    position: { bottom: "-24%", right: "22%" },
-    blur: 90,
+    size: "580px",
+    position: { top: "1140px", right: "18%" },
+    blur: 95,
     opacity: 0.6,
     depth: 15,
     stiffness: 20,
@@ -78,8 +84,8 @@ const BLOBS: BlobConfig[] = [
   },
   {
     color: "#FDC2A0",
-    size: "480px",
-    position: { top: "28%", left: "38%" },
+    size: "520px",
+    position: { top: "260px", left: "36%" },
     blur: 95,
     opacity: 0.54,
     depth: 25,
@@ -91,7 +97,7 @@ const BLOBS: BlobConfig[] = [
   {
     color: "#CDE8D4",
     size: "420px",
-    position: { top: "12%", right: "30%" },
+    position: { top: "85px", right: "30%" },
     blur: 80,
     opacity: 0.48,
     depth: 10,
@@ -184,10 +190,13 @@ function BlobLayer({
   const springY = useSpring(pointerY, { stiffness: blob.stiffness, damping: blob.damping });
   const x = useTransform(springX, (v) => v * blob.depth);
   const y = useTransform(springY, (v) => v * blob.depth);
+  const scale = useTransform([springX, springY], ([sx, sy]: number[]) =>
+    blob.reactiveScale ? 1 + Math.min(Math.hypot(sx, sy) / 2, 1) * 0.12 : 1
+  );
 
   return (
     <motion.div
-      style={{ x, y, position: "absolute", ...blob.position }}
+      style={{ x, y, scale, position: "absolute", ...blob.position }}
       className={blob.hideOnMobile ? "hidden sm:block" : undefined}
     >
       <div
