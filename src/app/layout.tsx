@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import { Gilda_Display, Inter } from "next/font/google";
+import { Manrope, Inter } from "next/font/google";
 import Nav from "@/components/Nav";
 import "./globals.css";
 
-const gildaDisplay = Gilda_Display({
-  variable: "--font-gilda-display",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
-  weight: "400",
   display: "swap",
 });
 
@@ -36,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${gildaDisplay.variable} ${inter.variable} h-full`}>
+    <html lang="en" className={`${manrope.variable} ${inter.variable} h-full`}>
       <body className="flex min-h-full flex-col bg-paper font-sans text-ink antialiased">
         <Nav />
         <main className="flex-1">{children}</main>

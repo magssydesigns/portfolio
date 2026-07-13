@@ -65,7 +65,7 @@ export default function ProjectHero({
         <div className="mx-auto max-w-[1400px] px-6 pb-8 pt-10 sm:px-10 sm:pb-12 sm:pt-12">
           <div className="mx-auto max-w-2xl">
             <p className="text-[13px] uppercase tracking-[0.14em] text-ink/60">{client}</p>
-            <h1 className="mt-6 max-w-xl font-display text-4xl leading-[1.08] tracking-tight text-ink sm:text-6xl lg:text-[3.4rem] lg:leading-[1.05]">
+            <h1 className="mt-6 font-display text-4xl leading-[1.08] tracking-tight text-ink sm:text-6xl lg:text-[3.4rem] lg:leading-[1.05]">
               {title}
             </h1>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">{tagline}</p>

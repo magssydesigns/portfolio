@@ -24,7 +24,7 @@ export default function Nav() {
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-6 sm:px-10">
         <Link
           href="/"
-          className="flex items-center gap-2 font-display text-base tracking-tight text-ink sm:text-lg"
+          className="flex items-center gap-2 font-display text-sm tracking-tight text-ink sm:text-lg"
           aria-label="Magdalena Marczewska, home"
         >
           <WaveHand />
