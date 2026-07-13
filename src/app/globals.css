@@ -36,6 +36,56 @@
   }
 }
 
+@keyframes drift-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(18px, -22px) scale(1.05);
+  }
+}
+
+@keyframes drift-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-22px, 16px) scale(0.96);
+  }
+}
+
+@keyframes drift-c {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(14px, 20px) scale(1.04);
+  }
+}
+
+.animate-drift-a {
+  animation: drift-a 26s ease-in-out infinite;
+}
+
+.animate-drift-b {
+  animation: drift-b 32s ease-in-out infinite;
+}
+
+.animate-drift-c {
+  animation: drift-c 22s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-drift-a,
+  .animate-drift-b,
+  .animate-drift-c {
+    animation: none;
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
