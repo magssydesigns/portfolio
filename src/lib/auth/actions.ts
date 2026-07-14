@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import {
   createSessionCookieValue,
+  getAuthConfigError,
   isCorrectPassword,
   SESSION_COOKIE_NAME,
   SESSION_MAX_AGE_SECONDS,
@@ -20,6 +21,11 @@ function safeRedirectTarget(value: FormDataEntryValue | null): string {
 }
 
 export async function unlockPortfolio(_prevState: UnlockState, formData: FormData): Promise<UnlockState> {
+  const configError = getAuthConfigError();
+  if (configError) {
+    return { error: configError };
+  }
+
   const password = String(formData.get("password") ?? "");
   const from = safeRedirectTarget(formData.get("from"));
 

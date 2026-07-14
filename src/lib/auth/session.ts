@@ -30,14 +30,31 @@ export function isValidSessionCookieValue(value: string | undefined | null): boo
   const [payload, signature] = value.split(".");
   if (!payload || !signature) return false;
 
-  const expected = Buffer.from(sign(payload), "hex");
-  const provided = Buffer.from(signature, "hex");
-  if (expected.length !== provided.length || !timingSafeEqual(expected, provided)) {
+  try {
+    const expected = Buffer.from(sign(payload), "hex");
+    const provided = Buffer.from(signature, "hex");
+    if (expected.length !== provided.length || !timingSafeEqual(expected, provided)) {
+      return false;
+    }
+  } catch {
+    // Misconfigured SESSION_SECRET (or a malformed cookie) should fail closed,
+    // not crash every page load - treat it the same as "not authenticated".
     return false;
   }
 
   const expiresAt = Number(payload);
   return Number.isFinite(expiresAt) && Date.now() <= expiresAt;
+}
+
+/** Human-readable reason the gate can't work yet, or null if both secrets are set. */
+export function getAuthConfigError(): string | null {
+  if (!process.env.PORTFOLIO_PASSWORD) {
+    return "This portfolio isn't fully configured yet - PORTFOLIO_PASSWORD is missing. Set it as an environment variable and restart the server.";
+  }
+  if (!process.env.SESSION_SECRET) {
+    return "This portfolio isn't fully configured yet - SESSION_SECRET is missing. Set it as an environment variable and restart the server.";
+  }
+  return null;
 }
 
 /** Constant-time comparison against the portfolio password, regardless of length mismatch. */
