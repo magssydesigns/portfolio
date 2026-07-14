@@ -3,7 +3,7 @@ import Button from "@/components/Button";
 import ProjectCard from "@/components/ProjectCard";
 import Footer from "@/components/Footer";
 import MediaSlotView from "@/components/project/MediaSlotView";
-import InteractiveGradientBackground from "@/components/InteractiveGradientBackground";
+import GradientScene from "@/components/GradientScene";
 
 const masthead = [
   {
@@ -101,59 +101,55 @@ const projects = [
 
 export default function Home() {
   return (
-    <>
-      <div className="relative isolate overflow-hidden">
-        <InteractiveGradientBackground />
-
-        <section className="relative z-10 px-6 pb-16 pt-40 sm:px-10 sm:pb-20 sm:pt-48">
-          <div className="mx-auto max-w-[1400px]">
-            <Reveal>
-              <h1 className="max-w-3xl font-display text-4xl leading-[1.12] tracking-tight sm:text-6xl lg:text-[4.75rem] lg:leading-[1.08]">
-                Designing &amp; building products that make complex feel easy
-              </h1>
-            </Reveal>
-
-            <Reveal delay={0.1}>
-              <div className="mt-16 grid grid-cols-1 gap-10 sm:mt-20 sm:grid-cols-3 sm:gap-8">
-                {masthead.map((item) => (
-                  <div key={item.label}>
-                    <p className="flex items-center gap-2 text-[12px] uppercase tracking-[0.14em] text-muted">
-                      {item.label === "Currently" && (
-                        <span
-                          className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-green-500"
-                          aria-hidden
-                        />
-                      )}
-                      {item.label}
-                    </p>
-                    <p className="mt-3 max-w-xs text-[15px] leading-relaxed text-ink-soft">
-                      {item.body}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </section>
-
-        <section className="relative z-10 mx-auto max-w-[1400px] px-6 pb-20 sm:px-10 sm:pb-28">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7">
-            {projects.map((project, i) => (
-              <Reveal key={project.headline} delay={i * 0.08} y={24}>
-                <ProjectCard headline={project.headline} href={project.href} color={project.color} visual={project.visual} />
-              </Reveal>
-            ))}
-          </div>
+    <GradientScene>
+      <section className="px-6 pb-16 pt-40 sm:px-10 sm:pb-20 sm:pt-48">
+        <div className="mx-auto max-w-[1400px]">
+          <Reveal>
+            <h1 className="max-w-3xl font-display text-4xl leading-[1.12] tracking-tight sm:text-6xl lg:text-[4.75rem] lg:leading-[1.08]">
+              Designing &amp; building products that make complex feel easy
+            </h1>
+          </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="mt-10">
-              <Button href="/work">View archive projects</Button>
+            <div className="mt-16 grid grid-cols-1 gap-10 sm:mt-20 sm:grid-cols-3 sm:gap-8">
+              {masthead.map((item) => (
+                <div key={item.label}>
+                  <p className="flex items-center gap-2 text-[12px] uppercase tracking-[0.14em] text-muted">
+                    {item.label === "Currently" && (
+                      <span
+                        className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-green-500"
+                        aria-hidden
+                      />
+                    )}
+                    {item.label}
+                  </p>
+                  <p className="mt-3 max-w-xs text-[15px] leading-relaxed text-ink-soft">
+                    {item.body}
+                  </p>
+                </div>
+              ))}
             </div>
           </Reveal>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      <section className="mx-auto max-w-[1400px] px-6 pb-20 sm:px-10 sm:pb-28">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7">
+          {projects.map((project, i) => (
+            <Reveal key={project.headline} delay={i * 0.08} y={24}>
+              <ProjectCard headline={project.headline} href={project.href} color={project.color} visual={project.visual} />
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal delay={0.1}>
+          <div className="mt-10">
+            <Button href="/work">View archive projects</Button>
+          </div>
+        </Reveal>
+      </section>
 
       <Footer />
-    </>
+    </GradientScene>
   );
 }
