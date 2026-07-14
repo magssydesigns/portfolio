@@ -27,6 +27,10 @@ export const metadata: Metadata = {
     description: "Designing products that simplify everyday life.",
     type: "website",
   },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function RootLayout({
