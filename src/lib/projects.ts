@@ -100,12 +100,9 @@ export const projects: Project[] = [
         width: 1440,
         height: 1080,
       },
-      bulletedChallenge: true,
+      bulletedChallenge: false,
       challenge: [
-        "Stakeholders wanted to scale an existing Polish parcel tracking flow globally.",
-        "I identified that delivery behaviours, carrier logic, and user expectations differed significantly between markets, making a direct rollout risky.",
-        "As a Product Designer for UK app team, I initiated the project of unifying app tracking experience into one from different markets (UK, France, Poland).",
-        "Instead of adapting screens market by market, I redesigned the tracking structure for international scale.",
+        "The goal was to scale an existing parcel tracking flow from Poland to multiple international markets. Through research, I identified significant differences in delivery behaviours, carrier logic, and customer expectations, making a simple localisation approach unsuitable. As the Product Designer for the UK app team, I led the initiative to create a unified tracking experience across the UK, France, and Poland, designing a scalable solution that could support future market expansion.",
       ],
       process: {
         intro:
