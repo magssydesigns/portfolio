@@ -106,7 +106,7 @@ export default function Home() {
       <section className="px-6 pb-16 pt-40 sm:px-10 sm:pb-20 sm:pt-48">
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
-            <InteractiveHoverText className="max-w-3xl font-display text-4xl leading-[1.12] tracking-tight sm:text-6xl lg:text-[4.75rem] lg:leading-[1.08]">
+            <InteractiveHoverText className="max-w-3xl font-display text-4xl leading-[1.12] tracking-tight sm:text-6xl lg:max-w-6xl lg:text-[4.75rem] lg:leading-[1.08]">
               {"Designing & building products that make complex feel easy"}
             </InteractiveHoverText>
           </Reveal>

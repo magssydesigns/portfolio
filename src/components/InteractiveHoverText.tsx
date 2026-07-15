@@ -79,18 +79,25 @@ export default function InteractiveHoverText({
     );
   }
 
-  const characters = Array.from(children);
+  // Each word is wrapped in its own inline-block box so it stays an atomic
+  // unit for line-wrapping (matching plain-text word wrap); only the literal
+  // space characters between word-boxes are real breakable text, and the
+  // individual character spans inside each word can still be nudged.
+  const words = children.split(" ");
 
   return (
     <h1 ref={containerRef} className={className} aria-label={children}>
       <span aria-hidden="true">
-        {characters.map((char, i) =>
-          char === " " ? (
-            " "
-          ) : (
-            <Char key={i} char={char} pointerX={pointerX} pointerY={pointerY} radius={radius} maxOffset={maxOffset} />
-          )
-        )}
+        {words.map((word, wi) => (
+          <span key={wi}>
+            {wi > 0 && " "}
+            <span style={{ display: "inline-block" }}>
+              {Array.from(word).map((char, ci) => (
+                <Char key={ci} char={char} pointerX={pointerX} pointerY={pointerY} radius={radius} maxOffset={maxOffset} />
+              ))}
+            </span>
+          </span>
+        ))}
       </span>
     </h1>
   );
