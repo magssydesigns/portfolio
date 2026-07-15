@@ -1,5 +1,5 @@
 import Reveal from "@/components/Reveal";
-import InteractiveDistortedText from "@/components/InteractiveDistortedText";
+import InteractiveHoverText from "@/components/InteractiveHoverText";
 import Button from "@/components/Button";
 import ProjectCard from "@/components/ProjectCard";
 import Footer from "@/components/Footer";
@@ -106,9 +106,9 @@ export default function Home() {
       <section className="px-6 pb-16 pt-40 sm:px-10 sm:pb-20 sm:pt-48">
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
-            <InteractiveDistortedText className="max-w-3xl font-display text-4xl leading-[1.12] tracking-tight sm:text-6xl lg:text-[4.75rem] lg:leading-[1.08]">
-              Designing &amp; building products that make complex feel easy
-            </InteractiveDistortedText>
+            <InteractiveHoverText className="max-w-3xl font-display text-4xl leading-[1.12] tracking-tight sm:text-6xl lg:text-[4.75rem] lg:leading-[1.08]">
+              {"Designing & building products that make complex feel easy"}
+            </InteractiveHoverText>
           </Reveal>
 
           <Reveal delay={0.1}>
