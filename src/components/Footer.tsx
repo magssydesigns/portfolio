@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-line">
       <div className="mx-auto max-w-[1400px] px-6 py-20 sm:px-10 sm:py-28">
-        <p className="max-w-2xl font-display text-xl leading-relaxed text-ink-soft sm:text-2xl">
+        <p className="max-w-2xl font-display text-xl leading-relaxed text-black sm:text-2xl">
           Hey there, I&rsquo;m Magda - a product designer currently
           leading the full design process for a consumer app - the
           InPost UK app with ~3M active users. I am also designing web
