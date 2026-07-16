@@ -82,7 +82,7 @@ export default function QuickRead({
               </ul>
             ) : (
               data.challenge.map((p, i) => (
-                <p key={i} className="text-lg leading-relaxed text-ink-soft sm:text-xl">
+                <p key={i} className="text-lg leading-relaxed text-ink-soft">
                   {p}
                 </p>
               ))
