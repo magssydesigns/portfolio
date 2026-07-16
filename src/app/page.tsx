@@ -4,8 +4,8 @@ import Button from "@/components/Button";
 import ProjectCard from "@/components/ProjectCard";
 import ProjectCardCursor from "@/components/ProjectCardCursor";
 import Footer from "@/components/Footer";
-import MediaSlotView from "@/components/project/MediaSlotView";
 import GradientScene from "@/components/GradientScene";
+import type { MediaSlot } from "@/lib/projects";
 
 const masthead = [
   {
@@ -22,77 +22,61 @@ const masthead = [
   },
 ];
 
-const projects = [
+const projects: {
+  headline: string;
+  media: MediaSlot;
+  href: string;
+}[] = [
   {
     headline: "Scaling parcel tracking across European markets",
-    visual: (
-      <MediaSlotView
-        media={{
-          kind: "video",
-          video: {
-            src: "/projects/scaling-parcel-tracking/scene.mp4",
-            width: 1440,
-            height: 1080,
-          },
-          alt: "InPost parcel tracking experience shown in context",
-        }}
-        className="h-full w-full object-cover"
-      />
-    ),
+    media: {
+      kind: "video",
+      video: {
+        src: "/projects/scaling-parcel-tracking/scene.mp4",
+        width: 1440,
+        height: 1080,
+      },
+      alt: "InPost parcel tracking experience shown in context",
+    },
     href: "/projects/scaling-parcel-tracking",
   },
   {
     headline: "0 → 1: Launching InPost's UK parcel tracking app",
-    visual: (
-      <MediaSlotView
-        media={{
-          kind: "image",
-          image: {
-            src: "/homepage/tracking-launch.jpg",
-            width: 7406,
-            height: 5829,
-            alt: "InPost parcel tracking screen and design system colour tokens",
-          },
-        }}
-        className="h-full w-full object-cover"
-      />
-    ),
+    media: {
+      kind: "image",
+      image: {
+        src: "/homepage/tracking-launch.jpg",
+        width: 7406,
+        height: 5829,
+        alt: "InPost parcel tracking screen and design system colour tokens",
+      },
+    },
     href: "/projects/rapid-uk-launch",
   },
   {
     headline: "Enabling 2M+ users to send parcels in app",
-    visual: (
-      <MediaSlotView
-        media={{
-          kind: "image",
-          image: {
-            src: "/homepage/send-parcel.jpg",
-            width: 7406,
-            height: 5430,
-            alt: "InPost send a parcel screen showing locker or home address delivery options",
-          },
-        }}
-        className="h-full w-full object-cover"
-      />
-    ),
+    media: {
+      kind: "image",
+      image: {
+        src: "/homepage/send-parcel.jpg",
+        width: 7406,
+        height: 5430,
+        alt: "InPost send a parcel screen showing locker or home address delivery options",
+      },
+    },
     href: "/projects/send-parcel-in-app",
   },
   {
     headline: "Establishing design metrics for key flow in the app",
-    visual: (
-      <MediaSlotView
-        media={{
-          kind: "image",
-          image: {
-            src: "/homepage/design-metrics.jpg",
-            width: 7406,
-            height: 5829,
-            alt: "Annotated research screens showing metrics tracked across the send-a-parcel flow",
-          },
-        }}
-        className="h-full w-full object-cover"
-      />
-    ),
+    media: {
+      kind: "image",
+      image: {
+        src: "/homepage/design-metrics.jpg",
+        width: 7406,
+        height: 5829,
+        alt: "Annotated research screens showing metrics tracked across the send-a-parcel flow",
+      },
+    },
     href: "/projects/establishing-design-metrics",
   },
 ];
@@ -136,7 +120,7 @@ export default function Home() {
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7">
             {projects.map((project, i) => (
               <Reveal key={project.headline} delay={i * 0.08} y={24}>
-                <ProjectCard headline={project.headline} href={project.href} visual={project.visual} />
+                <ProjectCard headline={project.headline} href={project.href} media={project.media} />
               </Reveal>
             ))}
           </div>
