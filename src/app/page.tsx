@@ -2,6 +2,7 @@ import Reveal from "@/components/Reveal";
 import InteractiveHoverText from "@/components/InteractiveHoverText";
 import Button from "@/components/Button";
 import ProjectCard from "@/components/ProjectCard";
+import ProjectCardCursor from "@/components/ProjectCardCursor";
 import Footer from "@/components/Footer";
 import MediaSlotView from "@/components/project/MediaSlotView";
 import GradientScene from "@/components/GradientScene";
@@ -24,7 +25,6 @@ const masthead = [
 const projects = [
   {
     headline: "Scaling parcel tracking across European markets",
-    color: "#F5C518",
     visual: (
       <MediaSlotView
         media={{
@@ -43,7 +43,6 @@ const projects = [
   },
   {
     headline: "0 → 1: Launching InPost's UK parcel tracking app",
-    color: "#3355FF",
     visual: (
       <MediaSlotView
         media={{
@@ -62,7 +61,6 @@ const projects = [
   },
   {
     headline: "Enabling 2M+ users to send parcels in app",
-    color: "#00C853",
     visual: (
       <MediaSlotView
         media={{
@@ -81,7 +79,6 @@ const projects = [
   },
   {
     headline: "Establishing design metrics for key flow in the app",
-    color: "#7C3AED",
     visual: (
       <MediaSlotView
         media={{
@@ -135,13 +132,15 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-[1400px] px-6 pb-20 sm:px-10 sm:pb-28">
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7">
-          {projects.map((project, i) => (
-            <Reveal key={project.headline} delay={i * 0.08} y={24}>
-              <ProjectCard headline={project.headline} href={project.href} color={project.color} visual={project.visual} />
-            </Reveal>
-          ))}
-        </div>
+        <ProjectCardCursor>
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7">
+            {projects.map((project, i) => (
+              <Reveal key={project.headline} delay={i * 0.08} y={24}>
+                <ProjectCard headline={project.headline} href={project.href} visual={project.visual} />
+              </Reveal>
+            ))}
+          </div>
+        </ProjectCardCursor>
 
         <Reveal delay={0.1}>
           <div className="mt-10">

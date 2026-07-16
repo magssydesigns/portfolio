@@ -132,3 +132,10 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Native cursor is hidden over project cards only while the custom
+   "View project" cursor is actually enabled (fine pointer, motion allowed),
+   so touch/reduced-motion users are never left without a visible cursor. */
+[data-cursor-enabled] [data-project-card]:hover {
+  cursor: none;
+}
