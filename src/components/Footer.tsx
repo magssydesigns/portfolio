@@ -11,10 +11,10 @@ export default function Footer() {
           experiences and interfaces for smart hardware.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Button href="/resume.pdf" chevron>
+          <Button href="/resume.pdf" shape="pill" chevron>
             Download my resume
           </Button>
-          <Button href="https://www.linkedin.com/in/magdalena-marczewska-3b33b750/">
+          <Button href="https://www.linkedin.com/in/magdalena-marczewska-3b33b750/" shape="pill">
             Let&rsquo;s connect
           </Button>
         </div>

@@ -145,7 +145,7 @@ export default function Home() {
 
         <Reveal delay={0.1}>
           <div className="mt-10">
-            <Button href="/work">View archive projects</Button>
+            <Button href="/work" shape="pill">View archive projects</Button>
           </div>
         </Reveal>
       </section>
