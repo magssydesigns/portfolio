@@ -85,7 +85,7 @@ export default function ProjectHero({
             width={image.width}
             height={image.height}
             priority
-            className="mx-auto block h-auto w-full max-w-[280px] rounded-2xl border sm:max-w-[320px]"
+            className="mx-auto block h-auto w-full max-w-[614.797px] rounded-2xl border"
             style={{ borderColor: "rgb(221, 216, 203)" }}
           />
         </div>
