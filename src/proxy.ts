@@ -18,7 +18,10 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  // Everything runs through the gate except the assets the /enter page itself
-  // needs to render (styles/fonts/images), and /enter's own GET + form POST.
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|robots.txt|enter).*)"],
+  // Everything runs through the gate except static files (own extension, e.g.
+  // images/fonts/pdf) and /enter's own GET + form POST. Static public assets
+  // must stay ungated because Next's image optimizer re-fetches them via an
+  // internal request that carries no cookies - gating them breaks every
+  // <Image> on the site.
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|robots.txt|enter|.*\\..*).*)"],
 };

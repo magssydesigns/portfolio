@@ -765,10 +765,10 @@ export const projects: Project[] = [
     quickRead: {
       tagline: "Providing customers with option of sending parcels inside the InPost app",
       heroImage: {
-        src: "/projects/send-parcel-in-app/hero.png",
-        width: 390,
-        height: 770,
-        alt: "InPost send a parcel screen showing locker or home address delivery options and size selection",
+        src: "/projects/send-parcel-in-app/send-hero.png",
+        width: 7434,
+        height: 8919,
+        alt: "InPost send a parcel screen showing size selection and an About sizes bottom-sheet modal",
       },
       challenge: [
         "The UK InPost app didn't yet allow users to send parcels, even though the feature existed in the Polish version. The business needed to launch the feature quickly in the UK, reusing the existing flow - but the UX wasn't fully aligned to UK users' expectations, market behaviour, or pricing model.",
