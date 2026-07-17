@@ -58,9 +58,9 @@ const projects: {
     media: {
       kind: "image",
       image: {
-        src: "/homepage/send-parcel.jpg",
-        width: 7406,
-        height: 5430,
+        src: "/homepage/send-a-parcel.png",
+        width: 4956,
+        height: 3946,
         alt: "InPost send a parcel screen showing locker or home address delivery options",
       },
     },
