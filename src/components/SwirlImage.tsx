@@ -129,7 +129,12 @@ export default function SwirlImage({ media, className }: { media: MediaSlot; cla
     }
     texture.wrapS = THREE.MirroredRepeatWrapping;
     texture.wrapT = THREE.MirroredRepeatWrapping;
-    texture.colorSpace = THREE.SRGBColorSpace;
+    // NoColorSpace: this shader is a pure pixel passthrough (crop + rotate,
+    // no lighting), so texel values should reach gl_FragColor unmodified.
+    // SRGBColorSpace would make the GPU decode sRGB -> linear on sample
+    // without the shader re-encoding back, producing a visible colour/
+    // contrast shift versus the plain <img> underneath.
+    texture.colorSpace = THREE.NoColorSpace;
 
     const geometry = new THREE.PlaneGeometry(2, 2);
     const material = new THREE.ShaderMaterial({
