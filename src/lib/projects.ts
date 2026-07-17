@@ -747,7 +747,9 @@ export const projects: Project[] = [
     title: "Enabling 2M+ users to send parcels in app",
     shortTitle: "Enabling users to send parcels",
     client: "InPost",
-    color: "#01D46B",
+    color: "#B8481F",
+    heroBackground: "#F8F4EE",
+    heroStacked: true,
     toc: [
       { id: "quick-summary", label: "Quick Summary" },
       { id: "process", label: "Process" },
