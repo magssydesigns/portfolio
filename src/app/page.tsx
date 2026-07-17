@@ -45,9 +45,9 @@ const projects: {
     media: {
       kind: "image",
       image: {
-        src: "/homepage/tracking-launch.jpg",
-        width: 7406,
-        height: 5829,
+        src: "/homepage/app-in-uk.png",
+        width: 4956,
+        height: 3946,
         alt: "InPost parcel tracking screen and design system colour tokens",
       },
     },
