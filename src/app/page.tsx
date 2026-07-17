@@ -5,7 +5,7 @@ import ProjectCard from "@/components/ProjectCard";
 import ProjectCardCursor from "@/components/ProjectCardCursor";
 import Footer from "@/components/Footer";
 import GradientScene from "@/components/GradientScene";
-import type { MediaSlot } from "@/lib/projects";
+import { homepageCards, cardHref } from "@/lib/project-cards";
 
 const masthead = [
   {
@@ -19,65 +19,6 @@ const masthead = [
   {
     label: "Background",
     body: "Fashion Design, Central Saint Martins.",
-  },
-];
-
-const projects: {
-  headline: string;
-  media: MediaSlot;
-  href: string;
-}[] = [
-  {
-    headline: "Scaling parcel tracking across European markets",
-    media: {
-      kind: "video",
-      video: {
-        src: "/projects/scaling-parcel-tracking/scene.mp4",
-        width: 1440,
-        height: 1080,
-      },
-      alt: "InPost parcel tracking experience shown in context",
-    },
-    href: "/projects/scaling-parcel-tracking",
-  },
-  {
-    headline: "0 → 1: Launching InPost's UK parcel tracking app",
-    media: {
-      kind: "image",
-      image: {
-        src: "/homepage/app-in-uk.png",
-        width: 4956,
-        height: 3946,
-        alt: "InPost parcel tracking screen and design system colour tokens",
-      },
-    },
-    href: "/projects/rapid-uk-launch",
-  },
-  {
-    headline: "Enabling 2M+ users to send parcels in app",
-    media: {
-      kind: "image",
-      image: {
-        src: "/homepage/send-a-parcel.png",
-        width: 4956,
-        height: 3946,
-        alt: "InPost send a parcel screen showing locker or home address delivery options",
-      },
-    },
-    href: "/projects/send-parcel-in-app",
-  },
-  {
-    headline: "Establishing design metrics for key flow in the app",
-    media: {
-      kind: "image",
-      image: {
-        src: "/homepage/design-metrics.jpg",
-        width: 7406,
-        height: 5829,
-        alt: "Annotated research screens showing metrics tracked across the send-a-parcel flow",
-      },
-    },
-    href: "/projects/establishing-design-metrics",
   },
 ];
 
@@ -118,9 +59,9 @@ export default function Home() {
       <section className="mx-auto max-w-[1400px] px-6 pb-20 sm:px-10 sm:pb-28">
         <ProjectCardCursor>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7">
-            {projects.map((project, i) => (
-              <Reveal key={project.headline} delay={i * 0.08} y={24}>
-                <ProjectCard headline={project.headline} href={project.href} media={project.media} />
+            {homepageCards.map((card, i) => (
+              <Reveal key={card.slug} delay={i * 0.08} y={24}>
+                <ProjectCard headline={card.title} href={cardHref(card)} media={card.media} />
               </Reveal>
             ))}
           </div>
@@ -128,7 +69,7 @@ export default function Home() {
 
         <Reveal delay={0.1}>
           <div className="mt-10">
-            <Button href="/work" shape="pill">View archive projects</Button>
+            <Button href="/archive" shape="pill">View archive projects</Button>
           </div>
         </Reveal>
       </section>

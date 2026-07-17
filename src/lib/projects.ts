@@ -1209,3 +1209,96 @@ export function getPreviousProject(slug: string) {
   const idx = projects.findIndex((p) => p.slug === slug);
   return projects[(idx - 1 + projects.length) % projects.length];
 }
+
+/**
+ * Archive projects use a deliberately lighter shape than `Project`: a hero
+ * (image + title + subtitle) and a four-field quick summary only. No
+ * fullCaseStudy, no toc, no quickRead - the /projects/[slug] route renders
+ * these through a separate, shorter template.
+ */
+export type ArchiveProject = {
+  slug: string;
+  title: string;
+  subtitle: string;
+  heroImage: ProjectImage;
+  quickSummary: {
+    role: string;
+    overview: string;
+    contribution: string;
+    outcome: string;
+  };
+};
+
+const PLACEHOLDER_QUICK_SUMMARY = {
+  role: "[Add role]",
+  overview: "[Add a concise summary of the project, problem and context.]",
+  contribution: "[Add the key work and responsibilities.]",
+  outcome: "[Add the result, impact or final deliverable.]",
+};
+
+export const archiveProjects: ArchiveProject[] = [
+  {
+    slug: "designability",
+    title: "Designability",
+    subtitle: "[Add project subtitle]",
+    heroImage: {
+      src: "/projects/designability/designability-hero-placeholder.png",
+      width: 1600,
+      height: 1200,
+      alt: "Designability - placeholder image",
+    },
+    quickSummary: PLACEHOLDER_QUICK_SUMMARY,
+  },
+  {
+    slug: "tigi",
+    title: "TIGI",
+    subtitle: "[Add project subtitle]",
+    heroImage: {
+      src: "/projects/tigi/tigi-hero-placeholder.png",
+      width: 1600,
+      height: 1200,
+      alt: "TIGI - placeholder image",
+    },
+    quickSummary: PLACEHOLDER_QUICK_SUMMARY,
+  },
+  {
+    slug: "migarage",
+    title: "MiGarage",
+    subtitle: "[Add project subtitle]",
+    heroImage: {
+      src: "/projects/migarage/migarage-hero-placeholder.png",
+      width: 1600,
+      height: 1200,
+      alt: "MiGarage - placeholder image",
+    },
+    quickSummary: PLACEHOLDER_QUICK_SUMMARY,
+  },
+  {
+    slug: "creative-xr",
+    title: "Creative XR",
+    subtitle: "[Add project subtitle]",
+    heroImage: {
+      src: "/projects/creative-xr/creative-xr-hero-placeholder.png",
+      width: 1600,
+      height: 1200,
+      alt: "Creative XR - placeholder image",
+    },
+    quickSummary: PLACEHOLDER_QUICK_SUMMARY,
+  },
+  {
+    slug: "futurescope",
+    title: "Futurescope",
+    subtitle: "[Add project subtitle]",
+    heroImage: {
+      src: "/projects/futurescope/futurescope-hero-placeholder.png",
+      width: 1600,
+      height: 1200,
+      alt: "Futurescope - placeholder image",
+    },
+    quickSummary: PLACEHOLDER_QUICK_SUMMARY,
+  },
+];
+
+export function getArchiveProjectBySlug(slug: string) {
+  return archiveProjects.find((p) => p.slug === slug);
+}

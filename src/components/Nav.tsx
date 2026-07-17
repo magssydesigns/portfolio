@@ -42,7 +42,7 @@ export default function Nav() {
             </Button>
           </span>
           <span className="hidden sm:inline-flex">
-            <Button href="/work" shape="pill">
+            <Button href="/archive" shape="pill">
               Archive
             </Button>
           </span>

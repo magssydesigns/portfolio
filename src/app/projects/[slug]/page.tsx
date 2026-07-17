@@ -4,17 +4,20 @@ import ProjectHero from "@/components/project/ProjectHero";
 import QuickRead from "@/components/project/QuickRead";
 import CaseStudyBlocks from "@/components/project/CaseStudyBlocks";
 import FullCaseStudyReveal from "@/components/project/FullCaseStudyReveal";
+import ArchiveQuickSummary from "@/components/project/ArchiveQuickSummary";
 import PrevNextNav from "@/components/project/PrevNextNav";
 import Footer from "@/components/Footer";
 import {
   projects,
+  archiveProjects,
   getProjectBySlug,
+  getArchiveProjectBySlug,
   getNextProject,
   getPreviousProject,
 } from "@/lib/projects";
 
 export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  return [...projects, ...archiveProjects].map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -24,11 +27,20 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
-  if (!project) return {};
-  return {
-    title: project.title,
-    description: project.quickRead.tagline,
-  };
+  if (project) {
+    return {
+      title: project.title,
+      description: project.quickRead.tagline,
+    };
+  }
+  const archiveProject = getArchiveProjectBySlug(slug);
+  if (archiveProject) {
+    return {
+      title: archiveProject.title,
+      description: archiveProject.subtitle,
+    };
+  }
+  return {};
 }
 
 export default async function ProjectPage({
@@ -38,7 +50,27 @@ export default async function ProjectPage({
 }) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
-  if (!project) notFound();
+
+  if (!project) {
+    const archiveProject = getArchiveProjectBySlug(slug);
+    if (!archiveProject) notFound();
+
+    return (
+      <>
+        <article>
+          <ProjectHero
+            title={archiveProject.title}
+            tagline={archiveProject.subtitle}
+            client="Archive"
+            color="#F8F4EE"
+            image={archiveProject.heroImage}
+          />
+          <ArchiveQuickSummary data={archiveProject.quickSummary} />
+        </article>
+        <Footer />
+      </>
+    );
+  }
 
   const next = getNextProject(slug);
   const previous = getPreviousProject(slug);
