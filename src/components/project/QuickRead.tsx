@@ -67,10 +67,26 @@ export default function QuickRead({
           <SectionLabel
             headingStyle={headingStyle}
             id="quick-summary"
-            text={headingStyle === "heading" ? "Quick summary" : "Quick read"}
+            text={data.summaryLabel ?? (headingStyle === "heading" ? "Quick summary" : "Quick read")}
           />
           <div className={`${contentClass} max-w-2xl space-y-5`}>
-            {data.role && <p className="text-lg leading-relaxed text-ink-soft">{data.role}</p>}
+            {data.roleDetails ? (
+              <dl className="space-y-4">
+                {data.roleDetails.map((item) => (
+                  <div key={item.label}>
+                    <dt className="text-[13px] uppercase tracking-[0.14em] text-muted">{item.label}</dt>
+                    <dd className="mt-1 text-lg leading-relaxed text-ink-soft">
+                      <span className="block">{item.value}</span>
+                      {item.description && (
+                        <span className="mt-1 block text-[15px] text-ink-soft">{item.description}</span>
+                      )}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            ) : (
+              data.role && <p className="text-lg leading-relaxed text-ink-soft">{data.role}</p>
+            )}
             {data.bulletedChallenge ? (
               <ul className="space-y-3">
                 {data.challenge.map((p, i) => (
@@ -87,15 +103,33 @@ export default function QuickRead({
                 </p>
               ))
             )}
+            {data.goals && (
+              <div className="pt-2">
+                <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{data.goals.label ?? "Goals"}</p>
+                <ul className="mt-3 space-y-2">
+                  {data.goals.items.map((g) => (
+                    <li key={g} className="flex gap-3 text-[15px] text-ink-soft">
+                      <span className="text-accent">-</span>
+                      {g}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             {data.constraints && (
-              <ul className="space-y-2 pt-2">
-                {data.constraints.map((c) => (
-                  <li key={c} className="flex gap-3 text-[15px] text-ink-soft">
-                    <span className="text-accent">-</span>
-                    {c}
-                  </li>
-                ))}
-              </ul>
+              <div className="pt-2">
+                {data.constraintsLabel && (
+                  <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{data.constraintsLabel}</p>
+                )}
+                <ul className={`space-y-2 ${data.constraintsLabel ? "mt-3" : ""}`}>
+                  {data.constraints.map((c) => (
+                    <li key={c} className="flex gap-3 text-[15px] text-ink-soft">
+                      <span className="text-accent">-</span>
+                      {c}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
           </div>
         </div>

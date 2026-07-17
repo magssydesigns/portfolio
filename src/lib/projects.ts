@@ -36,10 +36,14 @@ export type QuickRead = {
   tagline: string;
   heroImage: ProjectImage;
   heroVideo?: ProjectVideo;
+  summaryLabel?: string;
   challenge: string[];
   bulletedChallenge?: boolean;
   role?: string;
+  roleDetails?: { label: string; value: string; description?: string }[];
+  goals?: { label?: string; items: string[] };
   constraints?: string[];
+  constraintsLabel?: string;
   process?: { intro?: string; items: string[] };
   challenges?: { intro?: string; items: string[] };
   midMedia?: MediaSlot;
@@ -751,7 +755,7 @@ export const projects: Project[] = [
     heroBackground: "#F8F4EE",
     heroStacked: true,
     toc: [
-      { id: "quick-summary", label: "Quick Summary" },
+      { id: "quick-summary", label: "Project at a Glance" },
       { id: "process", label: "Process" },
       { id: "impact", label: "Impact" },
       { id: "business-objectives", label: "Business Objectives" },
@@ -770,15 +774,36 @@ export const projects: Project[] = [
         height: 8919,
         alt: "InPost send a parcel screen showing size selection and an About sizes bottom-sheet modal",
       },
+      summaryLabel: "Project at a glance",
       challenge: [
-        "The UK InPost app didn't yet allow users to send parcels, even though the feature existed in the Polish version. The business needed to launch the feature quickly in the UK, reusing the existing flow - but the UX wasn't fully aligned to UK users' expectations, market behaviour, or pricing model.",
-        "Goal: adapt and enhance the existing Polish “Send a Parcel” flow for the UK market, introduce new features like parcel cover, and improve UX friction points without rebuilding the entire experience.",
+        "The UK InPost app didn't allow customers to send parcels, even though the feature already existed in the Polish version. The challenge was to adapt the existing experience for UK users while working within a short delivery timeline and existing technical constraints.",
+        "Rather than redesigning the entire journey, I enhanced the existing flow by introducing UK-specific functionality, improving usability, simplifying key interactions and reducing friction throughout the experience.",
       ],
-      role: "Product Designer - led UX, UI, benchmarking, prototyping, usability testing, design improvements, and design hand-off.",
+      roleDetails: [
+        {
+          label: "Role",
+          value: "Lead Product Designer",
+          description:
+            "Responsible for the end-to-end UX and UI design of the parcel sending experience for the UK InPost app.",
+        },
+        { label: "Scope", value: "End-to-end UX & UI" },
+        { label: "Team", value: "Product Manager • Engineering • Marketing • Customer Experience" },
+        { label: "Platform", value: "iOS & Android" },
+      ],
+      goals: {
+        label: "Project goals",
+        items: [
+          "Launch parcel sending for UK customers using the existing Polish product as the foundation.",
+          "Adapt the experience to UK users' expectations and market requirements.",
+          "Introduce UK-specific functionality such as parcel cover.",
+          "Improve clarity, usability and conversion without rebuilding the entire flow.",
+        ],
+      },
+      constraintsLabel: "Key constraints",
       constraints: [
-        "Very short delivery timeline",
-        "Required to reuse most of the original flow",
-        "Limited engineering capacity → focus on UX refinements, not full redesign",
+        "Short delivery timeline.",
+        "Existing Polish flow had to be reused.",
+        "Limited engineering capacity, so improvements focused on UX enhancements rather than a full redesign.",
       ],
       process: {
         intro: "Research & UX input:",
