@@ -71,15 +71,13 @@ export default function QuickRead({
           />
           <div className={`${contentClass} max-w-2xl space-y-5`}>
             {data.roleDetails ? (
-              <dl className="space-y-4">
+              <dl className="grid grid-cols-1 gap-10 sm:grid-cols-4 sm:gap-8">
                 {data.roleDetails.map((item) => (
                   <div key={item.label}>
-                    <dt className="text-[13px] uppercase tracking-[0.14em] text-muted">{item.label}</dt>
-                    <dd className="mt-1 text-lg leading-relaxed text-ink-soft">
-                      <span className="block">{item.value}</span>
-                      {item.description && (
-                        <span className="mt-1 block text-[15px] text-ink-soft">{item.description}</span>
-                      )}
+                    <dt className="font-sans text-[12px] uppercase tracking-[0.14em] text-black">{item.label}</dt>
+                    <dd className="mt-3 max-w-xs font-sans text-[15px] leading-relaxed text-black">
+                      {item.value}
+                      {item.description ? `. ${item.description}` : null}
                     </dd>
                   </div>
                 ))}
