@@ -258,12 +258,12 @@ export default function QuickRead({
 
       {data.impactQuote && (
         <Reveal delay={0.17}>
-          <div className="mt-16 rounded-2xl bg-ink px-6 py-16 text-center text-paper sm:px-10 sm:py-20">
-            <p className="font-display text-[1.5rem] italic leading-snug sm:text-[1.8rem]">
+          <div className="mt-16 px-6 py-16 text-center sm:px-10 sm:py-20">
+            <p className="whitespace-pre-line font-display text-[1.5rem] italic leading-snug text-ink sm:text-[1.8rem]">
               &ldquo;{data.impactQuote.text}&rdquo;
             </p>
             {data.impactQuote.attribution && (
-              <p className="mt-8 text-[13px] uppercase tracking-[0.14em] text-paper/50">
+              <p className="mt-8 text-[13px] uppercase tracking-[0.14em] text-muted">
                 {data.impactQuote.attribution}
               </p>
             )}

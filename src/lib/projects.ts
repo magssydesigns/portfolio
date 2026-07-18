@@ -187,7 +187,7 @@ export const projects: Project[] = [
         ],
       },
       impactQuote: {
-        text: "this seems to be more comprehensive in terms of details of features when compared to major firm parcel apps I've seen in the UK",
+        text: "This seems to be more comprehensive in terms of details\nof features when compared to major firm parcel apps\nI've seen in the UK",
       },
     },
     fullCaseStudy: [
