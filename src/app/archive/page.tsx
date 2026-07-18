@@ -26,7 +26,12 @@ export default function ArchivePage() {
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7">
               {archiveCards.map((card, i) => (
                 <Reveal key={card.slug} delay={i * 0.08} y={24}>
-                  <ProjectCard headline={card.title} href={cardHref(card)} media={card.media} />
+                  <ProjectCard
+                    headline={card.title}
+                    href={cardHref(card)}
+                    media={card.media}
+                    mediaBackground={card.mediaBackground}
+                  />
                 </Reveal>
               ))}
             </div>

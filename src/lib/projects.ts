@@ -1221,6 +1221,10 @@ export type ArchiveProject = {
   title: string;
   subtitle: string;
   heroImage: ProjectImage;
+  /** Overrides the media shown on the /archive listing card; falls back to heroImage when absent. */
+  cardMedia?: MediaSlot;
+  /** Overrides the card's media-container background (ProjectCard defaults to bg-paper-dim). */
+  mediaBackground?: string;
   quickSummary: {
     role: string;
     overview: string;
@@ -1247,6 +1251,15 @@ export const archiveProjects: ArchiveProject[] = [
       height: 1200,
       alt: "Designability - placeholder image",
     },
+    cardMedia: {
+      kind: "image",
+      image: {
+        src: "/projects/designability/designability-cover.png",
+        width: 1600,
+        height: 1200,
+        alt: "Designability cover image",
+      },
+    },
     quickSummary: PLACEHOLDER_QUICK_SUMMARY,
   },
   {
@@ -1258,6 +1271,15 @@ export const archiveProjects: ArchiveProject[] = [
       width: 1600,
       height: 1200,
       alt: "TIGI - placeholder image",
+    },
+    cardMedia: {
+      kind: "image",
+      image: {
+        src: "/projects/tigi/tigi-cover.png",
+        width: 1600,
+        height: 1200,
+        alt: "TIGI cover image",
+      },
     },
     quickSummary: PLACEHOLDER_QUICK_SUMMARY,
   },
@@ -1271,6 +1293,15 @@ export const archiveProjects: ArchiveProject[] = [
       height: 1200,
       alt: "MiGarage - placeholder image",
     },
+    cardMedia: {
+      kind: "image",
+      image: {
+        src: "/projects/migarage/migarage-cover.png",
+        width: 1600,
+        height: 1200,
+        alt: "MiGarage cover image",
+      },
+    },
     quickSummary: PLACEHOLDER_QUICK_SUMMARY,
   },
   {
@@ -1283,6 +1314,16 @@ export const archiveProjects: ArchiveProject[] = [
       height: 1200,
       alt: "Creative XR - placeholder image",
     },
+    cardMedia: {
+      kind: "video",
+      video: {
+        src: "/projects/creative xr/crx-1 copy.mp4",
+        width: 1920,
+        height: 1080,
+      },
+      alt: "Creative XR project video",
+    },
+    mediaBackground: "#ffffff",
     quickSummary: PLACEHOLDER_QUICK_SUMMARY,
   },
   {
@@ -1294,6 +1335,15 @@ export const archiveProjects: ArchiveProject[] = [
       width: 1600,
       height: 1200,
       alt: "Futurescope - placeholder image",
+    },
+    cardMedia: {
+      kind: "image",
+      image: {
+        src: "/projects/futurescope/futurescope-cover.png",
+        width: 1600,
+        height: 1200,
+        alt: "Futurescope cover image",
+      },
     },
     quickSummary: PLACEHOLDER_QUICK_SUMMARY,
   },
