@@ -138,8 +138,38 @@ export default function QuickRead({
 
           <Reveal delay={0.04}>
             <div className="mx-auto mt-16 max-w-2xl sm:mt-20">
-              <SectionLabel headingStyle={headingStyle} text="Overview" />
+              <SectionLabel headingStyle={headingStyle} text="Quick summary" />
               <div className={`${contentClass} max-w-2xl space-y-5`}>{narrativeContent}</div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.06}>
+            <div className="mx-auto mt-14 max-w-2xl">
+              <SectionLabel headingStyle={headingStyle} id="impact" text="Key outcomes" />
+              {data.outcomes.length > 0 && (
+                <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
+                  {data.outcomes.map((o) => (
+                    <div key={o.label}>
+                      <p className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+                        {o.value}
+                      </p>
+                      <p className="mt-3 max-w-xs text-lg leading-relaxed text-ink-soft">{o.label}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {data.keyOutcomeBullets && (
+                <ul className="mt-10 space-y-5">
+                  {data.keyOutcomeBullets.map((item) => (
+                    <li key={item} className="flex gap-3 text-lg font-semibold leading-relaxed text-ink">
+                      <span className="shrink-0" style={{ color: "#0163FF" }} aria-hidden="true">
+                        →
+                      </span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </Reveal>
 
@@ -231,6 +261,8 @@ export default function QuickRead({
         </div>
       </Reveal>
 
+      {/* In the split (roleDetails) layout the outcomes already rendered up top as "Key outcomes". */}
+      {!data.roleDetails && (
       <Reveal delay={0.14}>
         <div className={headingStyle === "heading" ? wideWrapClass : wrapClass}>
           <SectionLabel headingStyle={headingStyle} id="impact" text="Impact" />
@@ -260,6 +292,7 @@ export default function QuickRead({
           </div>
         </div>
       </Reveal>
+      )}
 
       {data.impactStats && (
         <Reveal delay={0.16}>

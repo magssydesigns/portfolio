@@ -51,6 +51,8 @@ export type QuickRead = {
   keyDecisionsLabel?: string;
   keyDecisions: string[];
   outcomes: { value: string; label: string }[];
+  /** Bold arrow-prefixed bullets rendered in the "Key outcomes" section of the split (roleDetails) layout. */
+  keyOutcomeBullets?: string[];
   qualitative?: { title?: string; body: string }[];
   impactStats?: { items: { label: string; before: string; after: string; description: string }[] };
   impactQuote?: { label?: string; text: string; attribution?: string };
@@ -772,8 +774,8 @@ export const projects: Project[] = [
     heroDividerBelow: true,
     toc: [
       { id: "quick-summary", label: "Project at a Glance" },
+      { id: "impact", label: "Key outcomes" },
       { id: "process", label: "Process" },
-      { id: "impact", label: "Impact" },
       { id: "business-objectives", label: "Business Objectives" },
       { id: "flow-overview", label: "Flow overview" },
       { id: "design-process", label: "Design process" },
@@ -792,8 +794,7 @@ export const projects: Project[] = [
       },
       summaryLabel: "Project at a glance",
       challenge: [
-        "The UK InPost app didn't allow customers to send parcels, even though the feature already existed in the Polish version. The challenge was to adapt the existing experience for UK users while working within a short delivery timeline and existing technical constraints.",
-        "Rather than redesigning the entire journey, I enhanced the existing flow by introducing UK-specific functionality, improving usability, simplifying key interactions and reducing friction throughout the experience.",
+        "The UK InPost app didn't allow customers to send parcels, despite the feature already existing in the Polish product. My role was to adapt the experience for the UK market within a short delivery timeline, reusing the existing product where possible while introducing UK-specific functionality such as parcel cover. Rather than redesigning the journey from scratch, I focused on improving usability, simplifying key interactions and reducing friction to create a more intuitive experience for UK customers.",
       ],
       roleDetails: [
         [
@@ -814,21 +815,6 @@ export const projects: Project[] = [
           { label: "Collaboration teams", value: "Marketing • Customer Experience" },
         ],
         [{ label: "Platforms", value: "iOS • Android" }],
-      ],
-      goals: {
-        label: "Project goals",
-        items: [
-          "Launch parcel sending for UK customers using the existing Polish product as the foundation.",
-          "Adapt the experience to UK users' expectations and market requirements.",
-          "Introduce UK-specific functionality such as parcel cover.",
-          "Improve clarity, usability and conversion without rebuilding the entire flow.",
-        ],
-      },
-      constraintsLabel: "Key constraints",
-      constraints: [
-        "Short delivery timeline.",
-        "Existing Polish flow had to be reused.",
-        "Limited engineering capacity, so improvements focused on UX enhancements rather than a full redesign.",
       ],
       process: {
         intro: "Research & UX input:",
@@ -852,11 +838,10 @@ export const projects: Project[] = [
         { value: "25–30%", label: "reduction in address entry time after introducing address lookup, which also helped prevent errors" },
         { value: "~15%", label: "fewer abandoned parcels after making the summary editable, so users could fix issues without restarting" },
       ],
-      qualitative: [
-        { body: "Added new revenue stream via parcel cover + promo functionality" },
-        { body: "9/10 users successfully edited parcel size and details during testing" },
-        { body: "Improved clarity around ETA and parcel value, reducing decision hesitation on the new market" },
-        { body: "Created foundation for future UX metric tracking across send flow - followed with a UX Metrics Workshop with the team" },
+      keyOutcomeBullets: [
+        "Enabled additional revenue opportunities through parcel cover and promotional functionality.",
+        "Improved clarity around ETA, parcel value and delivery expectations for UK customers.",
+        "Established the foundation for measuring the Send flow experience, later expanded through a cross-functional UX Metrics Workshop.",
       ],
     },
     fullCaseStudy: [
