@@ -25,8 +25,8 @@ export default function BeforeAfterStats({
               {item.after}
             </span>
           </div>
-          <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{item.description}</p>
-          <p className="mt-2 text-sm text-muted">{item.label}</p>
+          <p className="mt-3 text-sm text-muted">{item.label}</p>
+          <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{item.description}</p>
         </div>
       ))}
     </div>
