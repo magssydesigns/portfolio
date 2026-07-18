@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import Divider from "@/components/Divider";
 import BeforeAfterStats from "@/components/project/BeforeAfterStats";
 import MediaSlotView from "@/components/project/MediaSlotView";
 import ProjectAtAGlance from "@/components/project/ProjectAtAGlance";
@@ -60,73 +61,111 @@ export default function QuickRead({
     headingStyle === "heading"
       ? "px-6 pt-10 pb-20 sm:px-10 sm:pt-14 sm:pb-28"
       : "px-6 py-20 sm:px-10 sm:py-28";
+  // When roleDetails splits "Project at a glance" into its own section, an
+  // explicit Divider already sits above Process, so its wrapper skips the
+  // usual border-t (avoids a doubled-up rule) but keeps the same top margin.
+  const processWrapClass = data.roleDetails ? "mx-auto mt-16 max-w-2xl sm:mt-20" : wrapClass;
+
+  const narrativeContent = (
+    <>
+      {data.bulletedChallenge ? (
+        <ul className="space-y-3">
+          {data.challenge.map((p, i) => (
+            <li key={i} className="flex gap-3 text-lg leading-relaxed text-ink-soft">
+              <span className="text-accent">-</span>
+              {p}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        data.challenge.map((p, i) => (
+          <p key={i} className="text-lg leading-relaxed text-ink-soft">
+            {p}
+          </p>
+        ))
+      )}
+      {data.goals && (
+        <div className="pt-2">
+          <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{data.goals.label ?? "Goals"}</p>
+          <ul className="mt-3 space-y-2">
+            {data.goals.items.map((g) => (
+              <li key={g} className="flex gap-3 text-[15px] text-ink-soft">
+                <span className="text-accent">-</span>
+                {g}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+      {data.constraints && (
+        <div className="pt-2">
+          {data.constraintsLabel && (
+            <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{data.constraintsLabel}</p>
+          )}
+          <ul className={`space-y-2 ${data.constraintsLabel ? "mt-3" : ""}`}>
+            {data.constraints.map((c) => (
+              <li key={c} className="flex gap-3 text-[15px] text-ink-soft">
+                <span className="text-accent">-</span>
+                {c}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </>
+  );
 
   return (
     <section className={`mx-auto max-w-[1400px] ${sectionPaddingClass}`}>
-      <Reveal>
-        <div className={firstWrapClass}>
-          <SectionLabel
-            headingStyle={headingStyle}
-            id="quick-summary"
-            text={data.summaryLabel ?? (headingStyle === "heading" ? "Quick summary" : "Quick read")}
-          />
-          <div className={`${contentClass} max-w-2xl space-y-5`}>
-            {data.roleDetails ? (
-              <ProjectAtAGlance rows={data.roleDetails} />
-            ) : (
-              data.role && <p className="text-lg leading-relaxed text-ink-soft">{data.role}</p>
-            )}
-            {data.bulletedChallenge ? (
-              <ul className="space-y-3">
-                {data.challenge.map((p, i) => (
-                  <li key={i} className="flex gap-3 text-lg leading-relaxed text-ink-soft">
-                    <span className="text-accent">-</span>
-                    {p}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              data.challenge.map((p, i) => (
-                <p key={i} className="text-lg leading-relaxed text-ink-soft">
-                  {p}
-                </p>
-              ))
-            )}
-            {data.goals && (
-              <div className="pt-2">
-                <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{data.goals.label ?? "Goals"}</p>
-                <ul className="mt-3 space-y-2">
-                  {data.goals.items.map((g) => (
-                    <li key={g} className="flex gap-3 text-[15px] text-ink-soft">
-                      <span className="text-accent">-</span>
-                      {g}
-                    </li>
-                  ))}
-                </ul>
+      {data.roleDetails ? (
+        <>
+          <Reveal>
+            <div className={firstWrapClass}>
+              <SectionLabel
+                headingStyle={headingStyle}
+                id="quick-summary"
+                text={data.summaryLabel ?? "Quick summary"}
+              />
+              <div className={`${contentClass} max-w-2xl`}>
+                <ProjectAtAGlance rows={data.roleDetails} />
               </div>
-            )}
-            {data.constraints && (
-              <div className="pt-2">
-                {data.constraintsLabel && (
-                  <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{data.constraintsLabel}</p>
-                )}
-                <ul className={`space-y-2 ${data.constraintsLabel ? "mt-3" : ""}`}>
-                  {data.constraints.map((c) => (
-                    <li key={c} className="flex gap-3 text-[15px] text-ink-soft">
-                      <span className="text-accent">-</span>
-                      {c}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            </div>
+          </Reveal>
+
+          <div className="mt-16 sm:mt-20">
+            <Divider />
           </div>
-        </div>
-      </Reveal>
+
+          <Reveal delay={0.04}>
+            <div className="mx-auto mt-16 max-w-2xl sm:mt-20">
+              <SectionLabel headingStyle={headingStyle} text="Overview" />
+              <div className={`${contentClass} max-w-2xl space-y-5`}>{narrativeContent}</div>
+            </div>
+          </Reveal>
+
+          <div className="mt-16 sm:mt-20">
+            <Divider />
+          </div>
+        </>
+      ) : (
+        <Reveal>
+          <div className={firstWrapClass}>
+            <SectionLabel
+              headingStyle={headingStyle}
+              id="quick-summary"
+              text={data.summaryLabel ?? (headingStyle === "heading" ? "Quick summary" : "Quick read")}
+            />
+            <div className={`${contentClass} max-w-2xl space-y-5`}>
+              {data.role && <p className="text-lg leading-relaxed text-ink-soft">{data.role}</p>}
+              {narrativeContent}
+            </div>
+          </div>
+        </Reveal>
+      )}
 
       {data.process && (
         <Reveal delay={0.06}>
-          <div className={wrapClass}>
+          <div className={processWrapClass}>
             <SectionLabel headingStyle={headingStyle} id="process" text="Process" />
             <div className={`${contentClass} max-w-2xl`}>
               {data.process.intro && (
