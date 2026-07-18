@@ -68,7 +68,7 @@ export default function ProjectHero({
             <h1 className="mt-6 font-display text-4xl leading-[1.08] tracking-tight text-ink sm:text-6xl lg:text-[3.4rem] lg:leading-[1.05]">
               {title}
             </h1>
-            <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">{tagline}</p>
+            <p className="mt-6 text-lg leading-relaxed text-ink/70">{tagline}</p>
           </div>
         </div>
       </section>
