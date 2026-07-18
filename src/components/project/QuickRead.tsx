@@ -1,15 +1,8 @@
 import Reveal from "@/components/Reveal";
 import BeforeAfterStats from "@/components/project/BeforeAfterStats";
 import MediaSlotView from "@/components/project/MediaSlotView";
+import ProjectAtAGlance from "@/components/project/ProjectAtAGlance";
 import type { QuickRead as QuickReadType } from "@/lib/projects";
-
-// Literal classes (not template-interpolated) so Tailwind's static analysis picks them up.
-const ROW_GRID_COLS: Record<number, string> = {
-  1: "sm:grid-cols-1",
-  2: "sm:grid-cols-2",
-  3: "sm:grid-cols-3",
-  4: "sm:grid-cols-4",
-};
 
 function SectionLabel({
   headingStyle,
@@ -79,26 +72,7 @@ export default function QuickRead({
           />
           <div className={`${contentClass} max-w-2xl space-y-5`}>
             {data.roleDetails ? (
-              <div className="space-y-10">
-                {data.roleDetails.map((row, rowIndex) => (
-                  <dl
-                    key={rowIndex}
-                    className={`grid grid-cols-1 gap-10 sm:gap-8 ${ROW_GRID_COLS[row.length] ?? "sm:grid-cols-4"}`}
-                  >
-                    {row.map((item) => (
-                      <div key={item.label}>
-                        <dt className="font-sans text-[12px] uppercase tracking-[0.14em] text-black">
-                          {item.label}
-                        </dt>
-                        <dd className="mt-3 max-w-xs font-sans text-[15px] leading-relaxed text-black">
-                          {item.value}
-                          {item.description ? `. ${item.description}` : null}
-                        </dd>
-                      </div>
-                    ))}
-                  </dl>
-                ))}
-              </div>
+              <ProjectAtAGlance rows={data.roleDetails} />
             ) : (
               data.role && <p className="text-lg leading-relaxed text-ink-soft">{data.role}</p>
             )}

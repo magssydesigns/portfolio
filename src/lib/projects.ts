@@ -69,6 +69,8 @@ export type Project = {
   heroStacked?: boolean;
   /** Optional "Markets" caption + flag row shown under the hero tagline (video hero only). */
   heroMarkets?: { label: string; flags: { emoji: string; name: string }[] };
+  /** Renders the shared Divider directly below the hero, before the Quick Read section begins. */
+  heroDividerBelow?: boolean;
   darkText?: boolean;
   quickRead: QuickRead;
   fullCaseStudy: Block[];
@@ -766,6 +768,7 @@ export const projects: Project[] = [
     color: "#B8481F",
     heroBackground: "#F8F4EE",
     heroStacked: true,
+    heroDividerBelow: true,
     toc: [
       { id: "quick-summary", label: "Project at a Glance" },
       { id: "process", label: "Process" },
@@ -779,7 +782,7 @@ export const projects: Project[] = [
       { id: "usability-testing", label: "Usability testing" },
     ],
     quickRead: {
-      tagline: "Providing customers with option of sending parcels inside the InPost app",
+      tagline: "Enabling customers to send parcels directly within the InPost app.",
       heroImage: {
         src: "/projects/send-parcel-in-app/send-hero.png",
         width: 7434,
@@ -807,8 +810,8 @@ export const projects: Project[] = [
         ],
         [
           { label: "Core team", value: "Product Manager • Engineering" },
-          { label: "Key stakeholders", value: "Marketing • Customer Experience" },
-          { label: "Platforms", value: "iOS & Android" },
+          { label: "Collaboration teams", value: "Marketing • Customer Experience" },
+          { label: "Platforms", value: "iOS • Android" },
         ],
       ],
       goals: {

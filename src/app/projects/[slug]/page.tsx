@@ -7,6 +7,7 @@ import FullCaseStudyReveal from "@/components/project/FullCaseStudyReveal";
 import ArchiveQuickSummary from "@/components/project/ArchiveQuickSummary";
 import PrevNextNav from "@/components/project/PrevNextNav";
 import Footer from "@/components/Footer";
+import Divider from "@/components/Divider";
 import {
   projects,
   archiveProjects,
@@ -88,6 +89,12 @@ export default async function ProjectPage({
           stacked={project.heroStacked}
           markets={project.heroMarkets}
         />
+
+        {project.heroDividerBelow && (
+          <div className="mt-16 sm:mt-20">
+            <Divider />
+          </div>
+        )}
 
         {project.toc ? (
           <FullCaseStudyReveal

@@ -1,4 +1,5 @@
 import Button from "./Button";
+import Divider from "./Divider";
 
 export default function Footer() {
   return (
@@ -21,9 +22,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
-        <div className="border-t border-line" />
-      </div>
+      <Divider />
 
       <div id="contact" className="mx-auto max-w-[1400px] px-6 py-20 sm:px-10 sm:py-28">
         <div className="flex flex-col justify-between gap-12 sm:flex-row sm:items-start">
