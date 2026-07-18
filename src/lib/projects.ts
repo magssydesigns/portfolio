@@ -40,7 +40,8 @@ export type QuickRead = {
   challenge: string[];
   bulletedChallenge?: boolean;
   role?: string;
-  roleDetails?: { label: string; value: string; description?: string }[];
+  /** Rows of label/value items (e.g. Role, Scope / Core team, Platforms). Each inner array is one row. */
+  roleDetails?: { label: string; value: string; description?: string }[][];
   goals?: { label?: string; items: string[] };
   constraints?: string[];
   constraintsLabel?: string;
@@ -791,15 +792,24 @@ export const projects: Project[] = [
         "Rather than redesigning the entire journey, I enhanced the existing flow by introducing UK-specific functionality, improving usability, simplifying key interactions and reducing friction throughout the experience.",
       ],
       roleDetails: [
-        {
-          label: "Role",
-          value: "Lead Product Designer",
-          description:
-            "Responsible for the end-to-end UX and UI design of the parcel sending experience for the UK InPost app.",
-        },
-        { label: "Scope", value: "End-to-end UX & UI" },
-        { label: "Team", value: "Product Manager • Engineering • Marketing • Customer Experience" },
-        { label: "Platform", value: "iOS & Android" },
+        [
+          {
+            label: "Role",
+            value: "Lead Product Designer",
+            description:
+              "Led the end-to-end UX and UI design of the parcel sending experience for the UK InPost app.",
+          },
+          {
+            label: "Scope",
+            value:
+              "End-to-end UX & UI, from discovery through delivery, including user research, prototyping and usability testing.",
+          },
+        ],
+        [
+          { label: "Core team", value: "Product Manager • Engineering" },
+          { label: "Key stakeholders", value: "Marketing • Customer Experience" },
+          { label: "Platforms", value: "iOS & Android" },
+        ],
       ],
       goals: {
         label: "Project goals",

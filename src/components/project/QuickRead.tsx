@@ -3,6 +3,14 @@ import BeforeAfterStats from "@/components/project/BeforeAfterStats";
 import MediaSlotView from "@/components/project/MediaSlotView";
 import type { QuickRead as QuickReadType } from "@/lib/projects";
 
+// Literal classes (not template-interpolated) so Tailwind's static analysis picks them up.
+const ROW_GRID_COLS: Record<number, string> = {
+  1: "sm:grid-cols-1",
+  2: "sm:grid-cols-2",
+  3: "sm:grid-cols-3",
+  4: "sm:grid-cols-4",
+};
+
 function SectionLabel({
   headingStyle,
   id,
@@ -71,17 +79,26 @@ export default function QuickRead({
           />
           <div className={`${contentClass} max-w-2xl space-y-5`}>
             {data.roleDetails ? (
-              <dl className="grid grid-cols-1 gap-10 sm:grid-cols-4 sm:gap-8">
-                {data.roleDetails.map((item) => (
-                  <div key={item.label}>
-                    <dt className="font-sans text-[12px] uppercase tracking-[0.14em] text-black">{item.label}</dt>
-                    <dd className="mt-3 max-w-xs font-sans text-[15px] leading-relaxed text-black">
-                      {item.value}
-                      {item.description ? `. ${item.description}` : null}
-                    </dd>
-                  </div>
+              <div className="space-y-10">
+                {data.roleDetails.map((row, rowIndex) => (
+                  <dl
+                    key={rowIndex}
+                    className={`grid grid-cols-1 gap-10 sm:gap-8 ${ROW_GRID_COLS[row.length] ?? "sm:grid-cols-4"}`}
+                  >
+                    {row.map((item) => (
+                      <div key={item.label}>
+                        <dt className="font-sans text-[12px] uppercase tracking-[0.14em] text-black">
+                          {item.label}
+                        </dt>
+                        <dd className="mt-3 max-w-xs font-sans text-[15px] leading-relaxed text-black">
+                          {item.value}
+                          {item.description ? `. ${item.description}` : null}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
                 ))}
-              </dl>
+              </div>
             ) : (
               data.role && <p className="text-lg leading-relaxed text-ink-soft">{data.role}</p>
             )}
