@@ -1254,9 +1254,9 @@ export const archiveProjects: ArchiveProject[] = [
     cardMedia: {
       kind: "image",
       image: {
-        src: "/projects/designability/designability-cover.png",
-        width: 1600,
-        height: 1200,
+        src: "/projects/designability/designabilitycover.png",
+        width: 4956,
+        height: 3946,
         alt: "Designability cover image",
       },
     },
@@ -1276,8 +1276,8 @@ export const archiveProjects: ArchiveProject[] = [
       kind: "image",
       image: {
         src: "/projects/tigi/tigi-cover.png",
-        width: 1600,
-        height: 1200,
+        width: 4956,
+        height: 3946,
         alt: "TIGI cover image",
       },
     },
@@ -1296,7 +1296,7 @@ export const archiveProjects: ArchiveProject[] = [
     cardMedia: {
       kind: "image",
       image: {
-        src: "/projects/migarage/migarage-cover.png",
+        src: "/projects/MIGarage/migarage-cover.png",
         width: 1600,
         height: 1200,
         alt: "MiGarage cover image",

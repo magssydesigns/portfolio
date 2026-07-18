@@ -16,9 +16,9 @@ export default function WorkPage() {
     <>
       <section className="mx-auto max-w-[1400px] px-6 pb-20 pt-40 sm:px-10 sm:pb-28 sm:pt-56">
         <Reveal>
-          <p className="text-[13px] uppercase tracking-[0.14em] text-muted">Work</p>
+          <p className="text-[13px] uppercase tracking-[0.14em] text-muted">Recent work 2023-2026</p>
           <h1 className="mt-6 max-w-3xl font-display text-5xl leading-[1.05] tracking-tight sm:text-6xl">
-            Case studies in mobile, systems, and AI-assisted design.
+            Explore my recent work
           </h1>
         </Reveal>
 

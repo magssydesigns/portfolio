@@ -4,11 +4,12 @@ export default function Footer() {
   return (
     <footer className="border-t border-line">
       <div className="mx-auto max-w-[1400px] px-6 py-20 sm:px-10 sm:py-28">
-        <p className="max-w-2xl font-display text-xl leading-relaxed text-black sm:text-2xl">
-          Hey there, I&rsquo;m Magda - a product designer currently
-          leading the full design process for a consumer app - the
-          InPost UK app with ~3M active users. I am also designing web
-          experiences and interfaces for smart hardware.
+        <p className="max-w-[54.6rem] font-display text-[1.5rem] leading-relaxed text-black sm:text-[1.8rem]">
+          Hey there, I&rsquo;m Magda - a Product Designer leading end-to-end
+          design for the InPost UK consumer app, used by over 3 million
+          active users. I work across discovery, strategy and delivery,
+          and also support design of web experiences and interfaces for
+          smart parcel lockers.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button href="/resume.pdf" shape="pill" chevron>
