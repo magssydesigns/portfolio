@@ -53,7 +53,7 @@ export type QuickRead = {
   outcomes: { value: string; label: string }[];
   qualitative?: { title?: string; body: string }[];
   impactStats?: { items: { label: string; before: string; after: string; description: string }[] };
-  impactQuote?: { text: string; attribution?: string };
+  impactQuote?: { label?: string; text: string; attribution?: string };
 };
 
 export type TocEntry = { id: string; label: string };
@@ -189,6 +189,7 @@ export const projects: Project[] = [
         ],
       },
       impactQuote: {
+        label: "What users said",
         text: "This seems to be more comprehensive in terms of details\nof features when compared to major firm parcel apps\nI've seen in the UK",
       },
     },

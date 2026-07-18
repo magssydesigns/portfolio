@@ -134,7 +134,7 @@ function BlockRenderer({
                     }
                   >
                     {block.showArrow && (
-                      <span className="mr-2 text-accent" aria-hidden="true">
+                      <span className="mr-2" style={{ color: "#0163FF" }} aria-hidden="true">
                         →
                       </span>
                     )}
