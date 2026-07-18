@@ -812,8 +812,8 @@ export const projects: Project[] = [
         [
           { label: "Core team", value: "Product Manager • Engineering" },
           { label: "Collaboration teams", value: "Marketing • Customer Experience" },
-          { label: "Platforms", value: "iOS • Android" },
         ],
+        [{ label: "Platforms", value: "iOS • Android" }],
       ],
       goals: {
         label: "Project goals",
