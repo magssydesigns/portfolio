@@ -52,6 +52,7 @@ export type QuickRead = {
   outcomes: { value: string; label: string }[];
   qualitative?: { title?: string; body: string }[];
   impactStats?: { items: { label: string; before: string; after: string; description: string }[] };
+  impactQuote?: { text: string; attribution?: string };
 };
 
 export type TocEntry = { id: string; label: string };
@@ -87,7 +88,6 @@ export const projects: Project[] = [
       { id: "business-objectives", label: "Business Objectives" },
       { id: "research-insights", label: "Research Insights" },
       { id: "design-changes", label: "Design changes" },
-      { id: "user-feedback", label: "User feedback" },
       { id: "before-and-after", label: "Before and after" },
     ],
     quickRead: {
@@ -171,6 +171,9 @@ export const projects: Project[] = [
             description: "of users generally mentioned “issues with the hierarchy” of information on the Parcel Details page.",
           },
         ],
+      },
+      impactQuote: {
+        text: "this seems to be more comprehensive in terms of details of features when compared to major firm parcel apps I've seen in the UK",
       },
     },
     fullCaseStudy: [
@@ -328,13 +331,6 @@ export const projects: Project[] = [
             body: "Add component with instructions on eg. how to pick up.",
           },
         ],
-      },
-      {
-        kind: "quote",
-        id: "user-feedback",
-        heading: "User Feedback",
-        text:
-          "this seems to be more comprehensive in terms of details of features when compared to major firm parcel apps I've seen in the UK",
       },
       {
         kind: "beforeAfterImages",
