@@ -23,7 +23,7 @@ export type Block =
   | { kind: "lead"; id?: string; items: { label: string; body: string }[] }
   | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light" }
   | { kind: "statement"; id?: string; text: string; tone?: "dark" | "light" }
-  | { kind: "numbered"; id?: string; heading?: string; intro?: string; items: { title: string; body: string }[] }
+  | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; items: { title: string; body: string }[] }
   | { kind: "image"; id?: string; image: ProjectImage; size?: "medium" | "wide" | "full" }
   | { kind: "beforeAfterStats"; id?: string; heading?: string; items: { label: string; before: string; after: string; description: string }[] }
   | { kind: "quote"; id?: string; heading?: string; text: string; attribution?: string }
@@ -66,6 +66,8 @@ export type Project = {
   heroBackground?: string;
   /** Renders the hero image centered above the title/tagline (like a video hero) instead of side-by-side. */
   heroStacked?: boolean;
+  /** Optional "Markets" caption + flag row shown under the hero tagline (video hero only). */
+  heroMarkets?: { label: string; flags: { emoji: string; name: string }[] };
   darkText?: boolean;
   quickRead: QuickRead;
   fullCaseStudy: Block[];
@@ -81,6 +83,17 @@ export const projects: Project[] = [
     client: "InPost",
     color: "#F7D60F",
     heroBackground: "#F8F4EE",
+    heroMarkets: {
+      label: "Markets",
+      flags: [
+        { emoji: "🇵🇱", name: "Poland" },
+        { emoji: "🇫🇷", name: "France" },
+        { emoji: "🇬🇧", name: "UK" },
+        { emoji: "🇮🇹", name: "Italy" },
+        { emoji: "🇪🇸", name: "Spain" },
+        { emoji: "🇵🇹", name: "Portugal" },
+      ],
+    },
     toc: [
       { id: "quick-summary", label: "Quick Summary" },
       { id: "process", label: "Process" },
@@ -181,6 +194,7 @@ export const projects: Project[] = [
         kind: "numbered",
         id: "business-objectives",
         heading: "Business Objectives",
+        showArrow: true,
         items: [
           {
             title: "Reduce development and maintenance costs",
@@ -200,6 +214,7 @@ export const projects: Project[] = [
         kind: "numbered",
         id: "research-insights",
         heading: "Research Insights",
+        showArrow: true,
         intro:
           "I prepared UX Research Plan to conduct survey and usability test on existing Polish app. The Research was conducted on 10 users from each market (Poland, France, UK, Italy). Test included survey part and prototype part where users performed tasks on prototypes on existing app.",
         items: [

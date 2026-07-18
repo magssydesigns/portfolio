@@ -12,6 +12,7 @@ export default function ProjectHero({
   image,
   video,
   stacked,
+  markets,
 }: {
   title: string;
   tagline: string;
@@ -21,6 +22,8 @@ export default function ProjectHero({
   video?: ProjectVideo;
   /** Renders the image centered above the title/tagline (like a video hero) instead of side-by-side. */
   stacked?: boolean;
+  /** Optional "Markets" caption + flag row shown under the tagline. */
+  markets?: { label: string; flags: { emoji: string; name: string }[] };
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -69,6 +72,21 @@ export default function ProjectHero({
               {title}
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-ink/70">{tagline}</p>
+            {markets && (
+              <div
+                className="mt-6 flex items-center gap-3"
+                aria-label={`${markets.label}: ${markets.flags.map((f) => f.name).join(", ")}`}
+              >
+                <span className="text-[13px] uppercase tracking-[0.14em] text-ink/60">
+                  {markets.label}
+                </span>
+                <span className="flex items-center gap-2 text-xl leading-none" aria-hidden="true">
+                  {markets.flags.map((f) => (
+                    <span key={f.name}>{f.emoji}</span>
+                  ))}
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </section>

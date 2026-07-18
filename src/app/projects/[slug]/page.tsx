@@ -86,6 +86,7 @@ export default async function ProjectPage({
           image={project.quickRead.heroImage}
           video={project.quickRead.heroVideo}
           stacked={project.heroStacked}
+          markets={project.heroMarkets}
         />
 
         {project.toc ? (

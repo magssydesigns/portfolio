@@ -133,6 +133,11 @@ function BlockRenderer({
                         : "font-display text-lg tracking-tight sm:text-xl"
                     }
                   >
+                    {block.showArrow && (
+                      <span className="mr-2 text-accent" aria-hidden="true">
+                        →
+                      </span>
+                    )}
                     {item.title}
                   </p>
                   <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{item.body}</p>
