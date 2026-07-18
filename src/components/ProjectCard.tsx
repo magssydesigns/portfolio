@@ -15,10 +15,13 @@ export default function ProjectCard({
   headline,
   href,
   media,
+  mediaBackground,
 }: {
   headline: string;
   href: string;
   media: MediaSlot;
+  /** Overrides the media container's default bg-paper-dim background. */
+  mediaBackground?: string;
 }) {
   return (
     <MotionLink
@@ -62,7 +65,10 @@ export default function ProjectCard({
           </motion.span>
         </div>
 
-        <div className="relative mt-8 flex-1 overflow-hidden rounded-2xl bg-paper-dim">
+        <div
+          className="relative mt-8 flex-1 overflow-hidden rounded-2xl bg-paper-dim"
+          style={mediaBackground ? { backgroundColor: mediaBackground } : undefined}
+        >
           <SwirlImage media={media} className="h-full min-h-[220px] w-full" />
         </div>
       </div>
