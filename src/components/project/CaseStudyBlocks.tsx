@@ -2,6 +2,7 @@ import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import BeforeAfterStats from "@/components/project/BeforeAfterStats";
 import MediaSlotView from "@/components/project/MediaSlotView";
+import SectionDivider from "@/components/project/SectionDivider";
 import type { Block } from "@/lib/projects";
 
 export default function CaseStudyBlocks({
@@ -52,7 +53,17 @@ function BlockRenderer({
     case "twoCol":
       return (
         <Reveal>
-          <div id={block.id} className="mx-auto max-w-[1400px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20">
+          <div
+            id={block.id}
+            className={
+              block.spacing === "tight"
+                ? "scroll-mt-40 lg:scroll-mt-28"
+                : "mx-auto max-w-[1400px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20"
+            }
+          >
+            {block.heading && (
+              <h3 className="mb-6 font-sans text-lg font-semibold sm:text-xl">{block.heading}</h3>
+            )}
             <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-16">
               {block.items.map((item) => (
                 <div key={item.label}>
@@ -72,11 +83,129 @@ function BlockRenderer({
             id={block.id}
             className={
               layout === "toc"
-                ? "scroll-mt-40 pt-16 pb-4 sm:pt-20 lg:scroll-mt-28"
+                ? block.spacing === "tight"
+                  ? "scroll-mt-40 pb-4 lg:scroll-mt-28"
+                  : "scroll-mt-40 pt-16 pb-4 sm:pt-20 lg:scroll-mt-28"
                 : "mx-auto max-w-[1400px] scroll-mt-28 px-6 pt-16 pb-4 text-center sm:px-10 sm:pt-24"
             }
           >
             <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.text}</h2>
+          </div>
+        </Reveal>
+      );
+
+    case "divider":
+      return <SectionDivider />;
+
+    case "richText":
+      return (
+        <Reveal>
+          <div id={block.id} className="scroll-mt-40 lg:scroll-mt-28">
+            {block.heading && (
+              <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.heading}</h2>
+            )}
+            <div className={(block.heading ? "mt-6 " : "") + "max-w-2xl space-y-6"}>
+              {block.paragraphs.map((p, i) => (
+                <p key={i} className="text-lg leading-relaxed text-ink-soft">
+                  {p}
+                </p>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      );
+
+    case "arrowList":
+      return (
+        <Reveal>
+          <div id={block.id} className="scroll-mt-40 lg:scroll-mt-28">
+            {block.heading && (
+              <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.heading}</h2>
+            )}
+            <ul className={(block.heading ? "mt-6 " : "") + "max-w-2xl space-y-4"}>
+              {block.items.map((item, i) => (
+                <li
+                  key={i}
+                  className={
+                    "flex gap-3 text-lg leading-relaxed " +
+                    (block.bold ? "font-semibold text-ink" : "text-ink-soft")
+                  }
+                >
+                  <span className="shrink-0" style={{ color: "#0163FF" }} aria-hidden="true">
+                    →
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+      );
+
+    case "media":
+      return (
+        <Reveal y={30}>
+          <div id={block.id} className="scroll-mt-40 lg:scroll-mt-28">
+            <MediaSlotView media={block.media} />
+            {block.caption && (
+              <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-soft">{block.caption}</p>
+            )}
+          </div>
+        </Reveal>
+      );
+
+    case "validationItem":
+      return (
+        <Reveal>
+          <div id={block.id} className="scroll-mt-40 lg:scroll-mt-28">
+            <p className="font-sans text-lg font-semibold sm:text-xl">{block.question}</p>
+            <div className="mt-3 flex items-start gap-3">
+              <span
+                className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-ink/40 text-[11px] leading-none"
+                aria-hidden="true"
+              >
+                {block.status === "success" ? "✓" : "!"}
+              </span>
+              <p className="text-lg leading-relaxed text-ink-soft">{block.finding}</p>
+            </div>
+            <p className="mt-4 flex items-center gap-3" style={{ color: "#0163FF" }} aria-hidden="true">
+              ↓
+            </p>
+            <p className="mt-1 font-sans text-lg font-semibold">Design update</p>
+            <p className="mt-2 text-lg leading-relaxed text-ink-soft">{block.update}</p>
+          </div>
+        </Reveal>
+      );
+
+    case "stats":
+      return (
+        <Reveal>
+          <div id={block.id} className="scroll-mt-40 lg:scroll-mt-28">
+            {block.heading && (
+              <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.heading}</h2>
+            )}
+            <div className={(block.heading ? "mt-8 " : "") + "grid grid-cols-1 gap-8 sm:grid-cols-2"}>
+              {block.items.map((item) => (
+                <div key={item.label}>
+                  <p className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+                    {item.value}
+                  </p>
+                  <p className="mt-3 max-w-xs text-lg leading-relaxed text-ink-soft">{item.label}</p>
+                </div>
+              ))}
+            </div>
+            {block.bullets && (
+              <ul className="mt-10 max-w-2xl space-y-5">
+                {block.bullets.map((item) => (
+                  <li key={item} className="flex gap-3 text-lg font-semibold leading-relaxed text-ink">
+                    <span className="shrink-0" style={{ color: "#0163FF" }} aria-hidden="true">
+                      →
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </Reveal>
       );
@@ -151,7 +280,14 @@ function BlockRenderer({
     case "steps":
       return (
         <Reveal>
-          <div id={block.id} className="mx-auto max-w-[1400px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20">
+          <div
+            id={block.id}
+            className={
+              block.spacing === "tight"
+                ? "scroll-mt-40 lg:scroll-mt-28"
+                : "mx-auto max-w-[1400px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20"
+            }
+          >
             {block.heading && (
               <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.heading}</h2>
             )}

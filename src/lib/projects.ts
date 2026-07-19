@@ -21,16 +21,23 @@ export type MediaSlot =
 
 export type Block =
   | { kind: "lead"; id?: string; items: { label: string; body: string }[] }
-  | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light" }
+  | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light"; spacing?: "tight" }
   | { kind: "statement"; id?: string; text: string; tone?: "dark" | "light" }
   | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; items: { title: string; body: string }[] }
   | { kind: "image"; id?: string; image: ProjectImage; size?: "medium" | "wide" | "full" }
   | { kind: "beforeAfterStats"; id?: string; heading?: string; items: { label: string; before: string; after: string; description: string }[] }
   | { kind: "quote"; id?: string; heading?: string; text: string; attribution?: string }
-  | { kind: "steps"; id?: string; heading?: string; items: { title: string; body: string }[] }
-  | { kind: "twoCol"; id?: string; items: { label: string; body: string }[] }
+  | { kind: "steps"; id?: string; heading?: string; spacing?: "tight"; items: { title: string; body: string }[] }
+  | { kind: "twoCol"; id?: string; heading?: string; spacing?: "tight"; items: { label: string; body: string }[] }
   | { kind: "mediaNumbered"; id?: string; heading?: string; media: MediaSlot; items: { title: string; body: string }[] }
-  | { kind: "beforeAfterImages"; id?: string; heading?: string; items: { label: string; media: MediaSlot }[] };
+  | { kind: "beforeAfterImages"; id?: string; heading?: string; items: { label: string; media: MediaSlot }[] }
+  /** Scoped, additive kinds used by the Send case study's full-case-study rebuild. */
+  | { kind: "divider" }
+  | { kind: "richText"; id?: string; heading?: string; paragraphs: string[] }
+  | { kind: "arrowList"; id?: string; heading?: string; bold?: boolean; items: string[] }
+  | { kind: "media"; id?: string; media: MediaSlot; caption?: string }
+  | { kind: "validationItem"; id?: string; question: string; status: "success" | "warning"; finding: string; update: string }
+  | { kind: "stats"; id?: string; heading?: string; items: { value: string; label: string }[]; bullets?: string[] };
 
 export type QuickRead = {
   tagline: string;
@@ -773,15 +780,15 @@ export const projects: Project[] = [
     heroStacked: true,
     heroDividerBelow: true,
     toc: [
-      { id: "quick-summary", label: "Project at a Glance" },
-      { id: "impact", label: "Key outcomes" },
-      { id: "business-objectives", label: "Business Objectives" },
-      { id: "flow-overview", label: "Flow overview" },
+      { id: "the-challenge", label: "The challenge" },
+      { id: "business-goals", label: "Business goals" },
+      { id: "final-experience", label: "Final experience" },
       { id: "design-process", label: "Design process" },
-      { id: "benchmark-research", label: "Benchmark research" },
-      { id: "parcel-cover", label: "Parcel cover" },
-      { id: "summary-page", label: "Summary page" },
-      { id: "usability-testing", label: "Usability testing" },
+      { id: "how-the-experience-evolved", label: "How the experience evolved" },
+      { id: "validation-and-refinement", label: "Validation and refinement" },
+      { id: "outcome", label: "Outcome" },
+      { id: "making-the-experience-measurable", label: "Making the experience measurable" },
+      { id: "reflection", label: "Reflection" },
     ],
     quickRead: {
       tagline: "Enabling customers to send parcels directly within the InPost app.",
@@ -827,208 +834,247 @@ export const projects: Project[] = [
     },
     fullCaseStudy: [
       {
-        kind: "lead",
-        items: [
-          {
-            label: "My role",
-            body: "As a Product Designer for UK app team, I designed the process of sending the parcel in the UK app.",
-          },
-          {
-            label: "Overview",
-            body: "The new feature was introduced in the UK based on already working feature in the Polish app. In this project I enhanced elements of the existing process and adapted it for the UK market.",
-          },
-        ],
+        kind: "heading",
+        id: "the-challenge",
+        text: "The challenge",
+        spacing: "tight",
       },
       {
-        kind: "statement",
-        tone: "dark",
-        text:
-          "There is no current process of sending a parcel inside the UK app. The biggest challenge was to deliver the project very quicky and with existing constraints from the Polish market. We couldn't re-design the process entirely due to tight deadlines but decided to enhance it as much as we can.",
-      },
-      {
-        kind: "numbered",
-        id: "business-objectives",
-        heading: "Business Objectives",
-        items: [
-          {
-            title: "Provide UK users with possibility of sending parcels in app as soon as possible",
-            body: "by introducing feature which is already existing in Poland. The feature would bring significant earnings.",
-          },
-          {
-            title: "Introduce extra feature inside send - parcel cover",
-            body: "which is not available in Poland but widely used in UK market. That would bring extra earnings.",
-          },
+        kind: "richText",
+        paragraphs: [
+          "The UK InPost app didn't support parcel sending, despite the feature already existing in the Polish product.",
+          "The challenge wasn't to redesign the experience from scratch. Instead, I needed to adapt an existing journey for UK customers while working within a short delivery timeline, existing technical constraints and limited engineering capacity.",
+          "The goal was to identify where targeted UX improvements would have the greatest impact while preserving the existing product architecture.",
         ],
       },
+      { kind: "divider" },
       {
         kind: "heading",
-        id: "flow-overview",
-        text: "Flow overview - final design",
+        id: "business-goals",
+        text: "Business goals",
+        spacing: "tight",
       },
       {
-        kind: "image",
-        size: "full",
-        image: {
-          src: "/projects/send-parcel-in-app/flow-overview.png",
-          width: 1470,
-          height: 1710,
-          alt: "Six-screen flow of the final send-a-parcel design: send to, recipient, parcel details, sender, summary, and ready to drop off",
-        },
+        kind: "arrowList",
+        items: [
+          "Launch parcel sending for UK customers using the existing Polish product as the foundation.",
+          "Introduce UK-specific functionality, including parcel cover, to better meet local customer expectations.",
+          "Improve clarity, usability and conversion without rebuilding the entire journey.",
+          "Deliver the feature within a tight release timeline.",
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "final-experience",
+        heading: "Final experience",
+        paragraphs: [
+          "The final experience reused the existing Polish flow while introducing targeted improvements for the UK market. Rather than redesigning every screen, I focused on reducing friction at key decision points, improving clarity and supporting confident decision making throughout the journey.",
+        ],
+      },
+      {
+        kind: "media",
+        media: { kind: "placeholder", label: "final-experience-placeholder" },
+      },
+      { kind: "divider" },
+      {
+        kind: "heading",
+        id: "design-process",
+        text: "Design process",
+        spacing: "tight",
       },
       {
         kind: "steps",
-        id: "design-process",
-        heading: "Design process",
+        spacing: "tight",
         items: [
           {
-            title: "Project kick-off",
-            body: "Project kick-off to discuss business objectives, challenges and success criteria of the project",
+            title: "Discovery",
+            body: "Aligned with stakeholders on business goals, technical constraints and success criteria.",
           },
           {
-            title: "Benchmark research",
-            body: "Gathering best practices and coming up with general UX recommendations for the flow",
+            title: "Research",
+            body: "Reviewed competitor journeys, UX best practices and existing customer pain points.",
           },
           {
-            title: "Initial wireframes",
-            body: "Simple sketches/wireframes outlining the proposed changes to be presented to stakeholders and engineering team",
+            title: "Exploration",
+            body: "Created concepts and wireframes to validate improvements before investing in final UI.",
           },
           {
-            title: "Usability testing",
-            body: "Usability testing on first wireframes/designs to establish if the changes are effective and beneficial to the users",
+            title: "Validation",
+            body: "Tested prototypes with users and iterated based on findings.",
           },
           {
-            title: "Refining designs",
-            body: "Final changes to the design that came from feedback from stakeholders, developers and users during usability testing",
+            title: "Delivery",
+            body: "Final UI design, stakeholder reviews and engineering handoff.",
           },
           {
-            title: "Final designs & handover",
-            body: "Final design presentation and handover to the engineering team",
-          },
-          {
-            title: "Establishing metrics",
-            body: "After this project is finished I planned to run a Design Metrics workshop where I would work with stakeholders and engineering team to establish metrics for this flow.",
+            title: "Measuring success",
+            body: "Established the foundation for future UX metrics, later expanded through a dedicated Design Metrics Workshop.",
           },
         ],
       },
-      {
-        kind: "numbered",
-        id: "benchmark-research",
-        heading: "Benchmark research & general UX recommendations",
-        intro:
-          "There's no current metrics being measured on this flow besides general conversion so I decided to do competitors' and UX research and see if I can include any good UX practices into this flow.",
-        items: [
-          {
-            title: "Include stepper at the top",
-            body: "Include information on how many steps user has to complete to send a parcel. This prevents users' uncertainty, provides easier navigation and prevents user drop off rate during process.",
-          },
-          {
-            title: "Add address lookup when choosing address",
-            body: "A lot of undelivered parcels are currently undelivered due to issues with address entered incorrectly. Address lookup will prevent mistakes in manually typed home addresses.",
-          },
-          {
-            title: "Make options in summary page fully editable from that page",
-            body: "Users need to be able to edit all details before proceeding with payment. This prevents from users dropping off at this step and starting new process of sending. Allow users to edit data directly at the “Order Review” step (38% get it wrong) - source: Baymard Institute.",
-          },
-          {
-            title: "Include clear, step-by-step 'send a parcel' information at the end",
-            body: "Guided collection steps make users feel confident and informed. This will educate about the still fairly new concept of lockers in the UK.",
-          },
-          {
-            title: "Include ETA on home page and summary page",
-            body: "According to Baymard Institute this is one of crucial information that should be included at the beginning and the end of purchase process. It will enable users to make quicker decisions between choosing options and confirm choice at the end.",
-          },
-          {
-            title: "Inform about any price changes during the process",
-            body: "Communicate clearly any price changes when user changes size or delivery method. This will prevent from uncertainty and abandoned checkouts. What information to display at the “Order Review” step (12% get it wrong) - source: Baymard Institute. Display visually a change in price after editing information in order review.",
-          },
-        ],
-      },
+      { kind: "divider" },
       {
         kind: "heading",
-        id: "parcel-cover",
-        text: "New designs - parcel cover",
+        id: "how-the-experience-evolved",
+        text: "How the experience evolved",
+        spacing: "tight",
       },
       {
-        kind: "image",
-        size: "medium",
-        image: {
-          src: "/projects/send-parcel-in-app/parcel-cover.png",
-          width: 625,
-          height: 925,
-          alt: "Parcel details screen with a new full-value coverage add-on block, priced at plus fifty pence",
-        },
-      },
-      {
-        kind: "numbered",
-        heading: "Key changes - parcel cover, a new section",
+        kind: "twoCol",
+        spacing: "tight",
+        heading: "Making address entry easier",
         items: [
+          { label: "Problem", body: "Users had to type the address manually." },
           {
-            title: "Extra cover block",
-            body: "Extra parcel cover block is appearing when user types in an amount of £25 or larger.",
-          },
-          {
-            title: "Extra up-sell pop up",
-            body: "There's an extra pop-up appearing persuading users to buy an extra cover. The pop up appears when user entered parcel value larger than £25 and tries to continue without choosing the cover.",
-          },
-          {
-            title: "More information about cover",
-            body: "There's more information hidden in bottom sheet outlining rules and benefits of parcel cover.",
+            label: "Decision",
+            body: "Added a address lookup which enabled users to select address faster and avoid any spelling mistakes.",
           },
         ],
       },
       {
-        kind: "numbered",
-        id: "summary-page",
-        heading: "Key changes - summary page",
+        kind: "media",
+        media: { kind: "placeholder", label: "address-entry-placeholder" },
+      },
+      { kind: "divider" },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        heading: "Summary page",
         items: [
+          { label: "Problem", body: "Users needed to correct mistakes without restarting checkout." },
           {
-            title: "Message block",
-            body: "Extra message block at the top of the Summary page with information to check all details. Details of the parcel cannot be amended after making a payment. Cancellation and refund would have to be done.",
-          },
-          {
-            title: "Clear titles",
-            body: "Clear titles were added throughout the page to sort the content better and making it clearer to skip through for the user.",
-          },
-          {
-            title: "Location and estimated times",
-            body: "Sending location added more clearly and estimated arrival time mentioned. Arrival time is very important for senders however we didn't want to overpromise delivery times, therefore it is not too prominent.",
-          },
-          {
-            title: "Editable details",
-            body: "Details can be edited from this point in the flow without the need to go back in the process.",
-          },
-          {
-            title: "Editable size",
-            body: "Editable size has also been introduced as it wasn't available in the Polish flow. It helps user to change the size quickly before payment.",
-          },
-          {
-            title: "Price summary",
-            body: "Price summary was added at the bottom of the page. It is especially useful when more add-ons are being chosen (eg. extra cover or discount applied).",
-          },
-          {
-            title: "Promotion",
-            body: "New feature added - users can apply promo code before continuing to the payment.",
+            label: "Decision",
+            body: "Made parcel details, addresses and parcel size editable directly from the Summary page.",
           },
         ],
       },
       {
-        kind: "numbered",
-        id: "usability-testing",
-        heading: "Usability testing results",
-        intro: "Example questions from usability testing and their impact on the final design.",
+        kind: "media",
+        media: { kind: "placeholder", label: "summary-page-placeholder" },
+      },
+      { kind: "divider" },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        heading: "Parcel cover",
         items: [
           {
-            title: "In how many days is the parcel expected to arrive when sent directly to door?",
-            body: "More than 50% of users answered correctly, though some didn't find the answer right away - several missed the estimated dates being at the top (4/9), 2 users checked whether estimated delivery times would change if they changed the parcel size, and only 3/9 answered without any hesitation. The reviewed design, with estimated dates and address options made more prominent, caused no confusion.",
+            label: "Problem",
+            body: "Parcel cover was a new UK-specific feature that needed to feel valuable without becoming intrusive.",
           },
           {
-            title: "Preferred icon for the 'Send' feature on the navigation bar",
-            body: "Given 3 different icon options, 55.6% of participants (5) preferred Icon A, 11% (1) preferred Icon C, and the remainder preferred Icon B.",
+            label: "Decision",
+            body: "Designed contextual education, optional upsell moments and supporting information that allowed users to make informed decisions.",
+          },
+        ],
+      },
+      {
+        kind: "media",
+        media: { kind: "placeholder", label: "parcel-cover-placeholder" },
+      },
+      { kind: "divider" },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        heading: "Pricing & ETA",
+        items: [
+          {
+            label: "Problem",
+            body: "Users relied heavily on delivery estimates and wanted reassurance that pricing updated correctly.",
           },
           {
-            title: "Change the parcel size from Small to Medium at the summary step",
-            body: "9/10 users changed the size successfully at the summary page. 1 user didn't realize right away that they could scroll down but in the end managed to choose the right size.",
+            label: "Decision",
+            body: "Surfaced ETA earlier, improved pricing visibility and clearly communicated changes throughout the journey.",
           },
+        ],
+      },
+      {
+        kind: "media",
+        media: { kind: "placeholder", label: "pricing-eta-placeholder" },
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "validation-and-refinement",
+        heading: "Validation and refinement",
+        paragraphs: [
+          "The final concepts were tested with users in prototype usability testing to validate key assumptions before development.",
+        ],
+      },
+      {
+        kind: "validationItem",
+        question: "Can users understand delivery expectations?",
+        status: "warning",
+        finding: "Users looked for estimated delivery information throughout the journey.",
+        update: "Made ETA more prominent on both the first and Summary screens.",
+      },
+      { kind: "divider" },
+      {
+        kind: "validationItem",
+        question: "Is parcel sizing understandable?",
+        status: "success",
+        finding: "Visual size guidance significantly reduced uncertainty when selecting parcel dimensions.",
+        update: "Expanded sizing information and supporting illustrations remained part of the redesign.",
+      },
+      { kind: "divider" },
+      {
+        kind: "validationItem",
+        question: "Can users edit parcel details?",
+        status: "success",
+        finding: "9 out of 10 participants successfully edited parcel details without restarting the journey.",
+        update: "Editable Summary page retained in the final design.",
+      },
+      { kind: "divider" },
+      {
+        kind: "stats",
+        id: "outcome",
+        heading: "Outcome",
+        items: [
+          {
+            value: "25–30%",
+            label: "reduction in address entry time after introducing address lookup, which also helped prevent errors",
+          },
+          {
+            value: "~15%",
+            label: "fewer abandoned parcels after making the summary editable, so users could fix issues without restarting",
+          },
+          { value: "9/10", label: "Participants successfully edited parcel details during usability testing." },
+        ],
+        bullets: [
+          "Enabled additional revenue opportunities through parcel cover and promotional functionality.",
+          "Improved clarity around ETA, parcel value and delivery expectations for UK customers.",
+          "Established the foundation for measuring the Send flow experience, later expanded through a cross-functional UX Metrics Workshop.",
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "making-the-experience-measurable",
+        heading: "Making the experience measurable",
+        paragraphs: [
+          "To ensure the Send journey could be evaluated beyond launch, I facilitated two cross-functional workshops to define what success should look like across the experience. We mapped the end-to-end journey, prioritised the moments that mattered most and translated them into actionable behavioural and experience metrics.",
+        ],
+      },
+      {
+        kind: "media",
+        media: { kind: "placeholder", label: "metrics-workshop-placeholder" },
+      },
+      {
+        kind: "richText",
+        paragraphs: [
+          "The work created a shared measurement framework for the Send journey and a reusable workshop format that could be applied to other product areas.",
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "reflection",
+        heading: "Reflection",
+        paragraphs: [
+          "Working within an existing product taught me that successful product design isn't always about redesigning entire experiences.",
+          "The biggest impact often comes from identifying a handful of high-value improvements that balance user needs, business goals and technical constraints.",
+          "Rather than starting from a blank canvas, this project focused on making thoughtful decisions within real-world limitations—an approach that ultimately led to a faster launch and a better experience for UK customers.",
         ],
       },
     ],
