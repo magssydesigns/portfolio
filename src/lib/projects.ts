@@ -23,7 +23,7 @@ export type Block =
   | { kind: "lead"; id?: string; items: { label: string; body: string }[] }
   | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light"; spacing?: "tight" }
   | { kind: "statement"; id?: string; text: string; tone?: "dark" | "light" }
-  | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; items: { title: string; body: string }[] }
+  | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; spacing?: "tight"; items: { title: string; body: string }[] }
   | { kind: "image"; id?: string; image: ProjectImage; size?: "medium" | "wide" | "full" }
   | { kind: "beforeAfterStats"; id?: string; heading?: string; items: { label: string; before: string; after: string; description: string }[] }
   | { kind: "quote"; id?: string; heading?: string; text: string; attribution?: string }
@@ -432,7 +432,7 @@ export const projects: Project[] = [
   },
   {
     slug: "rapid-uk-launch",
-    title: "Rapid UK app launch & design system rebuild",
+    title: "0 → 1: Launching InPost's UK parcel tracking app",
     shortTitle: "Rapid UK app launch",
     client: "InPost",
     color: "#3355FF",
@@ -449,15 +449,17 @@ export const projects: Project[] = [
     },
     toc: [
       { id: "quick-summary", label: "Quick Summary" },
-      { id: "process", label: "Process" },
-      { id: "challenges", label: "Challenges" },
       { id: "impact", label: "Impact" },
-      { id: "key-changes", label: "Key changes" },
-      { id: "onboarding", label: "Onboarding" },
-      { id: "parcel-tracking", label: "Parcel tracking" },
-      { id: "locker-search", label: "Locker search" },
-      { id: "design-system-rebuild", label: "Design System Rebuild" },
-      { id: "collaboration", label: "Collaboration" },
+      { id: "the-challenge", label: "The challenge" },
+      { id: "business-goals", label: "Business goals" },
+      { id: "final-experience", label: "Final experience" },
+      { id: "design-process", label: "Design process" },
+      { id: "audit-insights", label: "Audit & insights" },
+      { id: "key-design-decisions", label: "Key design decisions" },
+      { id: "design-system-rebuild", label: "Design-system rebuild" },
+      { id: "validation-refinement", label: "Validation and refinement" },
+      { id: "outcome", label: "Outcome" },
+      { id: "reflection", label: "Reflection" },
     ],
     quickRead: {
       tagline:
@@ -474,27 +476,6 @@ export const projects: Project[] = [
       challenge: [
         "I led the UX and design system work, auditing the existing product, defining a phased roadmap, rebuilding the design system, and redesigning key customer journeys to create a scalable foundation for future releases.",
       ],
-      process: {
-        intro: "My ownership included:",
-        items: [
-          "scoping the phased product plan (what now vs later)",
-          "leading UX/UI decisions and defining the MVP feature set",
-          "rebuilding the design system for the UK team",
-          "aligning with marketing, web, and global stakeholder expectations",
-          "guiding a newly formed squad through delivery",
-        ],
-      },
-      challenges: {
-        items: [
-          "Launch the UK version of the app within a 3-month deadline while maintaining a high-quality user experience.",
-          "Modernise a legacy XML-based application with limited flexibility for structural UX changes.",
-          "Balance immediate launch requirements with a long-term product and design system vision.",
-          "Consolidate a fragmented design system with 60+ text styles, duplicated components and inconsistent design patterns.",
-          "Improve accessibility and ensure the new experience met WCAG AA standards without delaying delivery.",
-          "Align product decisions across UK and Polish product, engineering, marketing and brand teams, each with different priorities.",
-          "Define a phased roadmap, deciding what needed to ship for launch and what could be postponed to future releases.",
-        ],
-      },
       keyDecisions: [
         "New onboarding experience with motion + visual refresh",
         "Redesigned parcel tracking components for clarity & hierarchy",
@@ -544,274 +525,332 @@ export const projects: Project[] = [
     },
     fullCaseStudy: [
       {
-        kind: "numbered",
-        id: "key-changes",
-        heading: "Planned for later phases",
-        intro:
-          "Phase 1 focused on launch-critical fixes. The following were scoped into later phases of the roadmap:",
-        items: [
-          {
-            title: "Send a Parcel flow",
-            body: "Introducing the send a parcel flow to the UK app.",
-          },
-          {
-            title: "Empty & error states",
-            body: "Improved empty and error states throughout the app.",
-          },
-          {
-            title: "Map & locker finder redesign",
-            body: "A full visual redesign of the map and finding-a-locker flow.",
-          },
-          {
-            title: "Motion system",
-            body: "An animation and micro-interaction system, replacing one-off animations.",
-          },
-          {
-            title: "In-app service expansion",
-            body: "Expansion of in-app services and monetisation features.",
-          },
+        kind: "richText",
+        id: "the-challenge",
+        heading: "The challenge",
+        paragraphs: [
+          "InPost needed to launch its Polish consumer app in the UK within three months. The existing product was functional, but it had been built on a rigid XML-based architecture, contained inconsistent design patterns and did not meet the required accessibility standards.",
+          "The challenge was not simply to localise the interface. I needed to determine which improvements could safely be delivered for launch, which changes required deeper architectural work and how to create a credible UK experience without delaying the release.",
+          "At the same time, the UK team needed a more scalable design foundation that could support future product development rather than adding another layer of UI debt.",
         ],
       },
-      {
-        kind: "beforeAfterImages",
-        id: "onboarding",
-        heading: "Onboarding",
-        items: [
-          {
-            label: "Before",
-            media: {
-              kind: "image",
-              image: {
-                src: "/projects/rapid-uk-launch/onboarding-before.png",
-                width: 635,
-                height: 950,
-                alt: "Old Polish onboarding screens with illustrated truck and locker graphics",
-              },
-            },
-          },
-          {
-            label: "After",
-            media: {
-              kind: "image",
-              image: {
-                src: "/projects/rapid-uk-launch/onboarding-after.png",
-                width: 1170,
-                height: 1160,
-                alt: "New UK onboarding screen reading 'Drop, lock and off you pop' on a yellow background",
-              },
-            },
-          },
-        ],
-      },
-      {
-        kind: "lead",
-        id: "parcel-tracking",
-        items: [
-          {
-            label: "Why it mattered",
-            body: "This is the most important feature of the app - tracking parcels - so I tested this flow twice with users before deciding on evolving the inherited Polish design.",
-          },
-          {
-            label: "Round one findings",
-            body: "An initial usability test on the UK market uncovered issues with understanding the UI: users had varying interpretations of the progress bar, didn't find the collection window urgent enough, and were confused about how many parcels were waiting for them in the locker.",
-          },
-        ],
-      },
+      { kind: "divider" },
       {
         kind: "numbered",
-        heading: "New design recommendations",
+        id: "business-goals",
+        heading: "Business goals",
+        showArrow: true,
         items: [
           {
-            title: "Progress bar colour",
-            body: "Changed progress bars to a light red/orange colour to signal urgency and fix a colour-accessibility issue - yellow wasn't accessible on the grey or white background.",
+            title: "Launch the UK app within three months",
+            body: "Deliver a reliable first version without introducing unnecessary risk into the legacy application.",
           },
           {
-            title: "Progress direction",
-            body: "Changed the direction of the progress bars to decrease rather than progress, indicating time running out.",
+            title: "Adapt the experience for UK customers",
+            body: "Update priority journeys, brand expression and communication patterns to better reflect UK expectations.",
           },
           {
-            title: "Parcel counter",
-            body: "Added a parcel counter for parcels ready to collect, preventing misunderstandings about how many are waiting.",
+            title: "Improve accessibility",
+            body: "Resolve critical colour and contrast issues and establish WCAG AA-compliant foundations.",
           },
           {
-            title: "Time format",
-            body: "Changed the time-left format to a rough number of hours rather than an exact date - this felt more urgent to users and encouraged them to collect parcels promptly rather than leaving it to the last minute.",
+            title: "Create a scalable product foundation",
+            body: "Consolidate the fragmented design system and establish clearer patterns for future releases.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "final-experience",
+        heading: "Final experience",
+        paragraphs: [
+          "The UK launch combined targeted improvements to onboarding, parcel tracking and locker discovery with a rebuilt design system.",
+          "Rather than redesigning the entire application, I focused the first phase on changes that could materially improve comprehension, urgency and accessibility without destabilising the legacy product.",
+          "The result was a more relevant UK experience and a stronger foundation for subsequent work across the app.",
+        ],
+      },
+      {
+        kind: "media",
+        media: { kind: "placeholder", label: "Final experience screenshot" },
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "design-process",
+        heading: "Design process",
+        paragraphs: [
+          "I worked closely with Product and Engineering to separate launch-critical improvements from work that required deeper architectural change. Product design and design-system consolidation then progressed in parallel, allowing the team to improve the first release while establishing foundations for future development.",
+        ],
+      },
+      {
+        kind: "steps",
+        spacing: "tight",
+        items: [
+          {
+            title: "Product and UX audit",
+            body: "Reviewed the Polish app to identify usability issues, inconsistent patterns, accessibility failures and design-system debt.",
+          },
+          {
+            title: "Feasibility mapping",
+            body: "Worked with Engineering to understand which improvements were possible within the existing XML architecture.",
+          },
+          {
+            title: "Phased roadmap",
+            body: "Defined what needed to ship for launch, what could follow shortly afterwards and what required deeper structural redesign.",
+          },
+          {
+            title: "UK brand localisation",
+            body: "Translated the refreshed brand into the app through updated typography, colours, tone and visual direction.",
+          },
+          {
+            title: "Parallel design and system rebuild",
+            body: "Designed launch-critical journeys while consolidating typography, colour tokens and reusable components.",
+          },
+          {
+            title: "Validation and delivery",
+            body: "Tested priority interactions, refined the designs and supported Engineering and QA through implementation.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      { kind: "heading", id: "audit-insights", text: "Audit & insights" },
+      {
+        kind: "numbered",
+        spacing: "tight",
+        items: [
+          {
+            title: "Product and system audit",
+            body: "The audit revealed extensive design debt: more than 40 text styles, over 60 colour tokens without semantic naming, duplicated components, inconsistent files and limited documentation. Several colour combinations did not meet accessibility requirements, and the lack of shared usage rules increased inconsistency between design and development.",
           },
         ],
       },
       {
-        kind: "quote",
-        heading: "Second round of testing",
-        text: "100% of users mentioned they chose this design because of the colour red and the urgency it signifies.",
-        attribution: "Usability testing, round 2",
+        kind: "media",
+        media: { kind: "placeholder", label: "Product and system audit screenshot" },
       },
       {
-        kind: "beforeAfterImages",
-        heading: "Tested design vs new design",
+        kind: "numbered",
+        spacing: "tight",
         items: [
           {
-            label: "Tested design",
-            media: {
-              kind: "image",
-              image: {
-                src: "/projects/rapid-uk-launch/tracking-tested.png",
-                width: 440,
-                height: 940,
-                alt: "Tested parcel tracking design with grey progress bars",
-              },
-            },
+            title: "Customer insights",
+            body: "Usability testing of the inherited parcel-tracking experience revealed that customers interpreted the progress bars inconsistently, did not feel enough urgency around collection windows and were unsure how many parcels were waiting for them. Locker availability was also particularly important for the UK market, where frequently full lockers could make the existing search experience unreliable.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      { kind: "heading", id: "key-design-decisions", text: "Key design decisions" },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        heading: "Prioritising launch-critical improvements",
+        items: [
+          {
+            label: "Problem",
+            body: "The three-month deadline and legacy architecture made a complete redesign unrealistic.",
           },
           {
-            label: "New design",
-            media: {
-              kind: "image",
-              image: {
-                src: "/projects/rapid-uk-launch/tracking-new.png",
-                width: 450,
-                height: 940,
-                alt: "New parcel tracking design with red and orange urgency progress bars and a parcel counter",
-              },
-            },
+            label: "Decision",
+            body: "I created a phased roadmap, prioritising changes that improved comprehension, accessibility and market relevance without requiring structural rebuilding.",
           },
         ],
       },
       {
-        kind: "quote",
-        id: "locker-search",
-        heading: "Locker search",
-        text: "Another important flow, locker search, was redesigned with locker capacity. In the UK it's been important to show users locker capacity, as lockers would overfill quite often.",
+        kind: "arrowList",
+        bold: true,
+        items: ["The team could launch on time while maintaining a clear direction for future releases."],
       },
       {
-        kind: "beforeAfterImages",
-        heading: "Polish design vs new UK design",
+        kind: "media",
+        media: { kind: "placeholder", label: "Prioritising launch-critical improvements screenshot" },
+      },
+      { kind: "divider" },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        heading: "Making collection urgency clearer",
         items: [
           {
-            label: "Polish design",
-            media: {
-              kind: "image",
-              image: {
-                src: "/projects/rapid-uk-launch/locker-polish.png",
-                width: 430,
-                height: 945,
-                alt: "Polish locker map design showing a list of nearby InPost points",
-              },
-            },
+            label: "Problem",
+            body: "Customers interpreted the original progress bars inconsistently and did not recognise how urgently parcels needed to be collected.",
           },
           {
-            label: "New UK design",
-            media: {
-              kind: "image",
-              image: {
-                src: "/projects/rapid-uk-launch/locker-new.png",
-                width: 590,
-                height: 980,
-                alt: "New UK locker map design with capacity indicators shown on the map pins",
-              },
-            },
+            label: "Decision",
+            body: "I changed the progress indicators to decrease as time ran out, introduced red and orange urgency cues, replaced exact collection dates with clearer remaining-time messaging and added a parcel counter.",
           },
         ],
       },
       {
-        kind: "heading",
+        kind: "arrowList",
+        bold: true,
+        items: ["Customers could understand which parcels required attention and how quickly they needed to act."],
+      },
+      {
+        kind: "media",
+        media: { kind: "placeholder", label: "Making collection urgency clearer screenshot" },
+      },
+      { kind: "divider" },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        heading: "Adapting onboarding for the UK market",
+        items: [
+          {
+            label: "Problem",
+            body: "The inherited onboarding reflected the Polish product and did not communicate the new UK brand or service proposition effectively.",
+          },
+          {
+            label: "Decision",
+            body: "I created a refreshed onboarding experience using UK-specific language, visual direction and motion.",
+          },
+        ],
+      },
+      {
+        kind: "arrowList",
+        bold: true,
+        items: [
+          "The first interaction with the product felt intentional and relevant to the new market rather than directly translated.",
+        ],
+      },
+      {
+        kind: "media",
+        media: { kind: "placeholder", label: "Adapting onboarding for the UK market screenshot" },
+      },
+      { kind: "divider" },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        heading: "Making locker availability visible",
+        items: [
+          {
+            label: "Problem",
+            body: "Customers could navigate to a locker without knowing whether suitable compartments were available.",
+          },
+          {
+            label: "Decision",
+            body: "I introduced locker-capacity information into the map and locker-discovery experience.",
+          },
+        ],
+      },
+      {
+        kind: "arrowList",
+        bold: true,
+        items: ["Customers could make a more informed choice before travelling to a location."],
+      },
+      {
+        kind: "media",
+        media: { kind: "placeholder", label: "Making locker availability visible screenshot" },
+      },
+      { kind: "divider" },
+      {
+        kind: "numbered",
         id: "design-system-rebuild",
-        text: "Design System Rebuild",
-      },
-      {
-        kind: "twoCol",
+        heading: "Design-system rebuild",
         items: [
           {
-            label: "Typography - before",
-            body: "40+ text styles, many of which were nearly identical and could be merged.",
+            title: "Creating a semantic type system",
+            body: "More than 40 fragmented text styles were consolidated into 12 semantic styles organised by role and size. This made typography easier to apply consistently across design and development.",
           },
           {
-            label: "Typography - after",
-            body: "Clustered styles into buckets by role - Title, Label, Caption - each with small, medium and large sizes, plus a dedicated style for large marketing slogans.",
+            title: "Creating functional colour tokens",
+            body: "More than 60 inconsistently named colour tokens were reduced to 16 tokens named according to their function, including surface and on-surface relationships. The system was created with future dark-mode support in mind and adjusted to meet accessibility requirements.",
+          },
+          {
+            title: "Improving colour accessibility",
+            body: "Brand colours and component combinations were tested against accessibility standards. Where necessary, colours or their permitted text pairings were adjusted to achieve WCAG AA contrast.",
+          },
+          {
+            title: "Documenting components and patterns",
+            body: "I documented component anatomy, spacing, colour usage and behaviour, and created reusable patterns for common states such as success and error messaging. This reduced ambiguity during handoff and improved consistency between designers and engineers.",
           },
         ],
       },
+      { kind: "divider" },
       {
-        kind: "twoCol",
-        items: [
-          {
-            label: "Colour tokens - before",
-            body: "60+ colour tokens with no naming logic - colours were named things like 'Gray 1' or 'Gray 2' with no function specified.",
-          },
-          {
-            label: "Colour tokens - after",
-            body: "Renamed colours based on function (e.g. 'surface', 'on-surface'), designed with dark mode in mind, and adjusted for accessibility.",
-          },
+        kind: "richText",
+        id: "validation-refinement",
+        heading: "Validation and refinement",
+        paddingBottom: 32,
+        paragraphs: [
+          "Parcel tracking was tested iteratively because it was the app's most important and frequently used experience.",
+          "The first round of testing revealed ambiguity around the progress indicators, weak collection urgency and confusion about how many parcels were waiting in the locker.",
         ],
       },
       {
-        kind: "quote",
-        heading: "Colour accessibility",
-        text: "All new brand colours were tested against accessibility standards and adjusted with the right font styles they could be used with. Some colours had to be adjusted slightly to meet accessibility criteria.",
+        kind: "validationItem",
+        question: "Did customers understand the original progress bar?",
+        status: "warning",
+        finding: "Customers interpreted the original progress bar as delivery progress rather than time remaining.",
+        update: "Reversed the direction of the indicator so it decreased as the collection deadline approached.",
       },
+      { kind: "divider" },
+      {
+        kind: "validationItem",
+        question: "Did the collection deadline feel urgent enough?",
+        status: "warning",
+        finding: "The collection deadline did not feel urgent enough.",
+        update: "Introduced clearer remaining-time language and red or orange urgency cues.",
+      },
+      { kind: "divider" },
+      {
+        kind: "validationItem",
+        question: "Did customers know how many parcels were ready?",
+        status: "warning",
+        finding: "Customers were unsure how many parcels were ready for collection.",
+        update: "Added a visible parcel counter beside the Ready to collect heading.",
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        paragraphs: [
+          "In the second round of testing, every participant selected the version using the red or orange urgency treatment because it more clearly communicated that collection time was running out.",
+        ],
+      },
+      { kind: "divider" },
       {
         kind: "numbered",
-        heading: "Reworking & documenting components",
+        id: "outcome",
+        heading: "Outcome",
+        showArrow: true,
         items: [
           {
-            title: "Documentation",
-            body: "Created documentation for every component, describing its anatomy, spacing and colours.",
+            title: "Launched on schedule",
+            body: "The UK app launched within the three-month deadline.",
           },
           {
-            title: "Patterns",
-            body: "Created concise patterns for certain components, like error and success messages.",
+            title: "Created a scalable design foundation",
+            body: "The rebuilt system was adopted by design and engineering teams and used as the basis for subsequent releases.",
+          },
+          {
+            title: "Reduced design-system debt",
+            body: "More than 40 text styles were consolidated into 12, while more than 60 colour tokens were reduced to 16 functional tokens.",
+          },
+          {
+            title: "Improved accessibility",
+            body: "Critical colour combinations were updated to meet WCAG AA contrast requirements.",
+          },
+          {
+            title: "Supported faster future delivery",
+            body: "The first release shipped without critical UX issues, and the clearer system reduced the need to rebuild foundational patterns in later sprints.",
           },
         ],
       },
       {
-        kind: "numbered",
-        id: "collaboration",
-        heading: "Collaboration",
-        items: [
-          {
-            title: "Product",
-            body: "Worked with the UK PM to define phased scope and product priorities.",
-          },
-          {
-            title: "Engineering",
-            body: "Coordinated with the Polish dev team to align on feasibility, and partnered with brand and marketing for UK visual alignment.",
-          },
-          {
-            title: "Remote support",
-            body: "Created async updates, video walkthroughs, and annotated files to support the remote team.",
-          },
-          {
-            title: "QA",
-            body: "Supported the QA team with accessibility test criteria.",
-          },
+        kind: "richText",
+        paragraphs: [
+          "The launch also created the foundation for subsequent work on Send a Parcel, multi-market parcel tracking and the continued expansion of the InPost design system.",
         ],
       },
+      { kind: "divider" },
       {
-        kind: "numbered",
-        heading: "What I planned to do next",
-        items: [
-          {
-            title: "Structural redesign",
-            body: "Move from patch-layer UX to a full structural redesign of core flows.",
-          },
-          {
-            title: "Multi-platform design system",
-            body: "Expand the design system into a multi-platform tokenised system across web, app and parcel machine UI.",
-          },
-          {
-            title: "Design QA",
-            body: "Introduce design QA and developer-friendly documentation.",
-          },
-          {
-            title: "Post-launch testing",
-            body: "Run usability testing in the UK market to validate flow assumptions post-launch.",
-          },
-          {
-            title: "Motion guidelines",
-            body: "Build motion and interaction guidelines into the design system instead of one-off animations.",
-          },
-          {
-            title: "Localisation strategy",
-            body: "Create a scalable UX strategy for future localisation (e.g. DE, FR, ES).",
-          },
+        kind: "richText",
+        id: "reflection",
+        heading: "Reflection",
+        paragraphs: [
+          "This project reinforced that working within a legacy product is as much an exercise in prioritisation as it is in interface design.",
+          "A full redesign was neither technically realistic nor necessary for the first release. The greatest value came from identifying the changes that would materially improve the UK experience, separating them from deeper structural work and creating a system that allowed the product to evolve after launch.",
+          "Balancing immediate delivery with longer-term foundations allowed the team to launch on time without treating the first release as a disposable solution.",
         ],
       },
     ],

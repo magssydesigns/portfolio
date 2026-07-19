@@ -305,9 +305,11 @@ function BlockRenderer({
           <div
             id={block.id}
             className={
-              layout === "toc"
-                ? "scroll-mt-40 py-12 lg:scroll-mt-28"
-                : "mx-auto max-w-[1400px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20"
+              block.spacing === "tight"
+                ? "scroll-mt-40 lg:scroll-mt-28"
+                : layout === "toc"
+                  ? "scroll-mt-40 py-12 lg:scroll-mt-28"
+                  : "mx-auto max-w-[1400px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20"
             }
           >
             {block.heading && (
