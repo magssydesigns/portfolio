@@ -874,7 +874,15 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
-        media: { kind: "placeholder", label: "final-experience-placeholder" },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/send-parcel-in-app/Final%20experience.png",
+            width: 6952,
+            height: 9900,
+            alt: "Final send-a-parcel experience screens for the UK app",
+          },
+        },
       },
       { kind: "divider" },
       {
@@ -934,7 +942,15 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
-        media: { kind: "placeholder", label: "address-entry-placeholder" },
+        media: {
+          kind: "video",
+          video: {
+            src: "/projects/send-parcel-in-app/send-address.mp4",
+            width: 1412,
+            height: 1080,
+          },
+          alt: "Address entry screen with address lookup replacing manual typing",
+        },
       },
       { kind: "divider" },
       {
@@ -951,7 +967,15 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
-        media: { kind: "placeholder", label: "summary-page-placeholder" },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/send-parcel-in-app/Send-summary.png",
+            width: 8887,
+            height: 6101,
+            alt: "Editable Summary page showing parcel details, address and size",
+          },
+        },
       },
       { kind: "divider" },
       {
@@ -971,7 +995,15 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
-        media: { kind: "placeholder", label: "parcel-cover-placeholder" },
+        media: {
+          kind: "video",
+          video: {
+            src: "/projects/send-parcel-in-app/parcel-cover.mp4",
+            width: 1412,
+            height: 1080,
+          },
+          alt: "Parcel cover add-on and up-sell moment in the send flow",
+        },
       },
       { kind: "divider" },
       {
@@ -991,7 +1023,15 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
-        media: { kind: "placeholder", label: "pricing-eta-placeholder" },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/send-parcel-in-app/Send-timeandprice.png",
+            width: 8887,
+            height: 6101,
+            alt: "Pricing and ETA surfaced earlier in the send flow",
+          },
+        },
       },
       { kind: "divider" },
       {
@@ -1058,7 +1098,15 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
-        media: { kind: "placeholder", label: "metrics-workshop-placeholder" },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/send-parcel-in-app/workshop-image.png",
+            width: 7840,
+            height: 5672,
+            alt: "UX Metrics Workshop mapping the Send journey and defining success measures",
+          },
+        },
       },
       {
         kind: "richText",
