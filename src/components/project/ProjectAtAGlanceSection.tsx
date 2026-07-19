@@ -12,6 +12,7 @@ export default function ProjectAtAGlanceSection({
   role,
   roleDescription,
   scope,
+  contribution,
   coreTeam,
   collaborationLabel = "Collaboration teams",
   collaborationTeams,
@@ -32,15 +33,18 @@ export default function ProjectAtAGlanceSection({
   /** Overrides the standalone wrapper's bottom padding (px) - use to hit an exact gap before the next section. */
   paddingBottom?: number;
 }) {
+  const coreRow = [
+    ...(coreTeam ? [{ label: "Core team", value: coreTeam }] : []),
+    ...(collaborationTeams ? [{ label: collaborationLabel, value: collaborationTeams }] : []),
+  ];
+
   const rows = [
     [
       { label: "Role", value: role, description: roleDescription },
       { label: "Scope", value: scope },
     ],
-    [
-      { label: "Core team", value: coreTeam },
-      { label: collaborationLabel, value: collaborationTeams },
-    ],
+    ...(contribution ? [[{ label: "Contribution", value: contribution }]] : []),
+    ...(coreRow.length ? [coreRow] : []),
     ...(markets ? [[{ label: "Markets", value: markets }]] : []),
     ...(platforms ? [[{ label: "Platforms", value: platforms }]] : []),
   ];

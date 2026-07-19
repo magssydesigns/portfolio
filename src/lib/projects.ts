@@ -57,10 +57,14 @@ export type ProjectAtAGlanceData = {
   role: string;
   roleDescription?: string;
   scope: string;
-  coreTeam: string;
+  /** Omit when there's no contribution note to show - the row is hidden cleanly, no empty column. */
+  contribution?: string;
+  /** Omit when there's no core team to show (e.g. a solo project) - the row is hidden cleanly if collaborationTeams is also absent. */
+  coreTeam?: string;
   /** Defaults to "Collaboration teams" (e.g. "Collaboration with" for the brand-refresh archive projects). */
   collaborationLabel?: string;
-  collaborationTeams: string;
+  /** Omit when there's no collaboration to show (e.g. a solo project) - the row is hidden cleanly if coreTeam is also absent. */
+  collaborationTeams?: string;
   /** Omit when there's no market information to show - the row is hidden cleanly, no empty column. */
   markets?: string;
   /** Omit when there's no platform information to show - the row is hidden cleanly, no empty column. */
@@ -1247,14 +1251,21 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "establishing-design-metrics",
+    slug: "farming-app-pakistan",
     title: "Shaping an early-stage farming app for Pakistan",
     shortTitle: "Farming app for Pakistan",
     client: "InPost",
     color: "#7C3AED",
+    projectAtAGlance: {
+      role: "Product Designer",
+      scope:
+        "Early product definition, user journeys, information architecture, UX/UI design, interactive prototyping and usability testing.",
+      contribution:
+        "Created the initial app concept and designed the first two to three iterations, refining the experience through prototype testing before leaving the project.",
+    },
     quickRead: {
       tagline:
-        "Led a pilot Design Metrics Workshop to establish actionable UX metrics for the 'Send a Parcel' flow.",
+        "I designed and tested the initial product concept for a mobile app helping Pakistani farmers plan crop cycles, manage farm activities and track key inputs from land preparation through harvest.",
       heroImage: { kind: "placeholder", label: "Hero image placeholder" },
       challenge: [
         "Our teams often relied on anecdotal evidence or business KPIs like conversion or retention, without clear visibility into user-centered design metrics. There was no unified framework for tracking how design changes affect user experience or business value, which led to misalignment between product, data, and design teams.",

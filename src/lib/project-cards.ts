@@ -69,7 +69,7 @@ export const homepageCards: ProjectCardData[] = [
   },
   {
     title: "Shaping an early-stage farming app for Pakistan",
-    slug: "establishing-design-metrics",
+    slug: "farming-app-pakistan",
     media: { kind: "placeholder", label: "Cover image placeholder" },
     type: "homepage",
     isArchive: false,
