@@ -2,7 +2,6 @@ import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import BeforeAfterStats from "@/components/project/BeforeAfterStats";
 import MediaSlotView from "@/components/project/MediaSlotView";
-import SectionDivider from "@/components/project/SectionDivider";
 import type { Block } from "@/lib/projects";
 
 export default function CaseStudyBlocks({
@@ -95,7 +94,10 @@ function BlockRenderer({
       );
 
     case "divider":
-      return <SectionDivider />;
+      // Wider than the shared SectionDivider (890px vs 672px) - scoped to this
+      // case study's full-case-study content only, so QuickRead's own dividers
+      // (which reuse SectionDivider directly) are unaffected.
+      return <div className="mx-auto my-8 max-w-[890px] border-t border-line" aria-hidden="true" />;
 
     case "richText":
       return (
@@ -142,17 +144,32 @@ function BlockRenderer({
         </Reveal>
       );
 
-    case "media":
+    case "media": {
+      const mediaClassName =
+        block.width === "reduced" || block.bordered
+          ? [
+              block.width === "reduced" ? "mx-auto w-4/5" : "w-full",
+              "h-auto",
+              block.bordered ? "rounded-2xl border" : "",
+            ]
+              .filter(Boolean)
+              .join(" ")
+          : undefined;
       return (
         <Reveal y={30}>
-          <div id={block.id} className="scroll-mt-40 lg:scroll-mt-28">
-            <MediaSlotView media={block.media} />
+          <div id={block.id} className="scroll-mt-40 py-6 lg:scroll-mt-28">
+            <MediaSlotView
+              media={block.media}
+              className={mediaClassName}
+              style={block.bordered ? { borderColor: "rgb(221, 216, 203)" } : undefined}
+            />
             {block.caption && (
               <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink-soft">{block.caption}</p>
             )}
           </div>
         </Reveal>
       );
+    }
 
     case "validationItem":
       return (

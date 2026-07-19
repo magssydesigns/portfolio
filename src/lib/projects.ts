@@ -35,7 +35,7 @@ export type Block =
   | { kind: "divider" }
   | { kind: "richText"; id?: string; heading?: string; paragraphs: string[] }
   | { kind: "arrowList"; id?: string; heading?: string; bold?: boolean; items: string[] }
-  | { kind: "media"; id?: string; media: MediaSlot; caption?: string }
+  | { kind: "media"; id?: string; media: MediaSlot; caption?: string; width?: "reduced"; bordered?: boolean }
   | { kind: "validationItem"; id?: string; question: string; status: "success" | "warning"; finding: string; update: string }
   | { kind: "stats"; id?: string; heading?: string; items: { value: string; label: string }[]; bullets?: string[] };
 
@@ -942,6 +942,8 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
+        width: "reduced",
+        bordered: true,
         media: {
           kind: "video",
           video: {
@@ -995,6 +997,8 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
+        width: "reduced",
+        bordered: true,
         media: {
           kind: "video",
           video: {
