@@ -13,6 +13,7 @@ export default function ProjectHero({
   video,
   stacked,
   markets,
+  flushBottom,
 }: {
   title: string;
   tagline: string;
@@ -24,8 +25,13 @@ export default function ProjectHero({
   stacked?: boolean;
   /** Optional "Markets" caption + flag row shown under the tagline. */
   markets?: { label: string; flags: { emoji: string; name: string }[] };
+  /** Drops the hero's bottom padding so a divider directly below can own the full gap (32px rhythm). */
+  flushBottom?: boolean;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const textBlockPadding = flushBottom
+    ? "px-6 pb-0 pt-10 sm:px-10 sm:pt-12"
+    : "px-6 pb-8 pt-10 sm:px-10 sm:pb-12 sm:pt-12";
 
   useEffect(() => {
     if (!video) return;
@@ -65,7 +71,7 @@ export default function ProjectHero({
           />
         </div>
 
-        <div className="mx-auto max-w-[1400px] px-6 pb-8 pt-10 sm:px-10 sm:pb-12 sm:pt-12">
+        <div className={`mx-auto max-w-[1400px] ${textBlockPadding}`}>
           <div className="mx-auto max-w-2xl">
             <p className="text-[13px] uppercase tracking-[0.14em] text-ink/60">{client}</p>
             <h1 className="mt-6 font-display text-4xl leading-[1.08] tracking-tight text-ink sm:text-6xl lg:text-[3.4rem] lg:leading-[1.05]">
@@ -108,7 +114,7 @@ export default function ProjectHero({
           />
         </div>
 
-        <div className="mx-auto max-w-[1400px] px-6 pb-8 pt-10 sm:px-10 sm:pb-12 sm:pt-12">
+        <div className={`mx-auto max-w-[1400px] ${textBlockPadding}`}>
           <div className="mx-auto max-w-2xl">
             <p className="text-[13px] uppercase tracking-[0.14em] text-ink/60">{client}</p>
             <h1 className="mt-6 font-display text-4xl leading-[1.08] tracking-tight text-ink sm:text-6xl lg:text-[3.4rem] lg:leading-[1.05]">

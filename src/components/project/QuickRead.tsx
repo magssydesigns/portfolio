@@ -1,5 +1,5 @@
 import Reveal from "@/components/Reveal";
-import Divider from "@/components/Divider";
+import SectionDivider from "@/components/project/SectionDivider";
 import BeforeAfterStats from "@/components/project/BeforeAfterStats";
 import MediaSlotView from "@/components/project/MediaSlotView";
 import ProjectAtAGlance from "@/components/project/ProjectAtAGlance";
@@ -57,14 +57,18 @@ export default function QuickRead({
         : "mx-auto mt-16 max-w-2xl"
       : "mt-16 grid grid-cols-1 gap-8 lg:grid-cols-[200px_1fr]";
   const contentClass = headingStyle === "heading" ? "mt-6" : "";
+  // In the split (roleDetails) layout the hero divider above owns the 32px gap,
+  // so the section itself starts flush (pt-0).
   const sectionPaddingClass =
     headingStyle === "heading"
-      ? "px-6 pt-10 pb-20 sm:px-10 sm:pt-14 sm:pb-28"
+      ? data.roleDetails
+        ? "px-6 pt-0 pb-20 sm:px-10 sm:pb-28"
+        : "px-6 pt-10 pb-20 sm:px-10 sm:pt-14 sm:pb-28"
       : "px-6 py-20 sm:px-10 sm:py-28";
-  // When roleDetails splits "Project at a glance" into its own section, an
-  // explicit Divider already sits above Process, so its wrapper skips the
-  // usual border-t (avoids a doubled-up rule) but keeps the same top margin.
-  const processWrapClass = data.roleDetails ? "mx-auto mt-16 max-w-2xl sm:mt-20" : wrapClass;
+  // When roleDetails splits "Project at a glance" into its own section, a
+  // SectionDivider (which owns the 32px gap on both sides) already sits above
+  // Process, so its wrapper adds no border and no top margin of its own.
+  const processWrapClass = data.roleDetails ? "mx-auto max-w-2xl" : wrapClass;
 
   const narrativeContent = (
     <>
@@ -132,12 +136,10 @@ export default function QuickRead({
             </div>
           </Reveal>
 
-          <div className="mt-16 sm:mt-20">
-            <Divider />
-          </div>
+          <SectionDivider />
 
           <Reveal delay={0.04}>
-            <div className="mx-auto mt-16 max-w-2xl sm:mt-20">
+            <div className="mx-auto max-w-2xl">
               <SectionLabel headingStyle={headingStyle} text="Quick summary" />
               <div className={`${contentClass} max-w-2xl space-y-5`}>{narrativeContent}</div>
             </div>
@@ -173,9 +175,7 @@ export default function QuickRead({
             </div>
           </Reveal>
 
-          <div className="mt-16 sm:mt-20">
-            <Divider />
-          </div>
+          <SectionDivider />
         </>
       ) : (
         <Reveal>

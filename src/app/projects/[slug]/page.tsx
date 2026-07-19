@@ -7,7 +7,7 @@ import FullCaseStudyReveal from "@/components/project/FullCaseStudyReveal";
 import ArchiveQuickSummary from "@/components/project/ArchiveQuickSummary";
 import PrevNextNav from "@/components/project/PrevNextNav";
 import Footer from "@/components/Footer";
-import Divider from "@/components/Divider";
+import SectionDivider from "@/components/project/SectionDivider";
 import {
   projects,
   archiveProjects,
@@ -88,11 +88,12 @@ export default async function ProjectPage({
           video={project.quickRead.heroVideo}
           stacked={project.heroStacked}
           markets={project.heroMarkets}
+          flushBottom={project.heroDividerBelow}
         />
 
         {project.heroDividerBelow && (
-          <div className="mt-16 sm:mt-20">
-            <Divider />
+          <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
+            <SectionDivider />
           </div>
         )}
 
