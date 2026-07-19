@@ -23,9 +23,9 @@ export type Block =
   | { kind: "lead"; id?: string; items: { label: string; body: string }[] }
   | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light"; spacing?: "tight" }
   | { kind: "statement"; id?: string; text: string; tone?: "dark" | "light" }
-  | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; items: { title: string; body: string }[] }
+  | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; spacing?: "tight"; items: { title: string; body: string }[] }
   | { kind: "image"; id?: string; image: ProjectImage; size?: "medium" | "wide" | "full" }
-  | { kind: "beforeAfterStats"; id?: string; heading?: string; items: { label: string; before: string; after: string; description: string }[] }
+  | { kind: "beforeAfterStats"; id?: string; heading?: string; spacing?: "tight"; items: { label: string; before: string; after: string; description: string }[] }
   | { kind: "quote"; id?: string; heading?: string; text: string; attribution?: string }
   | { kind: "steps"; id?: string; heading?: string; spacing?: "tight"; items: { title: string; body: string }[] }
   | { kind: "twoCol"; id?: string; heading?: string; spacing?: "tight"; items: { label: string; body: string }[] }
@@ -33,7 +33,7 @@ export type Block =
   | { kind: "beforeAfterImages"; id?: string; heading?: string; items: { label: string; media: MediaSlot }[] }
   /** Scoped, additive kinds used by the Send case study's full-case-study rebuild. */
   | { kind: "divider" }
-  | { kind: "richText"; id?: string; heading?: string; paragraphs: string[]; paddingBottom?: number }
+  | { kind: "richText"; id?: string; heading?: string; paragraphs: string[]; paddingBottom?: number; small?: boolean }
   | { kind: "arrowList"; id?: string; heading?: string; bold?: boolean; items: string[] }
   | {
       kind: "media";
@@ -147,13 +147,16 @@ export const projects: Project[] = [
       platforms: "iOS • Android",
     },
     toc: [
-      { id: "quick-summary", label: "Quick Summary" },
-      { id: "process", label: "Process" },
-      { id: "impact", label: "Impact" },
-      { id: "business-objectives", label: "Business Objectives" },
-      { id: "research-insights", label: "Research Insights" },
-      { id: "design-changes", label: "Design changes" },
-      { id: "before-and-after", label: "Before and after" },
+      { id: "the-challenge", label: "The challenge" },
+      { id: "business-objectives", label: "Business objectives" },
+      { id: "final-experience", label: "Final experience" },
+      { id: "design-process", label: "Design process" },
+      { id: "research-insights", label: "Research & Insights" },
+      { id: "design-exploration", label: "Design exploration" },
+      { id: "key-design-decisions", label: "Key design decisions" },
+      { id: "validation-and-refinement", label: "Validation and refinement" },
+      { id: "outcome", label: "Outcome" },
+      { id: "reflection", label: "Reflection" },
     ],
     quickRead: {
       tagline:
@@ -242,63 +245,51 @@ export const projects: Project[] = [
     },
     fullCaseStudy: [
       {
+        kind: "heading",
+        id: "the-challenge",
+        text: "The challenge",
+        spacing: "tight",
+      },
+      {
+        kind: "richText",
+        paragraphs: [
+          "The existing parcel-tracking experience had been designed around the Polish delivery model. As InPost expanded across Europe, differences in carrier operations, parcel states, pickup methods and customer expectations made direct localisation increasingly difficult.",
+          "The challenge was to create a consistent tracking experience that could work across markets without removing the local flexibility each country required.",
+          "The new solution needed to improve clarity for customers while also reducing duplicated design and engineering work across the organisation.",
+        ],
+      },
+      { kind: "divider" },
+      {
         kind: "numbered",
         id: "business-objectives",
-        heading: "Business Objectives",
+        heading: "Business objectives",
         showArrow: true,
+        spacing: "tight",
         items: [
           {
             title: "Reduce development and maintenance costs",
-            body: "by unifying parcel tracking interfaces across markets, minimizing duplicate design and engineering work.",
+            body: "Create a shared parcel-tracking foundation across markets, reducing duplicated design and engineering work.",
           },
           {
-            title: "Gather actionable cross-market user data",
-            body: "through a standardized interface, enabling more effective product decisions based on consistent metrics.",
+            title: "Gather actionable cross-market data",
+            body: "Standardise the core experience so customer behaviour and product performance could be compared more consistently across markets.",
           },
           {
             title: "Increase customer satisfaction and retention",
-            body: "by providing a more intuitive, consistent tracking experience that addresses key pain points.",
+            body: "Make parcel status, delivery expectations, pickup information and next actions easier to understand.",
           },
         ],
       },
+      { kind: "divider" },
       {
-        kind: "numbered",
-        id: "research-insights",
-        heading: "Research Insights",
-        showArrow: true,
-        intro:
-          "I prepared UX Research Plan to conduct survey and usability test on existing Polish app. The Research was conducted on 10 users from each market (Poland, France, UK, Italy). Test included survey part and prototype part where users performed tasks on prototypes on existing app.",
-        items: [
-          {
-            title: "Make parcel tracking visual and simple",
-            body: "Users prefer clear, visual timelines with easy-to-understand steps - not technical jargon like 'heading off to warehouse.'",
-          },
-          {
-            title: "Be transparent about delays",
-            body: "Users appreciate seeing delays in real time - even when things go wrong.",
-          },
-          {
-            title: "Prioritize ETA and status",
-            body: "Across markets, ETA ranks highest in importance, followed by pickup address and parcel status.",
-          },
-          {
-            title: "De-emphasize package ID details",
-            body: "Parcel numbers matter, but users focus more on delivery status and pickup info.",
-          },
-          {
-            title: "Include clear, step-by-step pickup instructions",
-            body: "Guided collection steps make users feel confident and informed.",
-          },
-          {
-            title: "Give more prominence to the pick up location and mention collection requirements",
-            body: "eg. is signature/ID needed, opening hours of the pickup point",
-          },
+        kind: "richText",
+        id: "final-experience",
+        heading: "Final experience",
+        paragraphs: [
+          "The final experience established a shared structure for parcel tracking across the UK, France, Poland and Italy.",
+          "It prioritised the information customers needed most — parcel status, estimated delivery time, pickup location and the next action — while preserving enough flexibility to support local operational differences.",
+          "Reusable patterns for parcel states, timelines, actions and pickup interactions created a more consistent customer experience and a more scalable foundation for future market expansion.",
         ],
-      },
-      {
-        kind: "heading",
-        id: "design-changes",
-        text: "Design changes",
       },
       {
         kind: "mediaNumbered",
@@ -427,6 +418,330 @@ export const projects: Project[] = [
               },
             },
           },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "heading",
+        id: "design-process",
+        text: "Design process",
+        spacing: "tight",
+      },
+      {
+        kind: "richText",
+        paragraphs: [
+          "I worked with product, engineering and local-market stakeholders to understand the operational differences behind each tracking experience and identify where shared patterns could be introduced.",
+          "The process combined cross-market journey mapping, customer research, design exploration, prototype validation and iterative stakeholder review.",
+        ],
+      },
+      {
+        kind: "steps",
+        spacing: "tight",
+        items: [
+          {
+            title: "Mapping the journeys",
+            body: "Mapped parcel-tracking journeys across markets to understand differences in delivery states, carriers, pickup models and operational requirements.",
+          },
+          {
+            title: "Researching customer expectations",
+            body: "Conducted surveys and prototype usability testing with 40 participants across Poland, France, the UK and Italy — 10 participants per market.",
+          },
+          {
+            title: "Defining shared patterns",
+            body: "Identified the information, actions and interaction patterns that could remain consistent across markets.",
+          },
+          {
+            title: "Exploring local flexibility",
+            body: "Tested how shared components could accommodate market-specific delivery scenarios without fragmenting the experience.",
+          },
+          {
+            title: "Validating and refining",
+            body: "Reviewed concepts with customers and stakeholders, then refined parcel states, information hierarchy, pickup visibility and next-step actions.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "research-insights",
+        heading: "Research & Insights",
+        paragraphs: [
+          "Research combined surveys and prototype usability testing with 40 participants across four markets. The findings revealed shared customer needs, alongside important differences in delivery behaviour and local expectations.",
+        ],
+      },
+      {
+        kind: "numbered",
+        spacing: "tight",
+        showArrow: true,
+        heading: "Theme 1: Delivery clarity",
+        items: [
+          {
+            title: "Make parcel tracking visual and easy to understand",
+            body: "Customers preferred clear timelines and customer-friendly language over operational or carrier-specific terminology.",
+          },
+          {
+            title: "Be transparent about delays",
+            body: "Customers valued honest, visible communication when deliveries were delayed or changed.",
+          },
+          {
+            title: "Prioritise ETA and parcel status",
+            body: "Estimated delivery time and current parcel status consistently ranked among the most important pieces of information.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "numbered",
+        spacing: "tight",
+        showArrow: true,
+        heading: "Theme 2: Pickup confidence",
+        items: [
+          {
+            title: "Make the pickup location prominent",
+            body: "Customers needed to quickly understand where the parcel was going and how to reach the location.",
+          },
+          {
+            title: "Explain collection requirements",
+            body: "Opening hours, identification requirements and location-specific instructions helped customers prepare before collection.",
+          },
+          {
+            title: "Provide step-by-step pickup guidance",
+            body: "Clear collection instructions made locker and pickup-point interactions feel more predictable.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "numbered",
+        spacing: "tight",
+        showArrow: true,
+        heading: "Theme 3: Information hierarchy",
+        items: [
+          {
+            title: "De-emphasise parcel identification details",
+            body: "Tracking numbers remained available, but were less important than delivery status, location and the next action.",
+          },
+          {
+            title: "Prioritise customer-relevant actions",
+            body: "Actions such as opening a locker remotely, adding collection time, redirecting a parcel or getting directions needed to appear contextually.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "design-exploration",
+        heading: "Design exploration",
+        paragraphs: [
+          "Based on the research findings, I explored how a shared tracking structure could support different parcel states, delivery models and pickup interactions across markets.",
+          "The concepts focused on information hierarchy, parcel-status communication, action visibility and progressive disclosure. They were reviewed with product, engineering and local-market stakeholders before being refined for testing.",
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "heading",
+        id: "key-design-decisions",
+        text: "Key design decisions",
+        spacing: "tight",
+      },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        heading: "1. Creating a shared language for parcel states",
+        items: [
+          {
+            label: "Problem",
+            body: "Different markets and carriers used operational terminology that was difficult for customers to interpret consistently.",
+          },
+          {
+            label: "Decision",
+            body: "Created clearer customer-facing parcel states and reusable status patterns that could be applied across markets.",
+          },
+          {
+            label: "Why it mattered",
+            body: "Customers could understand what was happening without needing to interpret carrier-specific language.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        heading: "2. Prioritising the next action",
+        items: [
+          {
+            label: "Problem",
+            body: "Customers often understood the current parcel state but were less certain about what they needed to do next.",
+          },
+          {
+            label: "Decision",
+            body: "Made context-specific actions such as Open remotely, Add time, Manage and Directions more prominent.",
+          },
+          {
+            label: "Why it mattered",
+            body: "The experience moved beyond displaying status and actively supported customers through the next step.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        heading: "3. Making pickup information easier to find",
+        items: [
+          {
+            label: "Problem",
+            body: "Pickup location, opening hours, directions and collection requirements were frequently difficult to locate.",
+          },
+          {
+            label: "Decision",
+            body: "Increased the prominence of pickup information and grouped the relevant details around the collection journey.",
+          },
+          {
+            label: "Why it mattered",
+            body: "Customers could prepare for collection with greater confidence and less uncertainty.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        heading: "4. Managing complexity through progressive disclosure",
+        items: [
+          {
+            label: "Problem",
+            body: "Complete tracking histories and parcel details could make the page feel long and difficult to scan.",
+          },
+          {
+            label: "Decision",
+            body: "Prioritised the latest status and immediate action while allowing customers to expand the full tracking history when needed.",
+          },
+          {
+            label: "Why it mattered",
+            body: "The interface remained simple for common tasks without removing access to detailed information.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "validation-and-refinement",
+        heading: "Validation and refinement",
+        paragraphs: [
+          "Prototype usability testing was used to evaluate whether customers could understand parcel status, find the information they needed and identify the correct next action.",
+        ],
+      },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        items: [
+          { label: "Finding", body: "Customers prioritised ETA and status over parcel-identification details." },
+          {
+            label: "Refinement",
+            body: "Increased the prominence of delivery status and ETA while reducing the visual emphasis on tracking numbers.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        items: [
+          { label: "Finding", body: "Pickup details and collection requirements were difficult to locate." },
+          {
+            label: "Refinement",
+            body: "Moved pickup location, directions, opening hours and collection guidance higher in the hierarchy.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        items: [
+          { label: "Finding", body: "Long tracking histories made the interface harder to scan." },
+          {
+            label: "Refinement",
+            body: "Introduced progressive disclosure so the latest update remained prominent while the full history stayed accessible.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        items: [
+          { label: "Finding", body: "Customers did not always recognise the next available action." },
+          {
+            label: "Refinement",
+            body: "Added clearer context-specific actions for managing delivery, navigating to the pickup point and opening lockers remotely.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "heading",
+        id: "outcome",
+        text: "Outcome",
+        spacing: "tight",
+      },
+      {
+        kind: "richText",
+        paragraphs: [
+          "The redesigned prototypes improved customers' ability to locate important information and understand the hierarchy of the parcel-tracking experience.",
+        ],
+      },
+      {
+        kind: "beforeAfterStats",
+        spacing: "tight",
+        items: [
+          {
+            label: "About delivery address",
+            before: "50%",
+            after: "0%",
+            description:
+              "Participants who described the delivery address as unavailable or difficult to find during usability testing.",
+          },
+          {
+            label: "About sender details",
+            before: "33%",
+            after: "0%",
+            description:
+              "Participants who described sender details as unavailable or difficult to find during usability testing.",
+          },
+          {
+            label: "Hierarchy of the Parcel Details page",
+            before: "66%",
+            after: "33%",
+            description: "Participants who reported issues with the information hierarchy of the parcel-details page.",
+          },
+        ],
+      },
+      {
+        kind: "richText",
+        small: true,
+        paddingBottom: 24,
+        paragraphs: ["Prototype usability testing conducted across Poland, France, the UK and Italy."],
+      },
+      {
+        kind: "arrowList",
+        items: [
+          "Created reusable tracking patterns that could support future market expansion.",
+          "Improved clarity around parcel status, pickup timing and delivery expectations.",
+          "Reduced ambiguity by prioritising customer-relevant information and actions.",
+          "Established a more consistent foundation for cross-market product measurement.",
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "reflection",
+        heading: "Reflection",
+        paragraphs: [
+          "Designing one tracking experience across several markets reinforced that scalability does not mean forcing every country into an identical journey.",
+          "The strongest solution established shared patterns for parcel status, information hierarchy and customer actions while preserving flexibility for local operational differences.",
+          "This project strengthened my understanding of how research, systems thinking and cross-market collaboration can reduce product fragmentation while creating a clearer experience for customers.",
         ],
       },
     ],

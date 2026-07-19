@@ -65,12 +65,19 @@ function BlockRenderer({
               <h3 className="mb-6 font-sans text-lg font-semibold sm:text-xl">{block.heading}</h3>
             )}
             <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-16">
-              {block.items.map((item) => (
-                <div key={item.label}>
-                  <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{item.label}</p>
-                  <p className="mt-4 text-lg leading-relaxed text-ink-soft">{item.body}</p>
-                </div>
-              ))}
+              {block.items.map((item, i) => {
+                // An odd item out (e.g. a "Why it mattered" alongside Problem/Decision)
+                // spans the full width on its own row instead of sitting in a half column.
+                const spansFull = block.items.length % 2 !== 0 && i === block.items.length - 1;
+                return (
+                  <div key={item.label} className={spansFull ? "sm:col-span-2" : undefined}>
+                    <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{item.label}</p>
+                    <p className={"mt-4 text-lg leading-relaxed text-ink-soft" + (spansFull ? " max-w-2xl" : "")}>
+                      {item.body}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </Reveal>
@@ -112,9 +119,16 @@ function BlockRenderer({
             {block.heading && (
               <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.heading}</h2>
             )}
-            <div className={(block.heading ? "mt-6 " : "") + "max-w-2xl space-y-6"}>
+            <div
+              className={
+                (block.heading ? "mt-6 " : block.small ? "mt-6 " : "") + "max-w-2xl space-y-6"
+              }
+            >
               {block.paragraphs.map((p, i) => (
-                <p key={i} className="text-lg leading-relaxed text-ink-soft">
+                <p
+                  key={i}
+                  className={block.small ? "text-sm text-muted" : "text-lg leading-relaxed text-ink-soft"}
+                >
                   {p}
                 </p>
               ))}
@@ -305,9 +319,11 @@ function BlockRenderer({
           <div
             id={block.id}
             className={
-              layout === "toc"
-                ? "scroll-mt-40 py-12 lg:scroll-mt-28"
-                : "mx-auto max-w-[1400px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20"
+              block.spacing === "tight"
+                ? "scroll-mt-40 lg:scroll-mt-28"
+                : layout === "toc"
+                  ? "scroll-mt-40 py-12 lg:scroll-mt-28"
+                  : "mx-auto max-w-[1400px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20"
             }
           >
             {block.heading && (
@@ -420,7 +436,14 @@ function BlockRenderer({
     case "beforeAfterStats":
       return (
         <Reveal>
-          <div id={block.id} className="mx-auto max-w-[1400px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20">
+          <div
+            id={block.id}
+            className={
+              block.spacing === "tight"
+                ? "scroll-mt-40 lg:scroll-mt-28"
+                : "mx-auto max-w-[1400px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20"
+            }
+          >
             {block.heading && (
               <h2 className="max-w-2xl font-display text-2xl leading-snug tracking-tight sm:text-3xl">
                 {block.heading}
