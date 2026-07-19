@@ -53,6 +53,18 @@ export type Block =
       items: { title: string; definition: string; whyItMatters: string }[];
     };
 
+export type ProjectAtAGlanceData = {
+  role: string;
+  roleDescription?: string;
+  scope: string;
+  coreTeam: string;
+  /** Defaults to "Collaboration teams" (e.g. "Collaboration with" for the brand-refresh archive projects). */
+  collaborationLabel?: string;
+  collaborationTeams: string;
+  /** Omit when there's no platform information to show - the row is hidden cleanly, no empty column. */
+  platforms?: string;
+};
+
 export type QuickRead = {
   tagline: string;
   heroImage: ProjectImage;
@@ -61,8 +73,8 @@ export type QuickRead = {
   challenge: string[];
   bulletedChallenge?: boolean;
   role?: string;
-  /** Rows of label/value items (e.g. Role, Scope / Core team, Platforms). Each inner array is one row. */
-  roleDetails?: { label: string; value: string; description?: string }[][];
+  /** Drives the "Project at a glance" split section (Role, Scope / Core team, Collaboration / optional Platforms). */
+  roleDetails?: ProjectAtAGlanceData;
   goals?: { label?: string; items: string[] };
   constraints?: string[];
   constraintsLabel?: string;
@@ -95,6 +107,8 @@ export type Project = {
   /** Renders the shared Divider directly below the hero, before the Quick Read section begins. */
   heroDividerBelow?: boolean;
   darkText?: boolean;
+  /** Renders the standalone "Project at a glance" section below the hero, before the Quick Read/full case study content. */
+  projectAtAGlance?: ProjectAtAGlanceData;
   quickRead: QuickRead;
   fullCaseStudy: Block[];
   /** Presence of this field opts the project into the reveal-on-click + sticky TOC behaviour. */
@@ -415,6 +429,15 @@ export const projects: Project[] = [
     color: "#3355FF",
     heroBackground: "#F8F4EE",
     heroStacked: true,
+    projectAtAGlance: {
+      role: "Lead Product Designer",
+      scope:
+        "Worked closely with the Product Manager to define the scope of the UK app. I redesigned key flows based on the legacy Polish product, prioritised high-value UX enhancements and created a new design system for the UK experience.",
+      coreTeam: "Product Manager • Engineering",
+      collaborationLabel: "Collaboration teams",
+      collaborationTeams: "Marketing • Customer Experience",
+      platforms: "iOS • Android",
+    },
     toc: [
       { id: "quick-summary", label: "Quick Summary" },
       { id: "process", label: "Process" },
@@ -816,26 +839,17 @@ export const projects: Project[] = [
       challenge: [
         "The UK InPost app didn't allow customers to send parcels, despite the feature already existing in the Polish product. My role was to adapt the experience for the UK market within a short delivery timeline, reusing the existing product where possible while introducing UK-specific functionality such as parcel cover. Rather than redesigning the journey from scratch, I focused on improving usability, simplifying key interactions and reducing friction to create a more intuitive experience for UK customers.",
       ],
-      roleDetails: [
-        [
-          {
-            label: "Role",
-            value: "Lead Product Designer",
-            description:
-              "Led the end-to-end UX and UI design of the parcel sending experience for the UK InPost app.",
-          },
-          {
-            label: "Scope",
-            value:
-              "End-to-end UX & UI, from discovery through delivery, including user research, prototyping and usability testing.",
-          },
-        ],
-        [
-          { label: "Core team", value: "Product Manager • Engineering" },
-          { label: "Collaboration teams", value: "Marketing • Customer Experience" },
-        ],
-        [{ label: "Platforms", value: "iOS • Android" }],
-      ],
+      roleDetails: {
+        role: "Lead Product Designer",
+        roleDescription:
+          "Led the end-to-end UX and UI design of the parcel sending experience for the UK InPost app.",
+        scope:
+          "End-to-end UX & UI, from discovery through delivery, including user research, prototyping and usability testing.",
+        coreTeam: "Product Manager • Engineering",
+        collaborationLabel: "Collaboration teams",
+        collaborationTeams: "Marketing • Customer Experience",
+        platforms: "iOS • Android",
+      },
       outcomes: [
         { value: "25–30%", label: "reduction in address entry time after introducing address lookup, which also helped prevent errors" },
         { value: "~15%", label: "fewer abandoned parcels after making the summary editable, so users could fix issues without restarting" },
@@ -1353,7 +1367,7 @@ export function getPreviousProject(slug: string) {
 
 /**
  * Archive projects use a deliberately lighter shape than `Project`: a hero
- * (image + title + subtitle) and a four-field quick summary only. No
+ * (image + title + subtitle) and a "Project at a glance" section only. No
  * fullCaseStudy, no toc, no quickRead - the /projects/[slug] route renders
  * these through a separate, shorter template.
  */
@@ -1366,19 +1380,7 @@ export type ArchiveProject = {
   cardMedia?: MediaSlot;
   /** Overrides the card's media-container background (ProjectCard defaults to bg-paper-dim). */
   mediaBackground?: string;
-  quickSummary: {
-    role: string;
-    overview: string;
-    contribution: string;
-    outcome: string;
-  };
-};
-
-const PLACEHOLDER_QUICK_SUMMARY = {
-  role: "[Add role]",
-  overview: "[Add a concise summary of the project, problem and context.]",
-  contribution: "[Add the key work and responsibilities.]",
-  outcome: "[Add the result, impact or final deliverable.]",
+  projectAtAGlance: ProjectAtAGlanceData;
 };
 
 export const archiveProjects: ArchiveProject[] = [
@@ -1401,7 +1403,14 @@ export const archiveProjects: ArchiveProject[] = [
         alt: "Designability cover image",
       },
     },
-    quickSummary: PLACEHOLDER_QUICK_SUMMARY,
+    projectAtAGlance: {
+      role: "Lead UX/UI Designer",
+      scope:
+        "Brand refresh for the Designability Design Guidelines. I proposed the digital design direction for the brand and used the existing design system to create the website designs.",
+      coreTeam: "Project Manager • Engineering",
+      collaborationLabel: "Collaboration with",
+      collaborationTeams: "Art Director • UX Designer",
+    },
   },
   {
     slug: "tigi",
@@ -1422,7 +1431,14 @@ export const archiveProjects: ArchiveProject[] = [
         alt: "TIGI cover image",
       },
     },
-    quickSummary: PLACEHOLDER_QUICK_SUMMARY,
+    projectAtAGlance: {
+      role: "Lead UX/UI Designer",
+      scope:
+        "Brand refresh for the TIGI website. I proposed the digital design direction based on the brand's print guidelines, translating the existing brand book into a cohesive digital experience.",
+      coreTeam: "Project Manager • Engineering",
+      collaborationLabel: "Collaboration with",
+      collaborationTeams: "Art Director • UX Designer",
+    },
   },
   {
     slug: "migarage",
@@ -1443,7 +1459,14 @@ export const archiveProjects: ArchiveProject[] = [
         alt: "MiGarage cover image",
       },
     },
-    quickSummary: PLACEHOLDER_QUICK_SUMMARY,
+    projectAtAGlance: {
+      role: "Lead UX/UI Designer",
+      scope:
+        "Brand refresh for the Digital Catapult websites. I proposed the digital design direction for the brand and used the existing design system to create the website designs.",
+      coreTeam: "Project Manager • Engineering",
+      collaborationLabel: "Collaboration with",
+      collaborationTeams: "Art Director • UX Designer",
+    },
   },
   {
     slug: "creative-xr",
@@ -1465,7 +1488,14 @@ export const archiveProjects: ArchiveProject[] = [
       alt: "Creative XR project video",
     },
     mediaBackground: "#ffffff",
-    quickSummary: PLACEHOLDER_QUICK_SUMMARY,
+    projectAtAGlance: {
+      role: "Lead UX/UI Designer",
+      scope:
+        "Brand refresh for the Digital Catapult websites. I proposed the digital design direction for the brand and used the existing design system to create the website designs.",
+      coreTeam: "Project Manager • Engineering",
+      collaborationLabel: "Collaboration with",
+      collaborationTeams: "Art Director • UX Designer",
+    },
   },
   {
     slug: "futurescope",
@@ -1486,7 +1516,14 @@ export const archiveProjects: ArchiveProject[] = [
         alt: "Futurescope cover image",
       },
     },
-    quickSummary: PLACEHOLDER_QUICK_SUMMARY,
+    projectAtAGlance: {
+      role: "Lead UX/UI Designer",
+      scope:
+        "Brand refresh for the Digital Catapult websites. I proposed the digital design direction for the brand and used the existing design system to create the website designs.",
+      coreTeam: "Project Manager • Engineering",
+      collaborationLabel: "Collaboration with",
+      collaborationTeams: "Art Director • UX Designer",
+    },
   },
 ];
 

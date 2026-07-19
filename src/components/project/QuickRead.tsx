@@ -2,7 +2,7 @@ import Reveal from "@/components/Reveal";
 import SectionDivider from "@/components/project/SectionDivider";
 import BeforeAfterStats from "@/components/project/BeforeAfterStats";
 import MediaSlotView from "@/components/project/MediaSlotView";
-import ProjectAtAGlance from "@/components/project/ProjectAtAGlance";
+import ProjectAtAGlanceSection from "@/components/project/ProjectAtAGlanceSection";
 import type { QuickRead as QuickReadType } from "@/lib/projects";
 
 function SectionLabel({
@@ -123,18 +123,7 @@ export default function QuickRead({
     <section className={`mx-auto max-w-[1400px] ${sectionPaddingClass}`}>
       {data.roleDetails ? (
         <>
-          <Reveal>
-            <div className={firstWrapClass}>
-              <SectionLabel
-                headingStyle={headingStyle}
-                id="quick-summary"
-                text={data.summaryLabel ?? "Quick summary"}
-              />
-              <div className={`${contentClass} max-w-2xl`}>
-                <ProjectAtAGlance rows={data.roleDetails} />
-              </div>
-            </div>
-          </Reveal>
+          <ProjectAtAGlanceSection {...data.roleDetails} id="quick-summary" standalone={false} />
 
           <SectionDivider />
 
