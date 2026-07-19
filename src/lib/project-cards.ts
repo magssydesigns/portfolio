@@ -68,17 +68,9 @@ export const homepageCards: ProjectCardData[] = [
     isArchive: false,
   },
   {
-    title: "Establishing design metrics for key flow in the app",
+    title: "Shaping an early-stage farming app for Pakistan",
     slug: "establishing-design-metrics",
-    media: {
-      kind: "image",
-      image: {
-        src: "/homepage/design-metrics.jpg",
-        width: 7406,
-        height: 5829,
-        alt: "Annotated research screens showing metrics tracked across the send-a-parcel flow",
-      },
-    },
+    media: { kind: "placeholder", label: "Cover image placeholder" },
     type: "homepage",
     isArchive: false,
   },

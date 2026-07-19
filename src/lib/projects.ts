@@ -69,7 +69,8 @@ export type ProjectAtAGlanceData = {
 
 export type QuickRead = {
   tagline: string;
-  heroImage: ProjectImage;
+  /** A placeholder can stand in for a not-yet-final hero image. */
+  heroImage: ProjectImage | { kind: "placeholder"; label: string };
   heroVideo?: ProjectVideo;
   summaryLabel?: string;
   challenge: string[];
@@ -1247,8 +1248,8 @@ export const projects: Project[] = [
   },
   {
     slug: "establishing-design-metrics",
-    title: "Establishing design metrics for key flow in the app",
-    shortTitle: "Establishing design metrics",
+    title: "Shaping an early-stage farming app for Pakistan",
+    shortTitle: "Farming app for Pakistan",
     client: "InPost",
     color: "#7C3AED",
     toc: [
@@ -1262,12 +1263,7 @@ export const projects: Project[] = [
     quickRead: {
       tagline:
         "Led a pilot Design Metrics Workshop to establish actionable UX metrics for the 'Send a Parcel' flow.",
-      heroImage: {
-        src: "/projects/establishing-design-metrics/hero.png",
-        width: 430,
-        height: 940,
-        alt: "InPost send a parcel screen showing locker or home address delivery options and size selection",
-      },
+      heroImage: { kind: "placeholder", label: "Hero image placeholder" },
       challenge: [
         "Our teams often relied on anecdotal evidence or business KPIs like conversion or retention, without clear visibility into user-centered design metrics. There was no unified framework for tracking how design changes affect user experience or business value, which led to misalignment between product, data, and design teams.",
         "Lack of shared metrics caused repeated work and inconsistent evaluation of feature success. Design impact was hard to prove - especially for UX optimisations that don't directly tie to revenue. Establishing a repeatable process for design metrics would help shift the culture toward data-informed design and accountability.",

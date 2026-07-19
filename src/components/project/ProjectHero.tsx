@@ -1,8 +1,39 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import type { ProjectImage, ProjectVideo } from "@/lib/projects";
+
+type HeroImage = ProjectImage | { kind: "placeholder"; label: string };
+
+function HeroImageView({ image, className, style }: { image: HeroImage; className?: string; style?: CSSProperties }) {
+  if ("kind" in image) {
+    return (
+      <div
+        className={
+          className
+            ? `${className} aspect-[3/4] flex items-center justify-center border border-dashed border-line bg-paper-dim px-6 text-center`
+            : "flex min-h-[240px] w-full items-center justify-center border border-dashed border-line bg-paper-dim px-6 py-16 text-center"
+        }
+        style={style}
+      >
+        <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{image.label}</p>
+      </div>
+    );
+  }
+  return (
+    <Image
+      src={image.src}
+      alt={image.alt}
+      width={image.width}
+      height={image.height}
+      priority
+      className={className}
+      style={style}
+    />
+  );
+}
 
 export default function ProjectHero({
   title,
@@ -19,7 +50,7 @@ export default function ProjectHero({
   tagline: string;
   client: string;
   color: string;
-  image: ProjectImage;
+  image: HeroImage;
   video?: ProjectVideo;
   /** Renders the image centered above the title/tagline (like a video hero) instead of side-by-side. */
   stacked?: boolean;
@@ -65,7 +96,7 @@ export default function ProjectHero({
             muted
             playsInline
             preload="auto"
-            aria-label={image.alt}
+            aria-label={"kind" in image ? image.label : image.alt}
             className="mx-auto block h-auto w-full max-w-[60%] rounded-2xl border"
             style={{ borderColor: "rgb(221, 216, 203)" }}
           />
@@ -103,12 +134,8 @@ export default function ProjectHero({
     return (
       <section className="pt-32 sm:pt-40" style={{ backgroundColor: color }}>
         <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
-          <Image
-            src={image.src}
-            alt={image.alt}
-            width={image.width}
-            height={image.height}
-            priority
+          <HeroImageView
+            image={image}
             className="mx-auto block h-auto w-full max-w-[614.797px] rounded-2xl border"
             style={{ borderColor: "rgb(221, 216, 203)" }}
           />
@@ -138,14 +165,7 @@ export default function ProjectHero({
           <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">{tagline}</p>
         </div>
         <div className="flex justify-center lg:justify-end">
-          <Image
-            src={image.src}
-            alt={image.alt}
-            width={image.width}
-            height={image.height}
-            priority
-            className="h-auto w-[240px] rounded-2xl sm:w-[300px]"
-          />
+          <HeroImageView image={image} className="h-auto w-[240px] rounded-2xl sm:w-[300px]" />
         </div>
       </div>
     </section>
