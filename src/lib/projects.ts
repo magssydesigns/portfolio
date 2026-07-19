@@ -33,9 +33,17 @@ export type Block =
   | { kind: "beforeAfterImages"; id?: string; heading?: string; items: { label: string; media: MediaSlot }[] }
   /** Scoped, additive kinds used by the Send case study's full-case-study rebuild. */
   | { kind: "divider" }
-  | { kind: "richText"; id?: string; heading?: string; paragraphs: string[] }
+  | { kind: "richText"; id?: string; heading?: string; paragraphs: string[]; paddingBottom?: number }
   | { kind: "arrowList"; id?: string; heading?: string; bold?: boolean; items: string[] }
-  | { kind: "media"; id?: string; media: MediaSlot; caption?: string; width?: "reduced"; bordered?: boolean }
+  | {
+      kind: "media";
+      id?: string;
+      media: MediaSlot;
+      caption?: string;
+      width?: "reduced" | "reduced-40";
+      bordered?: boolean;
+      link?: { href: string; label: string };
+    }
   | { kind: "validationItem"; id?: string; question: string; status: "success" | "warning"; finding: string; update: string }
   | { kind: "stats"; id?: string; heading?: string; items: { value: string; label: string }[]; bullets?: string[] };
 
@@ -874,6 +882,7 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
+        bordered: true,
         media: {
           kind: "image",
           image: {
@@ -969,6 +978,7 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
+        bordered: true,
         media: {
           kind: "image",
           image: {
@@ -1027,6 +1037,7 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
+        bordered: true,
         media: {
           kind: "image",
           image: {
@@ -1102,6 +1113,12 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
+        width: "reduced-40",
+        bordered: true,
+        link: {
+          href: "/projects/send-parcel-in-app/C2X%20-%20design%20metrics%20workshop.pdf",
+          label: "View workshop in PDF",
+        },
         media: {
           kind: "image",
           image: {
@@ -1128,6 +1145,7 @@ export const projects: Project[] = [
           "The biggest impact often comes from identifying a handful of high-value improvements that balance user needs, business goals and technical constraints.",
           "Rather than starting from a blank canvas, this project focused on making thoughtful decisions within real-world limitations—an approach that ultimately led to a faster launch and a better experience for UK customers.",
         ],
+        paddingBottom: 72,
       },
     ],
   },

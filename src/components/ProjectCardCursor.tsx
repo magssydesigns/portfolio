@@ -24,7 +24,13 @@ function useFinePointer() {
 const FOLLOW_SPRING: Transition = { type: "spring", duration: 0.35, bounce: 0 };
 const CURSOR_SIZE = 96;
 
-export default function ProjectCardCursor({ children }: { children: ReactNode }) {
+export default function ProjectCardCursor({
+  children,
+  label = "View project",
+}: {
+  children: ReactNode;
+  label?: string;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
 
@@ -87,7 +93,7 @@ export default function ProjectCardCursor({ children }: { children: ReactNode })
           animate={{ opacity: active ? 1 : 0, scale: active ? 1 : 0.85 }}
           transition={{ duration: 0.25, ease: "easeOut" }}
         >
-          View project
+          {label}
         </motion.div>
       )}
     </div>
