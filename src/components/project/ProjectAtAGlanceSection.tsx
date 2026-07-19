@@ -15,6 +15,7 @@ export default function ProjectAtAGlanceSection({
   coreTeam,
   collaborationLabel = "Collaboration teams",
   collaborationTeams,
+  markets,
   platforms,
   id = "project-at-a-glance",
   standalone = true,
@@ -37,6 +38,7 @@ export default function ProjectAtAGlanceSection({
       { label: "Core team", value: coreTeam },
       { label: collaborationLabel, value: collaborationTeams },
     ],
+    ...(markets ? [[{ label: "Markets", value: markets }]] : []),
     ...(platforms ? [[{ label: "Platforms", value: platforms }]] : []),
   ];
 

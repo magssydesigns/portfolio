@@ -61,6 +61,8 @@ export type ProjectAtAGlanceData = {
   /** Defaults to "Collaboration teams" (e.g. "Collaboration with" for the brand-refresh archive projects). */
   collaborationLabel?: string;
   collaborationTeams: string;
+  /** Omit when there's no market information to show - the row is hidden cleanly, no empty column. */
+  markets?: string;
   /** Omit when there's no platform information to show - the row is hidden cleanly, no empty column. */
   platforms?: string;
 };
@@ -134,6 +136,16 @@ export const projects: Project[] = [
         { emoji: "🇵🇹", name: "Portugal" },
       ],
     },
+    projectAtAGlance: {
+      role: "Lead Product Designer",
+      scope:
+        "End-to-end UX and UI for a scalable parcel-tracking experience across multiple European markets, including research, prototyping and usability testing.",
+      coreTeam: "Product Manager • Engineering",
+      collaborationLabel: "Collaboration teams",
+      collaborationTeams: "Local market teams • UX Research • Customer Experience",
+      markets: "UK • France • Poland • Italy",
+      platforms: "iOS • Android",
+    },
     toc: [
       { id: "quick-summary", label: "Quick Summary" },
       { id: "process", label: "Process" },
@@ -159,17 +171,17 @@ export const projects: Project[] = [
       },
       bulletedChallenge: false,
       challenge: [
-        "The goal was to scale an existing parcel tracking flow from Poland to multiple international markets. Through research, I identified significant differences in delivery behaviours, carrier logic, and customer expectations, making a simple localisation approach unsuitable. As the Product Designer for the UK app team, I led the initiative to create a unified tracking experience across the UK, France, and Poland, designing a scalable solution that could support future market expansion.",
+        "InPost needed to scale its Polish parcel-tracking experience across the UK, France and Italy. Research revealed meaningful differences in delivery models, customer expectations and operational requirements, making direct localisation unsuitable. I led the cross-market design work to create a unified tracking experience that improved clarity for customers while establishing scalable patterns for future market expansion.",
       ],
       process: {
         intro:
-          "I worked closely with stakeholders across multiple markets to understand differences in delivery flows, carrier behaviours, and operational constraints. Process included:",
+          "I worked with stakeholders across four markets to understand differences in delivery journeys, carrier operations and customer expectations. Through journey mapping, research with 40 participants and iterative validation, I identified the shared patterns and local flexibility required for a scalable tracking experience.",
         items: [
-          "mapping parcel tracking journeys across markets",
-          "conducting surveys and usability testing with 40 users",
-          "revisiting information hierarchy to prioritise ETA, pickup location, and next-step clarity",
-          "validating flows with stakeholders across markets",
-          "iterating on parcel states, action visibility, and pickup interactions based on feedback",
+          "Map market journeys",
+          "Research with 40 users",
+          "Define shared patterns",
+          "Validate across markets",
+          "Refine",
         ],
       },
       midMedia: {
@@ -182,11 +194,9 @@ export const projects: Project[] = [
         alt: "InPost parcel tracking experience shown in context",
       },
       keyDecisions: [
-        "Simplified parcel states and delivery communication",
-        "Prioritised next actions and pickup visibility",
-        "Introduced more scalable tracking patterns",
-        "Reduced ambiguity across delivery scenarios",
-        "Improved locker and QR-based interaction",
+        "Created a shared system for parcel states and delivery communication across markets",
+        "Prioritised ETA, pickup location and the customer's next action",
+        "Designed reusable tracking patterns that could accommodate local delivery differences",
       ],
       outcomes: [],
       qualitative: [
