@@ -5,6 +5,7 @@ import QuickRead from "@/components/project/QuickRead";
 import CaseStudyBlocks from "@/components/project/CaseStudyBlocks";
 import FullCaseStudyReveal from "@/components/project/FullCaseStudyReveal";
 import ProjectAtAGlanceSection from "@/components/project/ProjectAtAGlanceSection";
+import QuickSummarySection from "@/components/project/QuickSummarySection";
 import PrevNextNav from "@/components/project/PrevNextNav";
 import Footer from "@/components/Footer";
 import SectionDivider from "@/components/project/SectionDivider";
@@ -66,7 +67,15 @@ export default async function ProjectPage({
             color="#F8F4EE"
             image={archiveProject.heroImage}
           />
-          <ProjectAtAGlanceSection {...archiveProject.projectAtAGlance} />
+          <section className="mx-auto max-w-[1400px] px-6 pt-10 pb-20 sm:px-10 sm:pt-14 sm:pb-28">
+            <ProjectAtAGlanceSection {...archiveProject.projectAtAGlance} standalone={false} />
+            {archiveProject.quickSummary && (
+              <>
+                <SectionDivider />
+                <QuickSummarySection paragraphs={archiveProject.quickSummary} standalone={false} />
+              </>
+            )}
+          </section>
         </article>
         <Footer />
       </>
