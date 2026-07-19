@@ -1252,14 +1252,6 @@ export const projects: Project[] = [
     shortTitle: "Farming app for Pakistan",
     client: "InPost",
     color: "#7C3AED",
-    toc: [
-      { id: "quick-summary", label: "Quick Summary" },
-      { id: "process", label: "Process" },
-      { id: "impact", label: "Impact" },
-      { id: "approach", label: "Approach" },
-      { id: "flow", label: "Send a parcel flow" },
-      { id: "key-metrics", label: "Key Metrics" },
-    ],
     quickRead: {
       tagline:
         "Led a pilot Design Metrics Workshop to establish actionable UX metrics for the 'Send a Parcel' flow.",
