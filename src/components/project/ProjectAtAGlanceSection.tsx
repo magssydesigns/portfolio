@@ -19,6 +19,7 @@ export default function ProjectAtAGlanceSection({
   platforms,
   id = "project-at-a-glance",
   standalone = true,
+  paddingBottom,
 }: ProjectAtAGlanceData & {
   id?: string;
   /**
@@ -28,6 +29,8 @@ export default function ProjectAtAGlanceSection({
    * wrapper/padding (as QuickRead does for the Send case study).
    */
   standalone?: boolean;
+  /** Overrides the standalone wrapper's bottom padding (px) - use to hit an exact gap before the next section. */
+  paddingBottom?: number;
 }) {
   const rows = [
     [
@@ -61,7 +64,14 @@ export default function ProjectAtAGlanceSection({
   if (!standalone) return content;
 
   return (
-    <section className="mx-auto max-w-[1400px] px-6 pt-10 pb-20 sm:px-10 sm:pt-14 sm:pb-28">
+    <section
+      className={
+        paddingBottom !== undefined
+          ? "mx-auto max-w-[1400px] px-6 pt-10 sm:px-10 sm:pt-14"
+          : "mx-auto max-w-[1400px] px-6 pt-10 pb-20 sm:px-10 sm:pt-14 sm:pb-28"
+      }
+      style={paddingBottom !== undefined ? { paddingBottom } : undefined}
+    >
       {content}
     </section>
   );

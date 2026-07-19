@@ -33,6 +33,7 @@ export default function QuickRead({
   color,
   onContinue,
   headingStyle = "sidebar",
+  flushTop = false,
 }: {
   data: QuickReadType;
   color: string;
@@ -40,6 +41,8 @@ export default function QuickRead({
   onContinue?: () => void;
   /** "heading" promotes section labels to full-width h2s matching the full case study's section titles. */
   headingStyle?: "sidebar" | "heading";
+  /** Drops the section's own top padding when a preceding block (e.g. a standalone Project at a glance) already owns the gap above. */
+  flushTop?: boolean;
 }) {
   const firstWrapClass =
     headingStyle === "heading" ? "mx-auto max-w-2xl" : "grid grid-cols-1 gap-8 lg:grid-cols-[200px_1fr]";
@@ -61,7 +64,7 @@ export default function QuickRead({
   // so the section itself starts flush (pt-0).
   const sectionPaddingClass =
     headingStyle === "heading"
-      ? data.roleDetails
+      ? data.roleDetails || flushTop
         ? "px-6 pt-0 pb-20 sm:px-10 sm:pb-28"
         : "px-6 pt-10 pb-20 sm:px-10 sm:pt-14 sm:pb-28"
       : "px-6 py-20 sm:px-10 sm:py-28";

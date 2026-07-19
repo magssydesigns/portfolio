@@ -13,11 +13,13 @@ export default function FullCaseStudyReveal({
   color,
   blocks,
   toc,
+  flushTop = false,
 }: {
   quickRead: QuickReadType;
   color: string;
   blocks: Block[];
   toc: TocEntry[];
+  flushTop?: boolean;
 }) {
   const [revealed, setRevealed] = useState(false);
 
@@ -50,7 +52,13 @@ export default function FullCaseStudyReveal({
 
   return (
     <>
-      <QuickRead data={quickRead} color={color} onContinue={handleContinue} headingStyle="heading" />
+      <QuickRead
+        data={quickRead}
+        color={color}
+        onContinue={handleContinue}
+        headingStyle="heading"
+        flushTop={flushTop}
+      />
 
       {revealed && (
         <div id="full-case-study" className="scroll-mt-28 border-t border-line">

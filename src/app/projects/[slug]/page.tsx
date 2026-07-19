@@ -106,7 +106,9 @@ export default async function ProjectPage({
           </div>
         )}
 
-        {project.projectAtAGlance && <ProjectAtAGlanceSection {...project.projectAtAGlance} />}
+        {project.projectAtAGlance && (
+          <ProjectAtAGlanceSection {...project.projectAtAGlance} paddingBottom={32} />
+        )}
 
         {project.toc ? (
           <FullCaseStudyReveal
@@ -114,6 +116,7 @@ export default async function ProjectPage({
             color={project.color}
             blocks={project.fullCaseStudy}
             toc={project.toc}
+            flushTop={Boolean(project.projectAtAGlance)}
           />
         ) : (
           <>

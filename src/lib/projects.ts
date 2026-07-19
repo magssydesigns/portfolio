@@ -143,7 +143,6 @@ export const projects: Project[] = [
       coreTeam: "Product Manager • Engineering",
       collaborationLabel: "Collaboration teams",
       collaborationTeams: "Local market teams • UX Research • Customer Experience",
-      markets: "UK • France • Poland • Italy",
       platforms: "iOS • Android",
     },
     toc: [
