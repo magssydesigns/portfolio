@@ -145,8 +145,10 @@ export default function QuickRead({
             </div>
           </Reveal>
 
+          <SectionDivider />
+
           <Reveal delay={0.06}>
-            <div className="mx-auto mt-14 max-w-2xl">
+            <div className="mx-auto max-w-2xl">
               <SectionLabel headingStyle={headingStyle} id="impact" text="Key outcomes" />
               {data.outcomes.length > 0 && (
                 <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
@@ -247,19 +249,21 @@ export default function QuickRead({
         </Reveal>
       )}
 
-      <Reveal delay={0.1}>
-        <div className={keyDecisionsWrapClass}>
-          <SectionLabel headingStyle={headingStyle} text={data.keyDecisionsLabel ?? "Key design decisions"} />
-          <div className={`${contentClass} grid max-w-2xl grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2`}>
-            {data.keyDecisions.map((item) => (
-              <div key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink-soft">
-                <span className="text-accent">-</span>
-                {item}
-              </div>
-            ))}
+      {data.keyDecisions && data.keyDecisions.length > 0 && (
+        <Reveal delay={0.1}>
+          <div className={keyDecisionsWrapClass}>
+            <SectionLabel headingStyle={headingStyle} text={data.keyDecisionsLabel ?? "Key design decisions"} />
+            <div className={`${contentClass} grid max-w-2xl grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2`}>
+              {data.keyDecisions.map((item) => (
+                <div key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink-soft">
+                  <span className="text-accent">-</span>
+                  {item}
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </Reveal>
+        </Reveal>
+      )}
 
       {/* In the split (roleDetails) layout the outcomes already rendered up top as "Key outcomes". */}
       {!data.roleDetails && (
@@ -327,7 +331,9 @@ export default function QuickRead({
           <button
             type="button"
             onClick={onContinue}
-            className="link-underline mx-auto mt-20 block w-fit cursor-pointer bg-transparent p-0 font-display text-xl text-ink"
+            className={`link-underline mx-auto block w-fit cursor-pointer bg-transparent p-0 font-display text-xl text-ink ${
+              data.roleDetails ? "mt-0" : "mt-20"
+            }`}
           >
             Continue to full case study ↓
           </button>

@@ -49,7 +49,7 @@ export type QuickRead = {
   challenges?: { intro?: string; items: string[] };
   midMedia?: MediaSlot;
   keyDecisionsLabel?: string;
-  keyDecisions: string[];
+  keyDecisions?: string[];
   outcomes: { value: string; label: string }[];
   /** Bold arrow-prefixed bullets rendered in the "Key outcomes" section of the split (roleDetails) layout. */
   keyOutcomeBullets?: string[];
@@ -775,7 +775,6 @@ export const projects: Project[] = [
     toc: [
       { id: "quick-summary", label: "Project at a Glance" },
       { id: "impact", label: "Key outcomes" },
-      { id: "process", label: "Process" },
       { id: "business-objectives", label: "Business Objectives" },
       { id: "flow-overview", label: "Flow overview" },
       { id: "design-process", label: "Design process" },
@@ -815,24 +814,6 @@ export const projects: Project[] = [
           { label: "Collaboration teams", value: "Marketing • Customer Experience" },
         ],
         [{ label: "Platforms", value: "iOS • Android" }],
-      ],
-      process: {
-        intro: "Research & UX input:",
-        items: [
-          "Competitor analysis (Evri, Royal Mail, Yodel, etc.)",
-          "UX benchmarking using Baymard Institute findings",
-          "Usability testing on prototypes to validate sizing, pricing, and summary flow",
-          "Key findings: users needed clear step structure, editable order details, visual sizing help, real-time price updates, and clearer parcel cover explanation.",
-        ],
-      },
-      keyDecisions: [
-        "Added stepper to show progress + reduce drop-off",
-        "Introduced address lookup to prevent delivery failures",
-        "Added parcel cover add-on (UK-specific revenue feature)",
-        "Made all details editable in Summary (before payment)",
-        "Added ETA and delivery info earlier in flow + on summary page",
-        "Improved visual clarity of sizing, pricing, and up-sell states",
-        "Added promo code support and clearer price breakdown",
       ],
       outcomes: [
         { value: "25–30%", label: "reduction in address entry time after introducing address lookup, which also helped prevent errors" },
