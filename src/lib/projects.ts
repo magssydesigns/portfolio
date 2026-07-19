@@ -42,10 +42,16 @@ export type Block =
       caption?: string;
       width?: "reduced" | "reduced-40";
       bordered?: boolean;
-      link?: { href: string; label: string };
+      link?: { href: string; label: string; size?: number };
     }
   | { kind: "validationItem"; id?: string; question: string; status: "success" | "warning"; finding: string; update: string }
-  | { kind: "stats"; id?: string; heading?: string; items: { value: string; label: string }[]; bullets?: string[] };
+  | { kind: "stats"; id?: string; heading?: string; items: { value: string; label: string }[]; bullets?: string[] }
+  | {
+      kind: "metrics";
+      id?: string;
+      intro?: string;
+      items: { title: string; definition: string; whyItMatters: string }[];
+    };
 
 export type QuickRead = {
   tagline: string;
@@ -1118,6 +1124,7 @@ export const projects: Project[] = [
         link: {
           href: "/projects/send-parcel-in-app/C2X%20-%20design%20metrics%20workshop.pdf",
           label: "View workshop in PDF",
+          size: 140,
         },
         media: {
           kind: "image",
@@ -1133,6 +1140,33 @@ export const projects: Project[] = [
         kind: "richText",
         paragraphs: [
           "The work created a shared measurement framework for the Send journey and a reusable workshop format that could be applied to other product areas.",
+        ],
+      },
+      {
+        kind: "metrics",
+        intro: "Example of some metrics established:",
+        items: [
+          {
+            title: "Metric 1 — Time on task (Address Lookup)",
+            definition:
+              "Time spent searching for the recipient's address - measured from the moment the user starts typing until selecting an address from the list.",
+            whyItMatters:
+              "This metric helps evaluate the efficiency and usability of the address lookup field. A long completion time may indicate issues such as low accuracy of search results, or confusing UI hierarchy.",
+          },
+          {
+            title: "Metric 2 — % of Users Editing Parcel Details on Summary Screen",
+            definition:
+              "Percentage of users who return to edit parcel details (e.g., size or cover) after reaching the summary step.",
+            whyItMatters:
+              "Frequent edits at this stage may suggest earlier steps lack clarity or users are unsure about their previous choices.",
+          },
+          {
+            title: "Metric 3 — % of Undelivered or Returned Parcels Due to Bad Address",
+            definition:
+              "Proportion of parcels marked as undelivered or returned because of incorrect or incomplete address data.",
+            whyItMatters:
+              "A high rate here signals that input validation and address accuracy need improvement. It also impacts customer satisfaction and support costs.",
+          },
         ],
       },
       { kind: "divider" },

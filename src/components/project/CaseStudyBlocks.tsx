@@ -151,8 +151,9 @@ function BlockRenderer({
       );
 
     case "media": {
+      // Left-aligned (not centred) to sit flush with the surrounding copy.
       const widthWrapClass =
-        block.width === "reduced" ? "mx-auto w-4/5" : block.width === "reduced-40" ? "mx-auto w-3/5" : "";
+        block.width === "reduced" ? "w-4/5" : block.width === "reduced-40" ? "w-3/5" : "";
       const mediaClassName =
         block.width || block.bordered
           ? [!block.width ? "w-full" : "", "h-auto", block.bordered ? "rounded-2xl border" : ""]
@@ -167,7 +168,7 @@ function BlockRenderer({
         <Reveal y={30}>
           <div id={block.id} className="scroll-mt-40 py-6 lg:scroll-mt-28">
             {block.link ? (
-              <ProjectCardCursor label={block.link.label}>
+              <ProjectCardCursor label={block.link.label} size={block.link.size}>
                 <a
                   href={block.link.href}
                   target="_blank"
@@ -247,6 +248,34 @@ function BlockRenderer({
                 ))}
               </ul>
             )}
+          </div>
+        </Reveal>
+      );
+
+    case "metrics":
+      return (
+        <Reveal>
+          <div id={block.id} className="scroll-mt-40 pt-6 lg:scroll-mt-28">
+            {block.intro && (
+              <p className="max-w-2xl text-lg leading-relaxed text-ink-soft">{block.intro}</p>
+            )}
+            <div className={(block.intro ? "mt-8 " : "") + "space-y-10"}>
+              {block.items.map((item, i) => (
+                <div key={i} className="border-t border-ink/15 pt-6">
+                  <p className="font-sans text-lg font-semibold sm:text-xl">{item.title}</p>
+                  <div className="mt-4 max-w-2xl space-y-4">
+                    <div>
+                      <p className="text-[13px] uppercase tracking-[0.14em] text-muted">Definition</p>
+                      <p className="mt-2 text-lg leading-relaxed text-ink-soft">{item.definition}</p>
+                    </div>
+                    <div>
+                      <p className="text-[13px] uppercase tracking-[0.14em] text-muted">Why it matters</p>
+                      <p className="mt-2 text-lg leading-relaxed text-ink-soft">{item.whyItMatters}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </Reveal>
       );

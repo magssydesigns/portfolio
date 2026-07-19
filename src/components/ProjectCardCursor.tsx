@@ -27,9 +27,11 @@ const CURSOR_SIZE = 96;
 export default function ProjectCardCursor({
   children,
   label = "View project",
+  size = CURSOR_SIZE,
 }: {
   children: ReactNode;
   label?: string;
+  size?: number;
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
@@ -80,8 +82,8 @@ export default function ProjectCardCursor({
           aria-hidden="true"
           className="pointer-events-none fixed left-0 top-0 z-[60] flex items-center justify-center rounded-full bg-black text-center text-sm text-white"
           style={{
-            width: CURSOR_SIZE,
-            height: CURSOR_SIZE,
+            width: size,
+            height: size,
             x: springX,
             y: springY,
             translateX: "-50%",
