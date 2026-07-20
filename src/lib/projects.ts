@@ -1256,6 +1256,9 @@ export const projects: Project[] = [
     shortTitle: "Farming app for Pakistan",
     client: "InPost",
     color: "#7C3AED",
+    heroBackground: "#F8F4EE",
+    heroStacked: true,
+    heroDividerBelow: true,
     projectAtAGlance: {
       role: "Product Designer",
       scope:
