@@ -11,7 +11,7 @@ const covers = [...homepageCards, ...archiveCards].flatMap((card) =>
 );
 
 const IMAGE_CLASS = "h-full w-auto object-cover";
-const TILE_CLASS = "h-[220px] w-auto shrink-0 overflow-hidden rounded-xl sm:h-[300px]";
+const TILE_CLASS = "h-[440px] w-auto shrink-0 overflow-hidden sm:h-[600px]";
 
 export default function ProjectMarquee() {
   const prefersReducedMotion = useReducedMotion();
@@ -20,7 +20,7 @@ export default function ProjectMarquee() {
   if (prefersReducedMotion) {
     return (
       <div className="w-full overflow-x-auto" aria-label="Selected project covers">
-        <div className="flex w-max gap-2 px-6 sm:gap-3 sm:px-10">
+        <div className="flex w-max px-6 sm:px-10">
           {covers.map((c) => (
             <div key={c.slug} className={TILE_CLASS}>
               <Image
@@ -28,7 +28,7 @@ export default function ProjectMarquee() {
                 alt={c.image.alt}
                 width={c.image.width}
                 height={c.image.height}
-                sizes="300px"
+                sizes="600px"
                 className={IMAGE_CLASS}
               />
             </div>
@@ -46,7 +46,7 @@ export default function ProjectMarquee() {
       onMouseLeave={() => setPaused(false)}
     >
       <div
-        className="flex w-max animate-marquee gap-2 sm:gap-3"
+        className="flex w-max animate-marquee"
         style={{ animationPlayState: paused ? "paused" : "running" }}
       >
         {[0, 1].map((setIndex) =>
@@ -57,7 +57,7 @@ export default function ProjectMarquee() {
                 alt={setIndex === 0 ? c.image.alt : ""}
                 width={c.image.width}
                 height={c.image.height}
-                sizes="300px"
+                sizes="600px"
                 className={IMAGE_CLASS}
               />
             </div>
