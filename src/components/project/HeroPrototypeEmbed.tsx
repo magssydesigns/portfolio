@@ -3,6 +3,14 @@
 import { useState } from "react";
 
 /**
+ * Shows the prototype "zoomed out" so the whole screen fits in the preview
+ * without needing to scroll inside the frame: the iframe is laid out at
+ * 1/PROTOTYPE_ZOOM of the visible box, then scaled back down to exactly fill
+ * it, so the embedded site renders against a larger perceived viewport.
+ */
+const PROTOTYPE_ZOOM = 0.7;
+
+/**
  * Full-width interactive prototype embed for a project hero, reusing the
  * same border/corner-radius/background treatment as the standard stacked
  * hero image, but at the larger app-sized height a prototype needs to be
@@ -40,7 +48,14 @@ export default function HeroPrototypeEmbed({ src, title }: { src: string; title:
               title={title}
               loading="eager"
               allow="fullscreen"
-              className="h-full w-full"
+              scrolling="no"
+              style={{
+                width: `${100 / PROTOTYPE_ZOOM}%`,
+                height: `${100 / PROTOTYPE_ZOOM}%`,
+                border: "none",
+                transform: `scale(${PROTOTYPE_ZOOM})`,
+                transformOrigin: "top left",
+              }}
               onError={() => setFailed(true)}
             />
           )}
