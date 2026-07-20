@@ -1539,6 +1539,8 @@ export type ArchiveProject = {
   projectAtAGlance: ProjectAtAGlanceData;
   /** Narrative paragraph(s) shown in a "Quick summary" section below "Project at a glance". */
   quickSummary?: string[];
+  /** Optional visual shown below the "Quick summary" section. */
+  belowSummaryMedia?: MediaSlot;
 };
 
 export const archiveProjects: ArchiveProject[] = [
@@ -1546,7 +1548,12 @@ export const archiveProjects: ArchiveProject[] = [
     slug: "designability",
     title: "Designability",
     subtitle: "[Add project subtitle]",
-    heroImage: { kind: "placeholder", label: "Hero image placeholder" },
+    heroImage: {
+      src: "/projects/designability/designabilitycover.png",
+      width: 4956,
+      height: 3946,
+      alt: "Designability design guidelines shown across a grid of mobile screens",
+    },
     cardMedia: {
       kind: "image",
       image: {
@@ -1567,12 +1574,26 @@ export const archiveProjects: ArchiveProject[] = [
     quickSummary: [
       "I led the creative direction and UI design for Designability's Online Design Resource, helping turn complex accessibility guidance for electric vehicle charging points into a clear, engaging and easy-to-navigate digital experience. Working within the existing design system, I developed the visual direction, responsive page designs and reusable modules in collaboration with the client, UX, engineering and art direction teams.",
     ],
+    belowSummaryMedia: {
+      kind: "image",
+      image: {
+        src: "/projects/designability/moodboards.webp",
+        width: 1920,
+        height: 1541,
+        alt: "Designability brand direction moodboards exploring tone, typography and photography options",
+      },
+    },
   },
   {
     slug: "tigi",
     title: "TIGI",
     subtitle: "[Add project subtitle]",
-    heroImage: { kind: "placeholder", label: "Hero image placeholder" },
+    heroImage: {
+      src: "/projects/tigi/tigi-1.webp",
+      width: 1920,
+      height: 1102,
+      alt: "TIGI Bed Head website homepage shown on desktop and mobile",
+    },
     cardMedia: {
       kind: "image",
       image: {
@@ -1593,12 +1614,26 @@ export const archiveProjects: ArchiveProject[] = [
     quickSummary: [
       "I redesigned the TIGI Bed Head website to reflect the brand's updated grunge-inspired identity. Working from guidelines created primarily for print, I translated the visual direction into a distinctive yet user-friendly digital experience, balancing the brand's fragmented, expressive style with clear navigation and responsive web design.",
     ],
+    belowSummaryMedia: {
+      kind: "image",
+      image: {
+        src: "/projects/tigi/tigi-4.webp",
+        width: 2877,
+        height: 1626,
+        alt: "TIGI Bed Head product page shown across desktop and mobile breakpoints",
+      },
+    },
   },
   {
     slug: "migarage",
     title: "MiGarage",
     subtitle: "[Add project subtitle]",
-    heroImage: { kind: "placeholder", label: "Hero image placeholder" },
+    heroImage: {
+      src: "/projects/MIGarage/migarage-3.webp",
+      width: 1920,
+      height: 1199,
+      alt: "MiGarage website shown across a row of mobile screens",
+    },
     cardMedia: {
       kind: "image",
       image: {
@@ -1619,12 +1654,26 @@ export const archiveProjects: ArchiveProject[] = [
     quickSummary: [
       "Digital Catapult underwent a full brand refresh across its digital platforms. My role was to apply the new visual identity to both new and existing websites and designing two new websites - MiGarage and Futurescope, as a part of Digital Catapult Brand. The main challenge was to update the design language without altering the component structures - spacing, image ratios, padding, or interactions had to remain intact. I designed the brand application for MiGarage and Futurescope (newly launched websites) as well as adapted the branding for the existing Creative XR website, ensuring a consistent and modern look across the organization's digital presence.",
     ],
+    belowSummaryMedia: {
+      kind: "image",
+      image: {
+        src: "/projects/MIGarage/migarage-4.webp",
+        width: 1357,
+        height: 1920,
+        alt: "MiGarage news and highlights screens shown on mobile",
+      },
+    },
   },
   {
     slug: "creative-xr",
     title: "Creative XR",
     subtitle: "[Add project subtitle]",
-    heroImage: { kind: "placeholder", label: "Hero image placeholder" },
+    heroImage: {
+      src: "/projects/creative xr/crx-2 copy.webp",
+      width: 1920,
+      height: 1357,
+      alt: "Creative XR homepage shown on desktop and mobile",
+    },
     cardMedia: {
       kind: "video",
       video: {
@@ -1646,12 +1695,26 @@ export const archiveProjects: ArchiveProject[] = [
     quickSummary: [
       "Digital Catapult underwent a full brand refresh across its digital platforms. My role was to apply the new visual identity to both new and existing websites and designing two new websites - MiGarage and Futurescope, as a part of Digital Catapult Brand. The main challenge was to update the design language without altering the component structures - spacing, image ratios, padding, or interactions had to remain intact. I designed the brand application for MiGarage and Futurescope (newly launched websites) as well as adapted the branding for the existing Creative XR website, ensuring a consistent and modern look across the organization's digital presence.",
     ],
+    belowSummaryMedia: {
+      kind: "image",
+      image: {
+        src: "/projects/creative xr/crx-3 copy.webp",
+        width: 1920,
+        height: 1358,
+        alt: "Creative XR full page layouts shown across the programme timeline and application sections",
+      },
+    },
   },
   {
     slug: "futurescope",
     title: "Futurescope",
     subtitle: "[Add project subtitle]",
-    heroImage: { kind: "placeholder", label: "Hero image placeholder" },
+    heroImage: {
+      src: "/projects/futurescope/f-2.webp",
+      width: 1920,
+      height: 1194,
+      alt: "FutureScope homepage shown on desktop and mobile",
+    },
     cardMedia: {
       kind: "image",
       image: {
@@ -1672,6 +1735,15 @@ export const archiveProjects: ArchiveProject[] = [
     quickSummary: [
       "Digital Catapult underwent a full brand refresh across its digital platforms. My role was to apply the new visual identity to both new and existing websites and designing two new websites - MiGarage and Futurescope, as a part of Digital Catapult Brand. The main challenge was to update the design language without altering the component structures - spacing, image ratios, padding, or interactions had to remain intact. I designed the brand application for MiGarage and Futurescope (newly launched websites) as well as adapted the branding for the existing Creative XR website, ensuring a consistent and modern look across the organization's digital presence.",
     ],
+    belowSummaryMedia: {
+      kind: "image",
+      image: {
+        src: "/projects/futurescope/f-3.webp",
+        width: 1920,
+        height: 1194,
+        alt: "FutureScope structure and vision sections shown on desktop and mobile",
+      },
+    },
   },
 ];
 

@@ -6,6 +6,7 @@ import CaseStudyBlocks from "@/components/project/CaseStudyBlocks";
 import FullCaseStudyReveal from "@/components/project/FullCaseStudyReveal";
 import ProjectAtAGlanceSection from "@/components/project/ProjectAtAGlanceSection";
 import QuickSummarySection from "@/components/project/QuickSummarySection";
+import MediaSlotView from "@/components/project/MediaSlotView";
 import PrevNextNav from "@/components/project/PrevNextNav";
 import Footer from "@/components/Footer";
 import SectionDivider from "@/components/project/SectionDivider";
@@ -79,6 +80,14 @@ export default async function ProjectPage({
                 <SectionDivider />
                 <QuickSummarySection paragraphs={archiveProject.quickSummary} standalone={false} />
               </>
+            )}
+            {archiveProject.belowSummaryMedia && (
+              <div className="mt-12 flex justify-center rounded-2xl bg-paper-dim p-6 sm:mt-16 sm:p-10">
+                <MediaSlotView
+                  media={archiveProject.belowSummaryMedia}
+                  className="h-auto w-full max-w-[1000px] rounded-xl"
+                />
+              </div>
             )}
           </section>
         </article>
