@@ -85,25 +85,29 @@ function BlockRenderer({
         </Reveal>
       );
 
-    case "heading":
+    case "heading": {
+      const headingStyle =
+        block.paddingBottom !== undefined ? { paddingBottom: block.paddingBottom } : undefined;
+      const headingClassName =
+        block.spacing === "tight"
+          ? layout === "toc"
+            ? ["scroll-mt-40 lg:scroll-mt-28", block.paddingBottom !== undefined ? "" : "pb-4"]
+                .filter(Boolean)
+                .join(" ")
+            : "scroll-mt-40 lg:scroll-mt-28"
+          : layout === "toc"
+            ? ["scroll-mt-40 pt-16 sm:pt-20 lg:scroll-mt-28", block.paddingBottom !== undefined ? "" : "pb-4"]
+                .filter(Boolean)
+                .join(" ")
+            : "mx-auto max-w-[1400px] scroll-mt-28 px-6 pt-16 pb-4 text-center sm:px-10 sm:pt-24";
       return (
         <Reveal>
-          <div
-            id={block.id}
-            className={
-              block.spacing === "tight"
-                ? layout === "toc"
-                  ? "scroll-mt-40 pb-4 lg:scroll-mt-28"
-                  : "scroll-mt-40 lg:scroll-mt-28"
-                : layout === "toc"
-                  ? "scroll-mt-40 pt-16 pb-4 sm:pt-20 lg:scroll-mt-28"
-                  : "mx-auto max-w-[1400px] scroll-mt-28 px-6 pt-16 pb-4 text-center sm:px-10 sm:pt-24"
-            }
-          >
+          <div id={block.id} className={headingClassName} style={headingStyle}>
             <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.text}</h2>
           </div>
         </Reveal>
       );
+    }
 
     case "divider":
       // Full-width to match the internal dividers used in the "Design process"
@@ -118,7 +122,10 @@ function BlockRenderer({
           <div
             id={block.id}
             className="scroll-mt-40 lg:scroll-mt-28"
-            style={block.paddingBottom ? { paddingBottom: block.paddingBottom } : undefined}
+            style={{
+              ...(block.paddingTop ? { paddingTop: block.paddingTop } : {}),
+              ...(block.paddingBottom ? { paddingBottom: block.paddingBottom } : {}),
+            }}
           >
             {block.heading &&
               (block.headingLevel === "h3" ? (

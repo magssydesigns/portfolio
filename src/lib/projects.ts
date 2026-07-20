@@ -27,7 +27,7 @@ export type MediaSlot =
 
 export type Block =
   | { kind: "lead"; id?: string; spacing?: "tight"; items: { label: string; body: string }[] }
-  | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light"; spacing?: "tight" }
+  | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light"; spacing?: "tight"; paddingBottom?: number }
   | { kind: "statement"; id?: string; text: string; tone?: "dark" | "light" }
   | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; spacing?: "tight"; paddingTop?: number; paddingBottom?: number; items: { title: string; body: string }[] }
   | { kind: "image"; id?: string; image: ProjectImage; size?: "medium" | "wide" | "full" }
@@ -39,7 +39,7 @@ export type Block =
   | { kind: "beforeAfterImages"; id?: string; heading?: string; spacing?: "tight"; items: { label: string; media: MediaSlot }[] }
   /** Scoped, additive kinds used by the Send case study's full-case-study rebuild. */
   | { kind: "divider" }
-  | { kind: "richText"; id?: string; heading?: string; headingLevel?: "h2" | "h3"; paragraphs: string[]; paddingBottom?: number }
+  | { kind: "richText"; id?: string; heading?: string; headingLevel?: "h2" | "h3"; paragraphs: string[]; paddingTop?: number; paddingBottom?: number }
   | { kind: "arrowList"; id?: string; heading?: string; bold?: boolean; paddingTop?: number; items: string[] }
   | {
       kind: "media";
@@ -1345,6 +1345,7 @@ export const projects: Project[] = [
     heroBackground: "#F8F4EE",
     heroStacked: true,
     heroDividerBelow: true,
+    glancePaddingTop: 32,
     midEmbed: {
       src: "https://union-park-04897894.figma.site/",
       title: "Interactive Kashtkaar farm management prototype",
@@ -1412,6 +1413,7 @@ export const projects: Project[] = [
         kind: "richText",
         id: "defining-the-product-concept",
         heading: "Defining the product concept",
+        paddingBottom: 32,
         paragraphs: [
           "The founder wanted to combine the accessibility and familiarity of a social-media feed with the practical tools of a farm-management product. I explored how these two behaviours could coexist without making the application feel fragmented.",
           "The resulting concept had two connected layers:",
@@ -1433,6 +1435,7 @@ export const projects: Project[] = [
       },
       {
         kind: "richText",
+        paddingTop: 32,
         paddingBottom: 24,
         paragraphs: [
           "The concept allowed farmers to use familiar feed-based interactions while keeping private farm records and management tools organised in a dedicated area.",
@@ -1457,11 +1460,18 @@ export const projects: Project[] = [
         media: { kind: "placeholder", label: "kashtkaar-product-architecture" },
       },
       { kind: "divider" },
-      { kind: "heading", id: "designing-the-core-experience", text: "Designing the core experience", spacing: "tight" },
+      {
+        kind: "heading",
+        id: "designing-the-core-experience",
+        text: "Designing the core experience",
+        spacing: "tight",
+        paddingBottom: 0,
+      },
       {
         kind: "richText",
         heading: "Making activity recording easier",
         headingLevel: "h3",
+        paddingTop: 32,
         paragraphs: [
           "Recording farm activity was the product's most important behaviour, but lengthy forms risked becoming another administrative burden for farmers and field officers.",
           "I explored a prominent one-tap action, guided data entry and context-specific questions based on the farmer's crop stage. The goal was to collect useful information without asking farmers to complete the same long form for every activity.",
@@ -1476,6 +1486,7 @@ export const projects: Project[] = [
         kind: "richText",
         heading: "Turning the crop calendar into guidance",
         headingLevel: "h3",
+        paddingBottom: 32,
         paragraphs: [
           "The crop calendar needed to do more than display dates. I explored how it could guide farmers through key stages such as land preparation, sowing, irrigation, chemical application and harvest while collecting the information required by field officers and processors.",
           "I proposed what information should be requested at each stage of the rice-growing cycle and explored several calendar structures before recommending a direction for testing.",
@@ -1546,6 +1557,7 @@ export const projects: Project[] = [
         kind: "richText",
         id: "building-the-foundations",
         heading: "Building the foundations",
+        paddingBottom: 32,
         paragraphs: [
           "Alongside the core journeys, I established the initial visual and interaction foundations for the product. This included accessible colour and typography choices, reusable interface components and patterns that could support both farm-management tools and social content.",
           "I also identified and corrected early accessibility issues so the prototypes provided a more consistent and usable foundation for continued development.",
@@ -1563,10 +1575,6 @@ export const projects: Project[] = [
             label: "Components",
             media: { kind: "placeholder", label: "kashtkaar-components" },
           },
-          {
-            label: "Accessibility",
-            media: { kind: "placeholder", label: "kashtkaar-accessibility" },
-          },
         ],
       },
       { kind: "divider" },
@@ -1575,17 +1583,8 @@ export const projects: Project[] = [
         id: "outcome-and-reflection",
         heading: "Outcome and reflection",
         paragraphs: [
-          "The work established Kashtkaar's initial product direction and transformed a broad idea into a testable mobile experience.",
-          "I delivered the first product architecture, competitor research, core user journeys, several design iterations, a clickable prototype and the foundations of the design system. Findings from Urdu prototype testing informed refinements to navigation, terminology and activity recording.",
-          "I left the project after the early concept and validation phase, and the founder continued developing the product with the engineering team.",
-        ],
-      },
-      {
-        kind: "richText",
-        heading: "Reflection",
-        headingLevel: "h3",
-        paragraphs: [
-          "This project reinforced the importance of designing around behaviours that already feel familiar to users. The social-feed model created an accessible entry point, but the product's longer-term value depended on making agricultural recording and crop guidance feel simple, relevant and immediately useful to farmers.",
+          "The work turned Kashtkaar's early vision into a testable mobile product, including the initial architecture, core journeys, design iterations, clickable prototype and design-system foundations. Urdu prototype testing informed improvements to navigation, terminology and activity recording before the founder and engineering team continued development.",
+          "The project reinforced the value of designing around familiar behaviours. While the social feed created an accessible entry point, the product's real value depended on making agricultural guidance and farm data collection feel simple, relevant and useful.",
         ],
       },
     ],
