@@ -546,7 +546,9 @@ function BlockRenderer({
       );
 
     case "beforeAfterImages": {
-      const bafColsClass = block.items.length >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2";
+      const bafColsClass =
+        block.items.length >= 3 ? "sm:grid-cols-3" : block.items.length === 1 ? "sm:grid-cols-1" : "sm:grid-cols-2";
+      const bafMediaClass = block.items.length === 1 ? "mx-auto h-auto w-full" : "mx-auto h-auto w-full max-w-[50%]";
       return (
         <Reveal>
           <div
@@ -577,11 +579,7 @@ function BlockRenderer({
                     {item.label}
                   </p>
                   <div className="flex justify-center rounded-2xl p-6 sm:p-8">
-                    <MediaSlotView
-                      media={item.media}
-                      className="mx-auto h-auto w-full max-w-[50%]"
-                      bordered={block.bordered}
-                    />
+                    <MediaSlotView media={item.media} className={bafMediaClass} bordered={block.bordered} />
                   </div>
                 </div>
               ))}

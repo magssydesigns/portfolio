@@ -1506,23 +1506,17 @@ export const projects: Project[] = [
         ],
       },
       {
-        kind: "beforeAfterImages",
-        spacing: "tight",
+        kind: "media",
         bordered: true,
-        items: [
-          {
-            label: "Exploration",
-            media: {
-              kind: "image",
-              image: {
-                src: "/projects/kashtkaar/kashtkaar-crop-calendar-exploration.png",
-                width: 20916,
-                height: 10496,
-                alt: "Crop calendar exploration screens for tracking rice-growing stages",
-              },
-            },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/kashtkaar/kashtkaar-crop-calendar-exploration.png",
+            width: 20916,
+            height: 10496,
+            alt: "Crop calendar exploration screens for tracking rice-growing stages",
           },
-        ],
+        },
       },
       { kind: "divider" },
       {
