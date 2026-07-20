@@ -235,11 +235,16 @@ export default function QuickRead({
       {data.midMedia && (
         <Reveal delay={0.08} y={30}>
           <div className="mt-8 flex justify-center">
-            <MediaSlotView
-              media={data.midMedia}
-              className="h-auto w-full max-w-[864px] rounded-2xl border"
-              style={{ borderColor: "rgb(221, 216, 203)" }}
-            />
+            <div className="w-full" style={{ maxWidth: data.midMediaMaxWidth ?? 864 }}>
+              <MediaSlotView
+                media={data.midMedia}
+                className="h-auto w-full rounded-2xl border"
+                style={{ borderColor: "rgb(221, 216, 203)" }}
+              />
+              {data.midMediaHint && (
+                <p className="mt-3 text-left text-[13px] text-muted">{data.midMediaHint}</p>
+              )}
+            </div>
           </div>
         </Reveal>
       )}

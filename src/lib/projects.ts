@@ -100,6 +100,10 @@ export type QuickRead = {
   process?: { intro?: string; items: string[] };
   challenges?: { intro?: string; items: string[] };
   midMedia?: MediaSlot;
+  /** Overrides midMedia's max-width in px (default 864). */
+  midMediaMaxWidth?: number;
+  /** Small left-aligned caption shown under midMedia. */
+  midMediaHint?: string;
   keyDecisionsLabel?: string;
   keyDecisions?: string[];
   outcomes: { value: string; label: string }[];
@@ -1386,6 +1390,8 @@ export const projects: Project[] = [
           alt: "Branded Kashtkaar onboarding and farm-health screens",
         },
       },
+      midMediaMaxWidth: 1468.8,
+      midMediaHint: "Flow with branded components applied",
       outcomes: [],
     },
     fullCaseStudy: [
@@ -1581,23 +1587,17 @@ export const projects: Project[] = [
         ],
       },
       {
-        kind: "beforeAfterImages",
-        spacing: "tight",
+        kind: "media",
         bordered: true,
-        items: [
-          {
-            label: "Design system",
-            media: {
-              kind: "image",
-              image: {
-                src: "/projects/kashtkaar/kashtkaar-design-system.png",
-                width: 2044,
-                height: 1078,
-                alt: "Kashtkaar design-system components including cards and bottom navigation",
-              },
-            },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/kashtkaar/kashtkaar-design-system.png",
+            width: 2044,
+            height: 1078,
+            alt: "Kashtkaar design-system components including cards and bottom navigation",
           },
-        ],
+        },
       },
       { kind: "divider" },
       {
