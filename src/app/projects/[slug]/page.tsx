@@ -111,7 +111,7 @@ export default async function ProjectPage({
           video={project.quickRead.heroVideo}
           stacked={project.heroStacked}
           markets={project.heroMarkets}
-          flushBottom={project.heroDividerBelow}
+          flushBottom={project.heroDividerBelow || project.heroFlushBottom}
         />
 
         {project.heroDividerBelow && (
@@ -121,7 +121,17 @@ export default async function ProjectPage({
         )}
 
         {project.projectAtAGlance && (
-          <ProjectAtAGlanceSection {...project.projectAtAGlance} paddingBottom={32} />
+          <ProjectAtAGlanceSection
+            {...project.projectAtAGlance}
+            paddingTop={project.glancePaddingTop}
+            paddingBottom={project.glanceDividerBelow ? 0 : 32}
+          />
+        )}
+
+        {project.glanceDividerBelow && (
+          <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
+            <SectionDivider />
+          </div>
         )}
 
         {project.toc ? (

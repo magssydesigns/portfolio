@@ -26,7 +26,7 @@ export type Block =
   | { kind: "lead"; id?: string; spacing?: "tight"; items: { label: string; body: string }[] }
   | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light"; spacing?: "tight" }
   | { kind: "statement"; id?: string; text: string; tone?: "dark" | "light" }
-  | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; spacing?: "tight"; items: { title: string; body: string }[] }
+  | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; spacing?: "tight"; paddingTop?: number; paddingBottom?: number; items: { title: string; body: string }[] }
   | { kind: "image"; id?: string; image: ProjectImage; size?: "medium" | "wide" | "full" }
   | { kind: "beforeAfterStats"; id?: string; heading?: string; items: { label: string; before: string; after: string; description: string }[] }
   | { kind: "quote"; id?: string; heading?: string; text: string; attribution?: string }
@@ -37,7 +37,7 @@ export type Block =
   /** Scoped, additive kinds used by the Send case study's full-case-study rebuild. */
   | { kind: "divider" }
   | { kind: "richText"; id?: string; heading?: string; headingLevel?: "h2" | "h3"; paragraphs: string[]; paddingBottom?: number }
-  | { kind: "arrowList"; id?: string; heading?: string; bold?: boolean; items: string[] }
+  | { kind: "arrowList"; id?: string; heading?: string; bold?: boolean; paddingTop?: number; items: string[] }
   | {
       kind: "media";
       id?: string;
@@ -120,9 +120,15 @@ export type Project = {
   heroMarkets?: { label: string; flags: { emoji: string; name: string }[] };
   /** Renders the shared Divider directly below the hero, before the Quick Read section begins. */
   heroDividerBelow?: boolean;
+  /** Drops the hero's bottom padding (like heroDividerBelow) without inserting a divider - for a flat px gap owned entirely by the next section's top padding. */
+  heroFlushBottom?: boolean;
   darkText?: boolean;
   /** Renders the standalone "Project at a glance" section below the hero, before the Quick Read/full case study content. */
   projectAtAGlance?: ProjectAtAGlanceData;
+  /** Exact px gap above "Project at a glance" - pairs with heroFlushBottom to hit a flat rhythm regardless of breakpoint. */
+  glancePaddingTop?: number;
+  /** Inserts a SectionDivider between "Project at a glance" and the Quick summary/Quick read section that follows (and zeroes the glance section's own bottom padding so the divider owns the full 32px rhythm). */
+  glanceDividerBelow?: boolean;
   quickRead: QuickRead;
   fullCaseStudy: Block[];
   /** Presence of this field opts the project into the reveal-on-click + sticky TOC behaviour. */
@@ -454,6 +460,9 @@ export const projects: Project[] = [
     color: "#3355FF",
     heroBackground: "#F8F4EE",
     heroStacked: true,
+    heroFlushBottom: true,
+    glancePaddingTop: 32,
+    glanceDividerBelow: true,
     projectAtAGlance: {
       role: "Lead Product Designer",
       scope:
@@ -556,6 +565,7 @@ export const projects: Project[] = [
         id: "business-goals",
         heading: "Business goals",
         showArrow: true,
+        spacing: "tight",
         items: [
           {
             title: "Launch the UK app within three months",
@@ -638,7 +648,7 @@ export const projects: Project[] = [
         ],
       },
       { kind: "divider" },
-      { kind: "heading", id: "audit-insights", text: "Audit & insights" },
+      { kind: "heading", id: "audit-insights", text: "Audit & insights", spacing: "tight" },
       {
         kind: "numbered",
         spacing: "tight",
@@ -672,7 +682,7 @@ export const projects: Project[] = [
         ],
       },
       { kind: "divider" },
-      { kind: "heading", id: "key-design-decisions", text: "Key design decisions" },
+      { kind: "heading", id: "key-design-decisions", text: "Key design decisions", spacing: "tight" },
       {
         kind: "twoCol",
         spacing: "tight",
@@ -691,6 +701,7 @@ export const projects: Project[] = [
       {
         kind: "arrowList",
         bold: true,
+        paddingTop: 32,
         items: ["The team could launch on time while maintaining a clear direction for future releases."],
       },
       { kind: "divider" },
@@ -712,6 +723,7 @@ export const projects: Project[] = [
       {
         kind: "arrowList",
         bold: true,
+        paddingTop: 32,
         items: ["Customers could understand which parcels required attention and how quickly they needed to act."],
       },
       {
@@ -745,6 +757,7 @@ export const projects: Project[] = [
       {
         kind: "arrowList",
         bold: true,
+        paddingTop: 32,
         items: [
           "The first interaction with the product felt intentional and relevant to the new market rather than directly translated.",
         ],
@@ -780,6 +793,7 @@ export const projects: Project[] = [
       {
         kind: "arrowList",
         bold: true,
+        paddingTop: 32,
         items: ["Customers could make a more informed choice before travelling to a location."],
       },
       {
@@ -799,6 +813,7 @@ export const projects: Project[] = [
         kind: "numbered",
         id: "design-system-rebuild",
         heading: "Design-system rebuild",
+        paddingBottom: 0,
         items: [
           {
             title: "Creating a semantic type system",
@@ -865,6 +880,7 @@ export const projects: Project[] = [
         id: "outcome",
         heading: "Outcome",
         showArrow: true,
+        paddingTop: 0,
         items: [
           {
             title: "Launched on schedule",
@@ -899,6 +915,7 @@ export const projects: Project[] = [
         kind: "richText",
         id: "reflection",
         heading: "Reflection",
+        paddingBottom: 90,
         paragraphs: [
           "This project reinforced that working within a legacy product is as much an exercise in prioritisation as it is in interface design.",
           "A full redesign was neither technically realistic nor necessary for the first release. The greatest value came from identifying the changes that would materially improve the UK experience, separating them from deeper structural work and creating a system that allowed the product to evolve after launch.",

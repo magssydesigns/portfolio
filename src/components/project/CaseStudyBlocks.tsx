@@ -140,7 +140,11 @@ function BlockRenderer({
     case "arrowList":
       return (
         <Reveal>
-          <div id={block.id} className="scroll-mt-40 lg:scroll-mt-28">
+          <div
+            id={block.id}
+            className="scroll-mt-40 lg:scroll-mt-28"
+            style={block.paddingTop !== undefined ? { paddingTop: block.paddingTop } : undefined}
+          >
             {block.heading && (
               <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.heading}</h2>
             )}
@@ -313,7 +317,14 @@ function BlockRenderer({
         </Reveal>
       );
 
-    case "numbered":
+    case "numbered": {
+      const numberedPaddingStyle =
+        block.spacing !== "tight" && layout === "toc" && (block.paddingTop !== undefined || block.paddingBottom !== undefined)
+          ? {
+              ...(block.paddingTop !== undefined ? { paddingTop: block.paddingTop } : {}),
+              ...(block.paddingBottom !== undefined ? { paddingBottom: block.paddingBottom } : {}),
+            }
+          : undefined;
       return (
         <Reveal>
           <div
@@ -322,9 +333,16 @@ function BlockRenderer({
               block.spacing === "tight"
                 ? "scroll-mt-40 lg:scroll-mt-28"
                 : layout === "toc"
-                  ? "scroll-mt-40 py-12 lg:scroll-mt-28"
+                  ? [
+                      "scroll-mt-40 lg:scroll-mt-28",
+                      block.paddingTop !== undefined ? "" : "pt-12",
+                      block.paddingBottom !== undefined ? "" : "pb-12",
+                    ]
+                      .filter(Boolean)
+                      .join(" ")
                   : "mx-auto max-w-[1400px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20"
             }
+            style={numberedPaddingStyle}
           >
             {block.heading && (
               <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.heading}</h2>
@@ -362,6 +380,7 @@ function BlockRenderer({
           </div>
         </Reveal>
       );
+    }
 
     case "steps":
       return (
