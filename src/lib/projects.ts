@@ -1873,6 +1873,8 @@ export type WorkInProgressProject = {
   title: string;
   subtitle: string;
   heroImage: StandardHeroImage;
+  /** Overrides the stacked hero image's max-width in px (default 614.797, the site's standard stacked-hero size). */
+  heroImageMaxWidth?: number;
   projectAtAGlance: ProjectAtAGlanceData;
   quickSummary: string[];
 };
@@ -1890,6 +1892,7 @@ export const workInProgressProjects: WorkInProgressProject[] = [
       height: 5289,
       alt: "PropFuse landing page showing the daily property digest concept",
     },
+    heroImageMaxWidth: 1045.15,
     projectAtAGlance: {
       role: "Founder and Product Designer",
       scope:

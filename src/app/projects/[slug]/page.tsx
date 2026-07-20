@@ -119,6 +119,7 @@ export default async function ProjectPage({
             image={wipProject.heroImage}
             stacked
             flushBottom
+            imageMaxWidth={wipProject.heroImageMaxWidth}
           />
           <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
             <SectionDivider />

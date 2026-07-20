@@ -70,7 +70,15 @@ export const homepageCards: ProjectCardData[] = [
   {
     title: "Designing Kashtkaar's first farm management experience",
     slug: "kashtkaar",
-    media: { kind: "placeholder", label: "kashtkaar-hero" },
+    media: {
+      kind: "image",
+      image: {
+        src: "/homepage/Kashtkaar.png",
+        width: 7434,
+        height: 5919,
+        alt: "Kashtkaar onboarding and farm-health screens",
+      },
+    },
     type: "homepage",
     isArchive: false,
   },
