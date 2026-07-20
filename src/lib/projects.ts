@@ -481,10 +481,10 @@ export const projects: Project[] = [
       tagline:
         "Redesigned and localised a legacy Polish app for the UK market while unifying the design system, resolving accessibility issues, and defining a phased product roadmap.",
       heroImage: {
-        src: "/projects/rapid-uk-launch/hero.png",
-        width: 580,
-        height: 1000,
-        alt: "InPost UK app 'Ready to collect' parcel tracking screen on a yellow background",
+        src: "/projects/rapid-uk-launch/App-launch.png",
+        width: 15092,
+        height: 11892,
+        alt: "InPost UK app onboarding, locker map and parcel tracking screens shown on three phones",
       },
       bulletedChallenge: false,
       role:
@@ -588,7 +588,15 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
-        media: { kind: "placeholder", label: "Final experience screenshot" },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/rapid-uk-launch/Final experience screenshot.png",
+            width: 20916,
+            height: 12608,
+            alt: "Four key UK app screens: animated onboarding, locker capacity checker, parcel tracking and pick-up details",
+          },
+        },
       },
       { kind: "divider" },
       {
@@ -643,7 +651,15 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
-        media: { kind: "placeholder", label: "Product and system audit screenshot" },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/rapid-uk-launch/Product and system audit screenshot.png",
+            width: 12592,
+            height: 7536,
+            alt: "Audit of the legacy colour and typography tokens next to the consolidated design-system tokens",
+          },
+        },
       },
       {
         kind: "numbered",
@@ -700,7 +716,15 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
-        media: { kind: "placeholder", label: "Making collection urgency clearer screenshot" },
+        media: {
+          kind: "video",
+          video: {
+            src: "/projects/rapid-uk-launch/parcel-list-video.mp4",
+            width: 1412,
+            height: 1080,
+          },
+          alt: "Parcel list with decreasing urgency indicators and remaining-time messaging",
+        },
       },
       { kind: "divider" },
       {
@@ -730,7 +754,7 @@ export const projects: Project[] = [
         media: {
           kind: "video",
           video: {
-            src: "/projects/rapid-uk-launch/onboarding.mp4",
+            src: "/projects/rapid-uk-launch/onboarding-video.mp4",
             width: 1412,
             height: 1080,
           },
@@ -760,7 +784,15 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
-        media: { kind: "placeholder", label: "Making locker availability visible screenshot" },
+        media: {
+          kind: "video",
+          video: {
+            src: "/projects/rapid-uk-launch/locker-search-video.mp4",
+            width: 1412,
+            height: 1080,
+          },
+          alt: "Locker map with live capacity indicators shown while searching for a drop-off point",
+        },
       },
       { kind: "divider" },
       {
