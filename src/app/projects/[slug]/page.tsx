@@ -13,14 +13,16 @@ import SectionDivider from "@/components/project/SectionDivider";
 import {
   projects,
   archiveProjects,
+  workInProgressProjects,
   getProjectBySlug,
   getArchiveProjectBySlug,
+  getWorkInProgressProjectBySlug,
   getNextProject,
   getPreviousProject,
 } from "@/lib/projects";
 
 export function generateStaticParams() {
-  return [...projects, ...archiveProjects].map((p) => ({ slug: p.slug }));
+  return [...projects, ...archiveProjects, ...workInProgressProjects].map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({
@@ -43,6 +45,13 @@ export async function generateMetadata({
       description: archiveProject.subtitle,
     };
   }
+  const wipProject = getWorkInProgressProjectBySlug(slug);
+  if (wipProject) {
+    return {
+      title: wipProject.title,
+      description: wipProject.subtitle,
+    };
+  }
   return {};
 }
 
@@ -56,17 +65,57 @@ export default async function ProjectPage({
 
   if (!project) {
     const archiveProject = getArchiveProjectBySlug(slug);
-    if (!archiveProject) notFound();
+    if (archiveProject) {
+      return (
+        <>
+          <article>
+            <ProjectHero
+              title={archiveProject.title}
+              tagline={archiveProject.subtitle}
+              client="Archive"
+              color="#F8F4EE"
+              image={archiveProject.heroImage}
+              stacked
+              flushBottom
+            />
+            <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
+              <SectionDivider />
+            </div>
+            <section className="mx-auto max-w-[1400px] px-6 pt-10 pb-20 sm:px-10 sm:pt-14 sm:pb-28">
+              <ProjectAtAGlanceSection {...archiveProject.projectAtAGlance} standalone={false} />
+              {archiveProject.quickSummary && (
+                <>
+                  <SectionDivider />
+                  <QuickSummarySection paragraphs={archiveProject.quickSummary} standalone={false} />
+                </>
+              )}
+              {archiveProject.belowSummaryMedia && (
+                <div className="mt-12 flex justify-center rounded-2xl bg-paper-dim p-6 sm:mt-16 sm:p-10">
+                  <MediaSlotView
+                    media={archiveProject.belowSummaryMedia}
+                    className="h-auto w-full max-w-[1000px] rounded-xl"
+                  />
+                </div>
+              )}
+            </section>
+          </article>
+          <Footer />
+        </>
+      );
+    }
+
+    const wipProject = getWorkInProgressProjectBySlug(slug);
+    if (!wipProject) notFound();
 
     return (
       <>
         <article>
           <ProjectHero
-            title={archiveProject.title}
-            tagline={archiveProject.subtitle}
-            client="Archive"
+            title={wipProject.title}
+            tagline={wipProject.subtitle}
+            client={wipProject.eyebrow}
             color="#F8F4EE"
-            image={archiveProject.heroImage}
+            image={wipProject.heroImage}
             stacked
             flushBottom
           />
@@ -74,21 +123,9 @@ export default async function ProjectPage({
             <SectionDivider />
           </div>
           <section className="mx-auto max-w-[1400px] px-6 pt-10 pb-20 sm:px-10 sm:pt-14 sm:pb-28">
-            <ProjectAtAGlanceSection {...archiveProject.projectAtAGlance} standalone={false} />
-            {archiveProject.quickSummary && (
-              <>
-                <SectionDivider />
-                <QuickSummarySection paragraphs={archiveProject.quickSummary} standalone={false} />
-              </>
-            )}
-            {archiveProject.belowSummaryMedia && (
-              <div className="mt-12 flex justify-center rounded-2xl bg-paper-dim p-6 sm:mt-16 sm:p-10">
-                <MediaSlotView
-                  media={archiveProject.belowSummaryMedia}
-                  className="h-auto w-full max-w-[1000px] rounded-xl"
-                />
-              </div>
-            )}
+            <ProjectAtAGlanceSection {...wipProject.projectAtAGlance} standalone={false} />
+            <SectionDivider />
+            <QuickSummarySection paragraphs={wipProject.quickSummary} standalone={false} />
           </section>
         </article>
         <Footer />

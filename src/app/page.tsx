@@ -5,6 +5,7 @@ import ProjectCard from "@/components/ProjectCard";
 import ProjectCardCursor from "@/components/ProjectCardCursor";
 import Footer from "@/components/Footer";
 import GradientScene from "@/components/GradientScene";
+import PulsingDot from "@/components/PulsingDot";
 import { homepageCards, cardHref } from "@/lib/project-cards";
 
 const masthead = [
@@ -38,12 +39,7 @@ export default function Home() {
               {masthead.map((item) => (
                 <div key={item.label}>
                   <p className="flex items-center gap-2 font-sans text-[12px] uppercase tracking-[0.14em] text-black">
-                    {item.label === "Currently" && (
-                      <span
-                        className="h-1.5 w-1.5 shrink-0 animate-pulse rounded-full bg-green-500"
-                        aria-hidden
-                      />
-                    )}
+                    {item.label === "Currently" && <PulsingDot />}
                     {item.label}
                   </p>
                   <p className="mt-3 max-w-xs font-sans text-[15px] leading-relaxed text-black">

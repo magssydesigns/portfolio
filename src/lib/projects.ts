@@ -72,6 +72,8 @@ export type ProjectAtAGlanceData = {
   users?: string;
   /** Omit when there's no project-stage information to show - the row is hidden cleanly, no empty column. */
   stage?: string;
+  /** Omit when there's no "what I'm focused on right now" note to show - the row is hidden cleanly, no empty column. */
+  currentFocus?: string;
   /** Omit when there's no market information to show - the row is hidden cleanly, no empty column. */
   markets?: string;
   /** Omit when there's no platform information to show - the row is hidden cleanly, no empty column. */
@@ -1817,4 +1819,52 @@ export const archiveProjects: ArchiveProject[] = [
 
 export function getArchiveProjectBySlug(slug: string) {
   return archiveProjects.find((p) => p.slug === slug);
+}
+
+/**
+ * Lightweight "work in progress" project pages: a hero, a "Project at a
+ * glance" section and a "Quick summary" only - no full case study, no
+ * previous/next nav. Linked only from specific entry points (e.g. the nav's
+ * "Currently building" button), so deliberately kept out of `projects` and
+ * `archiveProjects` and therefore out of the homepage, /work and /archive
+ * listings.
+ */
+export type WorkInProgressProject = {
+  slug: string;
+  /** Shown as the hero's uppercase eyebrow label (e.g. "PropFuse"). */
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  heroImage: ProjectHeroImage;
+  projectAtAGlance: ProjectAtAGlanceData;
+  quickSummary: string[];
+};
+
+export const workInProgressProjects: WorkInProgressProject[] = [
+  {
+    slug: "propfuse",
+    eyebrow: "PropFuse",
+    title: "Designing a simpler way to manage fragmented maintenance requests",
+    subtitle:
+      "An early-stage AI-assisted workflow that helps property teams organise maintenance communication without introducing another platform they need to monitor.",
+    heroImage: { kind: "placeholder", label: "propfuse-hero" },
+    projectAtAGlance: {
+      role: "Founder and Product Designer",
+      scope:
+        "Problem discovery, user research, product strategy, UX/UI design, workflow automation and frontend prototyping.",
+      stage: "Early concept and MVP development",
+      users: "Property managers • Letting agencies • Maintenance teams",
+      currentFocus: "Validating the proposition and building the first working workflow",
+    },
+    quickSummary: [
+      "PropFuse is an early-stage product experiment exploring how property teams could manage maintenance requests arriving through fragmented channels such as email, messaging and phone calls.",
+      "The problem is not necessarily the absence of repair software. Many agencies already have access to specialist platforms, but communication remains fragmented and adoption is inconsistent across tenants, contractors and internal teams.",
+      "Rather than asking property managers to monitor another platform throughout the day, the initial concept focuses on turning incoming maintenance information into a clearer, prioritised summary delivered through channels they already use.",
+      "I am currently defining the product, validating the proposition with property professionals and prototyping the first end-to-end workflow. The project also allows me to expand my React, TypeScript, automation and AI-product development skills while taking an idea from early discovery towards a working product.",
+    ],
+  },
+];
+
+export function getWorkInProgressProjectBySlug(slug: string) {
+  return workInProgressProjects.find((p) => p.slug === slug);
 }

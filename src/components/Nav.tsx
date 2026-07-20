@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import WaveHand from "./WaveHand";
 import Button from "./Button";
+import PulsingDot from "./PulsingDot";
 
 export default function Nav() {
   const pathname = usePathname();
@@ -44,6 +45,16 @@ export default function Nav() {
           <span className="hidden sm:inline-flex">
             <Button href="/archive" shape="pill">
               Archive
+            </Button>
+          </span>
+          <span className="hidden sm:inline-flex">
+            <Button
+              href="/projects/propfuse"
+              shape="pill"
+              ariaCurrent={pathname === "/projects/propfuse" ? "page" : undefined}
+            >
+              <PulsingDot color="#86F24C" />
+              Currently building
             </Button>
           </span>
           <Button href="/resume.pdf" shape="pill" chevron>

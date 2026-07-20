@@ -18,6 +18,7 @@ export default function ProjectAtAGlanceSection({
   collaborationTeams,
   users,
   stage,
+  currentFocus,
   markets,
   platforms,
   id = "project-at-a-glance",
@@ -55,6 +56,7 @@ export default function ProjectAtAGlanceSection({
     ...(contribution ? [[{ label: "Contribution", value: contribution }]] : []),
     ...(coreRow.length ? [coreRow] : []),
     ...(userStageRow.length ? [userStageRow] : []),
+    ...(currentFocus ? [[{ label: "Current focus", value: currentFocus }]] : []),
     ...(markets ? [[{ label: "Markets", value: markets }]] : []),
     ...(platforms ? [[{ label: "Platforms", value: platforms }]] : []),
   ];

@@ -82,7 +82,8 @@
   .animate-drift-a,
   .animate-drift-b,
   .animate-drift-c,
-  .animate-marquee {
+  .animate-marquee,
+  .animate-pulse {
     animation: none;
   }
 }

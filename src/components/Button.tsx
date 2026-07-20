@@ -10,6 +10,7 @@ export default function Button({
   chevron = false,
   external = false,
   className,
+  ariaCurrent,
 }: {
   href: string;
   children: ReactNode;
@@ -18,6 +19,8 @@ export default function Button({
   chevron?: boolean;
   external?: boolean;
   className?: string;
+  /** Marks this link as the current page for assistive tech (e.g. "page") - omit when not applicable. */
+  ariaCurrent?: "page" | "true" | "false" | "step" | "location" | "date" | "time";
 }) {
   const classes = clsx(
     "inline-flex items-center gap-1.5 text-[13px] transition-all duration-300 ease-out hover:scale-[1.02] active:scale-[0.98]",
@@ -68,6 +71,7 @@ export default function Button({
         target={href.startsWith("mailto:") ? undefined : "_blank"}
         rel={href.startsWith("mailto:") ? undefined : "noreferrer"}
         className={classes}
+        aria-current={ariaCurrent}
       >
         {content}
       </a>
@@ -75,7 +79,7 @@ export default function Button({
   }
 
   return (
-    <Link href={href} className={classes}>
+    <Link href={href} className={classes} aria-current={ariaCurrent}>
       {content}
     </Link>
   );
