@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import ProjectHero from "@/components/project/ProjectHero";
+import HeroPrototypeEmbed from "@/components/project/HeroPrototypeEmbed";
 import QuickRead from "@/components/project/QuickRead";
 import CaseStudyBlocks from "@/components/project/CaseStudyBlocks";
 import FullCaseStudyReveal from "@/components/project/FullCaseStudyReveal";
@@ -169,6 +170,12 @@ export default async function ProjectPage({
         {project.glanceDividerBelow && (
           <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
             <SectionDivider />
+          </div>
+        )}
+
+        {project.midEmbed && (
+          <div className="mx-auto max-w-[1400px] px-6 pt-16 pb-16 sm:px-10 sm:pt-20 sm:pb-20">
+            <HeroPrototypeEmbed src={project.midEmbed.src} title={project.midEmbed.title} />
           </div>
         )}
 

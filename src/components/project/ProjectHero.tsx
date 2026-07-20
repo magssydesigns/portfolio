@@ -61,7 +61,8 @@ export default function ProjectHero({
   tagline: string;
   client: string;
   color: string;
-  image: ProjectHeroImage;
+  /** Omit for a text-only hero (e.g. when the hero media is shown elsewhere on the page). */
+  image?: ProjectHeroImage;
   video?: ProjectVideo;
   /** Renders the image centered above the title/tagline (like a video hero) instead of side-by-side. */
   stacked?: boolean;
@@ -109,7 +110,9 @@ export default function ProjectHero({
             muted
             playsInline
             preload="auto"
-            aria-label={"kind" in image ? (image.kind === "embed" ? image.title : image.label) : image.alt}
+            aria-label={
+              image ? ("kind" in image ? (image.kind === "embed" ? image.title : image.label) : image.alt) : undefined
+            }
             className="mx-auto block h-auto w-full max-w-[60%] rounded-2xl border"
             style={{ borderColor: "rgb(221, 216, 203)" }}
           />
@@ -146,16 +149,18 @@ export default function ProjectHero({
   if (stacked) {
     return (
       <section className="pt-32 sm:pt-40" style={{ backgroundColor: color }}>
-        <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
-          <HeroImageView
-            image={image}
-            className="mx-auto block h-auto w-full max-w-[614.797px] rounded-2xl border"
-            style={{
-              borderColor: "rgb(221, 216, 203)",
-              ...(imageMaxWidth !== undefined ? { maxWidth: imageMaxWidth } : {}),
-            }}
-          />
-        </div>
+        {image && (
+          <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
+            <HeroImageView
+              image={image}
+              className="mx-auto block h-auto w-full max-w-[614.797px] rounded-2xl border"
+              style={{
+                borderColor: "rgb(221, 216, 203)",
+                ...(imageMaxWidth !== undefined ? { maxWidth: imageMaxWidth } : {}),
+              }}
+            />
+          </div>
+        )}
 
         <div className={`mx-auto max-w-[1400px] ${textBlockPadding}`}>
           <div className="mx-auto max-w-2xl">
@@ -180,9 +185,11 @@ export default function ProjectHero({
           </h1>
           <p className="mt-6 max-w-md text-lg leading-relaxed text-ink/70">{tagline}</p>
         </div>
-        <div className="flex justify-center lg:justify-end">
-          <HeroImageView image={image} className="h-auto w-[240px] rounded-2xl sm:w-[300px]" />
-        </div>
+        {image && (
+          <div className="flex justify-center lg:justify-end">
+            <HeroImageView image={image} className="h-auto w-[240px] rounded-2xl sm:w-[300px]" />
+          </div>
+        )}
       </div>
     </section>
   );

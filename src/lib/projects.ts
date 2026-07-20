@@ -85,8 +85,8 @@ export type ProjectAtAGlanceData = {
 
 export type QuickRead = {
   tagline: string;
-  /** A placeholder can stand in for a not-yet-final hero image. */
-  heroImage: ProjectHeroImage;
+  /** A placeholder can stand in for a not-yet-final hero image. Omit entirely for a text-only hero (e.g. when the hero media is shown elsewhere on the page). */
+  heroImage?: ProjectHeroImage;
   heroVideo?: ProjectVideo;
   summaryLabel?: string;
   challenge: string[];
@@ -136,6 +136,8 @@ export type Project = {
   glancePaddingTop?: number;
   /** Inserts a SectionDivider between "Project at a glance" and the Quick summary/Quick read section that follows (and zeroes the glance section's own bottom padding so the divider owns the full 32px rhythm). */
   glanceDividerBelow?: boolean;
+  /** Renders an interactive prototype embed between "Project at a glance" and "Quick summary" (e.g. when the hero itself is text-only). */
+  midEmbed?: { src: string; title: string };
   quickRead: QuickRead;
   fullCaseStudy: Block[];
   /** Presence of this field opts the project into the reveal-on-click + sticky TOC behaviour. */
@@ -1343,8 +1345,19 @@ export const projects: Project[] = [
     heroBackground: "#F8F4EE",
     heroStacked: true,
     heroDividerBelow: true,
-    quickReadHeadingStyle: "heading",
-    hideContinueLink: true,
+    midEmbed: {
+      src: "https://union-park-04897894.figma.site/",
+      title: "Interactive Kashtkaar farm management prototype",
+    },
+    toc: [
+      { id: "quick-summary", label: "Quick Summary" },
+      { id: "the-opportunity", label: "The opportunity" },
+      { id: "defining-the-product-concept", label: "Defining the product concept" },
+      { id: "designing-the-core-experience", label: "Designing the core experience" },
+      { id: "prototype-testing-and-refinement", label: "Prototype testing and refinement" },
+      { id: "building-the-foundations", label: "Building the foundations" },
+      { id: "outcome-and-reflection", label: "Outcome and reflection" },
+    ],
     projectAtAGlance: {
       role: "Product Designer",
       scope:
@@ -1358,11 +1371,6 @@ export const projects: Project[] = [
     quickRead: {
       tagline:
         "An early-stage mobile concept helping farmers in Pakistan record farm activities, follow crop guidance and connect with agricultural communities and services.",
-      heroImage: {
-        kind: "embed",
-        src: "https://union-park-04897894.figma.site/",
-        title: "Interactive Kashtkaar farm management prototype",
-      },
       challenge: [
         "Kashtkaar was an early-stage mobile product designed to support farmers in Pakistan while improving agricultural data collection across a sustainable rice supply chain. The concept combined a familiar, feed-based experience with practical farm-management tools, helping farmers access guidance, record activities and follow their crop cycle in one place.",
         "I shaped the initial product concept through competitor research, information architecture and UX exploration. I designed the first two to three iterations of the app, including the Farm hub, crop calendar, activity-recording journeys and the relationship between farm management and the community feed. I also created the initial interactive prototypes and established the foundations of the design system.",
