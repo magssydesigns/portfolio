@@ -43,7 +43,7 @@ export type Block =
       id?: string;
       media: MediaSlot;
       caption?: string;
-      width?: "reduced" | "reduced-40";
+      width?: "reduced" | "reduced-40" | "reduced-70";
       bordered?: boolean;
       link?: { href: string; label: string; size?: number };
     }
@@ -118,6 +118,8 @@ export type Project = {
   heroStacked?: boolean;
   /** Optional "Markets" caption + flag row shown under the hero tagline (video hero only). */
   heroMarkets?: { label: string; flags: { emoji: string; name: string }[] };
+  /** Overrides the stacked hero image's max-width in px (default 614.797). */
+  heroImageMaxWidth?: number;
   /** Renders the shared Divider directly below the hero, before the Quick Read section begins. */
   heroDividerBelow?: boolean;
   /** Drops the hero's bottom padding (like heroDividerBelow) without inserting a divider - for a flat px gap owned entirely by the next section's top padding. */
@@ -460,6 +462,7 @@ export const projects: Project[] = [
     color: "#3355FF",
     heroBackground: "#F8F4EE",
     heroStacked: true,
+    heroImageMaxWidth: 922.2,
     heroFlushBottom: true,
     glancePaddingTop: 32,
     glanceDividerBelow: true,
@@ -501,6 +504,15 @@ export const projects: Project[] = [
       challenge: [
         "I led the UX and design system work, auditing the existing product, defining a phased roadmap, rebuilding the design system, and redesigning key customer journeys to create a scalable foundation for future releases.",
       ],
+      midMedia: {
+        kind: "video",
+        video: {
+          src: "/projects/rapid-uk-launch/onboarding.mp4",
+          width: 1412,
+          height: 1080,
+        },
+        alt: "UK onboarding experience walkthrough with refreshed brand and motion",
+      },
       keyDecisions: [
         "New onboarding experience with motion + visual refresh",
         "Redesigned parcel tracking components for clarity & hierarchy",
@@ -728,6 +740,7 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
+        width: "reduced-70",
         media: {
           kind: "video",
           video: {
@@ -764,6 +777,7 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
+        width: "reduced-70",
         media: {
           kind: "video",
           video: {
@@ -798,6 +812,7 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
+        width: "reduced-70",
         media: {
           kind: "video",
           video: {

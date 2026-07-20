@@ -112,6 +112,7 @@ export default async function ProjectPage({
           stacked={project.heroStacked}
           markets={project.heroMarkets}
           flushBottom={project.heroDividerBelow || project.heroFlushBottom}
+          imageMaxWidth={project.heroImageMaxWidth}
         />
 
         {project.heroDividerBelow && (

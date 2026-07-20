@@ -171,7 +171,13 @@ function BlockRenderer({
     case "media": {
       // Left-aligned (not centred) to sit flush with the surrounding copy.
       const widthWrapClass =
-        block.width === "reduced" ? "w-4/5" : block.width === "reduced-40" ? "w-3/5" : "";
+        block.width === "reduced"
+          ? "w-4/5"
+          : block.width === "reduced-40"
+            ? "w-3/5"
+            : block.width === "reduced-70"
+              ? "w-[70%]"
+              : "";
       const mediaClassName =
         block.width || block.bordered
           ? [!block.width ? "w-full" : "", "h-auto", block.bordered ? "rounded-2xl border" : ""]

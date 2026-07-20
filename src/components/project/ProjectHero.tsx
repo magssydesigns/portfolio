@@ -51,6 +51,7 @@ export default function ProjectHero({
   stacked,
   markets,
   flushBottom,
+  imageMaxWidth,
 }: {
   title: string;
   tagline: string;
@@ -64,6 +65,8 @@ export default function ProjectHero({
   markets?: { label: string; flags: { emoji: string; name: string }[] };
   /** Drops the hero's bottom padding so a divider directly below can own the full gap (32px rhythm). */
   flushBottom?: boolean;
+  /** Overrides the stacked hero image's max-width in px (default 614.797, the site's standard stacked-hero size). */
+  imageMaxWidth?: number;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const textBlockPadding = flushBottom
@@ -143,7 +146,10 @@ export default function ProjectHero({
           <HeroImageView
             image={image}
             className="mx-auto block h-auto w-full max-w-[614.797px] rounded-2xl border"
-            style={{ borderColor: "rgb(221, 216, 203)" }}
+            style={{
+              borderColor: "rgb(221, 216, 203)",
+              ...(imageMaxWidth !== undefined ? { maxWidth: imageMaxWidth } : {}),
+            }}
           />
         </div>
 
