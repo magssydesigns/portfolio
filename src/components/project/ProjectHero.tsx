@@ -3,11 +3,17 @@
 import { useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
 import Image from "next/image";
-import type { ProjectImage, ProjectVideo } from "@/lib/projects";
+import type { ProjectHeroImage, ProjectVideo } from "@/lib/projects";
 
-type HeroImage = ProjectImage | { kind: "placeholder"; label: string };
-
-function HeroImageView({ image, className, style }: { image: HeroImage; className?: string; style?: CSSProperties }) {
+function HeroImageView({
+  image,
+  className,
+  style,
+}: {
+  image: ProjectHeroImage;
+  className?: string;
+  style?: CSSProperties;
+}) {
   if ("kind" in image) {
     return (
       <div
@@ -50,7 +56,7 @@ export default function ProjectHero({
   tagline: string;
   client: string;
   color: string;
-  image: HeroImage;
+  image: ProjectHeroImage;
   video?: ProjectVideo;
   /** Renders the image centered above the title/tagline (like a video hero) instead of side-by-side. */
   stacked?: boolean;

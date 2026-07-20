@@ -84,7 +84,7 @@ export const archiveCards: ProjectCardData[] = archiveProjects.map((project) => 
   title: project.title,
   slug: project.slug,
   subtitle: project.subtitle,
-  media: project.cardMedia ?? { kind: "image", image: project.heroImage },
+  media: project.cardMedia ?? ("kind" in project.heroImage ? project.heroImage : { kind: "image", image: project.heroImage }),
   mediaBackground: project.mediaBackground,
   type: "archive",
   isArchive: true,

@@ -66,7 +66,12 @@ export default async function ProjectPage({
             client="Archive"
             color="#F8F4EE"
             image={archiveProject.heroImage}
+            stacked
+            flushBottom
           />
+          <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
+            <SectionDivider />
+          </div>
           <section className="mx-auto max-w-[1400px] px-6 pt-10 pb-20 sm:px-10 sm:pt-14 sm:pb-28">
             <ProjectAtAGlanceSection {...archiveProject.projectAtAGlance} standalone={false} />
             {archiveProject.quickSummary && (

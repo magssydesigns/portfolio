@@ -13,6 +13,9 @@ export type ProjectVideo = {
   poster?: string;
 };
 
+/** A hero image that may still be a placeholder awaiting a final asset. */
+export type ProjectHeroImage = ProjectImage | { kind: "placeholder"; label: string };
+
 /** A media slot that may still be a placeholder awaiting a final asset. */
 export type MediaSlot =
   | { kind: "image"; image: ProjectImage }
@@ -74,7 +77,7 @@ export type ProjectAtAGlanceData = {
 export type QuickRead = {
   tagline: string;
   /** A placeholder can stand in for a not-yet-final hero image. */
-  heroImage: ProjectImage | { kind: "placeholder"; label: string };
+  heroImage: ProjectHeroImage;
   heroVideo?: ProjectVideo;
   summaryLabel?: string;
   challenge: string[];
@@ -1425,7 +1428,7 @@ export type ArchiveProject = {
   slug: string;
   title: string;
   subtitle: string;
-  heroImage: ProjectImage;
+  heroImage: ProjectHeroImage;
   /** Overrides the media shown on the /archive listing card; falls back to heroImage when absent. */
   cardMedia?: MediaSlot;
   /** Overrides the card's media-container background (ProjectCard defaults to bg-paper-dim). */
@@ -1440,12 +1443,7 @@ export const archiveProjects: ArchiveProject[] = [
     slug: "designability",
     title: "Designability",
     subtitle: "[Add project subtitle]",
-    heroImage: {
-      src: "/projects/designability/designability-hero-placeholder.png",
-      width: 1600,
-      height: 1200,
-      alt: "Designability - placeholder image",
-    },
+    heroImage: { kind: "placeholder", label: "Hero image placeholder" },
     cardMedia: {
       kind: "image",
       image: {
@@ -1471,12 +1469,7 @@ export const archiveProjects: ArchiveProject[] = [
     slug: "tigi",
     title: "TIGI",
     subtitle: "[Add project subtitle]",
-    heroImage: {
-      src: "/projects/tigi/tigi-hero-placeholder.png",
-      width: 1600,
-      height: 1200,
-      alt: "TIGI - placeholder image",
-    },
+    heroImage: { kind: "placeholder", label: "Hero image placeholder" },
     cardMedia: {
       kind: "image",
       image: {
@@ -1494,18 +1487,15 @@ export const archiveProjects: ArchiveProject[] = [
       collaborationLabel: "Collaboration with",
       collaborationTeams: "Art Director • UX Designer",
     },
-    quickSummary: ["[Add quick summary copy]"],
+    quickSummary: [
+      "I redesigned the TIGI Bed Head website to reflect the brand's updated grunge-inspired identity. Working from guidelines created primarily for print, I translated the visual direction into a distinctive yet user-friendly digital experience, balancing the brand's fragmented, expressive style with clear navigation and responsive web design.",
+    ],
   },
   {
     slug: "migarage",
     title: "MiGarage",
     subtitle: "[Add project subtitle]",
-    heroImage: {
-      src: "/projects/migarage/migarage-hero-placeholder.png",
-      width: 1600,
-      height: 1200,
-      alt: "MiGarage - placeholder image",
-    },
+    heroImage: { kind: "placeholder", label: "Hero image placeholder" },
     cardMedia: {
       kind: "image",
       image: {
@@ -1531,12 +1521,7 @@ export const archiveProjects: ArchiveProject[] = [
     slug: "creative-xr",
     title: "Creative XR",
     subtitle: "[Add project subtitle]",
-    heroImage: {
-      src: "/projects/creative-xr/creative-xr-hero-placeholder.png",
-      width: 1600,
-      height: 1200,
-      alt: "Creative XR - placeholder image",
-    },
+    heroImage: { kind: "placeholder", label: "Hero image placeholder" },
     cardMedia: {
       kind: "video",
       video: {
@@ -1563,12 +1548,7 @@ export const archiveProjects: ArchiveProject[] = [
     slug: "futurescope",
     title: "Futurescope",
     subtitle: "[Add project subtitle]",
-    heroImage: {
-      src: "/projects/futurescope/futurescope-hero-placeholder.png",
-      width: 1600,
-      height: 1200,
-      alt: "Futurescope - placeholder image",
-    },
+    heroImage: { kind: "placeholder", label: "Hero image placeholder" },
     cardMedia: {
       kind: "image",
       image: {
