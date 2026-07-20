@@ -34,6 +34,7 @@ export default function QuickRead({
   onContinue,
   headingStyle = "sidebar",
   flushTop = false,
+  hideContinue = false,
 }: {
   data: QuickReadType;
   color: string;
@@ -43,6 +44,8 @@ export default function QuickRead({
   headingStyle?: "sidebar" | "heading";
   /** Drops the section's own top padding when a preceding block (e.g. a standalone Project at a glance) already owns the gap above. */
   flushTop?: boolean;
+  /** Hides the "Continue reading/to full case study" link/button entirely - for pages that read as one continuous case study with no reveal-behind-a-click content. */
+  hideContinue?: boolean;
 }) {
   const firstWrapClass =
     headingStyle === "heading" ? "mx-auto max-w-2xl" : "grid grid-cols-1 gap-8 lg:grid-cols-[200px_1fr]";
@@ -258,7 +261,7 @@ export default function QuickRead({
       )}
 
       {/* In the split (roleDetails) layout the outcomes already rendered up top as "Key outcomes". */}
-      {!data.roleDetails && (
+      {!data.roleDetails && (data.outcomes.length > 0 || data.qualitative) && (
       <Reveal delay={0.14}>
         <div className={headingStyle === "heading" ? wideWrapClass : wrapClass}>
           <SectionLabel headingStyle={headingStyle} id="impact" text="Impact" />
@@ -318,26 +321,28 @@ export default function QuickRead({
         </Reveal>
       )}
 
-      <Reveal delay={0.18}>
-        {onContinue ? (
-          <button
-            type="button"
-            onClick={onContinue}
-            className={`link-underline mx-auto block w-fit cursor-pointer bg-transparent p-0 font-display text-xl text-ink ${
-              data.roleDetails ? "mt-0" : "mt-20"
-            }`}
-          >
-            Continue to full case study ↓
-          </button>
-        ) : (
-          <a
-            href="#full-case-study"
-            className="link-underline mt-20 inline-block font-display text-xl italic text-ink"
-          >
-            Continue reading the full case study ↓
-          </a>
-        )}
-      </Reveal>
+      {!hideContinue && (
+        <Reveal delay={0.18}>
+          {onContinue ? (
+            <button
+              type="button"
+              onClick={onContinue}
+              className={`link-underline mx-auto block w-fit cursor-pointer bg-transparent p-0 font-display text-xl text-ink ${
+                data.roleDetails ? "mt-0" : "mt-20"
+              }`}
+            >
+              Continue to full case study ↓
+            </button>
+          ) : (
+            <a
+              href="#full-case-study"
+              className="link-underline mt-20 inline-block font-display text-xl italic text-ink"
+            >
+              Continue reading the full case study ↓
+            </a>
+          )}
+        </Reveal>
+      )}
     </section>
   );
 }

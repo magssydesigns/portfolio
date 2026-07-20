@@ -125,13 +125,29 @@ export default async function ProjectPage({
           />
         ) : (
           <>
-            <QuickRead data={project.quickRead} color={project.color} />
+            <QuickRead
+              data={project.quickRead}
+              color={project.color}
+              headingStyle={project.quickReadHeadingStyle}
+              hideContinue={project.hideContinueLink}
+            />
 
-            <div id="full-case-study" className="scroll-mt-24 border-t border-line">
-              <div className="mx-auto max-w-[1400px] px-6 pt-16 sm:px-10">
-                <p className="text-[13px] uppercase tracking-[0.14em] text-muted">Full case study</p>
-              </div>
-              <CaseStudyBlocks blocks={project.fullCaseStudy} color={project.color} />
+            <div
+              id="full-case-study"
+              className={project.hideContinueLink ? "scroll-mt-24" : "scroll-mt-24 border-t border-line"}
+            >
+              {!project.hideContinueLink && (
+                <div className="mx-auto max-w-[1400px] px-6 pt-16 sm:px-10">
+                  <p className="text-[13px] uppercase tracking-[0.14em] text-muted">Full case study</p>
+                </div>
+              )}
+              {project.hideContinueLink ? (
+                <div className="mx-auto max-w-[1400px] px-6 pt-16 sm:px-10">
+                  <CaseStudyBlocks blocks={project.fullCaseStudy} color={project.color} />
+                </div>
+              ) : (
+                <CaseStudyBlocks blocks={project.fullCaseStudy} color={project.color} />
+              )}
             </div>
           </>
         )}

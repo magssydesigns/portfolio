@@ -34,11 +34,19 @@ function BlockRenderer({
   layout: "full" | "toc";
 }) {
   switch (block.kind) {
-    case "lead":
+    case "lead": {
+      const leadColsClass = block.items.length >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2";
       return (
         <Reveal>
-          <div id={block.id} className="mx-auto max-w-[1400px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20">
-            <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-16">
+          <div
+            id={block.id}
+            className={
+              block.spacing === "tight"
+                ? "scroll-mt-40 lg:scroll-mt-28"
+                : "mx-auto max-w-[1400px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20"
+            }
+          >
+            <div className={`grid grid-cols-1 gap-10 sm:gap-16 ${leadColsClass}`}>
               {block.items.map((item) => (
                 <div key={item.label}>
                   <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{item.label}</p>
@@ -49,6 +57,7 @@ function BlockRenderer({
           </div>
         </Reveal>
       );
+    }
 
     case "twoCol":
       return (
@@ -82,11 +91,13 @@ function BlockRenderer({
           <div
             id={block.id}
             className={
-              layout === "toc"
-                ? block.spacing === "tight"
+              block.spacing === "tight"
+                ? layout === "toc"
                   ? "scroll-mt-40 pb-4 lg:scroll-mt-28"
-                  : "scroll-mt-40 pt-16 pb-4 sm:pt-20 lg:scroll-mt-28"
-                : "mx-auto max-w-[1400px] scroll-mt-28 px-6 pt-16 pb-4 text-center sm:px-10 sm:pt-24"
+                  : "scroll-mt-40 lg:scroll-mt-28"
+                : layout === "toc"
+                  ? "scroll-mt-40 pt-16 pb-4 sm:pt-20 lg:scroll-mt-28"
+                  : "mx-auto max-w-[1400px] scroll-mt-28 px-6 pt-16 pb-4 text-center sm:px-10 sm:pt-24"
             }
           >
             <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.text}</h2>
@@ -109,9 +120,12 @@ function BlockRenderer({
             className="scroll-mt-40 lg:scroll-mt-28"
             style={block.paddingBottom ? { paddingBottom: block.paddingBottom } : undefined}
           >
-            {block.heading && (
-              <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.heading}</h2>
-            )}
+            {block.heading &&
+              (block.headingLevel === "h3" ? (
+                <h3 className="font-display text-2xl tracking-tight sm:text-3xl">{block.heading}</h3>
+              ) : (
+                <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.heading}</h2>
+              ))}
             <div className={(block.heading ? "mt-6 " : "") + "max-w-2xl space-y-6"}>
               {block.paragraphs.map((p, i) => (
                 <p key={i} className="text-lg leading-relaxed text-ink-soft">
@@ -500,12 +514,19 @@ function BlockRenderer({
         </Reveal>
       );
 
-    case "beforeAfterImages":
+    case "beforeAfterImages": {
+      const bafColsClass = block.items.length >= 3 ? "sm:grid-cols-3" : "sm:grid-cols-2";
       return (
         <Reveal>
           <div
             id={block.id}
-            className={layout === "toc" ? "scroll-mt-40 py-12 lg:scroll-mt-28" : "mx-auto max-w-[1600px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20"}
+            className={
+              block.spacing === "tight"
+                ? "scroll-mt-40 lg:scroll-mt-28"
+                : layout === "toc"
+                  ? "scroll-mt-40 py-12 lg:scroll-mt-28"
+                  : "mx-auto max-w-[1600px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20"
+            }
           >
             {block.heading && (
               <h2
@@ -518,7 +539,7 @@ function BlockRenderer({
                 {block.heading}
               </h2>
             )}
-            <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8">
+            <div className={`grid grid-cols-1 gap-10 sm:gap-8 ${bafColsClass} ${block.heading ? "mt-12" : ""}`}>
               {block.items.map((item) => (
                 <div key={item.label}>
                   <p className="mb-4 text-center font-sans text-xl font-semibold">
@@ -533,6 +554,7 @@ function BlockRenderer({
           </div>
         </Reveal>
       );
+    }
 
     default:
       return null;

@@ -23,7 +23,7 @@ export type MediaSlot =
   | { kind: "placeholder"; label: string };
 
 export type Block =
-  | { kind: "lead"; id?: string; items: { label: string; body: string }[] }
+  | { kind: "lead"; id?: string; spacing?: "tight"; items: { label: string; body: string }[] }
   | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light"; spacing?: "tight" }
   | { kind: "statement"; id?: string; text: string; tone?: "dark" | "light" }
   | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; spacing?: "tight"; items: { title: string; body: string }[] }
@@ -33,10 +33,10 @@ export type Block =
   | { kind: "steps"; id?: string; heading?: string; spacing?: "tight"; items: { title: string; body: string }[] }
   | { kind: "twoCol"; id?: string; heading?: string; spacing?: "tight"; items: { label: string; body: string }[] }
   | { kind: "mediaNumbered"; id?: string; heading?: string; media: MediaSlot; items: { title: string; body: string }[] }
-  | { kind: "beforeAfterImages"; id?: string; heading?: string; items: { label: string; media: MediaSlot }[] }
+  | { kind: "beforeAfterImages"; id?: string; heading?: string; spacing?: "tight"; items: { label: string; media: MediaSlot }[] }
   /** Scoped, additive kinds used by the Send case study's full-case-study rebuild. */
   | { kind: "divider" }
-  | { kind: "richText"; id?: string; heading?: string; paragraphs: string[]; paddingBottom?: number }
+  | { kind: "richText"; id?: string; heading?: string; headingLevel?: "h2" | "h3"; paragraphs: string[]; paddingBottom?: number }
   | { kind: "arrowList"; id?: string; heading?: string; bold?: boolean; items: string[] }
   | {
       kind: "media";
@@ -68,6 +68,10 @@ export type ProjectAtAGlanceData = {
   collaborationLabel?: string;
   /** Omit when there's no collaboration to show (e.g. a solo project) - the row is hidden cleanly if coreTeam is also absent. */
   collaborationTeams?: string;
+  /** Omit when there's no user-group information to show - the row is hidden cleanly, no empty column. */
+  users?: string;
+  /** Omit when there's no project-stage information to show - the row is hidden cleanly, no empty column. */
+  stage?: string;
   /** Omit when there's no market information to show - the row is hidden cleanly, no empty column. */
   markets?: string;
   /** Omit when there's no platform information to show - the row is hidden cleanly, no empty column. */
@@ -123,6 +127,10 @@ export type Project = {
   fullCaseStudy: Block[];
   /** Presence of this field opts the project into the reveal-on-click + sticky TOC behaviour. */
   toc?: TocEntry[];
+  /** Promotes QuickRead's section labels to full h2s (only applies to the non-toc, non-roleDetails layout). */
+  quickReadHeadingStyle?: "sidebar" | "heading";
+  /** For projects meant to read as one continuous page: hides QuickRead's "Continue reading..." link/button and the "Full case study" label above the blocks below it. */
+  hideContinueLink?: boolean;
 };
 
 export const projects: Project[] = [
@@ -1398,6 +1406,250 @@ export const projects: Project[] = [
             title: "7. Repeated recipient rate",
             body: "Definition: % of users sending multiple parcels to the same recipient (name + phone + postcode) within 180 days. Why it matters: shows potential for efficiency features, such as 'Saved Recipients', to reduce repetitive input.",
           },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "kashtkaar",
+    title: "Designing Kashtkaar's first farm management experience",
+    shortTitle: "Kashtkaar farm management",
+    client: "Kashtkaar",
+    color: "#2E7D32",
+    heroBackground: "#F8F4EE",
+    heroStacked: true,
+    heroDividerBelow: true,
+    quickReadHeadingStyle: "heading",
+    hideContinueLink: true,
+    projectAtAGlance: {
+      role: "Product Designer",
+      scope:
+        "Product discovery, competitor research, information architecture, UX/UI design, interactive prototyping, early usability testing and design-system foundations.",
+      coreTeam: "Founder • Engineering",
+      collaborationLabel: "Collaboration with",
+      collaborationTeams: "Local research team • Agricultural specialists",
+      users: "Farmers • Field officers • Agronomists • Processors",
+      stage: "Early product concept and first prototype iterations",
+    },
+    quickRead: {
+      tagline:
+        "An early-stage mobile concept helping farmers in Pakistan record farm activities, follow crop guidance and connect with agricultural communities and services.",
+      heroImage: { kind: "placeholder", label: "kashtkaar-hero" },
+      challenge: [
+        "Kashtkaar was an early-stage mobile product designed to support farmers in Pakistan while improving agricultural data collection across a sustainable rice supply chain. The concept combined a familiar, feed-based experience with practical farm-management tools, helping farmers access guidance, record activities and follow their crop cycle in one place.",
+        "I shaped the initial product concept through competitor research, information architecture and UX exploration. I designed the first two to three iterations of the app, including the Farm hub, crop calendar, activity-recording journeys and the relationship between farm management and the community feed. I also created the initial interactive prototypes and established the foundations of the design system.",
+        "The prototypes were tested in Urdu with farmers by local members of the team. I used the findings to simplify navigation, refine terminology and improve how farmers recorded activities and moved between planning, monitoring and community content. I left the project after the initial concept and validation stages, while the founder and engineering team continued developing the product.",
+      ],
+      outcomes: [],
+    },
+    fullCaseStudy: [
+      {
+        kind: "richText",
+        id: "the-opportunity",
+        heading: "The opportunity",
+        paragraphs: [
+          "Kashtkaar began as an internal data-collection tool supporting a sustainable rice programme. Field officers visited farms, advised farmers and recorded agricultural activities, but the process was difficult to scale and offered limited direct value to farmers.",
+          "The opportunity was to create a product that made agricultural data easier to record while also giving farmers useful guidance, crop-planning support, local information and access to a wider agricultural network.",
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "lead",
+        spacing: "tight",
+        items: [
+          {
+            label: "Farmer support",
+            body: "Accessible guidance and advice throughout the crop cycle.",
+          },
+          {
+            label: "Data collection",
+            body: "Simplified recording of farm activities, quantities and crop conditions.",
+          },
+          {
+            label: "Supply-chain connection",
+            body: "Connecting farmers, field officers, processors and agricultural services.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "defining-the-product-concept",
+        heading: "Defining the product concept",
+        paragraphs: [
+          "The founder wanted to combine the accessibility and familiarity of a social-media feed with the practical tools of a farm-management product. I explored how these two behaviours could coexist without making the application feel fragmented.",
+          "The resulting concept had two connected layers:",
+        ],
+      },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        items: [
+          {
+            label: "Discover",
+            body: "A feed for educational content, community knowledge, agricultural updates and relevant advice.",
+          },
+          {
+            label: "Farm",
+            body: "A dedicated space for crop planning, farm health, activity recording and day-to-day management.",
+          },
+        ],
+      },
+      {
+        kind: "richText",
+        paddingBottom: 24,
+        paragraphs: [
+          "The concept allowed farmers to use familiar feed-based interactions while keeping private farm records and management tools organised in a dedicated area.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        spacing: "tight",
+        items: [
+          {
+            label: "Discover",
+            media: { kind: "placeholder", label: "kashtkaar-discover" },
+          },
+          {
+            label: "Farm",
+            media: { kind: "placeholder", label: "kashtkaar-farm-hub" },
+          },
+        ],
+      },
+      {
+        kind: "media",
+        media: { kind: "placeholder", label: "kashtkaar-product-architecture" },
+      },
+      { kind: "divider" },
+      { kind: "heading", id: "designing-the-core-experience", text: "Designing the core experience", spacing: "tight" },
+      {
+        kind: "richText",
+        heading: "Making activity recording easier",
+        headingLevel: "h3",
+        paragraphs: [
+          "Recording farm activity was the product's most important behaviour, but lengthy forms risked becoming another administrative burden for farmers and field officers.",
+          "I explored a prominent one-tap action, guided data entry and context-specific questions based on the farmer's crop stage. The goal was to collect useful information without asking farmers to complete the same long form for every activity.",
+        ],
+      },
+      {
+        kind: "media",
+        media: { kind: "placeholder", label: "kashtkaar-activity-recording" },
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        heading: "Turning the crop calendar into guidance",
+        headingLevel: "h3",
+        paragraphs: [
+          "The crop calendar needed to do more than display dates. I explored how it could guide farmers through key stages such as land preparation, sowing, irrigation, chemical application and harvest while collecting the information required by field officers and processors.",
+          "I proposed what information should be requested at each stage of the rice-growing cycle and explored several calendar structures before recommending a direction for testing.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        spacing: "tight",
+        items: [
+          {
+            label: "Exploration",
+            media: { kind: "placeholder", label: "kashtkaar-crop-calendar-exploration" },
+          },
+          {
+            label: "Prototype",
+            media: { kind: "placeholder", label: "kashtkaar-crop-calendar-prototype" },
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        heading: "Connecting farm management with the community",
+        headingLevel: "h3",
+        paragraphs: [
+          "I explored how activities recorded in the Farm area could optionally be shared to the Discover feed. This created a bridge between private farm management and community knowledge without requiring farmers to enter the same information twice.",
+          "The experience needed to make the distinction between recording an activity and publishing content clear, so sharing remained optional and intentional.",
+        ],
+      },
+      {
+        kind: "media",
+        media: { kind: "placeholder", label: "kashtkaar-share-to-discover" },
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "prototype-testing-and-refinement",
+        heading: "Prototype testing and refinement",
+        paragraphs: [
+          "I created a clickable prototype covering the main navigation, crop planning and activity-recording journeys. Local members of the team tested the concept in Urdu with farmers, allowing the product to be evaluated in the language and context in which it would be used.",
+          "Testing focused on whether farmers could record an activity quickly, understand the relationship between Plan, Health and Log, and move naturally between farm-management tools and the community feed.",
+        ],
+      },
+      {
+        kind: "media",
+        media: { kind: "placeholder", label: "kashtkaar-prototype-testing" },
+      },
+      {
+        kind: "numbered",
+        spacing: "tight",
+        items: [
+          {
+            title: "Navigation needed to feel unified",
+            body: "The earlier separation between Grow and Track created confusion. The experience was consolidated into a single Farm hub containing Plan, Health and Log.",
+          },
+          {
+            title: "Terminology needed to be more direct",
+            body: "Labels such as Activity, Task, Record and Add task were reviewed to make the difference between recording completed work and planning future work clearer.",
+          },
+          {
+            title: "Sharing needed to remain optional",
+            body: "The connection between logging an activity and sharing it to Discover needed to feel helpful rather than automatic or intrusive.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "building-the-foundations",
+        heading: "Building the foundations",
+        paragraphs: [
+          "Alongside the core journeys, I established the initial visual and interaction foundations for the product. This included accessible colour and typography choices, reusable interface components and patterns that could support both farm-management tools and social content.",
+          "I also identified and corrected early accessibility issues so the prototypes provided a more consistent and usable foundation for continued development.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        spacing: "tight",
+        items: [
+          {
+            label: "Design system",
+            media: { kind: "placeholder", label: "kashtkaar-design-system" },
+          },
+          {
+            label: "Components",
+            media: { kind: "placeholder", label: "kashtkaar-components" },
+          },
+          {
+            label: "Accessibility",
+            media: { kind: "placeholder", label: "kashtkaar-accessibility" },
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "outcome-and-reflection",
+        heading: "Outcome and reflection",
+        paragraphs: [
+          "The work established Kashtkaar's initial product direction and transformed a broad idea into a testable mobile experience.",
+          "I delivered the first product architecture, competitor research, core user journeys, several design iterations, a clickable prototype and the foundations of the design system. Findings from Urdu prototype testing informed refinements to navigation, terminology and activity recording.",
+          "I left the project after the early concept and validation phase, and the founder continued developing the product with the engineering team.",
+        ],
+      },
+      {
+        kind: "richText",
+        heading: "Reflection",
+        headingLevel: "h3",
+        paragraphs: [
+          "This project reinforced the importance of designing around behaviours that already feel familiar to users. The social-feed model created an accessible entry point, but the product's longer-term value depended on making agricultural recording and crop guidance feel simple, relevant and immediately useful to farmers.",
         ],
       },
     ],

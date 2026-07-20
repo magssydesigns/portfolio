@@ -16,6 +16,8 @@ export default function ProjectAtAGlanceSection({
   coreTeam,
   collaborationLabel = "Collaboration teams",
   collaborationTeams,
+  users,
+  stage,
   markets,
   platforms,
   id = "project-at-a-glance",
@@ -37,6 +39,10 @@ export default function ProjectAtAGlanceSection({
     ...(coreTeam ? [{ label: "Core team", value: coreTeam }] : []),
     ...(collaborationTeams ? [{ label: collaborationLabel, value: collaborationTeams }] : []),
   ];
+  const userStageRow = [
+    ...(users ? [{ label: "Users", value: users }] : []),
+    ...(stage ? [{ label: "Stage", value: stage }] : []),
+  ];
 
   const rows = [
     [
@@ -45,6 +51,7 @@ export default function ProjectAtAGlanceSection({
     ],
     ...(contribution ? [[{ label: "Contribution", value: contribution }]] : []),
     ...(coreRow.length ? [coreRow] : []),
+    ...(userStageRow.length ? [userStageRow] : []),
     ...(markets ? [[{ label: "Markets", value: markets }]] : []),
     ...(platforms ? [[{ label: "Platforms", value: platforms }]] : []),
   ];

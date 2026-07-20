@@ -74,6 +74,13 @@ export const homepageCards: ProjectCardData[] = [
     type: "homepage",
     isArchive: false,
   },
+  {
+    title: "Designing Kashtkaar's first farm management experience",
+    slug: "kashtkaar",
+    media: { kind: "placeholder", label: "kashtkaar-hero" },
+    type: "homepage",
+    isArchive: false,
+  },
 ];
 
 /**
