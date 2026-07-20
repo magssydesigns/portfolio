@@ -62,6 +62,10 @@ export default function HeroPrototypeEmbed({ src, title }: { src: string; title:
         </div>
       </div>
 
+      <div className="mx-auto w-[70%]">
+        <p className="mt-3 text-left text-[13px] text-muted">This is an unbranded prototype</p>
+      </div>
+
       <p className="mt-4 text-center">
         <a
           href={src}

@@ -1377,6 +1377,15 @@ export const projects: Project[] = [
         "I shaped the initial product concept through competitor research, information architecture and UX exploration. I designed the first two to three iterations of the app, including the Farm hub, crop calendar, activity-recording journeys and the relationship between farm management and the community feed. I also created the initial interactive prototypes and established the foundations of the design system.",
         "The prototypes were tested in Urdu with farmers by local members of the team. I used the findings to simplify navigation, refine terminology and improve how farmers recorded activities and moved between planning, monitoring and community content. I left the project after the initial concept and validation stages, while the founder and engineering team continued developing the product.",
       ],
+      midMedia: {
+        kind: "image",
+        image: {
+          src: "/projects/kashtkaar/branded-flow.png",
+          width: 19240,
+          height: 10496,
+          alt: "Branded Kashtkaar onboarding and farm-health screens",
+        },
+      },
       outcomes: [],
     },
     fullCaseStudy: [
@@ -1881,7 +1890,12 @@ export const workInProgressProjects: WorkInProgressProject[] = [
     title: "Designing a simpler way to manage fragmented maintenance requests",
     subtitle:
       "An early-stage AI-assisted workflow that helps property teams organise maintenance communication without introducing another platform they need to monitor.",
-    heroImage: { kind: "placeholder", label: "propfuse-hero" },
+    heroImage: {
+      src: "/projects/propfuse/propfuse.png",
+      width: 7581,
+      height: 5289,
+      alt: "PropFuse landing page showing the daily property digest concept",
+    },
     projectAtAGlance: {
       role: "Founder and Product Designer",
       scope:
