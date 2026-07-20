@@ -74,7 +74,7 @@ export default async function EnterPage({
               href="https://www.linkedin.com/in/magdalena-marczewska-3b33b750/"
               target="_blank"
               rel="noreferrer"
-              className="link-underline text-ink"
+              className="text-ink underline"
             >
               LinkedIn
             </a>
