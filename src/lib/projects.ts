@@ -677,10 +677,6 @@ export const projects: Project[] = [
         bold: true,
         items: ["The team could launch on time while maintaining a clear direction for future releases."],
       },
-      {
-        kind: "media",
-        media: { kind: "placeholder", label: "Prioritising launch-critical improvements screenshot" },
-      },
       { kind: "divider" },
       {
         kind: "twoCol",
@@ -731,7 +727,15 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
-        media: { kind: "placeholder", label: "Adapting onboarding for the UK market screenshot" },
+        media: {
+          kind: "video",
+          video: {
+            src: "/projects/rapid-uk-launch/onboarding.mp4",
+            width: 1412,
+            height: 1080,
+          },
+          alt: "UK onboarding experience walkthrough with refreshed brand and motion",
+        },
       },
       { kind: "divider" },
       {
