@@ -36,7 +36,7 @@ export type Block =
   | { kind: "steps"; id?: string; heading?: string; spacing?: "tight"; items: { title: string; body: string }[] }
   | { kind: "twoCol"; id?: string; heading?: string; spacing?: "tight"; items: { label: string; body: string }[] }
   | { kind: "mediaNumbered"; id?: string; heading?: string; media: MediaSlot; items: { title: string; body: string }[] }
-  | { kind: "beforeAfterImages"; id?: string; heading?: string; spacing?: "tight"; items: { label: string; media: MediaSlot }[] }
+  | { kind: "beforeAfterImages"; id?: string; heading?: string; spacing?: "tight"; bordered?: boolean; items: { label: string; media: MediaSlot }[] }
   /** Scoped, additive kinds used by the Send case study's full-case-study rebuild. */
   | { kind: "divider" }
   | { kind: "richText"; id?: string; heading?: string; headingLevel?: "h2" | "h3"; paragraphs: string[]; paddingTop?: number; paddingBottom?: number }
@@ -1442,22 +1442,17 @@ export const projects: Project[] = [
         ],
       },
       {
-        kind: "beforeAfterImages",
-        spacing: "tight",
-        items: [
-          {
-            label: "Discover",
-            media: { kind: "placeholder", label: "kashtkaar-discover" },
-          },
-          {
-            label: "Farm",
-            media: { kind: "placeholder", label: "kashtkaar-farm-hub" },
-          },
-        ],
-      },
-      {
         kind: "media",
-        media: { kind: "placeholder", label: "kashtkaar-product-architecture" },
+        bordered: true,
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/kashtkaar/kashtkaar-product-architecture.png",
+            width: 20916,
+            height: 10496,
+            alt: "Kashtkaar product architecture showing the Discover feed and Farm hub",
+          },
+        },
       },
       { kind: "divider" },
       {
@@ -1479,7 +1474,16 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
-        media: { kind: "placeholder", label: "kashtkaar-activity-recording" },
+        bordered: true,
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/kashtkaar/kashtkaar-activity-recording.png",
+            width: 20916,
+            height: 10496,
+            alt: "Activity-recording screens for logging farm tasks",
+          },
+        },
       },
       { kind: "divider" },
       {
@@ -1495,14 +1499,19 @@ export const projects: Project[] = [
       {
         kind: "beforeAfterImages",
         spacing: "tight",
+        bordered: true,
         items: [
           {
             label: "Exploration",
-            media: { kind: "placeholder", label: "kashtkaar-crop-calendar-exploration" },
-          },
-          {
-            label: "Prototype",
-            media: { kind: "placeholder", label: "kashtkaar-crop-calendar-prototype" },
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/kashtkaar/kashtkaar-crop-calendar-exploration.png",
+                width: 20916,
+                height: 10496,
+                alt: "Crop calendar exploration screens for tracking rice-growing stages",
+              },
+            },
           },
         ],
       },
@@ -1518,7 +1527,16 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
-        media: { kind: "placeholder", label: "kashtkaar-share-to-discover" },
+        bordered: true,
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/kashtkaar/kashtkaar-share-to-discover.png",
+            width: 20916,
+            height: 10496,
+            alt: "Sharing a recorded farm activity to the Discover community feed",
+          },
+        },
       },
       { kind: "divider" },
       {
@@ -1529,10 +1547,6 @@ export const projects: Project[] = [
           "I created a clickable prototype covering the main navigation, crop planning and activity-recording journeys. Local members of the team tested the concept in Urdu with farmers, allowing the product to be evaluated in the language and context in which it would be used.",
           "Testing focused on whether farmers could record an activity quickly, understand the relationship between Plan, Health and Log, and move naturally between farm-management tools and the community feed.",
         ],
-      },
-      {
-        kind: "media",
-        media: { kind: "placeholder", label: "kashtkaar-prototype-testing" },
       },
       {
         kind: "numbered",
@@ -1566,14 +1580,19 @@ export const projects: Project[] = [
       {
         kind: "beforeAfterImages",
         spacing: "tight",
+        bordered: true,
         items: [
           {
             label: "Design system",
-            media: { kind: "placeholder", label: "kashtkaar-design-system" },
-          },
-          {
-            label: "Components",
-            media: { kind: "placeholder", label: "kashtkaar-components" },
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/kashtkaar/kashtkaar-design-system.png",
+                width: 2044,
+                height: 1078,
+                alt: "Kashtkaar design-system components including cards and bottom navigation",
+              },
+            },
           },
         ],
       },
@@ -1582,6 +1601,7 @@ export const projects: Project[] = [
         kind: "richText",
         id: "outcome-and-reflection",
         heading: "Outcome and reflection",
+        paddingBottom: 90,
         paragraphs: [
           "The work turned Kashtkaar's early vision into a testable mobile product, including the initial architecture, core journeys, design iterations, clickable prototype and design-system foundations. Urdu prototype testing informed improvements to navigation, terminology and activity recording before the founder and engineering team continued development.",
           "The project reinforced the value of designing around familiar behaviours. While the social feed created an accessible entry point, the product's real value depended on making agricultural guidance and farm data collection feel simple, relevant and useful.",

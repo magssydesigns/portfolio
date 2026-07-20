@@ -187,13 +187,12 @@ function BlockRenderer({
               : "";
       const mediaClassName =
         block.width || block.bordered
-          ? [!block.width ? "w-full" : "", "h-auto", block.bordered ? "rounded-2xl border" : ""]
-              .filter(Boolean)
-              .join(" ")
+          ? [!block.width ? "w-full" : "", "h-auto"].filter(Boolean).join(" ")
           : undefined;
-      const mediaStyle = block.bordered ? { borderColor: "rgb(221, 216, 203)" } : undefined;
 
-      const mediaEl = <MediaSlotView media={block.media} className={mediaClassName} style={mediaStyle} />;
+      const mediaEl = (
+        <MediaSlotView media={block.media} className={mediaClassName} bordered={block.bordered} />
+      );
 
       return (
         <Reveal y={30}>
@@ -578,7 +577,11 @@ function BlockRenderer({
                     {item.label}
                   </p>
                   <div className="flex justify-center rounded-2xl p-6 sm:p-8">
-                    <MediaSlotView media={item.media} className="mx-auto h-auto w-full max-w-[50%]" />
+                    <MediaSlotView
+                      media={item.media}
+                      className="mx-auto h-auto w-full max-w-[50%]"
+                      bordered={block.bordered}
+                    />
                   </div>
                 </div>
               ))}
