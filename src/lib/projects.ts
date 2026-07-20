@@ -783,7 +783,7 @@ export const projects: Project[] = [
         media: {
           kind: "video",
           video: {
-            src: "/projects/rapid-uk-launch/onboarding-video.mp4",
+            src: "/projects/rapid-uk-launch/onboarding.mp4",
             width: 1412,
             height: 1080,
           },
