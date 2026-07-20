@@ -14,7 +14,10 @@ export type ProjectVideo = {
 };
 
 /** A hero image that may still be a placeholder awaiting a final asset. */
-export type ProjectHeroImage = ProjectImage | { kind: "placeholder"; label: string };
+export type StandardHeroImage = ProjectImage | { kind: "placeholder"; label: string };
+
+/** A hero image, or an interactive prototype embed shown in the hero position. */
+export type ProjectHeroImage = StandardHeroImage | { kind: "embed"; src: string; title: string };
 
 /** A media slot that may still be a placeholder awaiting a final asset. */
 export type MediaSlot =
@@ -1355,7 +1358,11 @@ export const projects: Project[] = [
     quickRead: {
       tagline:
         "An early-stage mobile concept helping farmers in Pakistan record farm activities, follow crop guidance and connect with agricultural communities and services.",
-      heroImage: { kind: "placeholder", label: "kashtkaar-hero" },
+      heroImage: {
+        kind: "embed",
+        src: "https://union-park-04897894.figma.site/",
+        title: "Interactive Kashtkaar farm management prototype",
+      },
       challenge: [
         "Kashtkaar was an early-stage mobile product designed to support farmers in Pakistan while improving agricultural data collection across a sustainable rice supply chain. The concept combined a familiar, feed-based experience with practical farm-management tools, helping farmers access guidance, record activities and follow their crop cycle in one place.",
         "I shaped the initial product concept through competitor research, information architecture and UX exploration. I designed the first two to three iterations of the app, including the Farm hub, crop calendar, activity-recording journeys and the relationship between farm management and the community feed. I also created the initial interactive prototypes and established the foundations of the design system.",
@@ -1601,7 +1608,7 @@ export type ArchiveProject = {
   slug: string;
   title: string;
   subtitle: string;
-  heroImage: ProjectHeroImage;
+  heroImage: StandardHeroImage;
   /** Overrides the media shown on the /archive listing card; falls back to heroImage when absent. */
   cardMedia?: MediaSlot;
   /** Overrides the card's media-container background (ProjectCard defaults to bg-paper-dim). */
@@ -1835,7 +1842,7 @@ export type WorkInProgressProject = {
   eyebrow: string;
   title: string;
   subtitle: string;
-  heroImage: ProjectHeroImage;
+  heroImage: StandardHeroImage;
   projectAtAGlance: ProjectAtAGlanceData;
   quickSummary: string[];
 };

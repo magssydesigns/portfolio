@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import type { ProjectHeroImage, ProjectVideo } from "@/lib/projects";
+import HeroPrototypeEmbed from "./HeroPrototypeEmbed";
 
 function HeroImageView({
   image,
@@ -15,6 +16,9 @@ function HeroImageView({
   style?: CSSProperties;
 }) {
   if ("kind" in image) {
+    if (image.kind === "embed") {
+      return <HeroPrototypeEmbed src={image.src} title={image.title} />;
+    }
     return (
       <div
         className={
@@ -105,7 +109,7 @@ export default function ProjectHero({
             muted
             playsInline
             preload="auto"
-            aria-label={"kind" in image ? image.label : image.alt}
+            aria-label={"kind" in image ? (image.kind === "embed" ? image.title : image.label) : image.alt}
             className="mx-auto block h-auto w-full max-w-[60%] rounded-2xl border"
             style={{ borderColor: "rgb(221, 216, 203)" }}
           />
