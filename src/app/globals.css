@@ -81,7 +81,8 @@
 @media (prefers-reduced-motion: reduce) {
   .animate-drift-a,
   .animate-drift-b,
-  .animate-drift-c {
+  .animate-drift-c,
+  .animate-marquee {
     animation: none;
   }
 }

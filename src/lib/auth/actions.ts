@@ -26,11 +26,11 @@ export async function unlockPortfolio(_prevState: UnlockState, formData: FormDat
     return { error: configError };
   }
 
-  const password = String(formData.get("password") ?? "");
+  const code = String(formData.get("code") ?? "");
   const from = safeRedirectTarget(formData.get("from"));
 
-  if (!password || !isCorrectPassword(password)) {
-    return { error: "That password isn't right. Please try again." };
+  if (!code || !isCorrectPassword(code)) {
+    return { error: "That code doesn't look right. Please try again." };
   }
 
   const cookieStore = await cookies();
