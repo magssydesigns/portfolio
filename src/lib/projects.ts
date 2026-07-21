@@ -340,9 +340,9 @@ export const projects: Project[] = [
         media: {
           kind: "image",
           image: {
-            src: "/projects/scaling-parcel-tracking/parcel-list-annotated.png",
-            width: 2543,
-            height: 11788,
+            src: "/projects/scaling-parcel-tracking/parcel-list-annotated.webp",
+            width: 700,
+            height: 3245,
             alt: "Redesigned parcel list showing out for delivery, ready to collect, redirected, and delivered states, annotated 1 to 9",
           },
         },
@@ -442,9 +442,9 @@ export const projects: Project[] = [
             media: {
               kind: "image",
               image: {
-                src: "/projects/scaling-parcel-tracking/parcel-list-before.png",
-                width: 2044,
-                height: 9745,
+                src: "/projects/scaling-parcel-tracking/parcel-list-before.webp",
+                width: 700,
+                height: 3337,
                 alt: "Before: the old “Shipment tracking” parcel list screen",
               },
             },
@@ -454,9 +454,9 @@ export const projects: Project[] = [
             media: {
               kind: "image",
               image: {
-                src: "/projects/scaling-parcel-tracking/parcel-list-after.png",
-                width: 2044,
-                height: 11789,
+                src: "/projects/scaling-parcel-tracking/parcel-list-after.webp",
+                width: 700,
+                height: 4037,
                 alt: "After: the redesigned “Parcel tracking” parcel list screen",
               },
             },
@@ -504,9 +504,9 @@ export const projects: Project[] = [
       tagline:
         "Redesigned and localised a legacy Polish app for the UK market while unifying the design system, resolving accessibility issues, and defining a phased product roadmap.",
       heroImage: {
-        src: "/projects/rapid-uk-launch/App-launch.png",
-        width: 15092,
-        height: 11892,
+        src: "/projects/rapid-uk-launch/App-launch.webp",
+        width: 2600,
+        height: 2049,
         alt: "InPost UK app onboarding, locker map and parcel tracking screens shown on three phones",
       },
       bulletedChallenge: false,
@@ -624,9 +624,9 @@ export const projects: Project[] = [
         media: {
           kind: "image",
           image: {
-            src: "/projects/rapid-uk-launch/Final experience screenshot.png",
-            width: 20916,
-            height: 12608,
+            src: "/projects/rapid-uk-launch/Final experience screenshot.webp",
+            width: 2600,
+            height: 1567,
             alt: "Four key UK app screens: animated onboarding, locker capacity checker, parcel tracking and pick-up details",
           },
         },
@@ -687,9 +687,9 @@ export const projects: Project[] = [
         media: {
           kind: "image",
           image: {
-            src: "/projects/rapid-uk-launch/Product and system audit screenshot.png",
-            width: 12592,
-            height: 7536,
+            src: "/projects/rapid-uk-launch/Product and system audit screenshot.webp",
+            width: 2600,
+            height: 1556,
             alt: "Audit of the legacy colour and typography tokens next to the consolidated design-system tokens",
           },
         },
@@ -973,9 +973,9 @@ export const projects: Project[] = [
     quickRead: {
       tagline: "Enabling customers to send parcels directly within the InPost app.",
       heroImage: {
-        src: "/projects/send-parcel-in-app/send-hero.png",
-        width: 7434,
-        height: 8919,
+        src: "/projects/send-parcel-in-app/send-hero.webp",
+        width: 2100,
+        height: 2519,
         alt: "InPost send a parcel screen showing size selection and an About sizes bottom-sheet modal",
       },
       summaryLabel: "Project at a glance",
@@ -1049,9 +1049,9 @@ export const projects: Project[] = [
         media: {
           kind: "image",
           image: {
-            src: "/projects/send-parcel-in-app/Final%20experience.png",
-            width: 6952,
-            height: 9900,
+            src: "/projects/send-parcel-in-app/Final%20experience.webp",
+            width: 2600,
+            height: 3703,
             alt: "Final send-a-parcel experience screens for the UK app",
           },
         },
@@ -1145,9 +1145,9 @@ export const projects: Project[] = [
         media: {
           kind: "image",
           image: {
-            src: "/projects/send-parcel-in-app/Send-summary.png",
-            width: 8887,
-            height: 6101,
+            src: "/projects/send-parcel-in-app/Send-summary.webp",
+            width: 2600,
+            height: 1785,
             alt: "Editable Summary page showing parcel details, address and size",
           },
         },
@@ -1204,9 +1204,9 @@ export const projects: Project[] = [
         media: {
           kind: "image",
           image: {
-            src: "/projects/send-parcel-in-app/Send-timeandprice.png",
-            width: 8887,
-            height: 6101,
+            src: "/projects/send-parcel-in-app/Send-timeandprice.webp",
+            width: 2600,
+            height: 1785,
             alt: "Pricing and ETA surfaced earlier in the send flow",
           },
         },
@@ -1286,9 +1286,9 @@ export const projects: Project[] = [
         media: {
           kind: "image",
           image: {
-            src: "/projects/send-parcel-in-app/workshop-image.png",
-            width: 7840,
-            height: 5672,
+            src: "/projects/send-parcel-in-app/workshop-image.webp",
+            width: 2600,
+            height: 1881,
             alt: "UX Metrics Workshop mapping the Send journey and defining success measures",
           },
         },
@@ -1384,9 +1384,9 @@ export const projects: Project[] = [
       midMedia: {
         kind: "image",
         image: {
-          src: "/projects/kashtkaar/branded-flow.png",
-          width: 19240,
-          height: 10496,
+          src: "/projects/kashtkaar/branded-flow.webp",
+          width: 2600,
+          height: 1418,
           alt: "Branded Kashtkaar onboarding and farm-health screens",
         },
       },
@@ -1462,9 +1462,9 @@ export const projects: Project[] = [
         media: {
           kind: "image",
           image: {
-            src: "/projects/kashtkaar/kashtkaar-product-architecture.png",
-            width: 20916,
-            height: 10496,
+            src: "/projects/kashtkaar/kashtkaar-product-architecture.webp",
+            width: 2600,
+            height: 1305,
             alt: "Kashtkaar product architecture showing the Discover feed and Farm hub",
           },
         },
@@ -1493,9 +1493,9 @@ export const projects: Project[] = [
         media: {
           kind: "image",
           image: {
-            src: "/projects/kashtkaar/kashtkaar-activity-recording.png",
-            width: 20916,
-            height: 10496,
+            src: "/projects/kashtkaar/kashtkaar-activity-recording.webp",
+            width: 2600,
+            height: 1305,
             alt: "Activity-recording screens for logging farm tasks",
           },
         },
@@ -1517,9 +1517,9 @@ export const projects: Project[] = [
         media: {
           kind: "image",
           image: {
-            src: "/projects/kashtkaar/kashtkaar-crop-calendar-exploration.png",
-            width: 20916,
-            height: 10496,
+            src: "/projects/kashtkaar/kashtkaar-crop-calendar-exploration.webp",
+            width: 2600,
+            height: 1305,
             alt: "Crop calendar exploration screens for tracking rice-growing stages",
           },
         },
@@ -1540,9 +1540,9 @@ export const projects: Project[] = [
         media: {
           kind: "image",
           image: {
-            src: "/projects/kashtkaar/kashtkaar-share-to-discover.png",
-            width: 20916,
-            height: 10496,
+            src: "/projects/kashtkaar/kashtkaar-share-to-discover.webp",
+            width: 2600,
+            height: 1305,
             alt: "Sharing a recorded farm activity to the Discover community feed",
           },
         },
@@ -1661,18 +1661,18 @@ export const archiveProjects: ArchiveProject[] = [
     subtitle:
       "Creative direction & UI Design for an Online Design Resource promoting accessible Electric Vehicle Charging Points",
     heroImage: {
-      src: "/projects/designability/designabilitycover.png",
-      width: 4956,
-      height: 3946,
+      src: "/projects/designability/designabilitycover.webp",
+      width: 2100,
+      height: 1672,
       alt: "Designability design guidelines shown across a grid of mobile screens",
     },
     heroImageMaxWidth: 922.2,
     cardMedia: {
       kind: "image",
       image: {
-        src: "/projects/designability/designabilitycover.png",
-        width: 4956,
-        height: 3946,
+        src: "/projects/designability/designabilitycover.webp",
+        width: 2100,
+        height: 1672,
         alt: "Designability cover image",
       },
     },
@@ -1759,9 +1759,9 @@ export const archiveProjects: ArchiveProject[] = [
     cardMedia: {
       kind: "image",
       image: {
-        src: "/projects/tigi/tigi-cover.png",
-        width: 4956,
-        height: 3946,
+        src: "/projects/tigi/tigi-cover.webp",
+        width: 1500,
+        height: 1194,
         alt: "TIGI cover image",
       },
     },
@@ -2051,9 +2051,9 @@ export const workInProgressProjects: WorkInProgressProject[] = [
     subtitle:
       "An early-stage AI-assisted workflow that helps property teams organise maintenance communication without introducing another platform they need to monitor.",
     heroImage: {
-      src: "/projects/propfuse/propfuse.png",
-      width: 7581,
-      height: 5289,
+      src: "/projects/propfuse/propfuse.webp",
+      width: 2100,
+      height: 1465,
       alt: "PropFuse landing page showing the daily property digest concept",
     },
     heroImageMaxWidth: 1045.15,

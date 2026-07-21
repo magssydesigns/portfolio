@@ -69,6 +69,7 @@ export default function MediaSlotView({
         alt={media.image.alt}
         width={media.image.width}
         height={media.image.height}
+        sizes="(min-width: 1450px) 1320px, 92vw"
         className={[className ?? "h-auto w-full", bordered ? "rounded-2xl border" : ""]
           .filter(Boolean)
           .join(" ")}

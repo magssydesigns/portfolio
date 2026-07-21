@@ -43,9 +43,9 @@ export const homepageCards: ProjectCardData[] = [
     media: {
       kind: "image",
       image: {
-        src: "/homepage/app-in-uk.png",
-        width: 4956,
-        height: 3946,
+        src: "/homepage/app-in-uk.webp",
+        width: 1500,
+        height: 1194,
         alt: "InPost parcel tracking screen and design system colour tokens",
       },
     },
@@ -58,9 +58,9 @@ export const homepageCards: ProjectCardData[] = [
     media: {
       kind: "image",
       image: {
-        src: "/homepage/send-a-parcel.png",
-        width: 4956,
-        height: 3946,
+        src: "/homepage/send-a-parcel.webp",
+        width: 1500,
+        height: 1194,
         alt: "InPost send a parcel screen showing locker or home address delivery options",
       },
     },
@@ -73,9 +73,9 @@ export const homepageCards: ProjectCardData[] = [
     media: {
       kind: "image",
       image: {
-        src: "/homepage/Kashtkaar.png",
-        width: 7434,
-        height: 5919,
+        src: "/homepage/Kashtkaar.webp",
+        width: 1500,
+        height: 1194,
         alt: "Kashtkaar onboarding and farm-health screens",
       },
     },

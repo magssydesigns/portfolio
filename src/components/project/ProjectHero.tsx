@@ -40,6 +40,7 @@ function HeroImageView({
       width={image.width}
       height={image.height}
       priority
+      sizes="(min-width: 1024px) 700px, 90vw"
       className={className}
       style={style}
       {...mediaProtectionProps}
