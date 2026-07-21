@@ -56,6 +56,7 @@ export default function ProjectHero({
   markets,
   flushBottom,
   imageMaxWidth,
+  videoMaxWidth,
 }: {
   title: string;
   tagline: string;
@@ -72,6 +73,8 @@ export default function ProjectHero({
   flushBottom?: boolean;
   /** Overrides the stacked hero image's max-width in px (default 614.797, the site's standard stacked-hero size). */
   imageMaxWidth?: number;
+  /** Overrides the video hero's max-width in px (default is 60% of the container). */
+  videoMaxWidth?: number;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const textBlockPadding = flushBottom
@@ -114,7 +117,10 @@ export default function ProjectHero({
               image ? ("kind" in image ? (image.kind === "embed" ? image.title : image.label) : image.alt) : undefined
             }
             className="mx-auto block h-auto w-full max-w-[60%] rounded-2xl border"
-            style={{ borderColor: "rgb(221, 216, 203)" }}
+            style={{
+              borderColor: "rgb(221, 216, 203)",
+              ...(videoMaxWidth !== undefined ? { maxWidth: videoMaxWidth } : {}),
+            }}
           />
         </div>
 

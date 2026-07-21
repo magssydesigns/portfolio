@@ -76,8 +76,11 @@ export default async function ProjectPage({
               client="Archive"
               color="#F8F4EE"
               image={archiveProject.heroImage}
+              video={archiveProject.heroVideo}
               stacked
               flushBottom
+              imageMaxWidth={archiveProject.heroImageMaxWidth}
+              videoMaxWidth={archiveProject.heroImageMaxWidth}
             />
             <div className="mx-auto max-w-[1400px] px-6 sm:px-10">
               <SectionDivider />
@@ -90,14 +93,18 @@ export default async function ProjectPage({
                   <QuickSummarySection paragraphs={archiveProject.quickSummary} standalone={false} />
                 </>
               )}
-              {archiveProject.belowSummaryMedia && (
-                <div className="mt-12 flex justify-center rounded-2xl bg-paper-dim p-6 sm:mt-16 sm:p-10">
+              {archiveProject.belowSummaryMedia?.map((item, i) => (
+                <div
+                  key={i}
+                  className="mt-12 flex justify-center rounded-2xl bg-paper-dim p-6 sm:mt-16 sm:p-10"
+                >
                   <MediaSlotView
-                    media={archiveProject.belowSummaryMedia}
-                    className="h-auto w-full max-w-[1000px] rounded-xl"
+                    media={item.media}
+                    className={item.heightPx ? "w-auto rounded-xl" : "h-auto w-full max-w-[1000px] rounded-xl"}
+                    style={item.heightPx ? { height: item.heightPx } : undefined}
                   />
                 </div>
-              )}
+              ))}
             </section>
           </article>
           <Footer />
