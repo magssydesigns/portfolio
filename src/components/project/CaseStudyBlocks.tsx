@@ -451,6 +451,7 @@ function BlockRenderer({
                 alt={block.image.alt}
                 width={block.image.width}
                 height={block.image.height}
+                sizes={block.size === "medium" ? "(min-width: 640px) 420px, 90vw" : "(min-width: 1650px) 1600px, 92vw"}
                 className={
                   block.size === "medium"
                     ? "h-auto w-full max-w-[420px]"
