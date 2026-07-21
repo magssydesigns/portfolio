@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import type { ProjectHeroImage, ProjectVideo } from "@/lib/projects";
+import { mediaProtectionProps } from "@/lib/mediaProtection";
 import HeroPrototypeEmbed from "./HeroPrototypeEmbed";
 
 function HeroImageView({
@@ -41,6 +42,7 @@ function HeroImageView({
       priority
       className={className}
       style={style}
+      {...mediaProtectionProps}
     />
   );
 }
@@ -121,6 +123,7 @@ export default function ProjectHero({
               borderColor: "rgb(221, 216, 203)",
               ...(videoMaxWidth !== undefined ? { maxWidth: videoMaxWidth } : {}),
             }}
+            {...mediaProtectionProps}
           />
         </div>
 

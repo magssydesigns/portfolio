@@ -107,6 +107,25 @@ body {
   color: var(--paper);
 }
 
+/* Scoped to ProtectedContent - deters casual selection/copying of portfolio
+   copy without touching form fields, buttons or navigation controls. */
+.protected-content {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.protected-content input,
+.protected-content textarea,
+.protected-content select,
+.protected-content [contenteditable="true"],
+.protected-content button,
+.protected-content nav {
+  -webkit-user-select: auto;
+  user-select: auto;
+  -webkit-touch-callout: default;
+}
+
 .font-display {
   font-family: var(--font-display);
   font-weight: 500;

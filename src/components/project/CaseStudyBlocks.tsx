@@ -3,6 +3,7 @@ import Reveal from "@/components/Reveal";
 import BeforeAfterStats from "@/components/project/BeforeAfterStats";
 import MediaSlotView from "@/components/project/MediaSlotView";
 import ProjectCardCursor from "@/components/ProjectCardCursor";
+import { mediaProtectionProps } from "@/lib/mediaProtection";
 import type { Block } from "@/lib/projects";
 
 export default function CaseStudyBlocks({
@@ -455,6 +456,7 @@ function BlockRenderer({
                     ? "h-auto w-full max-w-[420px]"
                     : "h-auto w-full"
                 }
+                {...mediaProtectionProps}
               />
             </div>
             {block.image.caption && (

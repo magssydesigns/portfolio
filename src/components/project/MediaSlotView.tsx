@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import type { CSSProperties } from "react";
 import Image from "next/image";
 import type { MediaSlot } from "@/lib/projects";
+import { mediaProtectionProps } from "@/lib/mediaProtection";
 
 const BORDER_COLOR = "rgb(221, 216, 203)";
 
@@ -56,6 +57,7 @@ export default function MediaSlotView({
           .filter(Boolean)
           .join(" ")}
         style={bordered ? { borderColor: BORDER_COLOR, ...style } : style}
+        {...mediaProtectionProps}
       />
     );
   }
@@ -71,6 +73,7 @@ export default function MediaSlotView({
           .filter(Boolean)
           .join(" ")}
         style={bordered ? { borderColor: BORDER_COLOR, ...style } : style}
+        {...mediaProtectionProps}
       />
     );
   }

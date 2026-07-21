@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Manrope, Inter } from "next/font/google";
 import Nav from "@/components/Nav";
+import ProtectedContent from "@/components/ProtectedContent";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -42,7 +43,9 @@ export default function RootLayout({
     <html lang="en" className={`${manrope.variable} ${inter.variable} h-full`}>
       <body className="flex min-h-full flex-col bg-paper font-sans text-ink antialiased">
         <Nav />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <ProtectedContent>{children}</ProtectedContent>
+        </main>
       </body>
     </html>
   );
