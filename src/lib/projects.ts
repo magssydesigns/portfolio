@@ -648,7 +648,36 @@ export const projects: Project[] = [
             alt: "Four key UK app screens: animated onboarding, locker capacity checker, parcel tracking and pick-up details",
           },
         },
-        mobileZoom: "sm",
+        mobileCarousel: [
+          {
+            src: "/projects/rapid-uk-launch/rapidlaunch-carousel-1/Final-experience-mobile-1.webp",
+            width: 1300,
+            height: 2307,
+            alt: "Animated onboarding screen in the UK app",
+            caption: "Animated onboarding",
+          },
+          {
+            src: "/projects/rapid-uk-launch/rapidlaunch-carousel-1/Final-experience-mobile-2.webp",
+            width: 1300,
+            height: 2307,
+            alt: "Locker finder and capacity checker screen in the UK app",
+            caption: "Locker finder and capacity checker",
+          },
+          {
+            src: "/projects/rapid-uk-launch/rapidlaunch-carousel-1/Final-experience-mobile-3.webp",
+            width: 1300,
+            height: 2307,
+            alt: "Refreshed parcel tracking list screen in the UK app",
+            caption: "Refreshed parcel tracking list",
+          },
+          {
+            src: "/projects/rapid-uk-launch/rapidlaunch-carousel-1/Final-experience-mobile-4.webp",
+            width: 1300,
+            height: 2307,
+            alt: "Parcel collection instructions screen in the UK app",
+            caption: "Parcel collection instructions",
+          },
+        ],
       },
       { kind: "divider" },
       {

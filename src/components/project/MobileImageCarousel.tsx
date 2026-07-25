@@ -62,15 +62,20 @@ export default function MobileImageCarousel({
             }}
             className="w-full shrink-0 snap-start"
           >
-            <Image
-              src={image.src}
-              alt={image.alt}
-              width={image.width}
-              height={image.height}
-              sizes="100vw"
-              className="mx-auto h-auto w-[85%]"
-              {...mediaProtectionProps}
-            />
+            <div className="mx-auto w-[85%]">
+              <Image
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                sizes="100vw"
+                className="h-auto w-full"
+                {...mediaProtectionProps}
+              />
+              {image.caption && (
+                <p className="mt-3 text-center text-[13px] text-muted">{image.caption}</p>
+              )}
+            </div>
           </div>
         ))}
       </div>
