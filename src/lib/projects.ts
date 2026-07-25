@@ -237,6 +237,7 @@ export const projects: Project[] = [
         },
         alt: "InPost parcel tracking experience shown in context",
       },
+      midMediaMobileSrc: "/projects/scaling-parcel-tracking/tracking-mobileonly.mp4",
       keyDecisions: [
         "Created a shared system for parcel states and delivery communication across markets",
         "Prioritised ETA, pickup location and the customer's next action",
