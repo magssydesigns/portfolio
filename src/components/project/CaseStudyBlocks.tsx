@@ -185,7 +185,7 @@ function BlockRenderer({
           : block.width === "reduced-40"
             ? "w-3/5"
             : block.width === "reduced-70"
-              ? "w-[70%]"
+              ? "w-full sm:w-[70%]"
               : "";
       const mediaClassName =
         block.width || block.bordered
