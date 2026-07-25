@@ -541,7 +541,7 @@ export const projects: Project[] = [
         alt: "UK onboarding experience walkthrough with refreshed brand and motion",
       },
       midMediaMobilePortrait: true,
-      midMediaMobileSrc: "/projects/scaling-parcel-tracking/tracking-mobileonly.mp4",
+      midMediaMobileSrc: "/projects/rapid-uk-launch/onboarding-mobile.mp4",
       keyDecisions: [
         "New onboarding experience with motion + visual refresh",
         "Redesigned parcel tracking components for clarity & hierarchy",
