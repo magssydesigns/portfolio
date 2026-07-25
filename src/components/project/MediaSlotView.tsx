@@ -53,6 +53,26 @@ export default function MediaSlotView({
     return () => mq.removeEventListener("change", sync);
   }, [media]);
 
+  // <source media> is only evaluated by the browser when the resource selection
+  // algorithm runs (initial load, or an explicit .load() call) - unlike <picture>,
+  // it does NOT re-evaluate on a live viewport resize. Re-triggering it here on
+  // the same breakpoint crossing keeps the mobile/desktop source in sync when the
+  // window is resized rather than freshly loaded at that width.
+  useEffect(() => {
+    if (media.kind !== "video" || !mobileSrc) return;
+    const el = videoRef.current;
+    if (!el) return;
+
+    const mq = window.matchMedia("(max-width: 767px)");
+    const reload = () => {
+      const wasPlaying = !el.paused;
+      el.load();
+      if (wasPlaying) el.play().catch(() => {});
+    };
+    mq.addEventListener("change", reload);
+    return () => mq.removeEventListener("change", reload);
+  }, [media, mobileSrc]);
+
   if (media.kind === "video") {
     const video = (
       <video
