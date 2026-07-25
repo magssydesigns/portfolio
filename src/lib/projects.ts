@@ -1509,7 +1509,26 @@ export const projects: Project[] = [
             alt: "Kashtkaar product architecture showing the Discover feed and Farm hub",
           },
         },
-        mobileZoom: "lg",
+        mobileCarousel: [
+          {
+            src: "/projects/kashtkaar/kashtkaar-carousel-4/kashtkaar-product-architecture-mobile-1.webp",
+            width: 1300,
+            height: 2072,
+            alt: "Discover community feed showing a farmer's post about rice fertiliser timing",
+          },
+          {
+            src: "/projects/kashtkaar/kashtkaar-carousel-4/kashtkaar-product-architecture-mobile-2.webp",
+            width: 1300,
+            height: 2072,
+            alt: "Farm hub screen showing current tasks for a rice plot",
+          },
+          {
+            src: "/projects/kashtkaar/kashtkaar-carousel-4/kashtkaar-product-architecture-mobile-3.webp",
+            width: 1300,
+            height: 2072,
+            alt: "Farmer profile screen showing farms, businesses and followers",
+          },
+        ],
       },
       { kind: "divider" },
       {
@@ -1628,7 +1647,26 @@ export const projects: Project[] = [
             alt: "Sharing a recorded farm activity to the Discover community feed",
           },
         },
-        mobileZoom: "lg",
+        mobileCarousel: [
+          {
+            src: "/projects/kashtkaar/kashtkaar-carousel-5/kashtkaar-share-to-discover-mobile-1.webp",
+            width: 1300,
+            height: 2072,
+            alt: "\"What do you want to do?\" menu with the option to share to community",
+          },
+          {
+            src: "/projects/kashtkaar/kashtkaar-carousel-5/kashtkaar-share-to-discover-mobile-2.webp",
+            width: 1300,
+            height: 2072,
+            alt: "Share your recent farm activity screen listing recently completed activities",
+          },
+          {
+            src: "/projects/kashtkaar/kashtkaar-carousel-5/kashtkaar-share-to-discover-mobile-3.webp",
+            width: 1300,
+            height: 2072,
+            alt: "Create Post screen with a completed watering activity ready to share",
+          },
+        ],
       },
       { kind: "divider" },
       {
