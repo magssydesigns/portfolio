@@ -7,14 +7,24 @@ import type { ProjectHeroImage, ProjectVideo } from "@/lib/projects";
 import { mediaProtectionProps } from "@/lib/mediaProtection";
 import HeroPrototypeEmbed from "./HeroPrototypeEmbed";
 
+/** Mobile-only content-safe zoom tiers, mirrored from MediaSlotView (paint-only `transform: scale()`, cropped via `overflow-hidden` on a wrapper with an unchanged aspect ratio, so desktop at `sm:scale-100` is pixel-identical to today). */
+const MOBILE_ZOOM_CLASSES: Record<"sm" | "md" | "lg", string> = {
+  sm: "scale-[1.09] sm:scale-100",
+  md: "scale-[1.15] sm:scale-100",
+  lg: "scale-[1.17] sm:scale-100",
+};
+
 function HeroImageView({
   image,
   className,
   style,
+  mobileZoom,
 }: {
   image: ProjectHeroImage;
   className?: string;
   style?: CSSProperties;
+  /** Content-safe mobile-only zoom tier; crops symmetrically into excess canvas whitespace without affecting desktop/tablet. */
+  mobileZoom?: "sm" | "md" | "lg";
 }) {
   if ("kind" in image) {
     if (image.kind === "embed") {
@@ -33,7 +43,8 @@ function HeroImageView({
       </div>
     );
   }
-  return (
+
+  const img = (
     <Image
       src={image.src}
       alt={image.alt}
@@ -41,11 +52,21 @@ function HeroImageView({
       height={image.height}
       priority
       sizes="(min-width: 1024px) 700px, 90vw"
-      className={className}
-      style={style}
+      className={mobileZoom ? ["h-auto w-full", MOBILE_ZOOM_CLASSES[mobileZoom]].join(" ") : className}
+      style={mobileZoom ? undefined : style}
       {...mediaProtectionProps}
     />
   );
+
+  if (mobileZoom) {
+    return (
+      <div className={[className, "overflow-hidden"].filter(Boolean).join(" ")} style={style}>
+        {img}
+      </div>
+    );
+  }
+
+  return img;
 }
 
 export default function ProjectHero({
@@ -59,6 +80,7 @@ export default function ProjectHero({
   markets,
   flushBottom,
   imageMaxWidth,
+  imageMobileZoom,
   videoMaxWidth,
 }: {
   title: string;
@@ -76,6 +98,8 @@ export default function ProjectHero({
   flushBottom?: boolean;
   /** Overrides the stacked hero image's max-width in px (default 614.797, the site's standard stacked-hero size). */
   imageMaxWidth?: number;
+  /** Content-safe mobile-only zoom tier for the stacked hero image. */
+  imageMobileZoom?: "sm" | "md" | "lg";
   /** Overrides the video hero's max-width in px (default is 60% of the container). */
   videoMaxWidth?: number;
 }) {
@@ -119,7 +143,7 @@ export default function ProjectHero({
             aria-label={
               image ? ("kind" in image ? (image.kind === "embed" ? image.title : image.label) : image.alt) : undefined
             }
-            className="mx-auto block h-auto w-full max-w-[60%] rounded-2xl border"
+            className="mx-auto block h-auto w-full max-w-full rounded-2xl border sm:max-w-[60%]"
             style={{
               borderColor: "rgb(221, 216, 203)",
               ...(videoMaxWidth !== undefined ? { maxWidth: videoMaxWidth } : {}),
@@ -168,6 +192,7 @@ export default function ProjectHero({
                 borderColor: "rgb(221, 216, 203)",
                 ...(imageMaxWidth !== undefined ? { maxWidth: imageMaxWidth } : {}),
               }}
+              mobileZoom={imageMobileZoom}
             />
           </div>
         )}

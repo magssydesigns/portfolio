@@ -49,6 +49,8 @@ export type Block =
       width?: "reduced" | "reduced-40" | "reduced-70";
       bordered?: boolean;
       link?: { href: string; label: string; size?: number };
+      /** Content-safe mobile-only zoom tier for screenshots/mock-ups that sit small inside a large card on narrow viewports. */
+      mobileZoom?: "sm" | "md" | "lg";
     }
   | { kind: "validationItem"; id?: string; question: string; status: "success" | "warning"; finding: string; update: string }
   | { kind: "stats"; id?: string; heading?: string; items: { value: string; label: string }[]; bullets?: string[] }
@@ -104,6 +106,10 @@ export type QuickRead = {
   midMediaMaxWidth?: number;
   /** Small left-aligned caption shown under midMedia. */
   midMediaHint?: string;
+  /** Content-safe mobile-only zoom tier for midMedia, same treatment as Block["media"].mobileZoom. */
+  midMediaMobileZoom?: "sm" | "md" | "lg";
+  /** Crops midMedia into a 4:5 portrait container on mobile only (object-fit: cover, centred) - for a wide landscape video/image whose subject occupies a small central area. Desktop keeps the natural aspect ratio and composition. */
+  midMediaMobilePortrait?: boolean;
   keyDecisionsLabel?: string;
   keyDecisions?: string[];
   outcomes: { value: string; label: string }[];
@@ -129,6 +135,8 @@ export type Project = {
   heroMarkets?: { label: string; flags: { emoji: string; name: string }[] };
   /** Overrides the stacked hero image's max-width in px (default 614.797). */
   heroImageMaxWidth?: number;
+  /** Content-safe mobile-only zoom tier for the stacked hero image, same treatment as Block["media"].mobileZoom. */
+  heroImageMobileZoom?: "sm" | "md" | "lg";
   /** Renders the shared Divider directly below the hero, before the Quick Read section begins. */
   heroDividerBelow?: boolean;
   /** Drops the hero's bottom padding (like heroDividerBelow) without inserting a divider - for a flat px gap owned entirely by the next section's top padding. */
@@ -474,6 +482,7 @@ export const projects: Project[] = [
     heroBackground: "#F8F4EE",
     heroStacked: true,
     heroImageMaxWidth: 922.2,
+    heroImageMobileZoom: "sm",
     heroFlushBottom: true,
     glancePaddingTop: 32,
     glanceDividerBelow: true,
@@ -524,6 +533,7 @@ export const projects: Project[] = [
         },
         alt: "UK onboarding experience walkthrough with refreshed brand and motion",
       },
+      midMediaMobilePortrait: true,
       keyDecisions: [
         "New onboarding experience with motion + visual refresh",
         "Redesigned parcel tracking components for clarity & hierarchy",
@@ -630,6 +640,7 @@ export const projects: Project[] = [
             alt: "Four key UK app screens: animated onboarding, locker capacity checker, parcel tracking and pick-up details",
           },
         },
+        mobileZoom: "sm",
       },
       { kind: "divider" },
       {
@@ -958,6 +969,7 @@ export const projects: Project[] = [
     color: "#B8481F",
     heroBackground: "#F8F4EE",
     heroStacked: true,
+    heroImageMobileZoom: "sm",
     heroDividerBelow: true,
     toc: [
       { id: "the-challenge", label: "The challenge" },
@@ -1210,6 +1222,7 @@ export const projects: Project[] = [
             alt: "Pricing and ETA surfaced earlier in the send flow",
           },
         },
+        mobileZoom: "md",
       },
       { kind: "divider" },
       {
@@ -1390,6 +1403,7 @@ export const projects: Project[] = [
           alt: "Branded Kashtkaar onboarding and farm-health screens",
         },
       },
+      midMediaMobileZoom: "lg",
       midMediaMaxWidth: 1468.8,
       midMediaHint: "Flow with branded components applied",
       outcomes: [],
@@ -1468,6 +1482,7 @@ export const projects: Project[] = [
             alt: "Kashtkaar product architecture showing the Discover feed and Farm hub",
           },
         },
+        mobileZoom: "lg",
       },
       { kind: "divider" },
       {
@@ -1499,6 +1514,7 @@ export const projects: Project[] = [
             alt: "Activity-recording screens for logging farm tasks",
           },
         },
+        mobileZoom: "lg",
       },
       { kind: "divider" },
       {
@@ -1523,6 +1539,7 @@ export const projects: Project[] = [
             alt: "Crop calendar exploration screens for tracking rice-growing stages",
           },
         },
+        mobileZoom: "lg",
       },
       { kind: "divider" },
       {
@@ -1546,6 +1563,7 @@ export const projects: Project[] = [
             alt: "Sharing a recorded farm activity to the Discover community feed",
           },
         },
+        mobileZoom: "lg",
       },
       { kind: "divider" },
       {

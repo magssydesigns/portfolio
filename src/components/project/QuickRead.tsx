@@ -238,8 +238,13 @@ export default function QuickRead({
             <div className="w-full" style={{ maxWidth: data.midMediaMaxWidth ?? 864 }}>
               <MediaSlotView
                 media={data.midMedia}
-                className="h-auto w-full rounded-2xl border"
+                className={
+                  data.midMediaMobilePortrait
+                    ? "aspect-[4/5] w-full overflow-hidden rounded-2xl border object-cover object-center sm:aspect-[1412/1080] sm:h-auto sm:object-contain"
+                    : "h-auto w-full rounded-2xl border"
+                }
                 style={{ borderColor: "rgb(221, 216, 203)" }}
+                mobileZoom={data.midMediaMobileZoom}
               />
               {data.midMediaHint && (
                 <p className="mt-3 text-left text-[13px] text-muted">{data.midMediaHint}</p>

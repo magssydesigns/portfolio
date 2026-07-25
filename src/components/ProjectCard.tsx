@@ -43,7 +43,7 @@ export default function ProjectCard({
           <motion.h3
             variants={{ rest: { color: "#000000" }, hover: { color: "#ffffff" } }}
             transition={CONTENT_TRANSITION}
-            className="max-w-[85%] text-[1.75rem] leading-[1.15] tracking-tight sm:text-3xl"
+            className="max-w-[85%] text-2xl leading-[1.2] tracking-tight sm:text-3xl sm:leading-[1.15]"
             style={{ fontFamily: "var(--font-manrope)", fontWeight: 400 }}
           >
             {headline}

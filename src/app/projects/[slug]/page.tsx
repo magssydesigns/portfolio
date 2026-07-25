@@ -159,6 +159,7 @@ export default async function ProjectPage({
           markets={project.heroMarkets}
           flushBottom={project.heroDividerBelow || project.heroFlushBottom}
           imageMaxWidth={project.heroImageMaxWidth}
+          imageMobileZoom={project.heroImageMobileZoom}
         />
 
         {project.heroDividerBelow && (

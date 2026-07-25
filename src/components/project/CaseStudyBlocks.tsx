@@ -192,7 +192,12 @@ function BlockRenderer({
           : undefined;
 
       const mediaEl = (
-        <MediaSlotView media={block.media} className={mediaClassName} bordered={block.bordered} />
+        <MediaSlotView
+          media={block.media}
+          className={mediaClassName}
+          bordered={block.bordered}
+          mobileZoom={block.mobileZoom}
+        />
       );
 
       return (

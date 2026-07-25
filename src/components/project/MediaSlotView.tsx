@@ -8,17 +8,27 @@ import { mediaProtectionProps } from "@/lib/mediaProtection";
 
 const BORDER_COLOR = "rgb(221, 216, 203)";
 
+/** Mobile-only content-safe zoom tiers (paint-only `transform: scale()`, cropped via `overflow-hidden` on a wrapper with an unchanged aspect ratio, so desktop at `sm:scale-100` is pixel-identical to today). */
+const MOBILE_ZOOM_CLASSES: Record<"sm" | "md" | "lg", string> = {
+  sm: "scale-[1.09] sm:scale-100",
+  md: "scale-[1.15] sm:scale-100",
+  lg: "scale-[1.17] sm:scale-100",
+};
+
 export default function MediaSlotView({
   media,
   className,
   style,
   bordered = false,
+  mobileZoom,
 }: {
   media: MediaSlot;
   className?: string;
   style?: CSSProperties;
   /** Adds the same rounded-2xl + light border treatment used by the project hero media (and, for placeholders, a neutral filled background to match). */
   bordered?: boolean;
+  /** Content-safe mobile-only zoom tier; crops symmetrically into excess canvas whitespace without affecting desktop/tablet. */
+  mobileZoom?: "sm" | "md" | "lg";
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -41,7 +51,7 @@ export default function MediaSlotView({
   }, [media]);
 
   if (media.kind === "video") {
-    return (
+    const video = (
       <video
         ref={videoRef}
         src={media.video.src}
@@ -53,30 +63,68 @@ export default function MediaSlotView({
         playsInline
         preload="auto"
         aria-label={media.alt}
-        className={[className ?? "h-auto w-full", bordered ? "rounded-2xl border" : ""]
-          .filter(Boolean)
-          .join(" ")}
-        style={bordered ? { borderColor: BORDER_COLOR, ...style } : style}
+        className={
+          mobileZoom
+            ? ["h-auto w-full", MOBILE_ZOOM_CLASSES[mobileZoom]].join(" ")
+            : [className ?? "h-auto w-full", bordered ? "rounded-2xl border" : ""]
+                .filter(Boolean)
+                .join(" ")
+        }
+        style={mobileZoom ? undefined : bordered ? { borderColor: BORDER_COLOR, ...style } : style}
         {...mediaProtectionProps}
       />
     );
+
+    if (mobileZoom) {
+      return (
+        <div
+          className={[className ?? "h-auto w-full", "overflow-hidden", bordered ? "rounded-2xl border" : ""]
+            .filter(Boolean)
+            .join(" ")}
+          style={bordered ? { borderColor: BORDER_COLOR, ...style } : style}
+        >
+          {video}
+        </div>
+      );
+    }
+
+    return video;
   }
 
   if (media.kind === "image") {
-    return (
+    const img = (
       <Image
         src={media.image.src}
         alt={media.image.alt}
         width={media.image.width}
         height={media.image.height}
         sizes="(min-width: 1450px) 1320px, 92vw"
-        className={[className ?? "h-auto w-full", bordered ? "rounded-2xl border" : ""]
-          .filter(Boolean)
-          .join(" ")}
-        style={bordered ? { borderColor: BORDER_COLOR, ...style } : style}
+        className={
+          mobileZoom
+            ? ["h-auto w-full", MOBILE_ZOOM_CLASSES[mobileZoom]].join(" ")
+            : [className ?? "h-auto w-full", bordered ? "rounded-2xl border" : ""]
+                .filter(Boolean)
+                .join(" ")
+        }
+        style={mobileZoom ? undefined : bordered ? { borderColor: BORDER_COLOR, ...style } : style}
         {...mediaProtectionProps}
       />
     );
+
+    if (mobileZoom) {
+      return (
+        <div
+          className={[className ?? "h-auto w-full", "overflow-hidden", bordered ? "rounded-2xl border" : ""]
+            .filter(Boolean)
+            .join(" ")}
+          style={bordered ? { borderColor: BORDER_COLOR, ...style } : style}
+        >
+          {img}
+        </div>
+      );
+    }
+
+    return img;
   }
 
   if (bordered) {

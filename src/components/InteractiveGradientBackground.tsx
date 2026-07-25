@@ -16,7 +16,16 @@ const SCROLL_STOPS = [0, 0.33, 0.66, 1];
 
 type BlobConfig = {
   color: string;
-  size: string;
+  /**
+   * Complete literal Tailwind width/height classes (base + `max-sm:` override) -
+   * written out in full so the JIT scanner can see them; a template literal built
+   * from separate px values wouldn't be statically detectable. Resolved purely by
+   * CSS media query, so there's no client/server size mismatch on hydration (unlike
+   * a JS matchMedia check, which would flip the rendered size after mount).
+   * Lets a blob that's proportionate on a wide desktop viewport (fixed px) avoid
+   * blanketing a much narrower mobile one.
+   */
+  sizeClassName: string;
   position: { top?: string; bottom?: string; left?: string; right?: string };
   blur: number;
   opacity: number;
@@ -53,7 +62,7 @@ type BlobConfig = {
 const BLOBS: BlobConfig[] = [
   {
     color: "#F5FA5A",
-    size: "560px",
+    sizeClassName: "w-[560px] h-[560px] max-sm:w-[300px] max-sm:h-[300px]",
     position: { top: "-160px", left: "16%" },
     blur: 55,
     opacity: 1,
@@ -69,7 +78,7 @@ const BLOBS: BlobConfig[] = [
   },
   {
     color: "#FD686A",
-    size: "680px",
+    sizeClassName: "w-[680px] h-[680px] max-sm:w-[240px] max-sm:h-[240px]",
     position: { top: "-300px", left: "30%" },
     blur: 65,
     opacity: 1,
@@ -85,7 +94,7 @@ const BLOBS: BlobConfig[] = [
   },
   {
     color: "#0062FE",
-    size: "850px",
+    sizeClassName: "w-[850px] h-[850px] max-sm:w-[260px] max-sm:h-[260px]",
     position: { top: "320px", right: "-28%" },
     blur: 70,
     opacity: 1,
@@ -238,10 +247,8 @@ function BlobLayer({
       className={blob.hideOnMobile ? "hidden sm:block" : undefined}
     >
       <div
-        className={`rounded-full ${paused ? "" : blob.driftClass}`}
+        className={`rounded-full ${blob.sizeClassName} ${paused ? "" : blob.driftClass}`}
         style={{
-          width: blob.size,
-          height: blob.size,
           background: `radial-gradient(circle, ${blob.color} 0%, ${blob.color} 58%, transparent 88%)`,
           filter: `blur(${blob.blur}px)`,
           animationDelay: blob.driftDelay,
