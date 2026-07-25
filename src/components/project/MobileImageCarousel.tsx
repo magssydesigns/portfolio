@@ -51,7 +51,7 @@ export default function MobileImageCarousel({
     <div className={className}>
       <div
         ref={trackRef}
-        className="no-scrollbar flex snap-x snap-mandatory overflow-x-auto rounded-2xl border bg-white"
+        className="no-scrollbar flex snap-x snap-mandatory overflow-x-auto rounded-2xl border bg-paper"
         style={{ borderColor: BORDER_COLOR }}
       >
         {images.map((image, i) => (
