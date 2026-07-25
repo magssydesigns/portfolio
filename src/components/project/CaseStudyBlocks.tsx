@@ -2,6 +2,7 @@ import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import BeforeAfterStats from "@/components/project/BeforeAfterStats";
 import MediaSlotView from "@/components/project/MediaSlotView";
+import MobileImageCarousel from "@/components/project/MobileImageCarousel";
 import ProjectCardCursor from "@/components/ProjectCardCursor";
 import { mediaProtectionProps } from "@/lib/mediaProtection";
 import type { Block } from "@/lib/projects";
@@ -192,12 +193,21 @@ function BlockRenderer({
           : undefined;
 
       const mediaEl = (
-        <MediaSlotView
-          media={block.media}
-          className={mediaClassName}
-          bordered={block.bordered}
-          mobileZoom={block.mobileZoom}
-        />
+        <>
+          {block.mobileCarousel && (
+            <MobileImageCarousel images={block.mobileCarousel} className="lg:hidden" />
+          )}
+          <MediaSlotView
+            media={block.media}
+            className={
+              block.mobileCarousel
+                ? [mediaClassName, "hidden lg:block"].filter(Boolean).join(" ")
+                : mediaClassName
+            }
+            bordered={block.bordered}
+            mobileZoom={block.mobileZoom}
+          />
+        </>
       );
 
       return (

@@ -51,6 +51,8 @@ export type Block =
       link?: { href: string; label: string; size?: number };
       /** Content-safe mobile-only zoom tier for screenshots/mock-ups that sit small inside a large card on narrow viewports. */
       mobileZoom?: "sm" | "md" | "lg";
+      /** Replaces media with a swipeable, dot-navigated carousel of these images below the lg breakpoint only. Desktop keeps media unchanged. */
+      mobileCarousel?: ProjectImage[];
     }
   | { kind: "validationItem"; id?: string; question: string; status: "success" | "warning"; finding: string; update: string }
   | { kind: "stats"; id?: string; heading?: string; items: { value: string; label: string }[]; bullets?: string[] }
@@ -1539,7 +1541,26 @@ export const projects: Project[] = [
             alt: "Activity-recording screens for logging farm tasks",
           },
         },
-        mobileZoom: "lg",
+        mobileCarousel: [
+          {
+            src: "/projects/kashtkaar/kashtkaar-carousel-3/kashtkaar-activity-recording-mobile-1.webp",
+            width: 1300,
+            height: 2072,
+            alt: "\"What do you want to do?\" menu for logging a farm activity, adding a task or sharing to the community",
+          },
+          {
+            src: "/projects/kashtkaar/kashtkaar-carousel-3/kashtkaar-activity-recording-mobile-2.webp",
+            width: 1300,
+            height: 2072,
+            alt: "Add activity or task screen listing land preparation and crop activity types",
+          },
+          {
+            src: "/projects/kashtkaar/kashtkaar-carousel-3/kashtkaar-activity-recording-mobile-3.webp",
+            width: 1300,
+            height: 2072,
+            alt: "Add task detail form for a Dry ploughing task, with schedule, farm and plot fields",
+          },
+        ],
       },
       { kind: "divider" },
       {
@@ -1564,7 +1585,26 @@ export const projects: Project[] = [
             alt: "Crop calendar exploration screens for tracking rice-growing stages",
           },
         },
-        mobileZoom: "lg",
+        mobileCarousel: [
+          {
+            src: "/projects/kashtkaar/kashtkaar-carousel-2/kashtkaar-crop-calendar-exploration-mobile-1.webp",
+            width: 1300,
+            height: 2307,
+            alt: "Farm plot screen showing the current growth stage and in-progress and other tasks",
+          },
+          {
+            src: "/projects/kashtkaar/kashtkaar-carousel-2/kashtkaar-crop-calendar-exploration-mobile-2.webp",
+            width: 1300,
+            height: 2307,
+            alt: "My Calendar screen listing upcoming crop stages by month",
+          },
+          {
+            src: "/projects/kashtkaar/kashtkaar-carousel-2/kashtkaar-crop-calendar-exploration-mobile-3.webp",
+            width: 1300,
+            height: 2307,
+            alt: "Monthly calendar grid with colour-coded crop stages and a selected day's task detail",
+          },
+        ],
       },
       { kind: "divider" },
       {
