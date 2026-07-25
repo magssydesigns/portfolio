@@ -112,6 +112,8 @@ export type QuickRead = {
   midMediaMobilePortrait?: boolean;
   /** For a video midMedia: swaps in a natively-portrait video source below 768px via a <source media> query, instead of (or alongside) CSS-cropping the desktop source. Desktop keeps midMedia.video.src unchanged. */
   midMediaMobileSrc?: string;
+  /** Replaces midMedia with a swipeable, dot-navigated carousel of these images below the lg breakpoint only. Desktop keeps rendering midMedia unchanged. */
+  midMediaMobileCarousel?: ProjectImage[];
   keyDecisionsLabel?: string;
   keyDecisions?: string[];
   outcomes: { value: string; label: string }[];
@@ -1407,7 +1409,26 @@ export const projects: Project[] = [
           alt: "Branded Kashtkaar onboarding and farm-health screens",
         },
       },
-      midMediaMobileZoom: "lg",
+      midMediaMobileCarousel: [
+        {
+          src: "/projects/kashtkaar/kashtkaar-carousel-1/branded-flow-mobile-1.webp",
+          width: 1300,
+          height: 2458,
+          alt: "Kashtkaar welcome and onboarding screen",
+        },
+        {
+          src: "/projects/kashtkaar/kashtkaar-carousel-1/branded-flow-mobile-2.webp",
+          width: 1300,
+          height: 2458,
+          alt: "Kashtkaar farm health and sustainability score screen",
+        },
+        {
+          src: "/projects/kashtkaar/kashtkaar-carousel-1/branded-flow-mobile-3.webp",
+          width: 1300,
+          height: 2458,
+          alt: "Kashtkaar farm task tracking screen",
+        },
+      ],
       midMediaMaxWidth: 1468.8,
       midMediaHint: "Flow with branded components applied",
       outcomes: [],

@@ -2,6 +2,7 @@ import Reveal from "@/components/Reveal";
 import SectionDivider from "@/components/project/SectionDivider";
 import BeforeAfterStats from "@/components/project/BeforeAfterStats";
 import MediaSlotView from "@/components/project/MediaSlotView";
+import MobileImageCarousel from "@/components/project/MobileImageCarousel";
 import ProjectAtAGlanceSection from "@/components/project/ProjectAtAGlanceSection";
 import type { QuickRead as QuickReadType } from "@/lib/projects";
 
@@ -236,12 +237,17 @@ export default function QuickRead({
         <Reveal delay={0.08} y={30}>
           <div className="mt-8 flex justify-center">
             <div className="w-full" style={{ maxWidth: data.midMediaMaxWidth ?? 864 }}>
+              {data.midMediaMobileCarousel && (
+                <MobileImageCarousel images={data.midMediaMobileCarousel} className="lg:hidden" />
+              )}
               <MediaSlotView
                 media={data.midMedia}
                 className={
-                  data.midMediaMobilePortrait
-                    ? "aspect-[4/5] w-full overflow-hidden rounded-2xl border object-cover object-center md:aspect-[1412/1080] md:h-auto md:object-contain"
-                    : "h-auto w-full rounded-2xl border"
+                  data.midMediaMobileCarousel
+                    ? "hidden h-auto w-full rounded-2xl border lg:block"
+                    : data.midMediaMobilePortrait
+                      ? "aspect-[4/5] w-full overflow-hidden rounded-2xl border object-cover object-center md:aspect-[1412/1080] md:h-auto md:object-contain"
+                      : "h-auto w-full rounded-2xl border"
                 }
                 style={{ borderColor: "rgb(221, 216, 203)" }}
                 mobileZoom={data.midMediaMobileZoom}
