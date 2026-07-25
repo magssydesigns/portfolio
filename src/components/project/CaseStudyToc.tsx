@@ -68,7 +68,7 @@ export default function CaseStudyToc({ toc }: { toc: TocEntry[] }) {
       */}
       <nav
         aria-label="Full case study sections"
-        className="sticky top-[68px] z-10 mb-2 border-b border-line bg-paper lg:hidden"
+        className="sticky top-[94px] z-10 mb-2 border-b border-line bg-paper lg:hidden"
       >
         <div className="no-scrollbar -mx-6 flex gap-6 overflow-x-auto px-6 py-4 sm:-mx-10 sm:px-10">
           {toc.map((item) => (
