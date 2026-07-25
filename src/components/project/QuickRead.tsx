@@ -238,7 +238,12 @@ export default function QuickRead({
           <div className="mt-8 flex justify-center">
             <div className="w-full" style={{ maxWidth: data.midMediaMaxWidth ?? 864 }}>
               {data.midMediaMobileCarousel && (
-                <MobileImageCarousel images={data.midMediaMobileCarousel} className="lg:hidden" />
+                <>
+                  {data.midMediaHint && (
+                    <p className="mb-3 text-left text-[13px] text-muted lg:hidden">{data.midMediaHint}</p>
+                  )}
+                  <MobileImageCarousel images={data.midMediaMobileCarousel} className="lg:hidden" />
+                </>
               )}
               <MediaSlotView
                 media={data.midMedia}
@@ -254,7 +259,13 @@ export default function QuickRead({
                 mobileSrc={data.midMediaMobileSrc}
               />
               {data.midMediaHint && (
-                <p className="mt-3 text-left text-[13px] text-muted">{data.midMediaHint}</p>
+                <p
+                  className={`mt-3 text-left text-[13px] text-muted ${
+                    data.midMediaMobileCarousel ? "hidden lg:block" : ""
+                  }`}
+                >
+                  {data.midMediaHint}
+                </p>
               )}
             </div>
           </div>
