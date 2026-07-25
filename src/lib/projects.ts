@@ -849,6 +849,7 @@ export const projects: Project[] = [
           },
           alt: "UK onboarding experience walkthrough with refreshed brand and motion",
         },
+        mobileSrc: "/projects/rapid-uk-launch/onboarding-mobile.mp4",
       },
       { kind: "divider" },
       {
