@@ -68,7 +68,7 @@ export const homepageCards: ProjectCardData[] = [
     isArchive: false,
   },
   {
-    title: "Designing Kashtkaar's first farm management experience",
+    title: "Kashtkaar's  farm management experience",
     slug: "kashtkaar",
     media: {
       kind: "image",

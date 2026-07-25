@@ -240,11 +240,12 @@ export default function QuickRead({
                 media={data.midMedia}
                 className={
                   data.midMediaMobilePortrait
-                    ? "aspect-[4/5] w-full overflow-hidden rounded-2xl border object-cover object-center sm:aspect-[1412/1080] sm:h-auto sm:object-contain"
+                    ? "aspect-[4/5] w-full overflow-hidden rounded-2xl border object-cover object-center md:aspect-[1412/1080] md:h-auto md:object-contain"
                     : "h-auto w-full rounded-2xl border"
                 }
                 style={{ borderColor: "rgb(221, 216, 203)" }}
                 mobileZoom={data.midMediaMobileZoom}
+                mobileSrc={data.midMediaMobileSrc}
               />
               {data.midMediaHint && (
                 <p className="mt-3 text-left text-[13px] text-muted">{data.midMediaHint}</p>

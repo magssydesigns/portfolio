@@ -8,6 +8,7 @@ import FullCaseStudyReveal from "@/components/project/FullCaseStudyReveal";
 import ProjectAtAGlanceSection from "@/components/project/ProjectAtAGlanceSection";
 import QuickSummarySection from "@/components/project/QuickSummarySection";
 import MediaSlotView from "@/components/project/MediaSlotView";
+import EnlargeableMedia from "@/components/project/EnlargeableMedia";
 import PrevNextNav from "@/components/project/PrevNextNav";
 import Footer from "@/components/Footer";
 import SectionDivider from "@/components/project/SectionDivider";
@@ -93,18 +94,24 @@ export default async function ProjectPage({
                   <QuickSummarySection paragraphs={archiveProject.quickSummary} standalone={false} />
                 </>
               )}
-              {archiveProject.belowSummaryMedia?.map((item, i) => (
-                <div
-                  key={i}
-                  className="mt-12 flex justify-center rounded-2xl bg-paper-dim p-6 sm:mt-16 sm:p-10"
-                >
-                  <MediaSlotView
-                    media={item.media}
-                    className={item.heightPx ? "w-auto rounded-xl" : "h-auto w-full max-w-[1000px] rounded-xl"}
-                    style={item.heightPx ? { height: item.heightPx } : undefined}
-                  />
-                </div>
-              ))}
+              {archiveProject.belowSummaryMedia?.map((item, i) =>
+                archiveProject.belowSummaryMediaEnlarged ? (
+                  <div key={i} className="mt-12 flex justify-center sm:mt-16">
+                    <EnlargeableMedia media={item.media} className="h-auto w-full rounded-xl" />
+                  </div>
+                ) : (
+                  <div
+                    key={i}
+                    className="mt-12 flex justify-center rounded-2xl bg-paper-dim p-6 sm:mt-16 sm:p-10"
+                  >
+                    <MediaSlotView
+                      media={item.media}
+                      className={item.heightPx ? "w-auto rounded-xl" : "h-auto w-full max-w-[1000px] rounded-xl"}
+                      style={item.heightPx ? { height: item.heightPx } : undefined}
+                    />
+                  </div>
+                )
+              )}
             </section>
           </article>
           <Footer />

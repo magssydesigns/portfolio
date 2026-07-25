@@ -21,6 +21,7 @@ export default function MediaSlotView({
   style,
   bordered = false,
   mobileZoom,
+  mobileSrc,
 }: {
   media: MediaSlot;
   className?: string;
@@ -29,6 +30,8 @@ export default function MediaSlotView({
   bordered?: boolean;
   /** Content-safe mobile-only zoom tier; crops symmetrically into excess canvas whitespace without affecting desktop/tablet. */
   mobileZoom?: "sm" | "md" | "lg";
+  /** Video only: swaps in this source below 768px via a native <source media> query - resolved by the browser, so there's no client/server hydration mismatch the way a JS viewport check would cause. Desktop keeps media.video.src unchanged. */
+  mobileSrc?: string;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -54,7 +57,7 @@ export default function MediaSlotView({
     const video = (
       <video
         ref={videoRef}
-        src={media.video.src}
+        src={mobileSrc ? undefined : media.video.src}
         poster={media.video.poster}
         width={media.video.width}
         height={media.video.height}
@@ -72,7 +75,10 @@ export default function MediaSlotView({
         }
         style={mobileZoom ? undefined : bordered ? { borderColor: BORDER_COLOR, ...style } : style}
         {...mediaProtectionProps}
-      />
+      >
+        {mobileSrc && <source media="(max-width: 767px)" src={mobileSrc} />}
+        {mobileSrc && <source src={media.video.src} />}
+      </video>
     );
 
     if (mobileZoom) {

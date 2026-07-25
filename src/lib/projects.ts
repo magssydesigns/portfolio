@@ -108,8 +108,10 @@ export type QuickRead = {
   midMediaHint?: string;
   /** Content-safe mobile-only zoom tier for midMedia, same treatment as Block["media"].mobileZoom. */
   midMediaMobileZoom?: "sm" | "md" | "lg";
-  /** Crops midMedia into a 4:5 portrait container on mobile only (object-fit: cover, centred) - for a wide landscape video/image whose subject occupies a small central area. Desktop keeps the natural aspect ratio and composition. */
+  /** Crops midMedia into a 4:5 portrait container below the md breakpoint (768px) (object-fit: cover, centred) - for a wide landscape video/image whose subject occupies a small central area. Desktop keeps the natural aspect ratio and composition. */
   midMediaMobilePortrait?: boolean;
+  /** For a video midMedia: swaps in a natively-portrait video source below 768px via a <source media> query, instead of (or alongside) CSS-cropping the desktop source. Desktop keeps midMedia.video.src unchanged. */
+  midMediaMobileSrc?: string;
   keyDecisionsLabel?: string;
   keyDecisions?: string[];
   outcomes: { value: string; label: string }[];
@@ -534,6 +536,7 @@ export const projects: Project[] = [
         alt: "UK onboarding experience walkthrough with refreshed brand and motion",
       },
       midMediaMobilePortrait: true,
+      midMediaMobileSrc: "/projects/scaling-parcel-tracking/tracking-mobileonly.mp4",
       keyDecisions: [
         "New onboarding experience with motion + visual refresh",
         "Redesigned parcel tracking components for clarity & hierarchy",
@@ -1355,7 +1358,7 @@ export const projects: Project[] = [
   },
   {
     slug: "kashtkaar",
-    title: "Designing Kashtkaar's first farm management experience",
+    title: "Kashtkaar's  farm management experience",
     shortTitle: "Kashtkaar farm management",
     client: "Kashtkaar",
     color: "#2E7D32",
@@ -1670,6 +1673,8 @@ export type ArchiveProject = {
   quickSummary?: string[];
   /** Optional visual(s) shown below the "Quick summary" section, stacked in order. */
   belowSummaryMedia?: { media: MediaSlot; heightPx?: number }[];
+  /** Drops belowSummaryMedia's beige card/padding in favour of a larger, full-width, tap-to-enlarge image. */
+  belowSummaryMediaEnlarged?: boolean;
 };
 
 export const archiveProjects: ArchiveProject[] = [
@@ -1998,6 +2003,7 @@ export const archiveProjects: ArchiveProject[] = [
         alt: "Futurescope cover image",
       },
     },
+    belowSummaryMediaEnlarged: true,
     projectAtAGlance: {
       role: "Lead UX/UI Designer",
       scope:
