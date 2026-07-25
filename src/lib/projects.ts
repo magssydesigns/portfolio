@@ -53,6 +53,8 @@ export type Block =
       mobileZoom?: "sm" | "md" | "lg";
       /** Replaces media with a swipeable, dot-navigated carousel of these images below the lg breakpoint only. Desktop keeps media unchanged. */
       mobileCarousel?: ProjectImage[];
+      /** Video only: swaps in this source below 768px via a native <source media> query. Desktop keeps the video's own src unchanged. */
+      mobileSrc?: string;
     }
   | { kind: "validationItem"; id?: string; question: string; status: "success" | "warning"; finding: string; update: string }
   | { kind: "stats"; id?: string; heading?: string; items: { value: string; label: string }[]; bullets?: string[] }
@@ -809,6 +811,7 @@ export const projects: Project[] = [
           },
           alt: "Parcel list with decreasing urgency indicators and remaining-time messaging",
         },
+        mobileSrc: "/projects/rapid-uk-launch/parcel-list-mobile.mp4",
       },
       { kind: "divider" },
       {
@@ -881,6 +884,7 @@ export const projects: Project[] = [
           },
           alt: "Locker map with live capacity indicators shown while searching for a drop-off point",
         },
+        mobileSrc: "/projects/rapid-uk-launch/locker-search-mobile.mp4",
       },
       { kind: "divider" },
       {

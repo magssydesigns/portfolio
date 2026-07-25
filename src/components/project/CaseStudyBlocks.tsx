@@ -206,6 +206,7 @@ function BlockRenderer({
             }
             bordered={block.bordered}
             mobileZoom={block.mobileZoom}
+            mobileSrc={block.mobileSrc}
           />
         </>
       );
