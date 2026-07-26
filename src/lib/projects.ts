@@ -1109,6 +1109,38 @@ export const projects: Project[] = [
             alt: "Final send-a-parcel experience screens for the UK app",
           },
         },
+        mobileCarousel: [
+          {
+            src: "/projects/send-parcel-in-app/send-1.png",
+            width: 2361,
+            height: 5170,
+            alt: "Final send-a-parcel experience screen 1",
+          },
+          {
+            src: "/projects/send-parcel-in-app/send-2.png",
+            width: 2361,
+            height: 5170,
+            alt: "Final send-a-parcel experience screen 2",
+          },
+          {
+            src: "/projects/send-parcel-in-app/send-3.png",
+            width: 2361,
+            height: 5170,
+            alt: "Final send-a-parcel experience screen 3",
+          },
+          {
+            src: "/projects/send-parcel-in-app/send-4.png",
+            width: 2361,
+            height: 5170,
+            alt: "Final send-a-parcel experience screen 4",
+          },
+          {
+            src: "/projects/send-parcel-in-app/send-5.png",
+            width: 2361,
+            height: 5170,
+            alt: "Final send-a-parcel experience screen 5",
+          },
+        ],
       },
       { kind: "divider" },
       {
