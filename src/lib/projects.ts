@@ -1198,14 +1198,15 @@ export const projects: Project[] = [
         kind: "media",
         bordered: true,
         media: {
-          kind: "image",
-          image: {
-            src: "/projects/send-parcel-in-app/Send-summary.webp",
-            width: 2600,
-            height: 1785,
-            alt: "Editable Summary page showing parcel details, address and size",
+          kind: "video",
+          video: {
+            src: "/projects/send-parcel-in-app/Send-change-size-desktop.mp4",
+            width: 1412,
+            height: 1080,
           },
+          alt: "Editable Summary page showing parcel details, address and size",
         },
+        mobileSrc: "/projects/send-parcel-in-app/Send-change-size-mobile.mp4",
       },
       { kind: "divider" },
       {
