@@ -1266,7 +1266,26 @@ export const projects: Project[] = [
             alt: "Pricing and ETA surfaced earlier in the send flow",
           },
         },
-        mobileZoom: "md",
+        mobileCarousel: [
+          {
+            src: "/projects/send-parcel-in-app/send-timeandprice-1.png",
+            width: 2590,
+            height: 5111,
+            alt: "Pricing and ETA surfaced earlier in the send flow, screen 1",
+          },
+          {
+            src: "/projects/send-parcel-in-app/send-timeandprice-2.png",
+            width: 2590,
+            height: 5111,
+            alt: "Pricing and ETA surfaced earlier in the send flow, screen 2",
+          },
+          {
+            src: "/projects/send-parcel-in-app/send-timeandprice-3.png",
+            width: 2590,
+            height: 5111,
+            alt: "Pricing and ETA surfaced earlier in the send flow, screen 3",
+          },
+        ],
       },
       { kind: "divider" },
       {
