@@ -1179,6 +1179,7 @@ export const projects: Project[] = [
           },
           alt: "Address entry screen with address lookup replacing manual typing",
         },
+        mobileSrc: "/projects/send-parcel-in-app/send-address-mobile.mp4",
       },
       { kind: "divider" },
       {
@@ -1235,6 +1236,7 @@ export const projects: Project[] = [
           },
           alt: "Parcel cover add-on and up-sell moment in the send flow",
         },
+        mobileSrc: "/projects/send-parcel-in-app/parcel-cover-mobile.mp4",
       },
       { kind: "divider" },
       {
