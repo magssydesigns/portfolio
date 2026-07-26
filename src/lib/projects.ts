@@ -53,6 +53,8 @@ export type Block =
       mobileZoom?: "sm" | "md" | "lg";
       /** Replaces media with a swipeable, dot-navigated carousel of these images below the lg breakpoint only. Desktop keeps media unchanged. */
       mobileCarousel?: ProjectImage[];
+      /** Overrides the carousel slide's default 85%-width image sizing (percentage of slide width). */
+      mobileCarouselImageScale?: number;
       /** Video only: swaps in this source below 768px via a native <source media> query. Desktop keeps the video's own src unchanged. */
       mobileSrc?: string;
     }
@@ -1141,6 +1143,7 @@ export const projects: Project[] = [
             alt: "Final send-a-parcel experience screen 5",
           },
         ],
+        mobileCarouselImageScale: 76.5,
       },
       { kind: "divider" },
       {

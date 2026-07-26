@@ -17,9 +17,11 @@ const BORDER_COLOR = "rgb(221, 216, 203)";
 export default function MobileImageCarousel({
   images,
   className,
+  imageScale = 85,
 }: {
   images: ProjectImage[];
   className?: string;
+  imageScale?: number;
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -62,7 +64,7 @@ export default function MobileImageCarousel({
             }}
             className="w-full shrink-0 snap-start"
           >
-            <div className="mx-auto w-[85%]">
+            <div className="mx-auto" style={{ width: `${imageScale}%` }}>
               <Image
                 src={image.src}
                 alt={image.alt}

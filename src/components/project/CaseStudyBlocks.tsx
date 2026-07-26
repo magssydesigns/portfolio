@@ -195,7 +195,11 @@ function BlockRenderer({
       const mediaEl = (
         <>
           {block.mobileCarousel && (
-            <MobileImageCarousel images={block.mobileCarousel} className="lg:hidden" />
+            <MobileImageCarousel
+              images={block.mobileCarousel}
+              className="lg:hidden"
+              imageScale={block.mobileCarouselImageScale}
+            />
           )}
           <MediaSlotView
             media={block.media}
