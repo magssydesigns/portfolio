@@ -183,7 +183,7 @@ function BlockRenderer({
         block.width === "reduced"
           ? "w-4/5"
           : block.width === "reduced-40"
-            ? "w-3/5"
+            ? "w-full sm:w-3/5"
             : block.width === "reduced-70"
               ? "w-full sm:w-[70%]"
               : "";
