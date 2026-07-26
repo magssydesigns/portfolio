@@ -181,7 +181,7 @@ function BlockRenderer({
       // Left-aligned (not centred) to sit flush with the surrounding copy.
       const widthWrapClass =
         block.width === "reduced"
-          ? "w-4/5"
+          ? "w-full sm:w-4/5"
           : block.width === "reduced-40"
             ? "w-full sm:w-3/5"
             : block.width === "reduced-70"
