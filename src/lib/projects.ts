@@ -36,7 +36,16 @@ export type Block =
   | { kind: "steps"; id?: string; heading?: string; spacing?: "tight"; items: { title: string; body: string }[] }
   | { kind: "twoCol"; id?: string; heading?: string; spacing?: "tight"; items: { label: string; body: string }[] }
   | { kind: "mediaNumbered"; id?: string; heading?: string; media: MediaSlot; items: { title: string; body: string }[] }
-  | { kind: "beforeAfterImages"; id?: string; heading?: string; spacing?: "tight"; bordered?: boolean; items: { label: string; media: MediaSlot }[] }
+  | {
+      kind: "beforeAfterImages";
+      id?: string;
+      heading?: string;
+      spacing?: "tight";
+      bordered?: boolean;
+      /** Overrides the default 50%-of-column image cap (tuned for narrow phone mockups); set to 100 for wider screenshots that need to stay legible. */
+      imageMaxWidthPercent?: number;
+      items: { label: string; media: MediaSlot }[];
+    }
   /** Scoped, additive kinds used by the Send case study's full-case-study rebuild. */
   | { kind: "divider" }
   | { kind: "richText"; id?: string; heading?: string; headingLevel?: "h2" | "h3"; paragraphs: string[]; paddingTop?: number; paddingBottom?: number }
@@ -352,6 +361,46 @@ export const projects: Project[] = [
         kind: "heading",
         id: "design-changes",
         text: "Design changes",
+      },
+      {
+        kind: "richText",
+        heading: "Making tracking more visual and connected to contextual actions",
+        headingLevel: "h3",
+        paddingTop: 32,
+        paragraphs: [
+          "At the top of the redesigned experience, we introduced a visual timeline component that brings together parcel status, time of arrival, and any actions the user needs to take contextually. This component was designed to clearly visualise the parcel journey, highlight the next steps, and surface anything the user needs to do right now.",
+          "The redesigned view also brings the most important information together in one place: collection code, location, opening hours, directions, parcel details and clear pickup guidance, so users can scan the screen and take action faster.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        imageMaxWidthPercent: 100,
+        items: [
+          {
+            label: "Before",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/scaling-parcel-tracking/tracking-before.png",
+                width: 5680,
+                height: 5780,
+                alt: "Before: parcel tracking screen",
+              },
+            },
+          },
+          {
+            label: "After",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/scaling-parcel-tracking/tracking-after.png",
+                width: 5680,
+                height: 5780,
+                alt: "After: redesigned parcel tracking screen with visual timeline and consolidated collection details",
+              },
+            },
+          },
+        ],
       },
       {
         kind: "mediaNumbered",

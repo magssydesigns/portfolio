@@ -10,10 +10,12 @@ export default function EnlargeableMedia({
   media,
   className,
   style,
+  bordered,
 }: {
   media: MediaSlot;
   className?: string;
   style?: CSSProperties;
+  bordered?: boolean;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -39,7 +41,7 @@ export default function EnlargeableMedia({
         className="block w-full cursor-zoom-in"
         aria-label="Enlarge image"
       >
-        <MediaSlotView media={media} className={className} style={style} />
+        <MediaSlotView media={media} className={className} style={style} bordered={bordered} />
       </button>
 
       {open && (

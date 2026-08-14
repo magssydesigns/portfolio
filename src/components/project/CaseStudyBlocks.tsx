@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import BeforeAfterStats from "@/components/project/BeforeAfterStats";
+import EnlargeableMedia from "@/components/project/EnlargeableMedia";
 import MediaSlotView from "@/components/project/MediaSlotView";
 import MobileImageCarousel from "@/components/project/MobileImageCarousel";
 import ProjectCardCursor from "@/components/ProjectCardCursor";
@@ -572,6 +573,8 @@ function BlockRenderer({
       const bafColsClass =
         block.items.length >= 3 ? "sm:grid-cols-3" : block.items.length === 1 ? "sm:grid-cols-1" : "sm:grid-cols-2";
       const bafMediaClass = block.items.length === 1 ? "mx-auto h-auto w-full" : "mx-auto h-auto w-full max-w-[50%]";
+      const bafMediaStyle =
+        block.imageMaxWidthPercent !== undefined ? { maxWidth: `${block.imageMaxWidthPercent}%` } : undefined;
       return (
         <Reveal>
           <div
@@ -602,7 +605,22 @@ function BlockRenderer({
                     {item.label}
                   </p>
                   <div className="flex justify-center rounded-2xl p-6 sm:p-8">
-                    <MediaSlotView media={item.media} className={bafMediaClass} bordered={block.bordered} />
+                    <div className="w-full sm:hidden">
+                      <EnlargeableMedia
+                        media={item.media}
+                        className={bafMediaClass}
+                        style={bafMediaStyle}
+                        bordered={block.bordered}
+                      />
+                    </div>
+                    <div className="hidden w-full sm:block">
+                      <MediaSlotView
+                        media={item.media}
+                        className={bafMediaClass}
+                        style={bafMediaStyle}
+                        bordered={block.bordered}
+                      />
+                    </div>
                   </div>
                 </div>
               ))}
