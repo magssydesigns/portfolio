@@ -664,7 +664,7 @@ function BlockRenderer({
               <div className="w-full sm:hidden">
                 <EnlargeableMedia media={block.media} className="h-auto w-full" bordered={block.bordered} />
               </div>
-              <div className="hidden w-1/2 sm:block">
+              <div className="hidden sm:block" style={{ width: `${block.desktopWidthPercent ?? 50}%` }}>
                 <MediaSlotView media={block.media} className="h-auto w-full" bordered={block.bordered} />
               </div>
             </div>

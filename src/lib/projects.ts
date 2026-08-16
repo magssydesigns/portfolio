@@ -54,6 +54,8 @@ export type Block =
       paragraphs: { text: string; bold?: boolean }[][];
       media: MediaSlot;
       bordered?: boolean;
+      /** Overrides the default 50%-width desktop image size for this section only. Mobile is always full width. */
+      desktopWidthPercent?: number;
     }
   /** Scoped, additive kinds used by the Send case study's full-case-study rebuild. */
   | { kind: "divider" }
@@ -444,6 +446,7 @@ export const projects: Project[] = [
         kind: "calloutSection",
         heading: "Keeping detailed tracking accessible without clutter",
         bordered: true,
+        desktopWidthPercent: 65,
         paragraphs: [
           [
             {
