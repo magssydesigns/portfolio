@@ -660,11 +660,11 @@ function BlockRenderer({
                 </p>
               ))}
             </div>
-            <div className="mt-10 flex justify-center">
+            <div className="mt-10 flex justify-start">
               <div className="w-full sm:hidden">
                 <EnlargeableMedia media={block.media} className="h-auto w-full" bordered={block.bordered} />
               </div>
-              <div className="hidden w-full sm:block">
+              <div className="hidden w-1/2 sm:block">
                 <MediaSlotView media={block.media} className="h-auto w-full" bordered={block.bordered} />
               </div>
             </div>
