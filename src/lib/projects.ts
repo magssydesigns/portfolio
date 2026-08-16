@@ -46,6 +46,15 @@ export type Block =
       imageMaxWidthPercent?: number;
       items: { label: string; media: MediaSlot }[];
     }
+  /** Icon-prefixed sub-heading + rich (partial-bold) paragraphs + single image - used for the Tracking European "Design changes" callouts. */
+  | {
+      kind: "calloutSection";
+      id?: string;
+      heading: string;
+      paragraphs: { text: string; bold?: boolean }[][];
+      media: MediaSlot;
+      bordered?: boolean;
+    }
   /** Scoped, additive kinds used by the Send case study's full-case-study rebuild. */
   | { kind: "divider" }
   | { kind: "richText"; id?: string; heading?: string; headingLevel?: "h2" | "h3"; paragraphs: string[]; paddingTop?: number; paddingBottom?: number }
@@ -363,44 +372,106 @@ export const projects: Project[] = [
         text: "Design changes",
       },
       {
-        kind: "richText",
+        kind: "calloutSection",
         heading: "Making tracking more visual and connected to contextual actions",
-        headingLevel: "h3",
-        paddingTop: 32,
+        bordered: true,
         paragraphs: [
-          "At the top of the redesigned experience, we introduced a visual timeline component that brings together parcel status, time of arrival, and any actions the user needs to take contextually. This component was designed to clearly visualise the parcel journey, highlight the next steps, and surface anything the user needs to do right now.",
-          "The redesigned view also brings the most important information together in one place: collection code, location, opening hours, directions, parcel details and clear pickup guidance, so users can scan the screen and take action faster.",
+          [
+            { text: "At the top of the redesigned experience, I introduced " },
+            {
+              text: "a visual timeline component that brings together parcel status, time of arrival, and any actions the user needs to take contextually.",
+              bold: true,
+            },
+            {
+              text: " This component was designed to clearly visualise the parcel journey, highlight the next steps, and surface anything the user needs to do right now.",
+            },
+          ],
+          [
+            { text: "The redesigned view also brings the " },
+            {
+              text: "most important information together in one place: collection code, location, opening hours, directions, parcel details and clear pickup guidance",
+              bold: true,
+            },
+            { text: ", so users can scan the screen and take action faster." },
+          ],
         ],
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/scaling-parcel-tracking/tracking-after1.png",
+            width: 5311,
+            height: 5133,
+            alt: "Annotated parcel info screen showing location, contextual actions, status and collection deadline, and CTA to view full tracking",
+          },
+        },
       },
       {
-        kind: "beforeAfterImages",
-        imageMaxWidthPercent: 100,
-        items: [
-          {
-            label: "Before",
-            media: {
-              kind: "image",
-              image: {
-                src: "/projects/scaling-parcel-tracking/tracking-before.png",
-                width: 5680,
-                height: 5780,
-                alt: "Before: parcel tracking screen",
-              },
+        kind: "calloutSection",
+        heading: "Making delivery issues visible and actionable",
+        bordered: true,
+        paragraphs: [
+          [
+            { text: "Research showed that when something went wrong with a parcel, " },
+            { text: "users valued transparency more than a reassuring-looking experience.", bold: true },
+            {
+              text: " A delay or failed delivery was frustrating, but uncertainty about what was happening created even more anxiety.",
             },
-          },
-          {
-            label: "After",
-            media: {
-              kind: "image",
-              image: {
-                src: "/projects/scaling-parcel-tracking/tracking-after.png",
-                width: 5680,
-                height: 5780,
-                alt: "After: redesigned parcel tracking screen with visual timeline and consolidated collection details",
-              },
+          ],
+          [
+            { text: "I introduced" },
+            { text: " clear delay states", bold: true },
+            {
+              text: " directly into the visual tracking timeline, explaining delays and delivery problems at the point they occurred. ",
             },
-          },
+            {
+              text: "Contextual actions such as “I’m not going to be in” and “I need more help” gave users an immediate next step",
+              bold: true,
+            },
+            { text: " when they wanted to act, rather than leaving them to search elsewhere for support." },
+          ],
         ],
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/scaling-parcel-tracking/Tracking-issues.png",
+            width: 5311,
+            height: 5229,
+            alt: "Two parcel info screens showing a delayed delivery with an ‘I'm not going to be in’ action, and a returned parcel with an ‘I need more help’ action",
+          },
+        },
+      },
+      {
+        kind: "calloutSection",
+        heading: "Keeping detailed tracking accessible without clutter",
+        bordered: true,
+        paragraphs: [
+          [
+            {
+              text: "The CX team highlighted that detailed parcel history still needed to be available for customers who wanted to understand exactly what had happened during the journey. Showing all of that information by default, however, would have made the main tracking view dense and harder to scan.",
+            },
+          ],
+          [
+            { text: "I used" },
+            {
+              text: " progressive disclosure to keep the primary experience focused on the current status and next action,",
+              bold: true,
+            },
+            { text: " while making the full tracking history naturally " },
+            { text: "discoverable through “View all details.”", bold: true },
+            {
+              text: " Customers could then expand individual events when they needed more context, without that level of detail competing with the information most relevant in the moment.",
+            },
+          ],
+        ],
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/scaling-parcel-tracking/tracking-disclosure.png",
+            width: 6739,
+            height: 5136,
+            alt: "Parcel info screen next to the expanded tracking details view, annotated to show progressive disclosure of detailed tracking information",
+          },
+        },
       },
       {
         kind: "mediaNumbered",

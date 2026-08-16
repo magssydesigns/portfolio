@@ -630,6 +630,48 @@ function BlockRenderer({
       );
     }
 
+    case "calloutSection":
+      return (
+        <Reveal y={30}>
+          <div id={block.id} className="scroll-mt-40 py-6 lg:scroll-mt-28">
+            <div className="flex items-start gap-2">
+              <Image
+                src="/projects/Arterisk-1.png"
+                alt=""
+                width={28}
+                height={24}
+                aria-hidden="true"
+                className="mt-1 h-6 w-7 shrink-0"
+              />
+              <h3 className="font-display text-2xl tracking-tight sm:text-3xl">{block.heading}</h3>
+            </div>
+            <div className="mt-6 max-w-2xl space-y-6">
+              {block.paragraphs.map((segments, i) => (
+                <p key={i} className="text-base leading-relaxed text-[#2e2e2e]">
+                  {segments.map((seg, j) =>
+                    seg.bold ? (
+                      <strong key={j} className="font-semibold text-ink">
+                        {seg.text}
+                      </strong>
+                    ) : (
+                      <span key={j}>{seg.text}</span>
+                    )
+                  )}
+                </p>
+              ))}
+            </div>
+            <div className="mt-10 flex justify-center">
+              <div className="w-full sm:hidden">
+                <EnlargeableMedia media={block.media} className="h-auto w-full" bordered={block.bordered} />
+              </div>
+              <div className="hidden w-full sm:block">
+                <MediaSlotView media={block.media} className="h-auto w-full" bordered={block.bordered} />
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      );
+
     default:
       return null;
   }
