@@ -552,53 +552,6 @@ export const projects: Project[] = [
         ],
       },
       {
-        kind: "mediaNumbered",
-        heading: "New design: parcel details page",
-        media: {
-          kind: "image",
-          image: {
-            src: "/projects/scaling-parcel-tracking/parcel-info-annotated.png",
-            width: 2471,
-            height: 13155,
-            alt: "Redesigned parcel details page with map, locker QR code, and pickup instructions, annotated 1 to 8",
-          },
-        },
-        items: [
-          {
-            title: "1. Tracking Number Placement",
-            body: "Give tracking number less prominence but place it at the top of the page to still provide parcel identification.",
-          },
-          {
-            title: "2. Location Prominence",
-            body: "Location more prominent with map and Directions button included.",
-          },
-          {
-            title: "3. Information Clustering",
-            body: "Cluster important information on one component, use tracking component as a way to communicate most recent and any immediate action that needs to be taken next to the status.",
-          },
-          {
-            title: "4. Progressive Disclosure",
-            body: "Full tracking details are available upon clicking 'view details'.",
-          },
-          {
-            title: "5. Clear section headers",
-            body: "Add clear headers for the sections of the page to divide information more clearly. This helps especially when the pages are really long and helps to find information easier.",
-          },
-          {
-            title: "6. Instructive Headers",
-            body: "Keep the headers instructive like 'collect at' or 'scan at the locker' to emphasize better what user needs to do.",
-          },
-          {
-            title: "7. Parcel Details",
-            body: "Keep full parcel details lower down the page.",
-          },
-          {
-            title: "8. Instructions Component",
-            body: "Add component with instructions on eg. how to pick up.",
-          },
-        ],
-      },
-      {
         kind: "beforeAfterImages",
         id: "before-and-after",
         heading: "Before and after",
