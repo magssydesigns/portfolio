@@ -179,7 +179,7 @@ export default async function ProjectPage({
           <ProjectAtAGlanceSection
             {...project.projectAtAGlance}
             paddingTop={project.glancePaddingTop}
-            paddingBottom={project.glanceDividerBelow ? 0 : 32}
+            paddingBottom={project.glanceDividerBelow ? 0 : (project.glancePaddingBottom ?? 32)}
           />
         )}
 

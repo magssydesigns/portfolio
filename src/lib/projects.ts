@@ -188,6 +188,8 @@ export type Project = {
   projectAtAGlance?: ProjectAtAGlanceData;
   /** Exact px gap above "Project at a glance" - pairs with heroFlushBottom to hit a flat rhythm regardless of breakpoint. */
   glancePaddingTop?: number;
+  /** Overrides the default 32px gap below "Project at a glance" (before Quick summary/Quick read) when there's no divider. */
+  glancePaddingBottom?: number;
   /** Inserts a SectionDivider between "Project at a glance" and the Quick summary/Quick read section that follows (and zeroes the glance section's own bottom padding so the divider owns the full 32px rhythm). */
   glanceDividerBelow?: boolean;
   /** Renders an interactive prototype embed between "Project at a glance" and "Quick summary" (e.g. when the hero itself is text-only). */
@@ -230,6 +232,7 @@ export const projects: Project[] = [
       collaborationTeams: "Local market teams • UX Research • Customer Experience",
       platforms: "iOS • Android",
     },
+    glancePaddingBottom: 56,
     toc: [
       { id: "quick-summary", label: "Quick Summary" },
       { id: "process", label: "Process" },
