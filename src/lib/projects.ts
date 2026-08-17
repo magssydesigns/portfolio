@@ -259,11 +259,13 @@ export const projects: Project[] = [
         intro:
           "I worked with stakeholders across four markets to understand differences in delivery journeys, carrier operations and customer expectations. Through journey mapping, research with 40 participants and iterative validation, I identified the shared patterns and local flexibility required for a scalable tracking experience.",
         items: [
-          "Map market journeys",
-          "Research with 40 users",
-          "Define shared patterns",
-          "Validate across markets",
-          "Refine",
+          "Mapping market journeys and comparing differences",
+          "Unmoderated usability test with users across 4 markets",
+          "Defining shared patterns and painpoints from usability tests and consolidating feedback",
+          "Actioning user's pain points in new redesign",
+          "Re-testing new design with another batch of users",
+          "Alignment on the new design with stakeholders",
+          "Design refinement and developer hand off",
         ],
       },
       midMedia: {

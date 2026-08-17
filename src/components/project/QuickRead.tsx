@@ -201,8 +201,10 @@ export default function QuickRead({
               )}
               <ul className="space-y-3">
                 {data.process.items.map((item) => (
-                  <li key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink-soft">
-                    <span className="text-accent">-</span>
+                  <li key={item} className="flex items-center gap-3 text-[15px] leading-relaxed text-ink-soft">
+                    <span className="shrink-0 text-lg sm:text-xl" style={{ color: "#0163FF" }} aria-hidden="true">
+                      →
+                    </span>
                     {item}
                   </li>
                 ))}
