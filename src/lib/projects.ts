@@ -57,6 +57,16 @@ export type Block =
       /** Overrides the default 50%-width desktop image size for this section only. Mobile is always full width. */
       desktopWidthPercent?: number;
     }
+  /** Icon-prefixed heading + two side-by-side (mobile: stacked) images + a two-column numbered breakdown - used for Tracking European's "Parcel list" redesign. */
+  | {
+      kind: "numberedShowcase";
+      id?: string;
+      heading: string;
+      images: [MediaSlot, MediaSlot];
+      bordered?: boolean;
+      leftItems: { title: string; body: string }[];
+      rightItems: { title: string; body: string }[];
+    }
   /** Scoped, additive kinds used by the Send case study's full-case-study rebuild. */
   | { kind: "divider" }
   | { kind: "richText"; id?: string; heading?: string; headingLevel?: "h2" | "h3"; paragraphs: string[]; paddingTop?: number; paddingBottom?: number }
@@ -477,53 +487,67 @@ export const projects: Project[] = [
         },
       },
       {
-        kind: "mediaNumbered",
-        heading: "New design: parcel list",
-        media: {
-          kind: "image",
-          image: {
-            src: "/projects/scaling-parcel-tracking/parcel-list-annotated.webp",
-            width: 700,
-            height: 3245,
-            alt: "Redesigned parcel list showing out for delivery, ready to collect, redirected, and delivered states, annotated 1 to 9",
-          },
-        },
-        items: [
+        kind: "numberedShowcase",
+        heading: "Parcel list: Clearer way of sorting incoming parcels",
+        bordered: true,
+        images: [
           {
-            title: "1. Labels",
-            body: "Clear labels added for communicating most important actions for the users (eg. out for delivery, redirected parcel).",
+            kind: "image",
+            image: {
+              src: "/projects/scaling-parcel-tracking/parcel-list-after-1.png",
+              width: 5311,
+              height: 5229,
+              alt: "Redesigned parcel list showing an out-for-delivery card with a status label and manage action, annotated with clear labels, contextual action, pickup location, collection deadline and multi-parcel number",
+            },
           },
           {
-            title: "2. Location Prominence",
-            body: "Location information added on the list as it was described as missing by users.",
+            kind: "image",
+            image: {
+              src: "/projects/scaling-parcel-tracking/parcel-list-after-2.png",
+              width: 5311,
+              height: 5229,
+              alt: "Redesigned parcel list showing a redirected parcel card and shipped status, annotated with redirection label, contextual action, key action CTA and enhanced shipped status",
+            },
+          },
+        ],
+        leftItems: [
+          {
+            title: "1. Clear status labels",
+            body: "Added concise, scannable labels to surface the most important information at a glance — such as “Arriving today 2–4 PM”, “Redirected to Shop” and “Multi-parcel.” This helped users understand the parcel state without needing to open the detail view.",
           },
           {
-            title: "3. Key action button",
-            body: "There's been added button next to the location (in this case home address) when the parcel can be managed (redirected, left in safe place or delivered on another day).",
+            title: "2. Location made more prominent",
+            body: "Research showed that collection and delivery location was key information users expected to see immediately. I brought the address directly into each parcel card so users could quickly understand where their parcel was going or waiting for collection.",
           },
           {
-            title: "4. Key action button - open remotely",
-            body: "Open remotely button stayed in the same position as it's been used by users significantly.",
+            title: "3. Contextual actions",
+            body: "Actions were tailored to the parcel state and placed alongside the information they relate to. For example, “Manage” gives users control over an upcoming delivery, while “Directions” provides immediate navigation to a redirected collection point.",
           },
           {
-            title: "5. Clear number of parcels",
-            body: "Clear number of parcels for multiparcel has been added on the card. Multiparcel was proven to be a new and unfamiliar concept on different markets. Thanks to this number it's more understandable for users.",
+            title: "4. Key action kept prominent",
+            body: "High-frequency actions such as “Open remotely” remained highly visible and in a consistent position. Keeping this familiar behaviour reduced unnecessary relearning while making the primary action easy to find.",
           },
           {
-            title: "6. Directions button",
-            body: "Directions button is placed next to address for quick access to Google Maps and navigating to desired locker.",
+            title: "5. Making multi-parcel deliveries clearer",
+            body: "Multi-parcel deliveries were unfamiliar to users in several markets, so I added an explicit “Multi-parcel” label and the number of parcels directly to the card. This made it clearer that several items belonged to the same delivery.",
+          },
+        ],
+        rightItems: [
+          {
+            title: "6. Faster access to collection points",
+            body: "For parcels redirected to a shop or locker, I added a “Directions” action next to the collection location. This gave users a direct route into navigation without requiring them to search for the address separately.",
           },
           {
-            title: "7. Colours adjusted",
-            body: "All 'open remotely' buttons are being kept yellow for consistency. The time bar changes colour from yellow to black (and red when collection is nearing the limit). This is to make it more prominent and stand out from the yellow buttons more.",
+            title: "7. Collection deadlines surfaced visually",
+            body: "Collection time limits were made more prominent through a dedicated progress indicator and urgency states. The treatment becomes more noticeable as the deadline approaches, helping users understand when action is needed without competing with the primary CTA.",
           },
           {
-            title: "8. Shipped label",
-            body: "Exact shipping time has been mentioned by users as key information therefore it has been placed on the card.",
+            title: "8. Shipping information added to the card",
+            body: "Research showed that users valued knowing when a parcel had actually entered the delivery journey. I surfaced the exact shipped date and time directly on the parcel card, making this information available without requiring users to open the full tracking history.",
           },
           {
-            title: "9. Archive button",
-            body: "Archive button appears on delivered parcels. It helps to manage the parcel on the list faster and makes delivered parcels to stand out more.",
+            title: "9. Clearer hierarchy across parcel states",
+            body: "The redesigned cards use stronger hierarchy to distinguish what matters for each parcel state — current status, location, timing and the most relevant action. Rather than giving every piece of information equal prominence, the card adapts to what the user is most likely to need at that moment.",
           },
         ],
       },

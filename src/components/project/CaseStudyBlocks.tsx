@@ -672,6 +672,48 @@ function BlockRenderer({
         </Reveal>
       );
 
+    case "numberedShowcase":
+      return (
+        <Reveal y={30}>
+          <div id={block.id} className="scroll-mt-40 py-6 lg:scroll-mt-28">
+            <div className="flex items-start gap-2">
+              <Image
+                src="/projects/Arterisk-1.png"
+                alt=""
+                width={28}
+                height={24}
+                aria-hidden="true"
+                className="mt-1 h-6 w-7 shrink-0"
+              />
+              <h3 className="font-display text-2xl tracking-tight sm:text-3xl">{block.heading}</h3>
+            </div>
+            <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+              {block.images.map((image, i) => (
+                <MediaSlotView key={i} media={image} className="h-auto w-full" bordered={block.bordered} />
+              ))}
+            </div>
+            <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
+              <div className="space-y-8">
+                {block.leftItems.map((item, i) => (
+                  <div key={i} className="border-t border-ink/15 pt-5">
+                    <p className="font-sans text-lg font-semibold sm:text-xl">{item.title}</p>
+                    <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{item.body}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="space-y-8">
+                {block.rightItems.map((item, i) => (
+                  <div key={i} className="border-t border-ink/15 pt-5">
+                    <p className="font-sans text-lg font-semibold sm:text-xl">{item.title}</p>
+                    <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{item.body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      );
+
     default:
       return null;
   }
