@@ -152,6 +152,8 @@ export type QuickRead = {
   midMediaMobileCarousel?: ProjectImage[];
   keyDecisionsLabel?: string;
   keyDecisions?: string[];
+  /** Swaps the default dash bullet for the same blue arrow used in Business Objectives / Process. */
+  keyDecisionsShowArrow?: boolean;
   outcomes: { value: string; label: string }[];
   /** Bold arrow-prefixed bullets rendered in the "Key outcomes" section of the split (roleDetails) layout. */
   keyOutcomeBullets?: string[];
@@ -278,10 +280,12 @@ export const projects: Project[] = [
         alt: "InPost parcel tracking experience shown in context",
       },
       midMediaMobileSrc: "/projects/scaling-parcel-tracking/tracking-mobileonly.mp4",
+      keyDecisionsShowArrow: true,
       keyDecisions: [
-        "Created a shared system for parcel states and delivery communication across markets",
-        "Prioritised ETA, pickup location and the customer's next action",
+        "Designed more visual components that are flexible, reusable and used in one global design system",
+        "Designed tracking experience that was addressing users' needs from different markets and adhering to different logistic systems in each market",
         "Designed reusable tracking patterns that could accommodate local delivery differences",
+        "Added more transparency when communicating parcels' delays",
       ],
       outcomes: [],
       qualitative: [

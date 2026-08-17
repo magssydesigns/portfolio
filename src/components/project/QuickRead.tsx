@@ -280,8 +280,14 @@ export default function QuickRead({
             <SectionLabel headingStyle={headingStyle} text={data.keyDecisionsLabel ?? "Key design decisions"} />
             <div className={`${contentClass} grid max-w-2xl grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2`}>
               {data.keyDecisions.map((item) => (
-                <div key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink-soft">
-                  <span className="text-accent">-</span>
+                <div key={item} className="flex items-center gap-3 text-[15px] leading-relaxed text-ink-soft">
+                  {data.keyDecisionsShowArrow ? (
+                    <span className="shrink-0 text-lg sm:text-xl" style={{ color: "#0163FF" }} aria-hidden="true">
+                      →
+                    </span>
+                  ) : (
+                    <span className="text-accent">-</span>
+                  )}
                   {item}
                 </div>
               ))}
