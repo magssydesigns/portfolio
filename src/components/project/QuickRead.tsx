@@ -201,7 +201,7 @@ export default function QuickRead({
               )}
               <ul className="space-y-3">
                 {data.process.items.map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-[15px] leading-relaxed text-ink-soft">
+                  <li key={item} className="flex items-start gap-3 text-[15px] leading-relaxed text-ink-soft">
                     <span className="shrink-0 text-lg sm:text-xl" style={{ color: "#0163FF" }} aria-hidden="true">
                       →
                     </span>
@@ -279,18 +279,21 @@ export default function QuickRead({
           <div className={keyDecisionsWrapClass}>
             <SectionLabel headingStyle={headingStyle} text={data.keyDecisionsLabel ?? "Key design decisions"} />
             <div className={`${contentClass} grid max-w-2xl grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2`}>
-              {data.keyDecisions.map((item) => (
-                <div key={item} className="flex items-center gap-3 text-[15px] leading-relaxed text-ink-soft">
-                  {data.keyDecisionsShowArrow ? (
+              {data.keyDecisions.map((item) =>
+                data.keyDecisionsShowArrow ? (
+                  <div key={item} className="flex items-start gap-3 text-[15px] leading-relaxed text-ink-soft">
                     <span className="shrink-0 text-lg sm:text-xl" style={{ color: "#0163FF" }} aria-hidden="true">
                       →
                     </span>
-                  ) : (
+                    {item}
+                  </div>
+                ) : (
+                  <div key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink-soft">
                     <span className="text-accent">-</span>
-                  )}
-                  {item}
-                </div>
-              ))}
+                    {item}
+                  </div>
+                )
+              )}
             </div>
           </div>
         </Reveal>
