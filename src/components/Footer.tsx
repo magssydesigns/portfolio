@@ -1,16 +1,20 @@
 import Button from "./Button";
 import Divider from "./Divider";
 
-export default function Footer() {
+export default function Footer({ intro }: { intro?: React.ReactNode }) {
   return (
     <footer className="border-t border-line">
       <div className="mx-auto max-w-[1400px] px-6 py-20 sm:px-10 sm:py-28">
         <p className="max-w-[54.6rem] font-display text-[1.5rem] leading-relaxed text-black sm:text-[1.8rem]">
-          Hey there, I&rsquo;m Magda - a Product Designer leading end-to-end
-          design for the InPost UK consumer app, used by over 3 million
-          active users. I work across discovery, strategy and delivery,
-          and also support design of web experiences and interfaces for
-          smart parcel lockers.
+          {intro ?? (
+            <>
+              Hey there, I&rsquo;m Magda - a Product Designer leading end-to-end
+              design for the InPost UK consumer app, used by over 3 million
+              active users. I work across discovery, strategy and delivery,
+              and also support design of web experiences and interfaces for
+              smart parcel lockers.
+            </>
+          )}
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button href="/resume.pdf" shape="pill" chevron>

@@ -11,15 +11,15 @@ import { homepageCards, cardHref } from "@/lib/project-cards";
 const masthead = [
   {
     label: "Currently",
-    body: "Leading the UK mobile experience at InPost & experimenting with building in free time.",
+    body: "Leading product design for InPost UK across iOS and Android, used by 2M+ monthly active users.",
   },
   {
-    label: "Previously",
-    body: "Building digital products and brands at Pixeled Eggs.",
+    label: "Experience",
+    body: "7+ years across consumer products, complex systems, agency work and design systems.",
   },
   {
-    label: "Background",
-    body: "Fashion Design, Central Saint Martins.",
+    label: "Also building",
+    body: "Independent products in React, TypeScript and React Native.",
   },
 ];
 
@@ -30,7 +30,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1400px]">
           <Reveal>
             <InteractiveHoverText className="max-w-3xl font-display text-4xl leading-[1.12] tracking-tight sm:text-6xl lg:max-w-6xl lg:text-[4.75rem] lg:leading-[1.08]">
-              {"Designing & building products that make complex feel easy"}
+              {"I design complex consumer products at scale"}
             </InteractiveHoverText>
           </Reveal>
 
@@ -75,7 +75,21 @@ export default function Home() {
         </Reveal>
       </section>
 
-      <Footer />
+      <Footer
+        intro={
+          <>
+            Hey, I&rsquo;m Magda, a Senior Product Designer based in London. I
+            lead the design of InPost&rsquo;s UK consumer app across iOS and
+            Android, used by 2M+ monthly active users. I originally designed
+            the product from 0 to launch and now work across discovery,
+            strategy, systems and delivery.
+            <br />
+            <br />
+            Outside work, I&rsquo;m increasingly building my own products in
+            code.
+          </>
+        }
+      />
     </GradientScene>
   );
 }

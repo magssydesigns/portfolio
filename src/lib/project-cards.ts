@@ -23,22 +23,7 @@ export type ProjectCardData = {
  */
 export const homepageCards: ProjectCardData[] = [
   {
-    title: "Scaling parcel tracking across European markets",
-    slug: "scaling-parcel-tracking",
-    media: {
-      kind: "video",
-      video: {
-        src: "/projects/scaling-parcel-tracking/scene.mp4",
-        width: 1440,
-        height: 1080,
-      },
-      alt: "InPost parcel tracking experience shown in context",
-    },
-    type: "homepage",
-    isArchive: false,
-  },
-  {
-    title: "0 → 1: Launching InPost's UK parcel tracking app",
+    title: "Building InPost's UK app from 0 → 1",
     slug: "rapid-uk-launch",
     media: {
       kind: "image",
@@ -53,22 +38,22 @@ export const homepageCards: ProjectCardData[] = [
     isArchive: false,
   },
   {
-    title: "Enabling 2M+ users to send parcels in app",
-    slug: "send-parcel-in-app",
+    title: "One parcel tracking experience across four European markets",
+    slug: "scaling-parcel-tracking",
     media: {
-      kind: "image",
-      image: {
-        src: "/homepage/send-a-parcel.webp",
-        width: 1500,
-        height: 1194,
-        alt: "InPost send a parcel screen showing locker or home address delivery options",
+      kind: "video",
+      video: {
+        src: "/projects/scaling-parcel-tracking/scene.mp4",
+        width: 1440,
+        height: 1080,
       },
+      alt: "InPost parcel tracking experience shown in context",
     },
     type: "homepage",
     isArchive: false,
   },
   {
-    title: "Kashtkaar's  farm management experience",
+    title: "Designing a farm management product from 0 → 1",
     slug: "kashtkaar",
     media: {
       kind: "image",
@@ -77,6 +62,21 @@ export const homepageCards: ProjectCardData[] = [
         width: 1500,
         height: 1194,
         alt: "Kashtkaar onboarding and farm-health screens",
+      },
+    },
+    type: "homepage",
+    isArchive: false,
+  },
+  {
+    title: "Adapting parcel sending for the UK market",
+    slug: "send-parcel-in-app",
+    media: {
+      kind: "image",
+      image: {
+        src: "/homepage/send-a-parcel.webp",
+        width: 1500,
+        height: 1194,
+        alt: "InPost send a parcel screen showing locker or home address delivery options",
       },
     },
     type: "homepage",

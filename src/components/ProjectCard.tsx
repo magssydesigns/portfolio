@@ -9,6 +9,22 @@ const HOVER_BLUE = "#1467FF";
 const FRAME_TRANSITION: Transition = { duration: 0.35, ease: [0.16, 1, 0.3, 1] };
 const CONTENT_TRANSITION: Transition = { duration: 0.3, ease: "easeOut" };
 
+/** The "→" glyph sits optically high next to lining-figure digits (e.g. "0 → 1") in Manrope - nudge it down to vertically center it. */
+function renderHeadline(headline: string) {
+  const parts = headline.split("→");
+  if (parts.length === 1) return headline;
+  return parts.flatMap((part, i) =>
+    i === 0
+      ? [part]
+      : [
+          <span key={i} className="relative top-[0.1em]">
+            →
+          </span>,
+          part,
+        ],
+  );
+}
+
 const MotionLink = motion.create(Link);
 
 export default function ProjectCard({
@@ -46,7 +62,7 @@ export default function ProjectCard({
             className="max-w-[85%] text-2xl leading-[1.2] tracking-tight sm:text-3xl sm:leading-[1.15]"
             style={{ fontFamily: "var(--font-manrope)", fontWeight: 400 }}
           >
-            {headline}
+            {renderHeadline(headline)}
           </motion.h3>
           <motion.span
             variants={{ rest: { x: 0, y: 0, color: "#000000" }, hover: { x: 2, y: -2, color: "#ffffff" } }}
