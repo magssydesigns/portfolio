@@ -1774,8 +1774,8 @@ export const projects: Project[] = [
           kind: "image",
           image: {
             src: "/projects/kashtkaar/design%20system/Kashtkaar%20dashboard%20audit.png",
-            width: 832,
-            height: 698,
+            width: 1664,
+            height: 1396,
             alt: "AI-assisted audit comparing a new Kashtkaar dashboard exploration against the existing design system",
           },
         },
