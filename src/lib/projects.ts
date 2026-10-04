@@ -1738,7 +1738,7 @@ export const projects: Project[] = [
           image: {
             src: "/projects/kashtkaar/design%20system/tokens-3.png",
             width: 1827,
-            height: 975,
+            height: 785,
             alt: "Kashtkaar design-system token definitions in Figma",
           },
         },
@@ -1763,7 +1763,16 @@ export const projects: Project[] = [
       {
         kind: "media",
         bordered: true,
-        media: { kind: "placeholder", label: "AI / system-audit examples (placeholder)" },
+        width: "reduced-70",
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/kashtkaar/design%20system/Kashtkaar%20dashboard%20audit.png",
+            width: 832,
+            height: 698,
+            alt: "AI-assisted audit comparing a new Kashtkaar dashboard exploration against the existing design system",
+          },
+        },
       },
       {
         kind: "media",
