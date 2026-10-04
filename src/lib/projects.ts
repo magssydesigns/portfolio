@@ -1746,7 +1746,7 @@ export const projects: Project[] = [
       {
         kind: "richText",
         paragraphs: [
-          "Fast exploration introduced a risk of inconsistent UI, so I used Claude as a system-audit layer: comparing new explorations against the existing design system. Each new requirement was assessed as REUSE → EXTEND → ADD, with every final design decision remaining in Figma.",
+          "Fast exploration introduced a risk of inconsistent UI, so I used Claude as a system-audit layer: comparing new explorations against the existing design system.",
           "The audit helped surface recurring inconsistencies, including:",
         ],
       },
@@ -1761,6 +1761,12 @@ export const projects: Project[] = [
         ],
       },
       {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "AI / System-audit example",
+        paragraphs: [],
+      },
+      {
         kind: "media",
         bordered: true,
         width: "reduced-70",
@@ -1773,11 +1779,6 @@ export const projects: Project[] = [
             alt: "AI-assisted audit comparing a new Kashtkaar dashboard exploration against the existing design system",
           },
         },
-      },
-      {
-        kind: "media",
-        bordered: true,
-        media: { kind: "placeholder", label: "Reuse → Extend → Add workflow (placeholder)" },
       },
       { kind: "divider" },
       {
