@@ -1730,6 +1730,19 @@ export const projects: Project[] = [
         ],
       },
       {
+        kind: "media",
+        bordered: true,
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/kashtkaar/design%20system/tokens.png",
+            width: 1692,
+            height: 912,
+            alt: "Kashtkaar design-system token definitions in Figma",
+          },
+        },
+      },
+      {
         kind: "richText",
         paragraphs: [
           "Fast exploration introduced a risk of inconsistent UI, so I used Claude as a system-audit layer: comparing new explorations against the existing design system. Each new requirement was assessed as REUSE → EXTEND → ADD, with every final design decision remaining in Figma.",
