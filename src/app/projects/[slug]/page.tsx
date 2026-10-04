@@ -8,6 +8,7 @@ import FullCaseStudyReveal from "@/components/project/FullCaseStudyReveal";
 import ProjectAtAGlanceSection from "@/components/project/ProjectAtAGlanceSection";
 import QuickSummarySection from "@/components/project/QuickSummarySection";
 import MediaSlotView from "@/components/project/MediaSlotView";
+import MobileImageCarousel from "@/components/project/MobileImageCarousel";
 import EnlargeableMedia from "@/components/project/EnlargeableMedia";
 import PrevNextNav from "@/components/project/PrevNextNav";
 import Footer from "@/components/Footer";
@@ -189,9 +190,74 @@ export default async function ProjectPage({
           </div>
         )}
 
-        {project.midEmbed && (
+        {project.heroVisual ? (
           <div className="mx-auto max-w-[1400px] px-6 pt-16 pb-16 sm:px-10 sm:pt-20 sm:pb-20">
-            <HeroPrototypeEmbed src={project.midEmbed.src} title={project.midEmbed.title} />
+            <div className="flex justify-center">
+              <div className="w-full">
+                {project.heroVisual.mobileCarousel && (
+                  <MobileImageCarousel images={project.heroVisual.mobileCarousel} className="lg:hidden" />
+                )}
+                <MediaSlotView
+                  media={project.heroVisual.media}
+                  className={
+                    project.heroVisual.mobileCarousel
+                      ? "hidden h-auto w-full rounded-2xl border lg:block"
+                      : "h-auto w-full rounded-2xl border"
+                  }
+                  style={{ borderColor: "rgb(221, 216, 203)" }}
+                />
+                {project.heroVisual.hint && (
+                  <p
+                    className={`mt-3 text-left text-[13px] text-muted ${
+                      project.heroVisual.mobileCarousel ? "hidden lg:block" : ""
+                    }`}
+                  >
+                    {project.heroVisual.hint}
+                  </p>
+                )}
+              </div>
+            </div>
+            {project.heroVisual.prototypeLink && (
+              <p className="mt-6 text-center">
+                <a
+                  href={project.heroVisual.prototypeLink.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-underline font-display text-lg text-ink"
+                >
+                  {project.heroVisual.prototypeLink.label}
+                </a>
+              </p>
+            )}
+          </div>
+        ) : (
+          project.midEmbed && (
+            <div className="mx-auto max-w-[1400px] px-6 pt-16 pb-16 sm:px-10 sm:pt-20 sm:pb-20">
+              <HeroPrototypeEmbed src={project.midEmbed.src} title={project.midEmbed.title} />
+            </div>
+          )
+        )}
+
+        {project.openingNote && (
+          <div className="mx-auto max-w-[1400px] px-6 pb-16 sm:px-10 sm:pb-20">
+            <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{project.openingNote.heading}</h2>
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
+              {project.openingNote.paragraph}
+            </p>
+            <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-16">
+              {project.openingNote.columns.map((col) => (
+                <div key={col.heading}>
+                  <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{col.heading}</p>
+                  <ul className="mt-4 space-y-3">
+                    {col.items.map((item) => (
+                      <li key={item} className="text-lg leading-relaxed text-ink-soft">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
         )}
 
