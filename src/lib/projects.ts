@@ -1730,19 +1730,6 @@ export const projects: Project[] = [
         ],
       },
       {
-        kind: "media",
-        bordered: true,
-        media: {
-          kind: "image",
-          image: {
-            src: "/projects/kashtkaar/kashtkaar-design-system.png",
-            width: 2044,
-            height: 1078,
-            alt: "Kashtkaar design-system components including cards and bottom navigation",
-          },
-        },
-      },
-      {
         kind: "richText",
         paragraphs: [
           "Fast exploration introduced a risk of inconsistent UI, so I used Claude as a system-audit layer: comparing new explorations against the existing design system. Each new requirement was assessed as REUSE → EXTEND → ADD, with every final design decision remaining in Figma.",
@@ -1751,6 +1738,7 @@ export const projects: Project[] = [
       },
       {
         kind: "arrowList",
+        paddingTop: 24,
         items: [
           "Mixed typography styles",
           "Overlapping colour tokens",
@@ -1777,7 +1765,7 @@ export const projects: Project[] = [
       {
         kind: "richText",
         id: "decision-01-discover-and-farm",
-        heading: "Decision 01 — Separate community discovery from farm management",
+        heading: "Decision 01: Separate community discovery from farm management",
         paddingBottom: 32,
         paragraphs: [
           "The founder wanted to combine the accessibility and familiarity of a social-media feed with the practical tools of a farm-management product. I explored how these two behaviours could coexist without making the application feel fragmented.",
@@ -1843,7 +1831,7 @@ export const projects: Project[] = [
       {
         kind: "richText",
         id: "decision-02-activity-recording",
-        heading: "Decision 02 — Make activity recording feel like completing a task, not filling out a form",
+        heading: "Decision 02: Make activity recording feel like completing a task, not filling out a form",
         paddingBottom: 32,
         paragraphs: [
           "Activity recording was the product's most important behaviour, but long forms risked becoming another administrative burden for farmers and field officers.",
@@ -1887,7 +1875,7 @@ export const projects: Project[] = [
       {
         kind: "richText",
         id: "decision-03-crop-calendar",
-        heading: "Decision 03 — Turn the crop calendar into guidance",
+        heading: "Decision 03: Turn the crop calendar into guidance",
         paddingBottom: 32,
         paragraphs: [
           "The crop calendar needed to guide farmers through key stages, not only display dates. I explored how it could connect land preparation, sowing, irrigation, chemical application and harvest with both farmer guidance and the structured agricultural data collection needed by field officers and processors.",
@@ -1931,7 +1919,7 @@ export const projects: Project[] = [
       {
         kind: "richText",
         id: "decision-04-sharing",
-        heading: "Decision 04 — Keep community sharing optional",
+        heading: "Decision 04: Keep community sharing optional",
         paddingBottom: 32,
         paragraphs: [
           "Farm activities could optionally be shared to the Discover feed, bridging private farm management and community knowledge without requiring farmers to enter the same information twice.",

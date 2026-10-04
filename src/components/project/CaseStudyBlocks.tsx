@@ -337,13 +337,13 @@ function BlockRenderer({
         <Reveal>
           <div
             id={block.id}
-            className={
-              (block.tone === "light" ? "bg-paper-dim text-ink" : "bg-ink text-paper") +
-              " scroll-mt-28"
-            }
+            className={(block.tone === "dark" ? "bg-ink text-paper" : "") + " scroll-mt-28"}
           >
             <div className="mx-auto max-w-3xl px-6 py-24 text-center sm:px-10 sm:py-32">
-              <p className="font-display text-2xl leading-snug tracking-tight sm:text-4xl">
+              <p
+                className="font-display text-2xl italic leading-snug tracking-tight sm:text-4xl"
+                style={block.tone === "dark" ? undefined : { color: "#0163FF" }}
+              >
                 {block.text}
               </p>
             </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Reveal from "@/components/Reveal";
 import QuickRead from "@/components/project/QuickRead";
 import CaseStudyBlocks from "@/components/project/CaseStudyBlocks";
 import CaseStudyToc from "@/components/project/CaseStudyToc";
@@ -61,9 +62,24 @@ export default function FullCaseStudyReveal({
         onContinue={handleContinue}
         headingStyle="heading"
         flushTop={flushTop}
+        hideContinue={Boolean(afterQuickRead)}
       />
 
       {afterQuickRead}
+
+      {afterQuickRead && (
+        <Reveal delay={0.18}>
+          <div className="mx-auto max-w-[1400px] px-6 pb-16 text-center sm:px-10 sm:pb-20">
+            <button
+              type="button"
+              onClick={handleContinue}
+              className="link-underline mx-auto block w-fit cursor-pointer bg-transparent p-0 font-display text-xl text-ink"
+            >
+              Continue to full case study ↓
+            </button>
+          </div>
+        </Reveal>
+      )}
 
       {revealed && (
         <div id="full-case-study" className="scroll-mt-28 border-t border-line">
