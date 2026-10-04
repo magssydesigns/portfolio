@@ -1732,6 +1732,7 @@ export const projects: Project[] = [
       {
         kind: "media",
         bordered: true,
+        width: "reduced-70",
         media: {
           kind: "image",
           image: {
