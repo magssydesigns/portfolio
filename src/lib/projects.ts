@@ -1735,9 +1735,9 @@ export const projects: Project[] = [
         media: {
           kind: "image",
           image: {
-            src: "/projects/kashtkaar/design%20system/tokens.png",
+            src: "/projects/kashtkaar/design%20system/tokens-2.png",
             width: 1692,
-            height: 912,
+            height: 873,
             alt: "Kashtkaar design-system token definitions in Figma",
           },
         },
