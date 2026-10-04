@@ -1736,9 +1736,9 @@ export const projects: Project[] = [
         media: {
           kind: "image",
           image: {
-            src: "/projects/kashtkaar/design%20system/tokens-2.png",
-            width: 1692,
-            height: 873,
+            src: "/projects/kashtkaar/design%20system/tokens-3.png",
+            width: 1827,
+            height: 975,
             alt: "Kashtkaar design-system token definitions in Figma",
           },
         },
@@ -1759,11 +1759,6 @@ export const projects: Project[] = [
           "Duplicated Button, Card and Avatar patterns",
           "Missing component states and variants",
         ],
-      },
-      {
-        kind: "media",
-        bordered: true,
-        media: { kind: "placeholder", label: "Design-system foundations — Figma components (placeholder)" },
       },
       {
         kind: "media",
