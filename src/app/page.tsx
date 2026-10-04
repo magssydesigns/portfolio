@@ -85,7 +85,7 @@ export default function Home() {
             strategy, systems and delivery.
             <br />
             <br />
-            Outside work, I&rsquo;m increasingly building my own products in
+            Outside work, I design and build my own products in
             code.
           </>
         }
