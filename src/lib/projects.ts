@@ -203,7 +203,7 @@ export type Project = {
     /** A secondary text link shown below the visual, e.g. out to a live/interactive prototype. */
     prototypeLink?: { href: string; label: string };
   };
-  /** An always-visible framing section rendered directly after heroVisual, before "Quick summary" - for a project that wants to introduce a secondary storyline (e.g. parallel design-system work) ahead of the narrative detail. */
+  /** An always-visible framing section rendered directly after "Quick summary" (before the "Continue reading"-gated full case study) - for a project that wants to introduce a secondary storyline (e.g. parallel design-system work) ahead of the narrative detail. */
   openingNote?: {
     heading: string;
     paragraph: string;
@@ -1617,10 +1617,6 @@ export const projects: Project[] = [
         },
       ],
       hint: "Flow with branded components applied",
-      prototypeLink: {
-        href: "https://union-park-04897894.figma.site/",
-        label: "Explore the interactive prototype ↗",
-      },
     },
     openingNote: {
       heading: "Building the product and the system together",
@@ -1662,9 +1658,7 @@ export const projects: Project[] = [
       tagline:
         "An early-stage mobile concept helping farmers in Pakistan record farm activities, follow crop guidance and connect with agricultural communities and services.",
       challenge: [
-        "Kashtkaar was an early-stage mobile product designed to support farmers in Pakistan while improving agricultural data collection across a sustainable rice supply chain. The concept combined a familiar, feed-based experience with practical farm-management tools, helping farmers access guidance, record activities and follow their crop cycle in one place.",
-        "I shaped the initial product concept through competitor research, information architecture and UX exploration. I designed the first two to three iterations of the app, including the Farm hub, crop calendar, activity-recording journeys and the relationship between farm management and the community feed. I also created the initial interactive prototypes and established the foundations of the design system.",
-        "The prototypes were tested in Urdu with farmers by local members of the team. I used the findings to simplify navigation, refine terminology and improve how farmers recorded activities and moved between planning, monitoring and community content. I left the project after the initial concept and validation stages, while the founder and engineering team continued developing the product.",
+        "I helped shape Kashtkaar from an early agricultural data-collection concept into a testable mobile product for farmers in Pakistan. I defined the product architecture, core farm-management and community journeys, interactive prototypes and initial design-system foundations, then refined the experience using feedback from farmer testing conducted in Urdu by the local team.",
       ],
       outcomes: [],
     },

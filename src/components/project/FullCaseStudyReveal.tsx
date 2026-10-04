@@ -14,12 +14,15 @@ export default function FullCaseStudyReveal({
   blocks,
   toc,
   flushTop = false,
+  afterQuickRead,
 }: {
   quickRead: QuickReadType;
   color: string;
   blocks: Block[];
   toc: TocEntry[];
   flushTop?: boolean;
+  /** Extra content rendered directly after Quick summary, before the "Continue reading"-gated full case study. */
+  afterQuickRead?: React.ReactNode;
 }) {
   const [revealed, setRevealed] = useState(false);
 
@@ -59,6 +62,8 @@ export default function FullCaseStudyReveal({
         headingStyle="heading"
         flushTop={flushTop}
       />
+
+      {afterQuickRead}
 
       {revealed && (
         <div id="full-case-study" className="scroll-mt-28 border-t border-line">
