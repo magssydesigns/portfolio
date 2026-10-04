@@ -1646,7 +1646,6 @@ export const projects: Project[] = [
       { id: "decision-03-crop-calendar", label: "Decision 03: Crop calendar" },
       { id: "decision-04-sharing", label: "Decision 04: Sharing" },
       { id: "testing-the-concept", label: "Testing the concept" },
-      { id: "outcome", label: "Outcome" },
       { id: "reflection", label: "Reflection" },
     ],
     projectAtAGlance: {
@@ -2010,42 +2009,6 @@ export const projects: Project[] = [
         status: "warning",
         finding: "Recording farm activity and publishing to the community needed to feel clearly different.",
         update: "Separated the two actions explicitly.",
-      },
-      { kind: "divider" },
-      {
-        kind: "richText",
-        id: "outcome",
-        heading: "From an early idea to a validated product direction",
-        paddingBottom: 32,
-        paragraphs: [
-          "I left Kashtkaar after the initial concept and validation stage, with the founder and engineering team continuing development from there.",
-        ],
-      },
-      {
-        kind: "steps",
-        spacing: "tight",
-        items: [
-          {
-            title: "Defined product architecture",
-            body: "The Discover and Farm structure that organised the product's core journeys.",
-          },
-          {
-            title: "Core farm-management and community journeys",
-            body: "Crop planning, activity recording, farm health and community sharing.",
-          },
-          {
-            title: "Multiple product iterations",
-            body: "Two to three rounds of the concept, refined through ongoing exploration.",
-          },
-          {
-            title: "Clickable prototype tested with farmers in Urdu",
-            body: "Validated the concept directly with the people who would use it.",
-          },
-          {
-            title: "Reusable design-system foundation for continued development",
-            body: "Tokens, components and variants ready for the team to build on.",
-          },
-        ],
       },
       { kind: "divider" },
       {

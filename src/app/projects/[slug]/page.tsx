@@ -240,23 +240,23 @@ export default async function ProjectPage({
 
         {project.openingNote && (
           <div className="mx-auto max-w-[1400px] px-6 pb-16 sm:px-10 sm:pb-20">
-            <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{project.openingNote.heading}</h2>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
-              {project.openingNote.paragraph}
-            </p>
-            <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-16">
-              {project.openingNote.columns.map((col) => (
-                <div key={col.heading}>
-                  <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{col.heading}</p>
-                  <ul className="mt-4 space-y-3">
-                    {col.items.map((item) => (
-                      <li key={item} className="text-lg leading-relaxed text-ink-soft">
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+            <div className="mx-auto max-w-2xl">
+              <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{project.openingNote.heading}</h2>
+              <p className="mt-6 text-lg leading-relaxed text-ink-soft">{project.openingNote.paragraph}</p>
+              <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2">
+                {project.openingNote.columns.map((col) => (
+                  <div key={col.heading}>
+                    <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{col.heading}</p>
+                    <ul className="mt-4 space-y-3">
+                      {col.items.map((item) => (
+                        <li key={item} className="text-lg leading-relaxed text-ink-soft">
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
