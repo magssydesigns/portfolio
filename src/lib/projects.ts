@@ -1764,6 +1764,7 @@ export const projects: Project[] = [
         kind: "richText",
         headingLevel: "h3",
         heading: "AI / System-audit example",
+        paddingTop: 32,
         paragraphs: [],
       },
       {
