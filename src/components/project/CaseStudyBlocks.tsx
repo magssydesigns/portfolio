@@ -341,14 +341,16 @@ function BlockRenderer({
           >
             <div
               className={
-                "mx-auto max-w-3xl px-6 py-24 sm:px-10 sm:py-32 " +
-                (block.tone === "dark" ? "text-center" : "text-left")
+                block.tone === "dark"
+                  ? "mx-auto max-w-3xl px-6 py-24 text-center sm:px-10 sm:py-32"
+                  : "pt-8 text-left"
               }
             >
               <p
                 className={
-                  "font-display text-2xl leading-snug tracking-tight sm:text-4xl " +
-                  (block.tone === "dark" ? "italic" : "")
+                  (block.tone === "dark"
+                    ? "font-display text-2xl leading-snug tracking-tight sm:text-4xl italic"
+                    : "font-display text-xl leading-snug tracking-tight sm:text-3xl")
                 }
                 style={block.tone === "dark" ? undefined : { color: "#0163FF" }}
               >
