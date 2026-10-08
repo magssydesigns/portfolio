@@ -1640,7 +1640,6 @@ export const projects: Project[] = [
       { id: "decision-01-discover-and-farm", label: "Decision 01: Discover and Farm" },
       { id: "decision-02-activity-recording", label: "Decision 02: Activity recording" },
       { id: "decision-03-crop-calendar", label: "Decision 03: Crop calendar" },
-      { id: "decision-04-sharing", label: "Decision 04: Sharing" },
       { id: "testing-the-concept", label: "Testing the concept" },
       { id: "reflection", label: "Reflection" },
     ],
@@ -1808,7 +1807,15 @@ export const projects: Project[] = [
         kind: "media",
         bordered: true,
         width: "reduced-70",
-        media: { kind: "placeholder", label: "NEW KASHTKAAR COMPONENT SETS" },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/kashtkaar/design%20system/components.png",
+            width: 2700,
+            height: 1880,
+            alt: "New Kashtkaar component sets and variants built in the design system",
+          },
+        },
       },
       {
         kind: "richText",
@@ -1893,10 +1900,10 @@ export const projects: Project[] = [
         media: {
           kind: "image",
           image: {
-            src: "/projects/kashtkaar/kashtkaar-product-architecture.webp",
-            width: 2600,
-            height: 1305,
-            alt: "Kashtkaar product architecture showing the Discover feed and Farm hub",
+            src: "/projects/kashtkaar/decision01.png",
+            width: 19240,
+            height: 10496,
+            alt: "Kashtkaar Community feed and Farm dashboard shown side by side on two phones",
           },
         },
         mobileCarousel: [
@@ -1937,10 +1944,10 @@ export const projects: Project[] = [
         media: {
           kind: "image",
           image: {
-            src: "/projects/kashtkaar/kashtkaar-activity-recording.webp",
-            width: 2600,
-            height: 1305,
-            alt: "Activity-recording screens for logging farm tasks",
+            src: "/projects/kashtkaar/decision02.png",
+            width: 14430,
+            height: 7872,
+            alt: "Tapping \"Log this too\" on a community suggestion opens a pre-filled Add activity screen for zinc sulphate",
           },
         },
         mobileCarousel: [
@@ -2011,52 +2018,9 @@ export const projects: Project[] = [
       { kind: "divider" },
       {
         kind: "richText",
-        id: "decision-04-sharing",
-        heading: "Decision 04: Keep community sharing optional",
-        paddingBottom: 32,
-        paragraphs: [
-          "Farm activities could optionally be shared to the Discover feed, bridging private farm management and community knowledge without requiring farmers to enter the same information twice.",
-          "Recording and publishing remained separate actions, so a farmer could record information privately without automatically sharing it to the community.",
-        ],
-      },
-      {
-        kind: "media",
-        bordered: true,
-        media: {
-          kind: "image",
-          image: {
-            src: "/projects/kashtkaar/kashtkaar-share-to-discover.webp",
-            width: 2600,
-            height: 1305,
-            alt: "Sharing a recorded farm activity to the Discover community feed",
-          },
-        },
-        mobileCarousel: [
-          {
-            src: "/projects/kashtkaar/kashtkaar-carousel-5/kashtkaar-share-to-discover-mobile-1.webp",
-            width: 1300,
-            height: 2072,
-            alt: "\"What do you want to do?\" menu with the option to share to community",
-          },
-          {
-            src: "/projects/kashtkaar/kashtkaar-carousel-5/kashtkaar-share-to-discover-mobile-2.webp",
-            width: 1300,
-            height: 2072,
-            alt: "Share your recent farm activity screen listing recently completed activities",
-          },
-          {
-            src: "/projects/kashtkaar/kashtkaar-carousel-5/kashtkaar-share-to-discover-mobile-3.webp",
-            width: 1300,
-            height: 2072,
-            alt: "Create Post screen with a completed watering activity ready to share",
-          },
-        ],
-      },
-      { kind: "divider" },
-      {
-        kind: "richText",
         id: "testing-the-concept",
         heading: "Testing the concept with farmers in Urdu",
+        paddingBottom: 32,
         paragraphs: [
           "I created a clickable prototype covering the main navigation, crop planning and activity-recording journeys. Local members of the team tested the concept in Urdu with farmers, allowing the product to be evaluated in the language and context in which it would be used.",
           "Testing focused on whether farmers could record an activity quickly, understand the relationship between Plan, Health and Log, and move naturally between farm-management tools and the community feed.",
@@ -2089,11 +2053,11 @@ export const projects: Project[] = [
       {
         kind: "richText",
         id: "reflection",
-        heading: "What this project reinforced for me",
+        heading: "What I took from this project",
         paddingBottom: 90,
         paragraphs: [
-          "Kashtkaar reinforced the value of designing around familiar behaviours when introducing unfamiliar tools. The community feed created an accessible entry point, but the product's real value depended on making agricultural guidance and farm-data collection simple enough to become part of everyday work.",
-          "It also changed how I think about AI-assisted design: speed of exploration only becomes valuable when it is paired with strong system governance and deliberate design judgement.",
+          "Kashtkaar showed me how important it is to build new tools around behaviours people already understand. The community feed gave farmers a familiar way into the product, while the real challenge was making farm planning, guidance and activity recording simple enough to feel useful in everyday work.",
+          "It also gave me a much clearer view of how I want to use AI in my design process. AI made exploration and system work faster, but it still needed strong design judgement to decide what belonged in the product, what needed refining and what should become part of the system.",
         ],
       },
     ],
