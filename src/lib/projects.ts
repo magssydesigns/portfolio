@@ -1799,7 +1799,7 @@ export const projects: Project[] = [
           image: {
             src: "/projects/kashtkaar/design%20system/dashboard%20change.png",
             width: 2700,
-            height: 2478,
+            height: 2638,
             alt: "Kashtkaar dashboard before and after aligning colours, typography and components to the design system",
           },
         },
