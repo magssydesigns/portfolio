@@ -339,9 +339,17 @@ function BlockRenderer({
             id={block.id}
             className={(block.tone === "dark" ? "bg-ink text-paper" : "") + " scroll-mt-28"}
           >
-            <div className="mx-auto max-w-3xl px-6 py-24 text-center sm:px-10 sm:py-32">
+            <div
+              className={
+                "mx-auto max-w-3xl px-6 py-24 sm:px-10 sm:py-32 " +
+                (block.tone === "dark" ? "text-center" : "text-left")
+              }
+            >
               <p
-                className="font-display text-2xl italic leading-snug tracking-tight sm:text-4xl"
+                className={
+                  "font-display text-2xl leading-snug tracking-tight sm:text-4xl " +
+                  (block.tone === "dark" ? "italic" : "")
+                }
                 style={block.tone === "dark" ? undefined : { color: "#0163FF" }}
               >
                 {block.text}
@@ -407,16 +415,7 @@ function BlockRenderer({
                     )}
                     {item.title}
                   </p>
-                  {block.arrowBody ? (
-                    <p className="mt-2 flex gap-2 text-[15px] leading-relaxed text-ink-soft">
-                      <span className="shrink-0" style={{ color: "#0163FF" }} aria-hidden="true">
-                        →
-                      </span>
-                      <span>{item.body}</span>
-                    </p>
-                  ) : (
-                    <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{item.body}</p>
-                  )}
+                  <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{item.body}</p>
                 </div>
               ))}
             </div>
