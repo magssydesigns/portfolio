@@ -62,6 +62,7 @@ export default function Home() {
                   href={cardHref(card)}
                   media={card.media}
                   mediaBackground={card.mediaBackground}
+                  badge={card.badge}
                 />
               </Reveal>
             ))}
