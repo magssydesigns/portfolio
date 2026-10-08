@@ -1736,7 +1736,8 @@ export const projects: Project[] = [
         kind: "richText",
         paddingTop: 32,
         paragraphs: [
-          "Kashtkaar was evolving quickly as a 0→1 product, with new screens and flows explored in parallel. Engineering planned to use shadcn as the implementation foundation, so I adapted that structure in Figma, building Kashtkaar-specific tokens, components and variants rather than starting from a blank library.",
+          "Kashtkaar was evolving quickly as a 0→1 product, and the redesigned dashboard had started to drift from the emerging system. It mixed tokens from different libraries, used several typefaces and repeated UI patterns that had never been formalised as components.",
+          "Because engineering planned to use shadcn as an implementation foundation, I had already adapted that structure in Figma with Kashtkaar-specific colours, typography, spacing and components. I wanted new product exploration to move quickly without allowing the system to fragment.",
         ],
       },
       {
@@ -1755,32 +1756,20 @@ export const projects: Project[] = [
       },
       {
         kind: "richText",
-        paragraphs: [
-          "Fast exploration introduced a risk of inconsistent UI, so I used Claude as a system-audit layer: comparing new explorations against the existing design system.",
-          "The audit helped surface recurring inconsistencies, including:",
-        ],
-      },
-      {
-        kind: "arrowList",
-        paddingTop: 24,
-        items: [
-          "Mixed typography styles",
-          "Overlapping colour tokens",
-          "Duplicated Button, Card and Avatar patterns",
-          "Missing component states and variants",
-        ],
-      },
-      {
-        kind: "richText",
         headingLevel: "h3",
-        heading: "AI / System-audit example",
+        heading: "Using AI to audit and extend the system",
         paddingTop: 32,
-        paragraphs: [],
+        paragraphs: [
+          "I used Claude Code, connected directly to Figma, to audit a redesigned dashboard against the Kashtkaar Design System. Rather than reviewing only a screenshot, the agent inspected the actual Figma structure — including bound variables, component references and the libraries those values came from.",
+          "The audit surfaced inconsistent token usage, four different font families, duplicated UI patterns and missing component states. I reviewed the findings and decided what belonged in the Kashtkaar system before allowing any changes to be made.",
+        ],
       },
       {
         kind: "media",
         bordered: true,
         width: "reduced-70",
+        caption:
+          "Example of Claude auditing the dashboard against the actual Kashtkaar Figma library, variables and component structure.",
         media: {
           kind: "image",
           image: {
@@ -1790,6 +1779,72 @@ export const projects: Project[] = [
             alt: "AI-assisted audit comparing a new Kashtkaar dashboard exploration against the existing design system",
           },
         },
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "From audit to system",
+        paddingTop: 32,
+        paragraphs: [
+          "After reviewing the audit, I used the agent for the repetitive system work: mapping fills, strokes and text styles to the correct semantic tokens and creating missing reusable components and variants.",
+          "The result was 8 new component sets with 47 variants, including Status Pill, Section Header, Stat Ring, Crop Card, Alert Card, Community Card, Weather Chip and Carousel. Their colours, spacing, radii and typography were bound back to the Kashtkaar library.",
+        ],
+      },
+      {
+        kind: "media",
+        bordered: true,
+        width: "reduced-70",
+        media: { kind: "placeholder", label: "DASHBOARD BEFORE / AFTER SYSTEM AUDIT" },
+      },
+      {
+        kind: "media",
+        bordered: true,
+        width: "reduced-70",
+        media: { kind: "placeholder", label: "NEW KASHTKAAR COMPONENT SETS" },
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Where my judgement mattered",
+        paddingTop: 32,
+        paragraphs: [],
+      },
+      {
+        kind: "steps",
+        spacing: "tight",
+        items: [
+          {
+            title: "Source of truth",
+            body: "The agent initially followed references to another design-system library. I recognised that it was the wrong source and redirected the work to use only the Kashtkaar Design System.",
+          },
+          {
+            title: "Typography",
+            body: "The dashboard used Geist while the Kashtkaar library was built around DM Sans. Claude surfaced the trade-off rather than changing it automatically; I chose to align the product with the existing DM Sans styles.",
+          },
+          {
+            title: "Avoiding duplication",
+            body: "The agent proposed a new App Bar, but further inspection showed that the library already contained a Top Bar serving the same purpose, so I chose to reuse it instead.",
+          },
+        ],
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Outcome",
+        paddingTop: 32,
+        paddingBottom: 32,
+        paragraphs: [
+          "The audited dashboard was brought back onto Kashtkaar's own tokens and text styles, removing dependencies on unrelated libraries. The system also gained 8 reusable component sets and 47 variants, including previously missing states.",
+          "The workflow reinforced where AI was most useful for me: inspecting large systems, mapping tokens and handling repetitive component work. I still owned the source of truth, visual trade-offs and the final decision about what belonged in the product.",
+        ],
+      },
+      {
+        kind: "stats",
+        items: [
+          { value: "8", label: "new component sets" },
+          { value: "47", label: "component variants" },
+          { value: "1", label: "consistent Kashtkaar source of truth" },
+        ],
       },
       { kind: "divider" },
       {
