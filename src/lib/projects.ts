@@ -29,7 +29,7 @@ export type Block =
   | { kind: "lead"; id?: string; spacing?: "tight"; items: { label: string; body: string }[] }
   | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light"; spacing?: "tight"; paddingBottom?: number }
   | { kind: "statement"; id?: string; text: string; tone?: "dark" | "light" }
-  | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; spacing?: "tight"; paddingTop?: number; paddingBottom?: number; items: { title: string; body: string }[] }
+  | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; arrowBody?: boolean; itemStyle?: "plain"; spacing?: "tight"; paddingTop?: number; paddingBottom?: number; items: { title: string; body: string }[] }
   | { kind: "image"; id?: string; image: ProjectImage; size?: "medium" | "wide" | "full" }
   | { kind: "beforeAfterStats"; id?: string; heading?: string; items: { label: string; before: string; after: string; description: string }[] }
   | { kind: "quote"; id?: string; heading?: string; text: string; attribution?: string }
@@ -1707,6 +1707,8 @@ export const projects: Project[] = [
       {
         kind: "numbered",
         showArrow: true,
+        arrowBody: true,
+        itemStyle: "plain",
         paddingTop: 32,
         items: [
           {

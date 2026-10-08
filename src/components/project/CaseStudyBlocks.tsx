@@ -392,7 +392,7 @@ function BlockRenderer({
               }
             >
               {block.items.map((item, i) => (
-                <div key={i} className="border-t border-ink/15 pt-6">
+                <div key={i} className={block.itemStyle === "plain" ? "" : "border-t border-ink/15 pt-6"}>
                   <p
                     className={
                       layout === "toc"
@@ -407,7 +407,16 @@ function BlockRenderer({
                     )}
                     {item.title}
                   </p>
-                  <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{item.body}</p>
+                  {block.arrowBody ? (
+                    <p className="mt-2 flex gap-2 text-[15px] leading-relaxed text-ink-soft">
+                      <span className="shrink-0" style={{ color: "#0163FF" }} aria-hidden="true">
+                        →
+                      </span>
+                      <span>{item.body}</span>
+                    </p>
+                  ) : (
+                    <p className="mt-3 text-[15px] leading-relaxed text-ink-soft">{item.body}</p>
+                  )}
                 </div>
               ))}
             </div>
