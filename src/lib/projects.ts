@@ -1702,16 +1702,25 @@ export const projects: Project[] = [
       {
         kind: "statement",
         tone: "light",
-        text: "How do we collect meaningful farm data without turning the product into another administrative tool for farmers?",
+        text: "“How could we make farm activity recording genuinely useful for farmers, while still capturing the useful data the programme needed?”",
       },
       {
-        kind: "arrowList",
-        bold: true,
+        kind: "numbered",
+        showArrow: true,
         paddingTop: 32,
         items: [
-          "Low-friction activity recording",
-          "Guidance rather than administration",
-          "An evolving 0→1 product that needed reusable foundations",
+          {
+            title: "Make recording quick and low-effort",
+            body: "Farmers shouldn't have to work through long administrative forms.",
+          },
+          {
+            title: "Give value back through guidance",
+            body: "Recording activity needed to help farmers understand their crop cycle and what to do next.",
+          },
+          {
+            title: "Fit naturally into everyday farm management",
+            body: "Planning, monitoring and recording needed to feel like one connected experience rather than separate data-collection tasks.",
+          },
         ],
       },
       { kind: "divider" },
