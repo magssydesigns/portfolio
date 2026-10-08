@@ -1794,7 +1794,15 @@ export const projects: Project[] = [
         kind: "media",
         bordered: true,
         width: "reduced-70",
-        media: { kind: "placeholder", label: "DASHBOARD BEFORE / AFTER SYSTEM AUDIT" },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/kashtkaar/design%20system/dashboard%20change.png",
+            width: 2700,
+            height: 2478,
+            alt: "Kashtkaar dashboard before and after aligning colours, typography and components to the design system",
+          },
+        },
       },
       {
         kind: "media",
