@@ -770,7 +770,7 @@ export const projects: Project[] = [
         heading: "Locker availability was a must-have",
         paddingTop: 32,
         paragraphs: [
-          "One of the clearest UK-specific needs was locker availability. This wasn't a feature in the Polish app because the locker network in Poland is much denser — if one locker is full, there is usually another one nearby.",
+          "One of the clearest UK-specific needs was locker availability. This wasn't a feature in the Polish app because the locker network in Poland is much denser. If one locker is full, there is usually another one nearby.",
           "That wasn't the same in the UK, where the network was still growing. I pushed for locker availability to be part of the launch because choosing a locker without knowing whether there was space could create a frustrating experience from the start.",
         ],
       },
@@ -795,7 +795,7 @@ export const projects: Project[] = [
         kind: "media",
         bordered: true,
         width: "reduced-70",
-        media: { kind: "placeholder", label: "TIME TO COLLECT — IN-APP EXAMPLES" },
+        media: { kind: "placeholder", label: "TIME TO COLLECT: IN-APP EXAMPLES" },
       },
       {
         kind: "media",
@@ -809,7 +809,7 @@ export const projects: Project[] = [
         heading: "Remote opening could wait",
         paddingTop: 32,
         paragraphs: [
-          "Remote opening was a feature I wanted in the product because it gave the app something the web experience couldn't offer — users could open the locker directly from their phone.",
+          "Remote opening was a feature I wanted in the product because it gave the app something the web experience couldn't offer. Users could open the locker directly from their phone.",
           "But it wasn't essential for the first release. It also needed more in-person testing to make sure the interaction between the app and physical locker worked reliably.",
           "I classified it as a nice-to-have and we postponed it rather than adding more risk to an already tight launch.",
         ],
@@ -818,7 +818,7 @@ export const projects: Project[] = [
         kind: "media",
         bordered: true,
         width: "reduced-70",
-        media: { kind: "placeholder", label: "REMOTE OPENING — LATER FEATURE" },
+        media: { kind: "placeholder", label: "REMOTE OPENING: LATER FEATURE" },
       },
       {
         kind: "richText",
