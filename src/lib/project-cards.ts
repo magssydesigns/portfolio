@@ -10,6 +10,8 @@ export type ProjectCardData = {
   title: string;
   slug: string;
   subtitle?: string;
+  /** Small secondary chip shown above the title (e.g. a process note). */
+  badge?: string;
   media: MediaSlot;
   /** Overrides ProjectCard's default media-container background (bg-paper-dim). */
   mediaBackground?: string;
@@ -55,6 +57,7 @@ export const homepageCards: ProjectCardData[] = [
   {
     title: "Designing a farm management product from 0 → 1",
     slug: "kashtkaar",
+    badge: "AI-assisted design workflow · Claude + Figma",
     media: {
       kind: "image",
       image: {
