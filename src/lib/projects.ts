@@ -634,6 +634,7 @@ export const projects: Project[] = [
       { id: "quick-summary", label: "Quick Summary" },
       { id: "impact", label: "Impact" },
       { id: "the-challenge", label: "The challenge" },
+      { id: "uk-launch-priorities", label: "UK launch priorities" },
       { id: "business-goals", label: "Business goals" },
       { id: "final-experience", label: "Final experience" },
       { id: "design-process", label: "Design process" },
@@ -726,6 +727,98 @@ export const projects: Project[] = [
           "InPost needed to launch its Polish consumer app in the UK within three months. The existing product was functional, but it had been built on a rigid XML-based architecture, contained inconsistent design patterns and did not meet the required accessibility standards.",
           "The challenge was not simply to localise the interface. I needed to determine which improvements could safely be delivered for launch, which changes required deeper architectural work and how to create a credible UK experience without delaying the release.",
           "At the same time, the UK team needed a more scalable design foundation that could support future product development rather than adding another layer of UI debt.",
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "heading",
+        id: "uk-launch-priorities",
+        text: "What we prioritised for the UK launch",
+        spacing: "tight",
+        paddingBottom: 0,
+      },
+      {
+        kind: "richText",
+        paddingTop: 32,
+        paragraphs: [
+          "With only three months to launch, we couldn't bring every possible feature into the first UK release. I worked closely with Product and Engineering to decide what was genuinely important for UK customers, what we could safely inherit from the Polish app, and what could wait.",
+        ],
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Locker availability was a must-have",
+        paddingTop: 32,
+        paragraphs: [
+          "One of the clearest UK-specific needs was locker availability. This wasn't a feature in the Polish app because the locker network in Poland is much denser — if one locker is full, there is usually another one nearby.",
+          "That wasn't the same in the UK, where the network was still growing. I pushed for locker availability to be part of the launch because choosing a locker without knowing whether there was space could create a frustrating experience from the start.",
+        ],
+      },
+      {
+        kind: "media",
+        bordered: true,
+        width: "reduced-70",
+        media: { kind: "placeholder", label: "LOCKER AVAILABILITY / CAPACITY CHECKER" },
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Collection deadlines needed much more support",
+        paddingTop: 32,
+        paragraphs: [
+          "UK customers were also much less familiar with parcel lockers than users in Poland. Parcels only stay in a locker for a limited amount of time, and I didn't want customers to lose a parcel simply because they didn't understand when they needed to collect it.",
+          "I made the collection deadline much more visible in the app, with clearer time-left messaging and stronger signposting as the deadline got closer.",
+          "I also worked with Marketing and CX on supporting email communications for customers who weren't actively using the app. The experience couldn't rely on an app notification alone.",
+        ],
+      },
+      {
+        kind: "media",
+        bordered: true,
+        width: "reduced-70",
+        media: { kind: "placeholder", label: "TIME TO COLLECT — IN-APP EXAMPLES" },
+      },
+      {
+        kind: "media",
+        bordered: true,
+        width: "reduced-70",
+        media: { kind: "placeholder", label: "COLLECTION NOTIFICATIONS / EMAIL EXAMPLES" },
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Remote opening could wait",
+        paddingTop: 32,
+        paragraphs: [
+          "Remote opening was a feature I wanted in the product because it gave the app something the web experience couldn't offer — users could open the locker directly from their phone.",
+          "But it wasn't essential for the first release. It also needed more in-person testing to make sure the interaction between the app and physical locker worked reliably.",
+          "I classified it as a nice-to-have and we postponed it rather than adding more risk to an already tight launch.",
+        ],
+      },
+      {
+        kind: "media",
+        bordered: true,
+        width: "reduced-70",
+        media: { kind: "placeholder", label: "REMOTE OPENING — LATER FEATURE" },
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "What this meant for the launch",
+        paddingTop: 32,
+        paragraphs: [
+          "The goal wasn't to fit as many features as possible into three months. It was to make sure the first UK version solved the problems that mattered most in this market.",
+          "That meant introducing things that didn't exist in the Polish product, making some existing information much clearer, and being comfortable leaving a good feature out when it wasn't essential yet.",
+        ],
+      },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        items: [
+          {
+            label: "Must have for UK",
+            body: "Locker availability, a clear collection deadline and supporting notifications.",
+          },
+          { label: "Later", body: "Remote opening." },
         ],
       },
       { kind: "divider" },
@@ -1736,8 +1829,9 @@ export const projects: Project[] = [
         kind: "richText",
         paddingTop: 32,
         paragraphs: [
-          "Kashtkaar was evolving quickly as a 0→1 product, and the redesigned dashboard had started to drift from the emerging system. It mixed tokens from different libraries, used several typefaces and repeated UI patterns that had never been formalised as components.",
-          "Because engineering planned to use shadcn as an implementation foundation, I had already adapted that structure in Figma with Kashtkaar-specific colours, typography, spacing and components. I wanted new product exploration to move quickly without allowing the system to fragment.",
+          "Kashtkaar was evolving quickly as a 0→1 product. Alongside my product-design work, the founder was also using Claude to rapidly explore new screens and journeys.",
+          "That speed was useful for testing ideas, but it also created a new design challenge: explorations could introduce different typography, colours, components or interaction patterns before they had been reconciled with the emerging product system.",
+          "Because engineering planned to use shadcn as an implementation foundation, I had already adapted that structure in Figma with Kashtkaar-specific colours, typography, spacing, components and variants. I needed a way to keep rapid exploration possible while bringing promising ideas back into a coherent, usable system.",
         ],
       },
       {
@@ -1757,11 +1851,13 @@ export const projects: Project[] = [
       {
         kind: "richText",
         headingLevel: "h3",
-        heading: "Using AI to audit and extend the system",
+        heading: "Using AI to audit and refine new explorations",
         paddingTop: 32,
         paragraphs: [
-          "I used Claude Code, connected directly to Figma, to audit a redesigned dashboard against the Kashtkaar Design System. Rather than reviewing only a screenshot, the agent inspected the actual Figma structure — including bound variables, component references and the libraries those values came from.",
-          "The audit surfaced inconsistent token usage, four different font families, duplicated UI patterns and missing component states. I reviewed the findings and decided what belonged in the Kashtkaar system before allowing any changes to be made.",
+          "I used Claude Code, connected directly to Figma, with a design-system skill to review new screens against the Kashtkaar Design System.",
+          "The agent could inspect the actual Figma structure rather than only looking at screenshots — including bound variables, component references, text styles and the libraries those values came from.",
+          "This made it useful as a first-pass audit for both design-system consistency and UX refinement. It helped me identify where a new exploration was re-creating an existing pattern, introducing inconsistent styles, missing important states or creating friction across the wider journey.",
+          "I reviewed those findings and decided what should change before the exploration became part of the product.",
         ],
       },
       {
@@ -1769,7 +1865,7 @@ export const projects: Project[] = [
         bordered: true,
         width: "reduced-70",
         caption:
-          "Example of Claude auditing the dashboard against the actual Kashtkaar Figma library, variables and component structure.",
+          "Claude auditing a dashboard exploration against the actual Kashtkaar Figma library, variables and component structure.",
         media: {
           kind: "image",
           image: {
@@ -1783,24 +1879,37 @@ export const projects: Project[] = [
       {
         kind: "richText",
         headingLevel: "h3",
-        heading: "From audit to system",
+        heading: "From exploration to system-aligned UI",
         paddingTop: 32,
         paragraphs: [
-          "After reviewing the audit, I used the agent for the repetitive system work: mapping fills, strokes and text styles to the correct semantic tokens and creating missing reusable components and variants.",
-          "The result was 8 new component sets with 47 variants, including Status Pill, Section Header, Stat Ring, Crop Card, Alert Card, Community Card, Weather Chip and Carousel. Their colours, spacing, radii and typography were bound back to the Kashtkaar library.",
+          "The audit was not only diagnostic. Once I had reviewed the recommendations, I used the agent to apply the Kashtkaar system back to the design.",
+          "In this example, an early AI-assisted exploration used different typography, colour values and hand-built UI. The refined version was mapped back to the correct Kashtkaar styles and components. Existing patterns were reused where possible — for example, ‘View all’ was replaced with the established link component rather than remaining bespoke UI.",
         ],
       },
       {
         kind: "media",
         bordered: true,
         width: "reduced-70",
-        media: { kind: "placeholder", label: "DASHBOARD BEFORE / AFTER SYSTEM AUDIT" },
+        caption:
+          "Typography and colour tokens were aligned, existing library components were reused, and repeated UI was converted into reusable system components.",
+        media: { kind: "placeholder", label: "EXPLORATION → SYSTEM-ALIGNED VERSION" },
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Extending the library when the product genuinely needed it",
+        paddingTop: 32,
+        paragraphs: [
+          "When a recurring pattern did not yet exist, I used the same workflow to turn it into a proper reusable component. Claude created the component in the Kashtkaar Design System file, bound its properties to the correct variables and styles, and then replaced repeated hand-built versions across the relevant Figma frames.",
+          "I reviewed the generated components and their states before they became part of the system.",
+          "The wider audit and clean-up resulted in 8 new component sets with 47 variants, including Status Pill, Section Header, Stat Ring, Crop Card, Alert Card, Community Card, Weather Chip and Carousel.",
+        ],
       },
       {
         kind: "media",
         bordered: true,
         width: "reduced-70",
-        media: { kind: "placeholder", label: "NEW KASHTKAAR COMPONENT SETS" },
+        media: { kind: "placeholder", label: "NEW AND EXTENDED KASHTKAAR COMPONENTS" },
       },
       {
         kind: "richText",
@@ -1815,17 +1924,22 @@ export const projects: Project[] = [
         items: [
           {
             title: "Source of truth",
-            body: "The agent initially followed references to another design-system library. I recognised that it was the wrong source and redirected the work to use only the Kashtkaar Design System.",
+            body: "The agent initially followed references to another design-system library. I recognised that it was not the correct source of truth and redirected the work to use only the Kashtkaar Design System.",
           },
           {
             title: "Typography",
-            body: "The dashboard used Geist while the Kashtkaar library was built around DM Sans. Claude surfaced the trade-off rather than changing it automatically; I chose to align the product with the existing DM Sans styles.",
+            body: "The dashboard used Geist while the Kashtkaar system was based on DM Sans. Claude surfaced the trade-off rather than silently changing it. I chose to align the product with the existing DM Sans system and reviewed the resulting layout changes.",
           },
           {
-            title: "Avoiding duplication",
-            body: "The agent proposed a new App Bar, but further inspection showed that the library already contained a Top Bar serving the same purpose, so I chose to reuse it instead.",
+            title: "Reuse before adding",
+            body: "The agent initially proposed creating a new App Bar. Further inspection showed that Kashtkaar already had a Top Bar serving the same purpose, so I chose to reuse the existing component rather than introduce another pattern.",
           },
         ],
+      },
+      {
+        kind: "richText",
+        paddingTop: 32,
+        paragraphs: ["Rapid exploration → AI-assisted audit → UX + design review → system-aligned product"],
       },
       {
         kind: "richText",
@@ -1834,8 +1948,9 @@ export const projects: Project[] = [
         paddingTop: 32,
         paddingBottom: 32,
         paragraphs: [
-          "The audited dashboard was brought back onto Kashtkaar's own tokens and text styles, removing dependencies on unrelated libraries. The system also gained 8 reusable component sets and 47 variants, including previously missing states.",
-          "The workflow reinforced where AI was most useful for me: inspecting large systems, mapping tokens and handling repetitive component work. I still owned the source of truth, visual trade-offs and the final decision about what belonged in the product.",
+          "The workflow gave me a practical way to bring fast AI-assisted exploration back into a coherent product system.",
+          "The audited dashboard was aligned with Kashtkaar's own tokens, typography and components, while the design-system library gained reusable patterns and previously missing states.",
+          "It also clarified how I want to use AI in product-design work: the agent is particularly useful for inspecting large Figma structures, identifying drift, mapping tokens and handling repetitive component work. I still own the UX, source of truth, visual trade-offs and the final decision about what belongs in the product.",
         ],
       },
       {
@@ -1843,7 +1958,7 @@ export const projects: Project[] = [
         items: [
           { value: "8", label: "new component sets" },
           { value: "47", label: "component variants" },
-          { value: "1", label: "consistent Kashtkaar source of truth" },
+          { value: "1", label: "Kashtkaar source of truth" },
         ],
       },
       { kind: "divider" },
