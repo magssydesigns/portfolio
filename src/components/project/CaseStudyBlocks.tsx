@@ -72,6 +72,7 @@ function BlockRenderer({
                 ? "scroll-mt-40 lg:scroll-mt-28"
                 : "mx-auto max-w-[1400px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20"
             }
+            style={block.paddingTop !== undefined ? { paddingTop: block.paddingTop } : undefined}
           >
             {block.heading && (
               <h3 className="mb-6 font-sans text-lg font-semibold sm:text-xl">{block.heading}</h3>
@@ -193,6 +194,10 @@ function BlockRenderer({
           ? [!block.width ? "w-full" : "", "h-auto"].filter(Boolean).join(" ")
           : undefined;
 
+      const imgClassName = block.mobileCarousel
+        ? [mediaClassName, "hidden lg:block"].filter(Boolean).join(" ")
+        : mediaClassName;
+
       const mediaEl = (
         <>
           {block.mobileCarousel && (
@@ -202,17 +207,17 @@ function BlockRenderer({
               imageScale={block.mobileCarouselImageScale}
             />
           )}
-          <MediaSlotView
-            media={block.media}
-            className={
-              block.mobileCarousel
-                ? [mediaClassName, "hidden lg:block"].filter(Boolean).join(" ")
-                : mediaClassName
-            }
-            bordered={block.bordered}
-            mobileZoom={block.mobileZoom}
-            mobileSrc={block.mobileSrc}
-          />
+          {block.enlargeable ? (
+            <EnlargeableMedia media={block.media} className={imgClassName} bordered={block.bordered} />
+          ) : (
+            <MediaSlotView
+              media={block.media}
+              className={imgClassName}
+              bordered={block.bordered}
+              mobileZoom={block.mobileZoom}
+              mobileSrc={block.mobileSrc}
+            />
+          )}
         </>
       );
 

@@ -34,7 +34,7 @@ export type Block =
   | { kind: "beforeAfterStats"; id?: string; heading?: string; items: { label: string; before: string; after: string; description: string }[] }
   | { kind: "quote"; id?: string; heading?: string; text: string; attribution?: string }
   | { kind: "steps"; id?: string; heading?: string; spacing?: "tight"; items: { title: string; body: string }[] }
-  | { kind: "twoCol"; id?: string; heading?: string; spacing?: "tight"; items: { label: string; body: string }[] }
+  | { kind: "twoCol"; id?: string; heading?: string; spacing?: "tight"; paddingTop?: number; items: { label: string; body: string }[] }
   | { kind: "mediaNumbered"; id?: string; heading?: string; media: MediaSlot; items: { title: string; body: string }[] }
   | {
       kind: "beforeAfterImages";
@@ -78,6 +78,8 @@ export type Block =
       caption?: string;
       width?: "reduced" | "reduced-40" | "reduced-70";
       bordered?: boolean;
+      /** Wraps the media in a tap-to-enlarge lightbox. */
+      enlargeable?: boolean;
       link?: { href: string; label: string; size?: number };
       /** Content-safe mobile-only zoom tier for screenshots/mock-ups that sit small inside a large card on narrow viewports. */
       mobileZoom?: "sm" | "md" | "lg";
@@ -154,6 +156,8 @@ export type QuickRead = {
   keyDecisions?: string[];
   /** Swaps the default dash bullet for the same blue arrow used in Business Objectives / Process. */
   keyDecisionsShowArrow?: boolean;
+  /** Richer alternative to keyDecisions: an eyebrow tag + bold title + one-line rationale per item, for previewing trade-off decisions. Takes precedence over keyDecisions when present. */
+  keyDecisionsItems?: { eyebrow: string; title: string; body: string }[];
   outcomes: { value: string; label: string }[];
   /** Bold arrow-prefixed bullets rendered in the "Key outcomes" section of the split (roleDetails) layout. */
   keyOutcomeBullets?: string[];
@@ -624,10 +628,10 @@ export const projects: Project[] = [
     projectAtAGlance: {
       role: "Lead Product Designer",
       scope:
-        "Worked closely with the Product Manager to define the scope of the UK app. I redesigned key flows based on the legacy Polish product, prioritised high-value UX enhancements and created a new design system for the UK experience.",
+        "Used existing customer research, product audits and stakeholder input to define the UK MVP with Product and Engineering. I redesigned priority journeys, planned a phased roadmap and rebuilt the design foundations for future releases.",
       coreTeam: "Product Manager • Engineering",
       collaborationLabel: "Collaboration teams",
-      collaborationTeams: "Marketing • Customer Experience",
+      collaborationTeams: "Marketing • Customer Experience • Commercial",
       platforms: "iOS • Android",
     },
     toc: [
@@ -647,7 +651,7 @@ export const projects: Project[] = [
     ],
     quickRead: {
       tagline:
-        "Redesigned and localised a legacy Polish app for the UK market while unifying the design system, resolving accessibility issues, and defining a phased product roadmap.",
+        "Localised and modernised a legacy Polish app for UK customers, defining the MVP and phased roadmap while rebuilding the design system and improving priority accessibility issues.",
       heroImage: {
         src: "/projects/rapid-uk-launch/App-launch.webp",
         width: 2600,
@@ -655,10 +659,8 @@ export const projects: Project[] = [
         alt: "InPost UK app onboarding, locker map and parcel tracking screens shown on three phones",
       },
       bulletedChallenge: false,
-      role:
-        "InPost planned to launch its successful Polish consumer app in the UK within three months. Rather than redesigning the product from scratch, the challenge was to localise and modernise a legacy experience while working within the constraints of an outdated architecture and an evolving product strategy.",
       challenge: [
-        "I led the UX and design system work, auditing the existing product, defining a phased roadmap, rebuilding the design system, and redesigning key customer journeys to create a scalable foundation for future releases.",
+        "InPost needed to launch its Polish consumer app in the UK within three months, but the experience could not simply be copied across. I used existing research and worked with Product, Engineering, Marketing, CX and Commercial to define the MVP and phased roadmap, deciding what UK customers needed at launch, what we could safely inherit from the legacy app and what had to wait because of technical, testing or accessibility constraints. I led the UX and design-system work across the launch while creating foundations for later releases.",
       ],
       midMedia: {
         kind: "video",
@@ -671,12 +673,28 @@ export const projects: Project[] = [
       },
       midMediaMobilePortrait: true,
       midMediaMobileSrc: "/projects/rapid-uk-launch/onboarding-mobile.mp4",
-      keyDecisions: [
-        "New onboarding experience with motion + visual refresh",
-        "Redesigned parcel tracking components for clarity & hierarchy",
-        "Capacity checker for lockers integrated into map view",
-        "Brand adapted for UK market (colours, typography, tone)",
-        "Accessibility fixes to reach WCAG AA contrast levels",
+      keyDecisionsLabel: "MVP decisions and trade-offs",
+      keyDecisionsItems: [
+        {
+          eyebrow: "UK must-have",
+          title: "Locker availability",
+          body: "The UK locker network was less dense, so customers needed to know whether space was available before travelling to a location.",
+        },
+        {
+          eyebrow: "UK must-have",
+          title: "Clearer collection deadlines",
+          body: "UK customers were less familiar with locker collection windows, so I increased deadline signposting and worked with Marketing and CX on supporting notifications.",
+        },
+        {
+          eyebrow: "Deferred",
+          title: "Remote opening",
+          body: "A strong mobile-only feature, but it required more real-world testing with physical lockers than the launch timeline allowed.",
+        },
+        {
+          eyebrow: "Accepted debt",
+          title: "Accessibility",
+          body: "We inherited existing production components to meet the deadline. I improved priority colour and contrast issues, while documenting accessibility problems that required deeper component work after launch.",
+        },
       ],
       outcomes: [],
       qualitative: [
@@ -690,7 +708,7 @@ export const projects: Project[] = [
         },
         {
           title: "Accessibility improved",
-          body: "Accessibility improved from non-compliant to WCAG AA contrast",
+          body: "Priority colour and contrast issues were updated to meet WCAG AA requirements, while known accessibility debt remained in some inherited components.",
         },
         {
           title: "Reduced UI debt",
@@ -699,6 +717,10 @@ export const projects: Project[] = [
         {
           title: "Clean first release",
           body: "First release shipped without critical UX issues, enabling faster iteration instead of rebuild delays",
+        },
+        {
+          title: "New UK-only features launched",
+          body: "We launched 2 new features for InPost, exclusive for UK customers only: locker availability and collection time counter.",
         },
       ],
       impactStats: {
@@ -750,7 +772,7 @@ export const projects: Project[] = [
         heading: "Locker availability was a must-have",
         paddingTop: 32,
         paragraphs: [
-          "One of the clearest UK-specific needs was locker availability. This wasn't a feature in the Polish app because the locker network in Poland is much denser — if one locker is full, there is usually another one nearby.",
+          "One of the clearest UK-specific needs was locker availability. This wasn't a feature in the Polish app because the locker network in Poland is much denser. If one locker is full, there is usually another one nearby.",
           "That wasn't the same in the UK, where the network was still growing. I pushed for locker availability to be part of the launch because choosing a locker without knowing whether there was space could create a frustrating experience from the start.",
         ],
       },
@@ -758,7 +780,15 @@ export const projects: Project[] = [
         kind: "media",
         bordered: true,
         width: "reduced-70",
-        media: { kind: "placeholder", label: "LOCKER AVAILABILITY / CAPACITY CHECKER" },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/rapid-uk-launch/locker-availability.png",
+            width: 9996,
+            height: 9456,
+            alt: "Locker availability and capacity checker shown on the locker map",
+          },
+        },
       },
       {
         kind: "richText",
@@ -775,13 +805,16 @@ export const projects: Project[] = [
         kind: "media",
         bordered: true,
         width: "reduced-70",
-        media: { kind: "placeholder", label: "TIME TO COLLECT — IN-APP EXAMPLES" },
-      },
-      {
-        kind: "media",
-        bordered: true,
-        width: "reduced-70",
-        media: { kind: "placeholder", label: "COLLECTION NOTIFICATIONS / EMAIL EXAMPLES" },
+        caption: "Information about urgency communicated via app, app notifications and emails.",
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/rapid-uk-launch/notifications.png",
+            width: 9009,
+            height: 9456,
+            alt: "Collection deadline messaging shown in the app, push notifications and email",
+          },
+        },
       },
       {
         kind: "richText",
@@ -789,16 +822,23 @@ export const projects: Project[] = [
         heading: "Remote opening could wait",
         paddingTop: 32,
         paragraphs: [
-          "Remote opening was a feature I wanted in the product because it gave the app something the web experience couldn't offer — users could open the locker directly from their phone.",
+          "Remote opening was a feature I wanted in the product because it gave the app something the web experience couldn't offer. Users could open the locker directly from their phone.",
           "But it wasn't essential for the first release. It also needed more in-person testing to make sure the interaction between the app and physical locker worked reliably.",
           "I classified it as a nice-to-have and we postponed it rather than adding more risk to an already tight launch.",
         ],
       },
       {
         kind: "media",
-        bordered: true,
-        width: "reduced-70",
-        media: { kind: "placeholder", label: "REMOTE OPENING — LATER FEATURE" },
+        enlargeable: true,
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/rapid-uk-launch/open-remote.png",
+            width: 17058,
+            height: 9456,
+            alt: "Remote opening feature allowing users to open a locker directly from their phone",
+          },
+        },
       },
       {
         kind: "richText",
@@ -813,6 +853,7 @@ export const projects: Project[] = [
       {
         kind: "twoCol",
         spacing: "tight",
+        paddingTop: 32,
         items: [
           {
             label: "Must have for UK",
@@ -1123,7 +1164,7 @@ export const projects: Project[] = [
           },
           {
             title: "Improving colour accessibility",
-            body: "Brand colours and component combinations were tested against accessibility standards. Where necessary, colours or their permitted text pairings were adjusted to achieve WCAG AA contrast.",
+            body: "Priority colour combinations and text pairings were tested and adjusted to meet WCAG AA contrast requirements. Some accessibility issues remained in inherited production components that were outside the launch scope.",
           },
           {
             title: "Documenting components and patterns",
