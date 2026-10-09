@@ -34,7 +34,7 @@ export type Block =
   | { kind: "beforeAfterStats"; id?: string; heading?: string; items: { label: string; before: string; after: string; description: string }[] }
   | { kind: "quote"; id?: string; heading?: string; text: string; attribution?: string }
   | { kind: "steps"; id?: string; heading?: string; spacing?: "tight"; items: { title: string; body: string }[] }
-  | { kind: "twoCol"; id?: string; heading?: string; spacing?: "tight"; items: { label: string; body: string }[] }
+  | { kind: "twoCol"; id?: string; heading?: string; spacing?: "tight"; paddingTop?: number; items: { label: string; body: string }[] }
   | { kind: "mediaNumbered"; id?: string; heading?: string; media: MediaSlot; items: { title: string; body: string }[] }
   | {
       kind: "beforeAfterImages";
@@ -833,6 +833,7 @@ export const projects: Project[] = [
       {
         kind: "twoCol",
         spacing: "tight",
+        paddingTop: 32,
         items: [
           {
             label: "Must have for UK",
