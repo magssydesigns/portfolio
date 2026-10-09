@@ -780,7 +780,15 @@ export const projects: Project[] = [
         kind: "media",
         bordered: true,
         width: "reduced-70",
-        media: { kind: "placeholder", label: "LOCKER AVAILABILITY / CAPACITY CHECKER" },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/rapid-uk-launch/locker-availability.png",
+            width: 9996,
+            height: 9456,
+            alt: "Locker availability and capacity checker shown on the locker map",
+          },
+        },
       },
       {
         kind: "richText",
