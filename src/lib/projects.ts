@@ -823,7 +823,7 @@ export const projects: Project[] = [
           kind: "image",
           image: {
             src: "/projects/rapid-uk-launch/open-remote.png",
-            width: 19026,
+            width: 17058,
             height: 9456,
             alt: "Remote opening feature allowing users to open a locker directly from their phone",
           },
