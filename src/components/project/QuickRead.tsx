@@ -274,29 +274,47 @@ export default function QuickRead({
         </Reveal>
       )}
 
-      {data.keyDecisions && data.keyDecisions.length > 0 && (
+      {data.keyDecisionsItems && data.keyDecisionsItems.length > 0 ? (
         <Reveal delay={0.1}>
           <div className={keyDecisionsWrapClass}>
             <SectionLabel headingStyle={headingStyle} text={data.keyDecisionsLabel ?? "Key design decisions"} />
-            <div className={`${contentClass} grid max-w-2xl grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2`}>
-              {data.keyDecisions.map((item) =>
-                data.keyDecisionsShowArrow ? (
-                  <div key={item} className="flex items-start gap-3 text-[15px] leading-relaxed text-ink-soft">
-                    <span className="shrink-0 text-lg sm:text-xl" style={{ color: "#0163FF" }} aria-hidden="true">
-                      →
-                    </span>
-                    {item}
-                  </div>
-                ) : (
-                  <div key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink-soft">
-                    <span className="text-accent">-</span>
-                    {item}
-                  </div>
-                )
-              )}
+            <div className={`${contentClass} grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2`}>
+              {data.keyDecisionsItems.map((item) => (
+                <div key={item.title}>
+                  <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{item.eyebrow}</p>
+                  <p className="mt-2 font-semibold text-ink">{item.title}</p>
+                  <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{item.body}</p>
+                </div>
+              ))}
             </div>
           </div>
         </Reveal>
+      ) : (
+        data.keyDecisions &&
+        data.keyDecisions.length > 0 && (
+          <Reveal delay={0.1}>
+            <div className={keyDecisionsWrapClass}>
+              <SectionLabel headingStyle={headingStyle} text={data.keyDecisionsLabel ?? "Key design decisions"} />
+              <div className={`${contentClass} grid max-w-2xl grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2`}>
+                {data.keyDecisions.map((item) =>
+                  data.keyDecisionsShowArrow ? (
+                    <div key={item} className="flex items-start gap-3 text-[15px] leading-relaxed text-ink-soft">
+                      <span className="shrink-0 text-lg sm:text-xl" style={{ color: "#0163FF" }} aria-hidden="true">
+                        →
+                      </span>
+                      {item}
+                    </div>
+                  ) : (
+                    <div key={item} className="flex gap-3 text-[15px] leading-relaxed text-ink-soft">
+                      <span className="text-accent">-</span>
+                      {item}
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+          </Reveal>
+        )
       )}
 
       {/* In the split (roleDetails) layout the outcomes already rendered up top as "Key outcomes". */}

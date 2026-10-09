@@ -154,6 +154,8 @@ export type QuickRead = {
   keyDecisions?: string[];
   /** Swaps the default dash bullet for the same blue arrow used in Business Objectives / Process. */
   keyDecisionsShowArrow?: boolean;
+  /** Richer alternative to keyDecisions: an eyebrow tag + bold title + one-line rationale per item, for previewing trade-off decisions. Takes precedence over keyDecisions when present. */
+  keyDecisionsItems?: { eyebrow: string; title: string; body: string }[];
   outcomes: { value: string; label: string }[];
   /** Bold arrow-prefixed bullets rendered in the "Key outcomes" section of the split (roleDetails) layout. */
   keyOutcomeBullets?: string[];
@@ -624,10 +626,10 @@ export const projects: Project[] = [
     projectAtAGlance: {
       role: "Lead Product Designer",
       scope:
-        "Worked closely with the Product Manager to define the scope of the UK app. I redesigned key flows based on the legacy Polish product, prioritised high-value UX enhancements and created a new design system for the UK experience.",
+        "Used existing customer research, product audits and stakeholder input to define the UK MVP with Product and Engineering. I redesigned priority journeys, planned a phased roadmap and rebuilt the design foundations for future releases.",
       coreTeam: "Product Manager • Engineering",
       collaborationLabel: "Collaboration teams",
-      collaborationTeams: "Marketing • Customer Experience",
+      collaborationTeams: "Marketing • Customer Experience • Commercial",
       platforms: "iOS • Android",
     },
     toc: [
@@ -647,7 +649,7 @@ export const projects: Project[] = [
     ],
     quickRead: {
       tagline:
-        "Redesigned and localised a legacy Polish app for the UK market while unifying the design system, resolving accessibility issues, and defining a phased product roadmap.",
+        "Localised and modernised a legacy Polish app for UK customers, defining the MVP and phased roadmap while rebuilding the design system and improving priority accessibility issues.",
       heroImage: {
         src: "/projects/rapid-uk-launch/App-launch.webp",
         width: 2600,
@@ -655,10 +657,8 @@ export const projects: Project[] = [
         alt: "InPost UK app onboarding, locker map and parcel tracking screens shown on three phones",
       },
       bulletedChallenge: false,
-      role:
-        "InPost planned to launch its successful Polish consumer app in the UK within three months. Rather than redesigning the product from scratch, the challenge was to localise and modernise a legacy experience while working within the constraints of an outdated architecture and an evolving product strategy.",
       challenge: [
-        "I led the UX and design system work, auditing the existing product, defining a phased roadmap, rebuilding the design system, and redesigning key customer journeys to create a scalable foundation for future releases.",
+        "InPost needed to launch its Polish consumer app in the UK within three months, but the experience could not simply be copied across. I used existing research and worked with Product, Engineering, Marketing, CX and Commercial to define the MVP and phased roadmap, deciding what UK customers needed at launch, what we could safely inherit from the legacy app and what had to wait because of technical, testing or accessibility constraints. I led the UX and design-system work across the launch while creating foundations for later releases.",
       ],
       midMedia: {
         kind: "video",
@@ -671,12 +671,28 @@ export const projects: Project[] = [
       },
       midMediaMobilePortrait: true,
       midMediaMobileSrc: "/projects/rapid-uk-launch/onboarding-mobile.mp4",
-      keyDecisions: [
-        "New onboarding experience with motion + visual refresh",
-        "Redesigned parcel tracking components for clarity & hierarchy",
-        "Capacity checker for lockers integrated into map view",
-        "Brand adapted for UK market (colours, typography, tone)",
-        "Accessibility fixes to reach WCAG AA contrast levels",
+      keyDecisionsLabel: "MVP decisions and trade-offs",
+      keyDecisionsItems: [
+        {
+          eyebrow: "UK must-have",
+          title: "Locker availability",
+          body: "The UK locker network was less dense, so customers needed to know whether space was available before travelling to a location.",
+        },
+        {
+          eyebrow: "UK must-have",
+          title: "Clearer collection deadlines",
+          body: "UK customers were less familiar with locker collection windows, so I increased deadline signposting and worked with Marketing and CX on supporting notifications.",
+        },
+        {
+          eyebrow: "Deferred",
+          title: "Remote opening",
+          body: "A strong mobile-only feature, but it required more real-world testing with physical lockers than the launch timeline allowed.",
+        },
+        {
+          eyebrow: "Accepted debt",
+          title: "Accessibility",
+          body: "We inherited existing production components to meet the deadline. I improved priority colour and contrast issues, while documenting accessibility problems that required deeper component work after launch.",
+        },
       ],
       outcomes: [],
       qualitative: [
@@ -690,7 +706,7 @@ export const projects: Project[] = [
         },
         {
           title: "Accessibility improved",
-          body: "Accessibility improved from non-compliant to WCAG AA contrast",
+          body: "Priority colour and contrast issues were updated to meet WCAG AA requirements, while known accessibility debt remained in some inherited components.",
         },
         {
           title: "Reduced UI debt",
@@ -1123,7 +1139,7 @@ export const projects: Project[] = [
           },
           {
             title: "Improving colour accessibility",
-            body: "Brand colours and component combinations were tested against accessibility standards. Where necessary, colours or their permitted text pairings were adjusted to achieve WCAG AA contrast.",
+            body: "Priority colour combinations and text pairings were tested and adjusted to meet WCAG AA contrast requirements. Some accessibility issues remained in inherited production components that were outside the launch scope.",
           },
           {
             title: "Documenting components and patterns",
