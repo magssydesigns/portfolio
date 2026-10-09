@@ -194,6 +194,10 @@ function BlockRenderer({
           ? [!block.width ? "w-full" : "", "h-auto"].filter(Boolean).join(" ")
           : undefined;
 
+      const imgClassName = block.mobileCarousel
+        ? [mediaClassName, "hidden lg:block"].filter(Boolean).join(" ")
+        : mediaClassName;
+
       const mediaEl = (
         <>
           {block.mobileCarousel && (
@@ -203,17 +207,17 @@ function BlockRenderer({
               imageScale={block.mobileCarouselImageScale}
             />
           )}
-          <MediaSlotView
-            media={block.media}
-            className={
-              block.mobileCarousel
-                ? [mediaClassName, "hidden lg:block"].filter(Boolean).join(" ")
-                : mediaClassName
-            }
-            bordered={block.bordered}
-            mobileZoom={block.mobileZoom}
-            mobileSrc={block.mobileSrc}
-          />
+          {block.enlargeable ? (
+            <EnlargeableMedia media={block.media} className={imgClassName} bordered={block.bordered} />
+          ) : (
+            <MediaSlotView
+              media={block.media}
+              className={imgClassName}
+              bordered={block.bordered}
+              mobileZoom={block.mobileZoom}
+              mobileSrc={block.mobileSrc}
+            />
+          )}
         </>
       );
 

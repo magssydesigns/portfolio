@@ -78,6 +78,8 @@ export type Block =
       caption?: string;
       width?: "reduced" | "reduced-40" | "reduced-70";
       bordered?: boolean;
+      /** Wraps the media in a tap-to-enlarge lightbox. */
+      enlargeable?: boolean;
       link?: { href: string; label: string; size?: number };
       /** Content-safe mobile-only zoom tier for screenshots/mock-ups that sit small inside a large card on narrow viewports. */
       mobileZoom?: "sm" | "md" | "lg";
@@ -816,6 +818,7 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
+        enlargeable: true,
         media: {
           kind: "image",
           image: {
