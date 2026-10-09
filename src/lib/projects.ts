@@ -805,13 +805,16 @@ export const projects: Project[] = [
         kind: "media",
         bordered: true,
         width: "reduced-70",
-        media: { kind: "placeholder", label: "TIME TO COLLECT: IN-APP EXAMPLES" },
-      },
-      {
-        kind: "media",
-        bordered: true,
-        width: "reduced-70",
-        media: { kind: "placeholder", label: "COLLECTION NOTIFICATIONS / EMAIL EXAMPLES" },
+        caption: "Information about urgency communicated via app, app notifications and emails.",
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/rapid-uk-launch/notifications.png",
+            width: 9009,
+            height: 9456,
+            alt: "Collection deadline messaging shown in the app, push notifications and email",
+          },
+        },
       },
       {
         kind: "richText",
