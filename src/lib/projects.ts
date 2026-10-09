@@ -580,35 +580,17 @@ export const projects: Project[] = [
         ],
       },
       {
-        kind: "beforeAfterImages",
+        kind: "media",
         id: "before-and-after",
-        heading: "Before and after",
-        items: [
-          {
-            label: "Before",
-            media: {
-              kind: "image",
-              image: {
-                src: "/projects/scaling-parcel-tracking/parcel-list-before.webp",
-                width: 700,
-                height: 3337,
-                alt: "Before: the old “Shipment tracking” parcel list screen",
-              },
-            },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/scaling-parcel-tracking/parcel-info.png",
+            width: 13380,
+            height: 9456,
+            alt: "Parcel info screen showing the redesigned tracking details",
           },
-          {
-            label: "After",
-            media: {
-              kind: "image",
-              image: {
-                src: "/projects/scaling-parcel-tracking/parcel-list-after.webp",
-                width: 700,
-                height: 4037,
-                alt: "After: the redesigned “Parcel tracking” parcel list screen",
-              },
-            },
-          },
-        ],
+        },
       },
     ],
   },
