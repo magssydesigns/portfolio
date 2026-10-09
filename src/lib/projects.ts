@@ -614,7 +614,7 @@ export const projects: Project[] = [
   },
   {
     slug: "rapid-uk-launch",
-    title: "0 → 1: Launching InPost's UK parcel tracking app",
+    title: "Launching InPost's UK consumer app in three months",
     shortTitle: "Rapid UK app launch",
     client: "InPost",
     color: "#3355FF",
@@ -638,10 +638,10 @@ export const projects: Project[] = [
       { id: "quick-summary", label: "Quick Summary" },
       { id: "impact", label: "Impact" },
       { id: "the-challenge", label: "The challenge" },
-      { id: "uk-launch-priorities", label: "UK launch priorities" },
       { id: "business-goals", label: "Business goals" },
+      { id: "uk-launch-priorities", label: "UK launch priorities" },
       { id: "final-experience", label: "Final experience" },
-      { id: "design-process", label: "Design process" },
+      { id: "design-process", label: "How I structured the launch" },
       { id: "audit-insights", label: "Audit & insights" },
       { id: "key-design-decisions", label: "Key design decisions" },
       { id: "design-system-rebuild", label: "Design-system rebuild" },
@@ -753,6 +753,32 @@ export const projects: Project[] = [
       },
       { kind: "divider" },
       {
+        kind: "numbered",
+        id: "business-goals",
+        heading: "Business goals",
+        showArrow: true,
+        spacing: "tight",
+        items: [
+          {
+            title: "Launch the UK app within three months",
+            body: "Deliver a reliable first version without introducing unnecessary risk into the legacy application.",
+          },
+          {
+            title: "Adapt the experience for UK customers",
+            body: "Update priority journeys, brand expression and communication patterns to better reflect UK expectations.",
+          },
+          {
+            title: "Improve accessibility",
+            body: "Resolve priority colour and contrast issues and establish more accessible foundations aligned with WCAG AA contrast requirements.",
+          },
+          {
+            title: "Create a scalable product foundation",
+            body: "Consolidate the fragmented design system and establish clearer patterns for future releases.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
         kind: "heading",
         id: "uk-launch-priorities",
         text: "What we prioritised for the UK launch",
@@ -846,8 +872,7 @@ export const projects: Project[] = [
         heading: "What this meant for the launch",
         paddingTop: 32,
         paragraphs: [
-          "The goal wasn't to fit as many features as possible into three months. It was to make sure the first UK version solved the problems that mattered most in this market.",
-          "That meant introducing things that didn't exist in the Polish product, making some existing information much clearer, and being comfortable leaving a good feature out when it wasn't essential yet.",
+          "The goal wasn't to fit as many features as possible into three months. It was to make sure the first UK version solved the problems that mattered most in this market, while being comfortable leaving valuable features out when they weren't essential yet.",
         ],
       },
       {
@@ -864,38 +889,12 @@ export const projects: Project[] = [
       },
       { kind: "divider" },
       {
-        kind: "numbered",
-        id: "business-goals",
-        heading: "Business goals",
-        showArrow: true,
-        spacing: "tight",
-        items: [
-          {
-            title: "Launch the UK app within three months",
-            body: "Deliver a reliable first version without introducing unnecessary risk into the legacy application.",
-          },
-          {
-            title: "Adapt the experience for UK customers",
-            body: "Update priority journeys, brand expression and communication patterns to better reflect UK expectations.",
-          },
-          {
-            title: "Improve accessibility",
-            body: "Resolve critical colour and contrast issues and establish WCAG AA-compliant foundations.",
-          },
-          {
-            title: "Create a scalable product foundation",
-            body: "Consolidate the fragmented design system and establish clearer patterns for future releases.",
-          },
-        ],
-      },
-      { kind: "divider" },
-      {
         kind: "richText",
         id: "final-experience",
         heading: "Final experience",
         paragraphs: [
           "The UK launch combined targeted improvements to onboarding, parcel tracking and locker discovery with a rebuilt design system.",
-          "Rather than redesigning the entire application, I focused the first phase on changes that could materially improve comprehension, urgency and accessibility without destabilising the legacy product.",
+          "Rather than redesigning the entire application, I focused the first phase on changes that could materially improve comprehension, urgency and priority accessibility issues without destabilising the legacy product.",
           "The result was a more relevant UK experience and a stronger foundation for subsequent work across the app.",
         ],
       },
@@ -945,7 +944,7 @@ export const projects: Project[] = [
       {
         kind: "richText",
         id: "design-process",
-        heading: "Design process",
+        heading: "How I structured the launch",
         paragraphs: [
           "I worked closely with Product and Engineering to separate launch-critical improvements from work that required deeper architectural change. Product design and design-system consolidation then progressed in parallel, allowing the team to improve the first release while establishing foundations for future development.",
         ],
