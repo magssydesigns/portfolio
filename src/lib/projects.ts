@@ -818,7 +818,15 @@ export const projects: Project[] = [
         kind: "media",
         bordered: true,
         width: "reduced-70",
-        media: { kind: "placeholder", label: "REMOTE OPENING: LATER FEATURE" },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/rapid-uk-launch/open-remote.png",
+            width: 19026,
+            height: 9456,
+            alt: "Remote opening feature allowing users to open a locker directly from their phone",
+          },
+        },
       },
       {
         kind: "richText",
