@@ -716,6 +716,10 @@ export const projects: Project[] = [
           title: "Clean first release",
           body: "First release shipped without critical UX issues, enabling faster iteration instead of rebuild delays",
         },
+        {
+          title: "New UK-only features launched",
+          body: "We launched 2 new features for InPost, exclusive for UK customers only: locker availability and collection time counter.",
+        },
       ],
       impactStats: {
         items: [
