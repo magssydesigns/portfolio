@@ -44,6 +44,8 @@ export type Block =
       bordered?: boolean;
       /** Overrides the default 50%-of-column image cap (tuned for narrow phone mockups); set to 100 for wider screenshots that need to stay legible. */
       imageMaxWidthPercent?: number;
+      /** Enables the tap/click-to-enlarge lightbox on desktop too (already on by default on mobile). */
+      enlargeable?: boolean;
       items: { label: string; media: MediaSlot }[];
     }
   /** Icon-prefixed sub-heading + rich (partial-bold) paragraphs + single image - used for the Tracking European "Design changes" callouts. */
@@ -1600,6 +1602,8 @@ export const projects: Project[] = [
       {
         kind: "beforeAfterImages",
         bordered: true,
+        imageMaxWidthPercent: 95,
+        enlargeable: true,
         items: [
           {
             label: "Before",

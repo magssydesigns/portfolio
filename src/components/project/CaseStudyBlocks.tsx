@@ -638,22 +638,33 @@ function BlockRenderer({
                     {item.label}
                   </p>
                   <div className="flex justify-center rounded-2xl p-6 sm:p-8">
-                    <div className="w-full sm:hidden">
+                    {block.enlargeable ? (
                       <EnlargeableMedia
                         media={item.media}
                         className={bafMediaClass}
                         style={bafMediaStyle}
                         bordered={block.bordered}
                       />
-                    </div>
-                    <div className="hidden w-full sm:block">
-                      <MediaSlotView
-                        media={item.media}
-                        className={bafMediaClass}
-                        style={bafMediaStyle}
-                        bordered={block.bordered}
-                      />
-                    </div>
+                    ) : (
+                      <>
+                        <div className="w-full sm:hidden">
+                          <EnlargeableMedia
+                            media={item.media}
+                            className={bafMediaClass}
+                            style={bafMediaStyle}
+                            bordered={block.bordered}
+                          />
+                        </div>
+                        <div className="hidden w-full sm:block">
+                          <MediaSlotView
+                            media={item.media}
+                            className={bafMediaClass}
+                            style={bafMediaStyle}
+                            bordered={block.bordered}
+                          />
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               ))}
