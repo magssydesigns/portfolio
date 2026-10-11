@@ -1386,8 +1386,13 @@ export const projects: Project[] = [
         ],
       },
       {
+        kind: "statement",
+        eyebrow: "Design principle",
+        text: "Confirm the customer is at the right locker before enabling remote opening.",
+      },
+      {
         kind: "beforeAfterImages",
-        imageMaxWidthPercent: 70,
+        imageMaxWidthPercent: 84,
         items: [
           {
             label: "Location permission",
@@ -1426,11 +1431,6 @@ export const projects: Project[] = [
             },
           },
         ],
-      },
-      {
-        kind: "statement",
-        eyebrow: "Design principle",
-        text: "Confirm the customer is at the right locker before enabling remote opening.",
       },
       {
         kind: "richText",
