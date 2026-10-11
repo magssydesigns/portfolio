@@ -592,6 +592,18 @@ export const projects: Project[] = [
           },
         },
       },
+      {
+        kind: "media",
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/scaling-parcel-tracking/parcel-list.png",
+            width: 13380,
+            height: 10791,
+            alt: "Parcel list screen showing the redesigned tracking details",
+          },
+        },
+      },
     ],
   },
   {
