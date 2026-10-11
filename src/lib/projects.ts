@@ -1449,7 +1449,7 @@ export const projects: Project[] = [
       },
       {
         kind: "beforeAfterImages",
-        imageMaxWidthPercent: 40,
+        imageMaxWidthPercent: 28,
         items: [
           {
             label: "Can't open compartment",
@@ -1477,7 +1477,7 @@ export const projects: Project[] = [
       },
       {
         kind: "beforeAfterImages",
-        bordered: true,
+        imageMaxWidthPercent: 85,
         items: [
           {
             label: "Let's roll",
