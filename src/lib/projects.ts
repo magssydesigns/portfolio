@@ -1257,6 +1257,390 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "designing-between-app-and-locker",
+    title: "Designing between app and locker",
+    shortTitle: "App and locker interactions",
+    client: "InPost",
+    color: "#F7D60F",
+    heroBackground: "#F8F4EE",
+    heroStacked: true,
+    heroFlushBottom: true,
+    glancePaddingTop: 32,
+    glanceDividerBelow: true,
+    projectAtAGlance: {
+      role: "Product Designer",
+      scope:
+        "Designed connected interactions between the InPost consumer app and parcel locker software, covering remote opening, system states, failure recovery and compartment re-selection. Informed by Customer Care contacts, existing product behaviour and physical interaction constraints.",
+      coreTeam: "Product Manager • Engineering",
+      collaborationLabel: "Collaboration teams",
+      collaborationTeams: "Customer Experience",
+      platforms: "Mobile app • Locker touchscreen",
+    },
+    heroVisual: {
+      media: {
+        kind: "placeholder",
+        label: "REMOTE OPENING ON MOBILE, PHYSICAL COMPARTMENT OPEN, AND COMPARTMENT RE-SELECTION",
+      },
+    },
+    toc: [
+      { id: "quick-summary", label: "Quick Summary" },
+      { id: "the-challenge", label: "The challenge" },
+      { id: "what-we-were-hearing", label: "Where customers were getting stuck" },
+      { id: "scenario-01", label: "Opening a locker remotely" },
+      { id: "recovery", label: "Designing recovery" },
+      { id: "scenario-02", label: "The compartment problem" },
+      { id: "state-based-thinking", label: "One experience, many states" },
+      { id: "measurement", label: "What I planned to measure" },
+      { id: "outcome", label: "Outcome" },
+      { id: "reflection", label: "Reflection" },
+    ],
+    quickRead: {
+      tagline:
+        "Creating clearer interactions between the InPost mobile app and physical parcel lockers, including remote opening, failure recovery and compartment re-selection.",
+      heroImage: {
+        kind: "placeholder",
+        label: "REMOTE OPENING SCREEN PAIRED WITH THE PHYSICAL LOCKER TOUCHSCREEN",
+      },
+      bulletedChallenge: false,
+      challenge: [
+        "I worked on several journeys where the interface was only one part of the experience. A customer's action in the mobile app could trigger a physical locker door, while an issue at the locker could require the software to understand what had happened and help the customer recover.",
+        "I designed the remote-opening journey across app and locker states, including proximity, availability, opening, failure and recovery. I also redesigned the return flow so customers could change an automatically suggested compartment before or after a door had opened, including support for lower, more accessible compartments.",
+      ],
+      outcomes: [],
+    },
+    fullCaseStudy: [
+      {
+        kind: "richText",
+        id: "the-challenge",
+        heading: "When software controls something physical",
+        paragraphs: [
+          "A normal digital interaction might end when the interface responds. These journeys worked differently. A customer's action could trigger something to happen in a physical locker beside them.",
+          "That meant the experience had to communicate not only what the software was doing, but also whether the customer was in the right place, whether the locker could complete the action, what had physically happened and how to recover when reality did not match the expected state.",
+        ],
+      },
+      {
+        kind: "richText",
+        paddingTop: 24,
+        paragraphs: [
+          "Mobile action → system check → locker response → physical outcome → customer observes it → software confirms or recovers.",
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "what-we-were-hearing",
+        heading: "Where customers were getting stuck",
+        paragraphs: [
+          "Customer Care contacts highlighted moments where customers became stuck between the digital journey and the physical locker. The issue was often not completing an individual screen. It was understanding what the machine was doing and what to do when something unexpected happened.",
+        ],
+      },
+      {
+        kind: "arrowList",
+        bold: true,
+        paddingTop: 24,
+        items: ["“Can I change the compartment?”", "“My parcel doesn't fit.”", "“What do I do now?”"],
+      },
+      { kind: "divider" },
+      {
+        kind: "heading",
+        id: "scenario-01",
+        text: "Scenario 01: Opening a physical locker from the mobile app",
+        spacing: "tight",
+        paddingBottom: 0,
+      },
+      {
+        kind: "richText",
+        paddingTop: 32,
+        paragraphs: [
+          "Remote opening allowed customers to collect a parcel without switching from the app to the locker touchscreen. But triggering a real compartment from a phone required much more than adding an Open button.",
+          "The journey needed to account for location, system availability, physical response, loading, failure, reopening and fallback routes.",
+        ],
+      },
+      {
+        kind: "media",
+        bordered: true,
+        media: { kind: "placeholder", label: "REMOTE OPENING END-TO-END FLOW OVERVIEW" },
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Confirm the customer is actually at the right locker",
+        paddingTop: 32,
+        paragraphs: [
+          "Remote opening could only make sense if the customer was physically close enough to the correct locker. The app therefore needed to account for location permission and whether the customer was actually at the expected collection point before enabling the physical action.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        bordered: true,
+        items: [
+          { label: "Location permission", media: { kind: "placeholder", label: "LOCATION PERMISSION STATE" } },
+          { label: "Wrong location", media: { kind: "placeholder", label: "WRONG LOCATION STATE" } },
+          {
+            label: "Remote opening available",
+            media: { kind: "placeholder", label: "REMOTE OPENING AVAILABLE STATE" },
+          },
+        ],
+      },
+      {
+        kind: "statement",
+        text: "Verify physical context before enabling the action.",
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Make system readiness visible",
+        paddingTop: 32,
+        paragraphs: [
+          "The app also needed to understand whether remote opening was available for that locker and whether the compartment could actually be opened.",
+          "Rather than treating failure as a dead end, I designed fallback states that explained what was happening and directed the customer back to the locker screen when remote opening was unavailable.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        bordered: true,
+        items: [
+          {
+            label: "Remote opening unavailable",
+            media: { kind: "placeholder", label: "“Remote opening isn't available right now”" },
+          },
+          {
+            label: "Can't open compartment",
+            media: { kind: "placeholder", label: "“We can't open the compartment with your app right now”" },
+          },
+        ],
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Design the moment between command and physical response",
+        paddingTop: 32,
+        paragraphs: [
+          "Once the customer triggered remote opening, there was a short period where the app had sent a command but the physical result had not happened yet.",
+          "I treated this waiting state as part of the interaction rather than leaving the customer unsure whether anything was happening.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        bordered: true,
+        items: [
+          { label: "Let's roll", media: { kind: "placeholder", label: "PREPARE TO OPEN SCREEN" } },
+          { label: "Opening", media: { kind: "placeholder", label: "OPENING / LOADING STATE" } },
+          { label: "Compartment opened", media: { kind: "placeholder", label: "PHYSICAL COMPARTMENT OPENED CONFIRMATION" } },
+        ],
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Confirm what happened in the physical world",
+        paddingTop: 32,
+        paragraphs: [
+          "The journey could not finish when the app sent an instruction. The experience also needed to reflect whether the physical door had opened, whether it had been closed again and whether the customer needed to reopen it.",
+          "This kept the software state connected to what the customer could actually see happening around them.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        bordered: true,
+        items: [
+          { label: "Door opened", media: { kind: "placeholder", label: "DOOR OPENED" } },
+          {
+            label: "Double-check the door",
+            media: { kind: "placeholder", label: "“Double-check the compartment door is firmly shut”" },
+          },
+          { label: "Reopen confirmation", media: { kind: "placeholder", label: "REOPEN CONFIRMATION" } },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "heading",
+        id: "recovery",
+        text: "Designing recovery, not just the happy path",
+        spacing: "tight",
+        paddingBottom: 0,
+      },
+      {
+        kind: "richText",
+        paddingTop: 32,
+        paragraphs: [
+          "Physical interactions introduce failure modes that do not exist in the same way in a normal screen flow. A command can fail, the customer can be in the wrong place, a door can need reopening or the journey can break after the locker has already acted.",
+          "I designed specific recovery routes so customers could retry, switch back to the locker screen, reopen the compartment, ask for help or leave the journey without being trapped.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        bordered: true,
+        items: [
+          { label: "Can't open", media: { kind: "placeholder", label: "CAN'T OPEN STATE" } },
+          { label: "Remote opening unavailable", media: { kind: "placeholder", label: "REMOTE OPENING UNAVAILABLE STATE" } },
+          { label: "Reopen", media: { kind: "placeholder", label: "REOPEN STATE" } },
+          { label: "There's an issue", media: { kind: "placeholder", label: "“There's an issue” STATE" } },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "heading",
+        id: "scenario-02",
+        text: "Scenario 02: When the assigned compartment didn't work",
+        spacing: "tight",
+        paddingBottom: 0,
+      },
+      {
+        kind: "richText",
+        paddingTop: 32,
+        paragraphs: [
+          "The return journey had a different version of the same problem. After scanning a parcel, the system could automatically suggest a compartment size.",
+          "Customers did not always realise that this recommendation could be changed, and sometimes only discovered that the compartment was unsuitable after a physical door had already opened.",
+        ],
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Make the system recommendation changeable",
+        paddingTop: 32,
+        paragraphs: [
+          "I wanted the proposed size to feel like a recommendation rather than a fixed system decision.",
+          "The redesigned step asks customers to select a size that fits their parcel and makes the available options visible. It also tells them that they can change the size later if needed.",
+          "This reduced the pressure of making the perfect choice before anything had happened physically.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        bordered: true,
+        items: [
+          { label: "Before", media: { kind: "placeholder", label: "AUTOMATICALLY PROPOSED COMPARTMENT SIZE" } },
+          { label: "After", media: { kind: "placeholder", label: "“Select a size that fits your parcel”" } },
+        ],
+      },
+      {
+        kind: "statement",
+        text: "System suggests. Customer stays in control.",
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Let customers recover after the door had already opened",
+        paddingTop: 32,
+        paragraphs: [
+          "The harder scenario happened when the customer only discovered the problem after the physical compartment had opened.",
+          "If the parcel did not fit, the interface needed to help them correct the problem without restarting the entire return.",
+          "I introduced an explicit “I need a different size” action while the compartment was open, allowing the journey to move back into compartment selection and assign a new physical door.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        bordered: true,
+        items: [
+          { label: "Original compartment opened", media: { kind: "placeholder", label: "ORIGINAL COMPARTMENT OPENED" } },
+          { label: "I need a different size", media: { kind: "placeholder", label: "“I NEED A DIFFERENT SIZE” CTA" } },
+          { label: "Your new compartment", media: { kind: "placeholder", label: "NEW COMPARTMENT ASSIGNED" } },
+        ],
+      },
+      {
+        kind: "richText",
+        paddingTop: 24,
+        paragraphs: [
+          "Compartment opens, parcel does not fit, request another size, new compartment assigned, new door opens, journey continues.",
+        ],
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Let accessibility change the physical assignment",
+        paddingTop: 32,
+        paragraphs: [
+          "Compartment size was not the only thing that could make an assignment unsuitable. A compartment could fit the parcel but still be difficult or impossible for the customer to reach.",
+          "I introduced an “I need a low compartment” preference so that the customer's physical needs could influence which compartment the system assigned.",
+          "The proposed flow also accounted for the case where no suitable low compartment was available, explaining the constraint before the customer reached the physical door.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        bordered: true,
+        items: [
+          {
+            label: "I need a low compartment",
+            media: { kind: "placeholder", label: "SIZE SELECTION WITH “I NEED A LOW COMPARTMENT”" },
+          },
+          { label: "Low compartment unavailable", media: { kind: "placeholder", label: "LOW COMPARTMENT UNAVAILABLE STATE" } },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "heading",
+        id: "state-based-thinking",
+        text: "One experience, many system states",
+        spacing: "tight",
+        paddingBottom: 0,
+      },
+      {
+        kind: "numbered",
+        paddingTop: 32,
+        itemStyle: "plain",
+        items: [
+          { title: "Too far from locker", body: "Explain why remote opening is unavailable." },
+          { title: "Wrong locker", body: "Prevent the action." },
+          { title: "Remote opening unavailable", body: "Provide a locker-screen fallback." },
+          { title: "Opening", body: "Communicate that the physical action is processing." },
+          { title: "Door opened", body: "Identify what happened and what to do next." },
+          { title: "Door closed", body: "Confirm the physical state." },
+          { title: "Needs reopening", body: "Confirm before triggering another action." },
+          { title: "Parcel doesn't fit", body: "Preserve the journey and reassign a compartment." },
+          { title: "Low compartment unavailable", body: "Explain the physical constraint and alternatives." },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "measurement",
+        heading: "What I planned to measure",
+        paragraphs: [
+          "Because many of the important behaviours happened around failure and recovery, I also defined events that would help us understand where customers became stuck after release.",
+        ],
+      },
+      {
+        kind: "arrowList",
+        bold: true,
+        paddingTop: 24,
+        items: [
+          "How often customers try to open a locker remotely",
+          "How often they try while too far away or at the wrong location",
+          "How often they reopen the compartment",
+          "How often they ask for help",
+          "How often they leave the session",
+        ],
+      },
+      {
+        kind: "richText",
+        paddingTop: 24,
+        paragraphs: [
+          "Tracked actions included open remotely, reopen, there's an issue, I need help and exit journey.",
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "outcome",
+        heading: "Outcome",
+        paragraphs: [
+          "The work created a more complete model for interactions between the mobile app and physical locker. The remote-opening journey accounted for location, availability, physical response and recovery, while the compartment work explored how customers could retain control when an automated physical assignment did not match what they needed.",
+          "The compartment re-selection and accessibility improvements shown here were proposed redesigns rather than shipped features. I don't have evidence here of which specific remote-opening elements went live, so I'm not claiming measurable impact for either piece of work.",
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "reflection",
+        heading: "Designing beyond the screen",
+        paddingBottom: 90,
+        paragraphs: [
+          "These projects changed how I thought about interaction design. Sending a command from an app was only the beginning of the interaction. I also had to think about where the customer was standing, whether the physical system could complete the action, what the customer could see happening around them and how they could recover if the expected outcome didn't happen.",
+          "The strongest solutions gave customers enough feedback and control to understand both the digital and physical state of the journey.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "send-parcel-in-app",
     title: "Enabling 2M+ users to send parcels in app",
     shortTitle: "Enabling users to send parcels",

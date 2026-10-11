@@ -40,6 +40,17 @@ export const homepageCards: ProjectCardData[] = [
     isArchive: false,
   },
   {
+    title: "Designing between app and locker",
+    slug: "designing-between-app-and-locker",
+    badge: "Physical + digital interactions",
+    media: {
+      kind: "placeholder",
+      label: "PHONE AND LOCKER TOUCHSCREEN INTERACTION",
+    },
+    type: "homepage",
+    isArchive: false,
+  },
+  {
     title: "One parcel tracking experience across four European markets",
     slug: "scaling-parcel-tracking",
     media: {
