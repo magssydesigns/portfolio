@@ -637,7 +637,7 @@ function BlockRenderer({
                   <p className="mb-4 text-center font-sans text-xl font-semibold">
                     {item.label}
                   </p>
-                  <div className="flex justify-center rounded-2xl p-6 sm:p-8">
+                  <div className={`flex justify-center rounded-2xl ${block.tightPadding ? "p-2 sm:p-3" : "p-6 sm:p-8"}`}>
                     {block.enlargeable ? (
                       <EnlargeableMedia
                         media={item.media}

@@ -46,6 +46,8 @@ export type Block =
       imageMaxWidthPercent?: number;
       /** Enables the tap/click-to-enlarge lightbox on desktop too (already on by default on mobile). */
       enlargeable?: boolean;
+      /** Shrinks the surrounding padding around each image so imageMaxWidthPercent values near/above 100 can actually grow the image further, instead of being capped by the default p-6/p-8 wrapper. */
+      tightPadding?: boolean;
       items: { label: string; media: MediaSlot; caption?: string }[];
     }
   /** Icon-prefixed sub-heading + rich (partial-bold) paragraphs + single image - used for the Tracking European "Design changes" callouts. */
@@ -1650,6 +1652,7 @@ export const projects: Project[] = [
       {
         kind: "beforeAfterImages",
         imageMaxWidthPercent: 114,
+        tightPadding: true,
         items: [
           {
             label: "I need a different size",
