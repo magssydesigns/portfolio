@@ -1366,7 +1366,15 @@ export const projects: Project[] = [
       {
         kind: "media",
         bordered: true,
-        media: { kind: "placeholder", label: "REMOTE OPENING END-TO-END FLOW OVERVIEW" },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/rapid-uk-launch/open-remote.png",
+            width: 17058,
+            height: 9456,
+            alt: "Remote opening flow from mobile command to physical compartment opening",
+          },
+        },
       },
       {
         kind: "richText",
