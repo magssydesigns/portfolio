@@ -1529,7 +1529,7 @@ export const projects: Project[] = [
       },
       {
         kind: "beforeAfterImages",
-        bordered: true,
+        imageMaxWidthPercent: 85,
         items: [
           {
             label: "Door opened",
