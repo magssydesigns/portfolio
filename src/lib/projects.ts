@@ -46,7 +46,7 @@ export type Block =
       imageMaxWidthPercent?: number;
       /** Enables the tap/click-to-enlarge lightbox on desktop too (already on by default on mobile). */
       enlargeable?: boolean;
-      items: { label: string; media: MediaSlot }[];
+      items: { label: string; media: MediaSlot; caption?: string }[];
     }
   /** Icon-prefixed sub-heading + rich (partial-bold) paragraphs + single image - used for the Tracking European "Design changes" callouts. */
   | {
@@ -1600,6 +1600,11 @@ export const projects: Project[] = [
         ],
       },
       {
+        kind: "statement",
+        eyebrow: "Design principle",
+        text: "System suggests. Customer stays in control.",
+      },
+      {
         kind: "beforeAfterImages",
         bordered: true,
         imageMaxWidthPercent: 104,
@@ -1632,10 +1637,6 @@ export const projects: Project[] = [
         ],
       },
       {
-        kind: "statement",
-        text: "System suggests. Customer stays in control.",
-      },
-      {
         kind: "richText",
         headingLevel: "h3",
         heading: "Let customers recover after the door had already opened",
@@ -1650,9 +1651,16 @@ export const projects: Project[] = [
         kind: "beforeAfterImages",
         bordered: true,
         items: [
-          { label: "Original compartment opened", media: { kind: "placeholder", label: "ORIGINAL COMPARTMENT OPENED" } },
-          { label: "I need a different size", media: { kind: "placeholder", label: "“I NEED A DIFFERENT SIZE” CTA" } },
-          { label: "Your new compartment", media: { kind: "placeholder", label: "NEW COMPARTMENT ASSIGNED" } },
+          {
+            label: "I need a different size",
+            media: { kind: "placeholder", label: "“I NEED A DIFFERENT SIZE”" },
+            caption: "Button to change the compartment size when the compartment has already been opened.",
+          },
+          {
+            label: "Help after closing compartment",
+            media: { kind: "placeholder", label: "HELP AFTER CLOSING COMPARTMENT" },
+            caption: "Option to change the compartment size after the compartment was closed.",
+          },
         ],
       },
       {

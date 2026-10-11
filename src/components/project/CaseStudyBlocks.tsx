@@ -666,6 +666,9 @@ function BlockRenderer({
                       </>
                     )}
                   </div>
+                  {item.caption && (
+                    <p className="mt-3 text-center text-[13px] text-muted">{item.caption}</p>
+                  )}
                 </div>
               ))}
             </div>
