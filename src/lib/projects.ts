@@ -1601,8 +1601,30 @@ export const projects: Project[] = [
         kind: "beforeAfterImages",
         bordered: true,
         items: [
-          { label: "Before", media: { kind: "placeholder", label: "AUTOMATICALLY PROPOSED COMPARTMENT SIZE" } },
-          { label: "After", media: { kind: "placeholder", label: "“Select a size that fits your parcel”" } },
+          {
+            label: "Before",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/locker-1.png",
+                width: 2048,
+                height: 1536,
+                alt: "Automatically proposed compartment size",
+              },
+            },
+          },
+          {
+            label: "After",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/locker-2.png",
+                width: 2048,
+                height: 1536,
+                alt: "Select a size that fits your parcel",
+              },
+            },
+          },
         ],
       },
       {
