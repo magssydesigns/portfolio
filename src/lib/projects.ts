@@ -1443,19 +1443,27 @@ export const projects: Project[] = [
         ],
       },
       {
+        kind: "statement",
+        eyebrow: "Design principle",
+        text: "Always provide a recovery path when a physical action fails.",
+      },
+      {
         kind: "beforeAfterImages",
         bordered: true,
         items: [
           {
             label: "Can't open compartment",
-            media: { kind: "placeholder", label: "“We can't open the compartment with your app right now”" },
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/cant-open.png",
+                width: 3081,
+                height: 6381,
+                alt: "Can't open compartment error state",
+              },
+            },
           },
         ],
-      },
-      {
-        kind: "statement",
-        eyebrow: "Design principle",
-        text: "Always provide a recovery path when a physical action fails.",
       },
       {
         kind: "richText",
