@@ -27,7 +27,7 @@ export type MediaSlot =
 
 export type Block =
   | { kind: "lead"; id?: string; spacing?: "tight"; items: { label: string; body: string }[] }
-  | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light"; spacing?: "tight"; paddingBottom?: number }
+  | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light"; spacing?: "tight"; paddingTop?: number; paddingBottom?: number; eyebrow?: string }
   | { kind: "statement"; id?: string; text: string; tone?: "dark" | "light"; eyebrow?: string }
   | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; itemStyle?: "plain"; spacing?: "tight"; paddingTop?: number; paddingBottom?: number; items: { title: string; body: string }[] }
   | { kind: "image"; id?: string; image: ProjectImage; size?: "medium" | "wide" | "full" }
@@ -1292,7 +1292,6 @@ export const projects: Project[] = [
       { id: "the-challenge", label: "The challenge" },
       { id: "what-we-were-hearing", label: "Where customers were getting stuck" },
       { id: "scenario-01", label: "Opening a locker remotely" },
-      { id: "recovery", label: "Designing recovery" },
       { id: "scenario-02", label: "The compartment problem" },
       { id: "state-based-thinking", label: "One experience, many states" },
       { id: "measurement", label: "What I planned to measure" },
@@ -1572,36 +1571,12 @@ export const projects: Project[] = [
       { kind: "divider" },
       {
         kind: "heading",
-        id: "recovery",
-        text: "Designing recovery, not just the happy path",
-        spacing: "tight",
-        paddingBottom: 0,
-      },
-      {
-        kind: "richText",
-        paddingTop: 32,
-        paragraphs: [
-          "Physical interactions introduce failure modes that do not exist in the same way in a normal screen flow. A command can fail, the customer can be in the wrong place, a door can need reopening or the journey can break after the locker has already acted.",
-          "I designed specific recovery routes so customers could retry, switch back to the locker screen, reopen the compartment, ask for help or leave the journey without being trapped.",
-        ],
-      },
-      {
-        kind: "beforeAfterImages",
-        bordered: true,
-        items: [
-          { label: "Can't open", media: { kind: "placeholder", label: "CAN'T OPEN STATE" } },
-          { label: "Remote opening unavailable", media: { kind: "placeholder", label: "REMOTE OPENING UNAVAILABLE STATE" } },
-          { label: "Reopen", media: { kind: "placeholder", label: "REOPEN STATE" } },
-          { label: "There's an issue", media: { kind: "placeholder", label: "“There's an issue” STATE" } },
-        ],
-      },
-      { kind: "divider" },
-      {
-        kind: "heading",
         id: "scenario-02",
         text: "Scenario 02: When the assigned compartment didn't work",
         spacing: "tight",
+        paddingTop: 24,
         paddingBottom: 0,
+        eyebrow: "Locker touchscreen experience",
       },
       {
         kind: "richText",

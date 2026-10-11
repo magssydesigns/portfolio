@@ -90,8 +90,10 @@ function BlockRenderer({
       );
 
     case "heading": {
-      const headingStyle =
-        block.paddingBottom !== undefined ? { paddingBottom: block.paddingBottom } : undefined;
+      const headingStyle = {
+        ...(block.paddingTop !== undefined ? { paddingTop: block.paddingTop } : {}),
+        ...(block.paddingBottom !== undefined ? { paddingBottom: block.paddingBottom } : {}),
+      };
       const headingClassName =
         block.spacing === "tight"
           ? layout === "toc"
@@ -107,6 +109,18 @@ function BlockRenderer({
       return (
         <Reveal>
           <div id={block.id} className={headingClassName} style={headingStyle}>
+            {block.eyebrow && (
+              <span
+                className="mb-3 inline-flex w-fit max-w-full items-center whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] leading-[1.3]"
+                style={{
+                  color: "#2E7D32",
+                  borderColor: "rgba(46,125,50,0.35)",
+                  backgroundColor: "rgba(46,125,50,0.06)",
+                }}
+              >
+                {block.eyebrow}
+              </span>
+            )}
             <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.text}</h2>
           </div>
         </Reveal>
