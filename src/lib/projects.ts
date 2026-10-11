@@ -1435,11 +1435,11 @@ export const projects: Project[] = [
       {
         kind: "richText",
         headingLevel: "h3",
-        heading: "Make system readiness visible",
+        heading: "Give customers a clear fallback when opening fails",
         paddingTop: 32,
         paragraphs: [
-          "The app also needed to understand whether remote opening was available for that locker and whether the compartment could actually be opened.",
-          "Rather than treating failure as a dead end, I designed fallback states that explained what was happening and directed the customer back to the locker screen when remote opening was unavailable.",
+          "Even when remote opening was available, the physical action could still fail. I designed the failure state to explain what had happened and give customers two clear ways forward: try again or continue the journey on the locker screen.",
+          "The aim was to prevent a failed command from becoming a dead end while keeping the customer in control of how to continue.",
         ],
       },
       {
@@ -1447,14 +1447,15 @@ export const projects: Project[] = [
         bordered: true,
         items: [
           {
-            label: "Remote opening unavailable",
-            media: { kind: "placeholder", label: "“Remote opening isn't available right now”" },
-          },
-          {
             label: "Can't open compartment",
             media: { kind: "placeholder", label: "“We can't open the compartment with your app right now”" },
           },
         ],
+      },
+      {
+        kind: "statement",
+        eyebrow: "Design principle",
+        text: "Always provide a recovery path when a physical action fails.",
       },
       {
         kind: "richText",
