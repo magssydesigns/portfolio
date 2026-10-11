@@ -1602,7 +1602,7 @@ export const projects: Project[] = [
       {
         kind: "beforeAfterImages",
         bordered: true,
-        imageMaxWidthPercent: 95,
+        imageMaxWidthPercent: 104,
         enlargeable: true,
         items: [
           {
