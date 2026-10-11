@@ -28,7 +28,7 @@ export type MediaSlot =
 export type Block =
   | { kind: "lead"; id?: string; spacing?: "tight"; items: { label: string; body: string }[] }
   | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light"; spacing?: "tight"; paddingBottom?: number }
-  | { kind: "statement"; id?: string; text: string; tone?: "dark" | "light" }
+  | { kind: "statement"; id?: string; text: string; tone?: "dark" | "light"; eyebrow?: string }
   | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; itemStyle?: "plain"; spacing?: "tight"; paddingTop?: number; paddingBottom?: number; items: { title: string; body: string }[] }
   | { kind: "image"; id?: string; image: ProjectImage; size?: "medium" | "wide" | "full" }
   | { kind: "beforeAfterStats"; id?: string; heading?: string; items: { label: string; before: string; after: string; description: string }[] }
@@ -1389,17 +1389,48 @@ export const projects: Project[] = [
         kind: "beforeAfterImages",
         bordered: true,
         items: [
-          { label: "Location permission", media: { kind: "placeholder", label: "LOCATION PERMISSION STATE" } },
-          { label: "Wrong location", media: { kind: "placeholder", label: "WRONG LOCATION STATE" } },
+          {
+            label: "Location permission",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/location-permission-state.png",
+                width: 3087,
+                height: 6492,
+                alt: "Location permission state for remote opening",
+              },
+            },
+          },
+          {
+            label: "Wrong location",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/wrong-location-state.png",
+                width: 3102,
+                height: 6369,
+                alt: "Wrong location state for remote opening",
+              },
+            },
+          },
           {
             label: "Remote opening available",
-            media: { kind: "placeholder", label: "REMOTE OPENING AVAILABLE STATE" },
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/remote-opening-available.png",
+                width: 3093,
+                height: 6360,
+                alt: "Remote opening available state",
+              },
+            },
           },
         ],
       },
       {
         kind: "statement",
-        text: "Verify physical context before enabling the action.",
+        eyebrow: "Design principle",
+        text: "Confirm the customer is at the right locker before enabling remote opening.",
       },
       {
         kind: "richText",

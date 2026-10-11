@@ -351,8 +351,12 @@ function BlockRenderer({
                   : "pt-8 text-left"
               }
             >
+              {block.eyebrow && (
+                <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{block.eyebrow}</p>
+              )}
               <p
                 className={
+                  (block.eyebrow ? "mt-3 " : "") +
                   (block.tone === "dark"
                     ? "font-display text-2xl leading-snug tracking-tight sm:text-4xl italic"
                     : "font-display text-xl leading-snug tracking-tight sm:text-3xl")
