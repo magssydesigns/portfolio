@@ -1707,7 +1707,16 @@ export const projects: Project[] = [
         items: [
           {
             label: "I need a low compartment",
-            media: { kind: "placeholder", label: "SIZE SELECTION WITH “I NEED A LOW COMPARTMENT”" },
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/low-compartment.png",
+                width: 3192,
+                height: 2556,
+                alt: "Size selection screen with an “I need a low compartment” option",
+              },
+            },
+            caption: "Adding ability to select low compartment option before opening.",
           },
           { label: "Low compartment unavailable", media: { kind: "placeholder", label: "LOW COMPARTMENT UNAVAILABLE STATE" } },
         ],
