@@ -1387,7 +1387,7 @@ export const projects: Project[] = [
       },
       {
         kind: "beforeAfterImages",
-        bordered: true,
+        imageMaxWidthPercent: 70,
         items: [
           {
             label: "Location permission",
