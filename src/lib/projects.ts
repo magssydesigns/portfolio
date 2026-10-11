@@ -27,8 +27,8 @@ export type MediaSlot =
 
 export type Block =
   | { kind: "lead"; id?: string; spacing?: "tight"; items: { label: string; body: string }[] }
-  | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light"; spacing?: "tight"; paddingBottom?: number }
-  | { kind: "statement"; id?: string; text: string; tone?: "dark" | "light" }
+  | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light"; spacing?: "tight"; paddingTop?: number; paddingBottom?: number; eyebrow?: string }
+  | { kind: "statement"; id?: string; text: string; tone?: "dark" | "light"; eyebrow?: string }
   | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; itemStyle?: "plain"; spacing?: "tight"; paddingTop?: number; paddingBottom?: number; items: { title: string; body: string }[] }
   | { kind: "image"; id?: string; image: ProjectImage; size?: "medium" | "wide" | "full" }
   | { kind: "beforeAfterStats"; id?: string; heading?: string; items: { label: string; before: string; after: string; description: string }[] }
@@ -44,7 +44,11 @@ export type Block =
       bordered?: boolean;
       /** Overrides the default 50%-of-column image cap (tuned for narrow phone mockups); set to 100 for wider screenshots that need to stay legible. */
       imageMaxWidthPercent?: number;
-      items: { label: string; media: MediaSlot }[];
+      /** Enables the tap/click-to-enlarge lightbox on desktop too (already on by default on mobile). */
+      enlargeable?: boolean;
+      /** Shrinks the surrounding padding around each image so imageMaxWidthPercent values near/above 100 can actually grow the image further, instead of being capped by the default p-6/p-8 wrapper. */
+      tightPadding?: boolean;
+      items: { label: string; media: MediaSlot; caption?: string }[];
     }
   /** Icon-prefixed sub-heading + rich (partial-bold) paragraphs + single image - used for the Tracking European "Design changes" callouts. */
   | {
@@ -580,41 +584,35 @@ export const projects: Project[] = [
         ],
       },
       {
-        kind: "beforeAfterImages",
+        kind: "media",
         id: "before-and-after",
-        heading: "Before and after",
-        items: [
-          {
-            label: "Before",
-            media: {
-              kind: "image",
-              image: {
-                src: "/projects/scaling-parcel-tracking/parcel-list-before.webp",
-                width: 700,
-                height: 3337,
-                alt: "Before: the old “Shipment tracking” parcel list screen",
-              },
-            },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/scaling-parcel-tracking/parcel-info.png",
+            width: 13380,
+            height: 9456,
+            alt: "Parcel info screen showing the redesigned tracking details",
           },
-          {
-            label: "After",
-            media: {
-              kind: "image",
-              image: {
-                src: "/projects/scaling-parcel-tracking/parcel-list-after.webp",
-                width: 700,
-                height: 4037,
-                alt: "After: the redesigned “Parcel tracking” parcel list screen",
-              },
-            },
+        },
+      },
+      {
+        kind: "media",
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/scaling-parcel-tracking/parcel-list.png",
+            width: 13380,
+            height: 10791,
+            alt: "Parcel list screen showing the redesigned tracking details",
           },
-        ],
+        },
       },
     ],
   },
   {
     slug: "rapid-uk-launch",
-    title: "0 → 1: Launching InPost's UK parcel tracking app",
+    title: "Launching InPost's UK consumer app in three months",
     shortTitle: "Rapid UK app launch",
     client: "InPost",
     color: "#3355FF",
@@ -638,10 +636,10 @@ export const projects: Project[] = [
       { id: "quick-summary", label: "Quick Summary" },
       { id: "impact", label: "Impact" },
       { id: "the-challenge", label: "The challenge" },
-      { id: "uk-launch-priorities", label: "UK launch priorities" },
       { id: "business-goals", label: "Business goals" },
+      { id: "uk-launch-priorities", label: "UK launch priorities" },
       { id: "final-experience", label: "Final experience" },
-      { id: "design-process", label: "Design process" },
+      { id: "design-process", label: "How I structured the launch" },
       { id: "audit-insights", label: "Audit & insights" },
       { id: "key-design-decisions", label: "Key design decisions" },
       { id: "design-system-rebuild", label: "Design-system rebuild" },
@@ -753,6 +751,32 @@ export const projects: Project[] = [
       },
       { kind: "divider" },
       {
+        kind: "numbered",
+        id: "business-goals",
+        heading: "Business goals",
+        showArrow: true,
+        spacing: "tight",
+        items: [
+          {
+            title: "Launch the UK app within three months",
+            body: "Deliver a reliable first version without introducing unnecessary risk into the legacy application.",
+          },
+          {
+            title: "Adapt the experience for UK customers",
+            body: "Update priority journeys, brand expression and communication patterns to better reflect UK expectations.",
+          },
+          {
+            title: "Improve accessibility",
+            body: "Resolve priority colour and contrast issues and establish more accessible foundations aligned with WCAG AA contrast requirements.",
+          },
+          {
+            title: "Create a scalable product foundation",
+            body: "Consolidate the fragmented design system and establish clearer patterns for future releases.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
         kind: "heading",
         id: "uk-launch-priorities",
         text: "What we prioritised for the UK launch",
@@ -846,8 +870,7 @@ export const projects: Project[] = [
         heading: "What this meant for the launch",
         paddingTop: 32,
         paragraphs: [
-          "The goal wasn't to fit as many features as possible into three months. It was to make sure the first UK version solved the problems that mattered most in this market.",
-          "That meant introducing things that didn't exist in the Polish product, making some existing information much clearer, and being comfortable leaving a good feature out when it wasn't essential yet.",
+          "The goal wasn't to fit as many features as possible into three months. It was to make sure the first UK version solved the problems that mattered most in this market, while being comfortable leaving valuable features out when they weren't essential yet.",
         ],
       },
       {
@@ -864,38 +887,12 @@ export const projects: Project[] = [
       },
       { kind: "divider" },
       {
-        kind: "numbered",
-        id: "business-goals",
-        heading: "Business goals",
-        showArrow: true,
-        spacing: "tight",
-        items: [
-          {
-            title: "Launch the UK app within three months",
-            body: "Deliver a reliable first version without introducing unnecessary risk into the legacy application.",
-          },
-          {
-            title: "Adapt the experience for UK customers",
-            body: "Update priority journeys, brand expression and communication patterns to better reflect UK expectations.",
-          },
-          {
-            title: "Improve accessibility",
-            body: "Resolve critical colour and contrast issues and establish WCAG AA-compliant foundations.",
-          },
-          {
-            title: "Create a scalable product foundation",
-            body: "Consolidate the fragmented design system and establish clearer patterns for future releases.",
-          },
-        ],
-      },
-      { kind: "divider" },
-      {
         kind: "richText",
         id: "final-experience",
         heading: "Final experience",
         paragraphs: [
           "The UK launch combined targeted improvements to onboarding, parcel tracking and locker discovery with a rebuilt design system.",
-          "Rather than redesigning the entire application, I focused the first phase on changes that could materially improve comprehension, urgency and accessibility without destabilising the legacy product.",
+          "Rather than redesigning the entire application, I focused the first phase on changes that could materially improve comprehension, urgency and priority accessibility issues without destabilising the legacy product.",
           "The result was a more relevant UK experience and a stronger foundation for subsequent work across the app.",
         ],
       },
@@ -945,7 +942,7 @@ export const projects: Project[] = [
       {
         kind: "richText",
         id: "design-process",
-        heading: "Design process",
+        heading: "How I structured the launch",
         paragraphs: [
           "I worked closely with Product and Engineering to separate launch-critical improvements from work that required deeper architectural change. Product design and design-system consolidation then progressed in parallel, allowing the team to improve the first release while establishing foundations for future development.",
         ],
@@ -1259,6 +1256,530 @@ export const projects: Project[] = [
           "This project reinforced that working within a legacy product is as much an exercise in prioritisation as it is in interface design.",
           "A full redesign was neither technically realistic nor necessary for the first release. The greatest value came from identifying the changes that would materially improve the UK experience, separating them from deeper structural work and creating a system that allowed the product to evolve after launch.",
           "Balancing immediate delivery with longer-term foundations allowed the team to launch on time without treating the first release as a disposable solution.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "designing-between-app-and-locker",
+    title: "Designing between app and locker",
+    shortTitle: "App and locker interactions",
+    client: "InPost",
+    color: "#F7D60F",
+    heroBackground: "#F8F4EE",
+    heroStacked: true,
+    heroFlushBottom: true,
+    glancePaddingTop: 32,
+    glanceDividerBelow: true,
+    projectAtAGlance: {
+      role: "Product Designer",
+      scope:
+        "Designed connected interactions between the InPost consumer app and parcel locker software, covering remote opening, system states, failure recovery and compartment re-selection. Informed by Customer Care contacts, existing product behaviour and physical interaction constraints.",
+      coreTeam: "Product Manager • Engineering",
+      collaborationLabel: "Collaboration teams",
+      collaborationTeams: "Customer Experience",
+      platforms: "Mobile app • Locker touchscreen",
+    },
+    heroVisual: {
+      media: {
+        kind: "image",
+        image: {
+          src: "/projects/rapid-uk-launch/open-remote.png",
+          width: 17058,
+          height: 9456,
+          alt: "Remote opening flow from mobile command to physical compartment opening",
+        },
+      },
+    },
+    toc: [
+      { id: "quick-summary", label: "Quick Summary" },
+      { id: "the-challenge", label: "The challenge" },
+      { id: "what-we-were-hearing", label: "Where customers were getting stuck" },
+      { id: "scenario-01", label: "Opening a locker remotely" },
+      { id: "scenario-02", label: "The compartment problem" },
+      { id: "measurement", label: "What I planned to measure" },
+      { id: "outcome", label: "Outcome" },
+      { id: "reflection", label: "Reflection" },
+    ],
+    quickRead: {
+      tagline:
+        "Creating clearer interactions between the InPost mobile app and physical parcel lockers, including remote opening, failure recovery and compartment re-selection.",
+      heroImage: {
+        src: "/projects/locker-app/Locker-hero-image.png",
+        width: 7434,
+        height: 8919,
+        alt: "InPost parcel locker and mobile app remote opening interaction",
+      },
+      bulletedChallenge: false,
+      challenge: [
+        "I worked on several journeys where the interface was only one part of the experience. A customer's action in the mobile app could trigger a physical locker door, while an issue at the locker could require the software to understand what had happened and help the customer recover.",
+        "I designed the remote-opening journey across app and locker states, including proximity, availability, opening, failure and recovery. I also redesigned the return flow so customers could change an automatically suggested compartment before or after a door had opened, including support for lower, more accessible compartments.",
+      ],
+      outcomes: [],
+    },
+    fullCaseStudy: [
+      {
+        kind: "richText",
+        id: "the-challenge",
+        heading: "When software controls something physical",
+        paragraphs: [
+          "A normal digital interaction might end when the interface responds. These journeys worked differently. A customer's action could trigger something to happen in a physical locker beside them.",
+          "That meant the experience had to communicate not only what the software was doing, but also whether the customer was in the right place, whether the locker could complete the action, what had physically happened and how to recover when reality did not match the expected state.",
+        ],
+      },
+      {
+        kind: "richText",
+        paddingTop: 24,
+        paragraphs: [
+          "Mobile action → system check → locker response → physical outcome → customer observes it → software confirms or recovers.",
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "what-we-were-hearing",
+        heading: "Where customers were getting stuck",
+        paragraphs: [
+          "Customer Care contacts highlighted moments where customers became stuck between the digital journey and the physical locker. The issue was often not completing an individual screen. It was understanding what the machine was doing and what to do when something unexpected happened.",
+        ],
+      },
+      {
+        kind: "arrowList",
+        bold: true,
+        paddingTop: 24,
+        items: ["“Can I change the compartment?”", "“My parcel doesn't fit.”", "“What do I do now?”"],
+      },
+      { kind: "divider" },
+      {
+        kind: "heading",
+        id: "scenario-01",
+        text: "Scenario 01: Opening a physical locker from the mobile app",
+        spacing: "tight",
+        paddingBottom: 0,
+      },
+      {
+        kind: "richText",
+        paddingTop: 32,
+        paragraphs: [
+          "Remote opening allowed customers to collect a parcel without switching from the app to the locker touchscreen. But triggering a real compartment from a phone required much more than adding an Open button.",
+          "The journey needed to account for location, system availability, physical response, loading, failure, reopening and fallback routes.",
+        ],
+      },
+      {
+        kind: "media",
+        bordered: true,
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/rapid-uk-launch/open-remote.png",
+            width: 17058,
+            height: 9456,
+            alt: "Remote opening flow from mobile command to physical compartment opening",
+          },
+        },
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Confirm the customer is actually at the right locker",
+        paddingTop: 32,
+        paragraphs: [
+          "Remote opening could only make sense if the customer was physically close enough to the correct locker. The app therefore needed to account for location permission and whether the customer was actually at the expected collection point before enabling the physical action.",
+        ],
+      },
+      {
+        kind: "statement",
+        eyebrow: "Design principle",
+        text: "Confirm the customer is at the right locker before enabling remote opening.",
+      },
+      {
+        kind: "beforeAfterImages",
+        imageMaxWidthPercent: 84,
+        items: [
+          {
+            label: "Location permission",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/location-permission-state.png",
+                width: 3087,
+                height: 6492,
+                alt: "Location permission state for remote opening",
+              },
+            },
+          },
+          {
+            label: "Wrong location",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/wrong-location-state.png",
+                width: 3102,
+                height: 6369,
+                alt: "Wrong location state for remote opening",
+              },
+            },
+          },
+          {
+            label: "Remote opening available",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/remote-opening-available.png",
+                width: 3093,
+                height: 6360,
+                alt: "Remote opening available state",
+              },
+            },
+          },
+        ],
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Give customers a clear fallback when opening fails",
+        paddingTop: 32,
+        paragraphs: [
+          "Even when remote opening was available, the physical action could still fail. I designed the failure state to explain what had happened and give customers two clear ways forward: try again or continue the journey on the locker screen.",
+          "The aim was to prevent a failed command from becoming a dead end while keeping the customer in control of how to continue.",
+        ],
+      },
+      {
+        kind: "statement",
+        eyebrow: "Design principle",
+        text: "Always provide a recovery path when a physical action fails.",
+      },
+      {
+        kind: "beforeAfterImages",
+        imageMaxWidthPercent: 28,
+        items: [
+          {
+            label: "Can't open compartment",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/cant-open.png",
+                width: 3081,
+                height: 6381,
+                alt: "Can't open compartment error state",
+              },
+            },
+          },
+        ],
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Design the moment between command and physical response",
+        paddingTop: 32,
+        paragraphs: [
+          "Once the customer triggered remote opening, there was a short period where the app had sent a command but the physical result had not happened yet.",
+          "I treated this waiting state as part of the interaction rather than leaving the customer unsure whether anything was happening.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        imageMaxWidthPercent: 85,
+        items: [
+          {
+            label: "Let's roll",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/remote-opening-available.png",
+                width: 3093,
+                height: 6360,
+                alt: "Remote opening available screen prompting the customer to confirm opening the locker",
+              },
+            },
+          },
+          {
+            label: "Opening",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/opening.png",
+                width: 3102,
+                height: 6366,
+                alt: "Locker opening loading state while the compartment responds to the command",
+              },
+            },
+          },
+          {
+            label: "Compartment opened",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/locker-open.png",
+                width: 3099,
+                height: 6366,
+                alt: "Confirmation screen showing the locker compartment has opened",
+              },
+            },
+          },
+        ],
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Confirm what happened in the physical world",
+        paddingTop: 32,
+        paragraphs: [
+          "The journey could not finish when the app sent an instruction. The experience also needed to reflect whether the physical door had opened, whether it had been closed again and whether the customer needed to reopen it.",
+          "This kept the software state connected to what the customer could actually see happening around them.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        imageMaxWidthPercent: 85,
+        items: [
+          {
+            label: "Door opened",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/locker-open.png",
+                width: 3099,
+                height: 6366,
+                alt: "Confirmation screen showing the locker compartment has opened",
+              },
+            },
+          },
+          {
+            label: "Double-check the door",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/locked.png",
+                width: 3102,
+                height: 6363,
+                alt: "Screen prompting the customer to double-check the compartment door is firmly shut",
+              },
+            },
+          },
+          {
+            label: "Reopen confirmation",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/reopen.png",
+                width: 3123,
+                height: 6363,
+                alt: "Confirmation screen for reopening the compartment",
+              },
+            },
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "heading",
+        id: "scenario-02",
+        text: "Scenario 02: When the assigned compartment didn't work",
+        spacing: "tight",
+        paddingTop: 24,
+        paddingBottom: 0,
+        eyebrow: "Locker touchscreen experience",
+      },
+      {
+        kind: "richText",
+        paddingTop: 32,
+        paragraphs: [
+          "The return journey had a different version of the same problem. After scanning a parcel, the system could automatically suggest a compartment size.",
+          "Customers did not always realise that this recommendation could be changed, and sometimes only discovered that the compartment was unsuitable after a physical door had already opened.",
+        ],
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Make the system recommendation changeable",
+        paddingTop: 32,
+        paragraphs: [
+          "I wanted the proposed size to feel like a recommendation rather than a fixed system decision.",
+          "The redesigned step asks customers to select a size that fits their parcel and makes the available options visible. It also tells them that they can change the size later if needed.",
+          "This reduced the pressure of making the perfect choice before anything had happened physically.",
+        ],
+      },
+      {
+        kind: "statement",
+        eyebrow: "Design principle",
+        text: "System suggests. Customer stays in control.",
+      },
+      {
+        kind: "beforeAfterImages",
+        bordered: true,
+        imageMaxWidthPercent: 104,
+        enlargeable: true,
+        items: [
+          {
+            label: "Before",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/locker-1.png",
+                width: 2048,
+                height: 1536,
+                alt: "Automatically proposed compartment size",
+              },
+            },
+          },
+          {
+            label: "After",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/locker-2.png",
+                width: 2048,
+                height: 1536,
+                alt: "Select a size that fits your parcel",
+              },
+            },
+          },
+        ],
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Let customers recover after the door had already opened",
+        paddingTop: 32,
+        paragraphs: [
+          "The harder scenario happened when the customer only discovered the problem after the physical compartment had opened.",
+          "If the parcel did not fit, the interface needed to help them correct the problem without restarting the entire return.",
+          "I introduced an explicit “I need a different size” action while the compartment was open, allowing the journey to move back into compartment selection and assign a new physical door.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        imageMaxWidthPercent: 114,
+        tightPadding: true,
+        enlargeable: true,
+        items: [
+          {
+            label: "I need a different size",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/different-size.png",
+                width: 3192,
+                height: 2637,
+                alt: "“I need a different size” button shown while the compartment is open",
+              },
+            },
+            caption: "Button to change the compartment size when the compartment has already been opened.",
+          },
+          {
+            label: "Help after closing compartment",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/get-help.png",
+                width: 3039,
+                height: 2178,
+                alt: "Option to get help and change the compartment size after the door was closed",
+              },
+            },
+            caption: "Option to change the compartment size after the compartment was closed.",
+          },
+        ],
+      },
+      {
+        kind: "richText",
+        paddingTop: 24,
+        paragraphs: [
+          "Compartment opens, parcel does not fit, request another size, new compartment assigned, new door opens, journey continues.",
+        ],
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Let accessibility change the physical assignment",
+        paddingTop: 32,
+        paragraphs: [
+          "Compartment size was not the only thing that could make an assignment unsuitable. A compartment could fit the parcel but still be difficult or impossible for the customer to reach.",
+          "I introduced an “I need a low compartment” preference so that the customer's physical needs could influence which compartment the system assigned.",
+        ],
+      },
+      {
+        kind: "beforeAfterImages",
+        imageMaxWidthPercent: 114,
+        tightPadding: true,
+        enlargeable: true,
+        items: [
+          {
+            label: "I need a low compartment",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/low-compartment.png",
+                width: 3192,
+                height: 2556,
+                alt: "Size selection screen with an “I need a low compartment” option",
+              },
+            },
+            caption: "Adding ability to select low compartment option before opening.",
+          },
+          {
+            label: "Get help section",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/get-help2.png",
+                width: 3039,
+                height: 2178,
+                alt: "Get help section with an option to choose a lower compartment after closing the current one",
+              },
+            },
+            caption: "Ability to choose another, lower compartment, after closing the current one.",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "measurement",
+        heading: "What I planned to measure",
+        paragraphs: [
+          "Because many of the important behaviours happened around failure and recovery, I also defined events that would help us understand where customers became stuck after release.",
+        ],
+      },
+      {
+        kind: "arrowList",
+        bold: true,
+        paddingTop: 24,
+        items: [
+          "How often customers try to open a locker remotely",
+          "How often they try while too far away or at the wrong location",
+          "How often they reopen the compartment",
+          "How often they ask for help",
+          "How often they leave the session",
+        ],
+      },
+      {
+        kind: "richText",
+        paddingTop: 24,
+        paragraphs: [
+          "Tracked actions included open remotely, reopen, there's an issue, I need help and exit journey.",
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "outcome",
+        heading: "Outcome",
+        paragraphs: [
+          "The work created a more complete model for interactions between the mobile app and physical locker. The remote-opening journey accounted for location, availability, physical response and recovery, while the compartment work explored how customers could retain control when an automated physical assignment did not match what they needed.",
+          "The compartment re-selection and accessibility improvements shown here were proposed redesigns rather than shipped features.",
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "reflection",
+        heading: "Designing beyond the screen",
+        paddingBottom: 90,
+        paragraphs: [
+          "These projects developed my experience in interaction design and gave me an opportunity to design beyond the phone screen. Sending a command from an app was only the beginning of the interaction. I also had to think about where the customer was standing, whether the physical system could complete the action, what the customer could see happening around them and how they could recover if the expected outcome didn't happen.",
+          "The strongest solutions gave customers enough feedback and control to understand both the digital and physical state of the journey.",
         ],
       },
     ],

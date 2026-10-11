@@ -90,8 +90,10 @@ function BlockRenderer({
       );
 
     case "heading": {
-      const headingStyle =
-        block.paddingBottom !== undefined ? { paddingBottom: block.paddingBottom } : undefined;
+      const headingStyle = {
+        ...(block.paddingTop !== undefined ? { paddingTop: block.paddingTop } : {}),
+        ...(block.paddingBottom !== undefined ? { paddingBottom: block.paddingBottom } : {}),
+      };
       const headingClassName =
         block.spacing === "tight"
           ? layout === "toc"
@@ -107,6 +109,18 @@ function BlockRenderer({
       return (
         <Reveal>
           <div id={block.id} className={headingClassName} style={headingStyle}>
+            {block.eyebrow && (
+              <span
+                className="mb-3 inline-flex w-fit max-w-full items-center whitespace-nowrap rounded-full border px-2.5 py-1 text-[11px] leading-[1.3]"
+                style={{
+                  color: "#2E7D32",
+                  borderColor: "rgba(46,125,50,0.35)",
+                  backgroundColor: "rgba(46,125,50,0.06)",
+                }}
+              >
+                {block.eyebrow}
+              </span>
+            )}
             <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.text}</h2>
           </div>
         </Reveal>
@@ -351,8 +365,12 @@ function BlockRenderer({
                   : "pt-8 text-left"
               }
             >
+              {block.eyebrow && (
+                <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{block.eyebrow}</p>
+              )}
               <p
                 className={
+                  (block.eyebrow ? "mt-3 " : "") +
                   (block.tone === "dark"
                     ? "font-display text-2xl leading-snug tracking-tight sm:text-4xl italic"
                     : "font-display text-xl leading-snug tracking-tight sm:text-3xl")
@@ -619,24 +637,38 @@ function BlockRenderer({
                   <p className="mb-4 text-center font-sans text-xl font-semibold">
                     {item.label}
                   </p>
-                  <div className="flex justify-center rounded-2xl p-6 sm:p-8">
-                    <div className="w-full sm:hidden">
+                  <div className={`flex justify-center rounded-2xl ${block.tightPadding ? "p-2 sm:p-3" : "p-6 sm:p-8"}`}>
+                    {block.enlargeable ? (
                       <EnlargeableMedia
                         media={item.media}
                         className={bafMediaClass}
                         style={bafMediaStyle}
                         bordered={block.bordered}
                       />
-                    </div>
-                    <div className="hidden w-full sm:block">
-                      <MediaSlotView
-                        media={item.media}
-                        className={bafMediaClass}
-                        style={bafMediaStyle}
-                        bordered={block.bordered}
-                      />
-                    </div>
+                    ) : (
+                      <>
+                        <div className="w-full sm:hidden">
+                          <EnlargeableMedia
+                            media={item.media}
+                            className={bafMediaClass}
+                            style={bafMediaStyle}
+                            bordered={block.bordered}
+                          />
+                        </div>
+                        <div className="hidden w-full sm:block">
+                          <MediaSlotView
+                            media={item.media}
+                            className={bafMediaClass}
+                            style={bafMediaStyle}
+                            bordered={block.bordered}
+                          />
+                        </div>
+                      </>
+                    )}
                   </div>
+                  {item.caption && (
+                    <p className="mt-3 text-center text-[13px] text-muted">{item.caption}</p>
+                  )}
                 </div>
               ))}
             </div>

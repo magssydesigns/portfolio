@@ -40,6 +40,22 @@ export const homepageCards: ProjectCardData[] = [
     isArchive: false,
   },
   {
+    title: "Designing between app and locker",
+    slug: "designing-between-app-and-locker",
+    badge: "Physical + digital interactions",
+    media: {
+      kind: "image",
+      image: {
+        src: "/projects/locker-app/Lockers-cover.png",
+        width: 7434,
+        height: 5919,
+        alt: "InPost parcel lockers shown with the mobile app interaction",
+      },
+    },
+    type: "homepage",
+    isArchive: false,
+  },
+  {
     title: "One parcel tracking experience across four European markets",
     slug: "scaling-parcel-tracking",
     media: {
