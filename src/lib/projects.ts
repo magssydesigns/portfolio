@@ -1653,12 +1653,28 @@ export const projects: Project[] = [
         items: [
           {
             label: "I need a different size",
-            media: { kind: "placeholder", label: "“I NEED A DIFFERENT SIZE”" },
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/different-size.png",
+                width: 3192,
+                height: 2637,
+                alt: "“I need a different size” button shown while the compartment is open",
+              },
+            },
             caption: "Button to change the compartment size when the compartment has already been opened.",
           },
           {
             label: "Help after closing compartment",
-            media: { kind: "placeholder", label: "HELP AFTER CLOSING COMPARTMENT" },
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/get-help.png",
+                width: 3039,
+                height: 2178,
+                alt: "Option to get help and change the compartment size after the door was closed",
+              },
+            },
             caption: "Option to change the compartment size after the compartment was closed.",
           },
         ],
