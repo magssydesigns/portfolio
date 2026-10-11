@@ -1653,6 +1653,7 @@ export const projects: Project[] = [
         kind: "beforeAfterImages",
         imageMaxWidthPercent: 114,
         tightPadding: true,
+        enlargeable: true,
         items: [
           {
             label: "I need a different size",
