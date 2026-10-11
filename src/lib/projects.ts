@@ -1649,7 +1649,7 @@ export const projects: Project[] = [
       },
       {
         kind: "beforeAfterImages",
-        bordered: true,
+        imageMaxWidthPercent: 95,
         items: [
           {
             label: "I need a different size",
