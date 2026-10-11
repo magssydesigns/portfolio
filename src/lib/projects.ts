@@ -1531,12 +1531,42 @@ export const projects: Project[] = [
         kind: "beforeAfterImages",
         bordered: true,
         items: [
-          { label: "Door opened", media: { kind: "placeholder", label: "DOOR OPENED" } },
+          {
+            label: "Door opened",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/locker-open.png",
+                width: 3099,
+                height: 6366,
+                alt: "Confirmation screen showing the locker compartment has opened",
+              },
+            },
+          },
           {
             label: "Double-check the door",
-            media: { kind: "placeholder", label: "“Double-check the compartment door is firmly shut”" },
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/locked.png",
+                width: 3102,
+                height: 6363,
+                alt: "Screen prompting the customer to double-check the compartment door is firmly shut",
+              },
+            },
           },
-          { label: "Reopen confirmation", media: { kind: "placeholder", label: "REOPEN CONFIRMATION" } },
+          {
+            label: "Reopen confirmation",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/reopen.png",
+                width: 3123,
+                height: 6363,
+                alt: "Confirmation screen for reopening the compartment",
+              },
+            },
+          },
         ],
       },
       { kind: "divider" },
