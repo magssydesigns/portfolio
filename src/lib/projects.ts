@@ -1698,12 +1698,13 @@ export const projects: Project[] = [
         paragraphs: [
           "Compartment size was not the only thing that could make an assignment unsuitable. A compartment could fit the parcel but still be difficult or impossible for the customer to reach.",
           "I introduced an “I need a low compartment” preference so that the customer's physical needs could influence which compartment the system assigned.",
-          "The proposed flow also accounted for the case where no suitable low compartment was available, explaining the constraint before the customer reached the physical door.",
         ],
       },
       {
         kind: "beforeAfterImages",
-        bordered: true,
+        imageMaxWidthPercent: 114,
+        tightPadding: true,
+        enlargeable: true,
         items: [
           {
             label: "I need a low compartment",
@@ -1718,7 +1719,19 @@ export const projects: Project[] = [
             },
             caption: "Adding ability to select low compartment option before opening.",
           },
-          { label: "Low compartment unavailable", media: { kind: "placeholder", label: "LOW COMPARTMENT UNAVAILABLE STATE" } },
+          {
+            label: "Get help section",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/get-help2.png",
+                width: 3039,
+                height: 2178,
+                alt: "Get help section with an option to choose a lower compartment after closing the current one",
+              },
+            },
+            caption: "Ability to choose another, lower compartment, after closing the current one.",
+          },
         ],
       },
       { kind: "divider" },
