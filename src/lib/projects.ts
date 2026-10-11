@@ -1296,7 +1296,7 @@ export const projects: Project[] = [
       { id: "the-challenge", label: "The challenge" },
       { id: "what-we-were-hearing", label: "Where customers were getting stuck" },
       { id: "scenario-01", label: "Opening a locker remotely" },
-      { id: "scenario-02", label: "The compartment problem" },
+      { id: "scenario-02", label: "When the assigned compartment didn't work" },
       { id: "measurement", label: "What I planned to measure" },
       { id: "outcome", label: "Outcome" },
       { id: "reflection", label: "Reflection" },
@@ -1353,9 +1353,11 @@ export const projects: Project[] = [
       {
         kind: "heading",
         id: "scenario-01",
-        text: "Scenario 01: Opening a physical locker from the mobile app",
+        text: "Opening a physical locker from the mobile app",
         spacing: "tight",
+        paddingTop: 24,
         paddingBottom: 0,
+        eyebrow: "Mobile app experience",
       },
       {
         kind: "richText",
@@ -1575,7 +1577,7 @@ export const projects: Project[] = [
       {
         kind: "heading",
         id: "scenario-02",
-        text: "Scenario 02: When the assigned compartment didn't work",
+        text: "When the assigned compartment didn't work",
         spacing: "tight",
         paddingTop: 24,
         paddingBottom: 0,
