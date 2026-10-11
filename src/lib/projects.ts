@@ -1449,7 +1449,7 @@ export const projects: Project[] = [
       },
       {
         kind: "beforeAfterImages",
-        bordered: true,
+        imageMaxWidthPercent: 40,
         items: [
           {
             label: "Can't open compartment",
@@ -1479,9 +1479,42 @@ export const projects: Project[] = [
         kind: "beforeAfterImages",
         bordered: true,
         items: [
-          { label: "Let's roll", media: { kind: "placeholder", label: "PREPARE TO OPEN SCREEN" } },
-          { label: "Opening", media: { kind: "placeholder", label: "OPENING / LOADING STATE" } },
-          { label: "Compartment opened", media: { kind: "placeholder", label: "PHYSICAL COMPARTMENT OPENED CONFIRMATION" } },
+          {
+            label: "Let's roll",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/remote-opening-available.png",
+                width: 3093,
+                height: 6360,
+                alt: "Remote opening available screen prompting the customer to confirm opening the locker",
+              },
+            },
+          },
+          {
+            label: "Opening",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/opening.png",
+                width: 3102,
+                height: 6366,
+                alt: "Locker opening loading state while the compartment responds to the command",
+              },
+            },
+          },
+          {
+            label: "Compartment opened",
+            media: {
+              kind: "image",
+              image: {
+                src: "/projects/locker-app/locker-open.png",
+                width: 3099,
+                height: 6366,
+                alt: "Confirmation screen showing the locker compartment has opened",
+              },
+            },
+          },
         ],
       },
       {
