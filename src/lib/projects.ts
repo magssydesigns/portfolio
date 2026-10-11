@@ -1278,8 +1278,13 @@ export const projects: Project[] = [
     },
     heroVisual: {
       media: {
-        kind: "placeholder",
-        label: "REMOTE OPENING ON MOBILE, PHYSICAL COMPARTMENT OPEN, AND COMPARTMENT RE-SELECTION",
+        kind: "image",
+        image: {
+          src: "/projects/rapid-uk-launch/open-remote.png",
+          width: 17058,
+          height: 9456,
+          alt: "Remote opening flow from mobile command to physical compartment opening",
+        },
       },
     },
     toc: [
@@ -1298,8 +1303,10 @@ export const projects: Project[] = [
       tagline:
         "Creating clearer interactions between the InPost mobile app and physical parcel lockers, including remote opening, failure recovery and compartment re-selection.",
       heroImage: {
-        kind: "placeholder",
-        label: "REMOTE OPENING SCREEN PAIRED WITH THE PHYSICAL LOCKER TOUCHSCREEN",
+        src: "/projects/locker-app/Locker-hero-image.png",
+        width: 7434,
+        height: 8919,
+        alt: "InPost parcel locker and mobile app remote opening interaction",
       },
       bulletedChallenge: false,
       challenge: [

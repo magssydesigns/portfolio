@@ -44,8 +44,13 @@ export const homepageCards: ProjectCardData[] = [
     slug: "designing-between-app-and-locker",
     badge: "Physical + digital interactions",
     media: {
-      kind: "placeholder",
-      label: "PHONE AND LOCKER TOUCHSCREEN INTERACTION",
+      kind: "image",
+      image: {
+        src: "/projects/locker-app/Lockers-cover.png",
+        width: 7434,
+        height: 5919,
+        alt: "InPost parcel lockers shown with the mobile app interaction",
+      },
     },
     type: "homepage",
     isArchive: false,
