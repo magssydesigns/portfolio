@@ -21,7 +21,7 @@ const navItems = [
     label: "Currently building",
     pulsingDot: true,
   },
-  { key: "resume", href: "/resume.pdf", label: "Resume", chevron: true },
+  { key: "resume", href: "/Magdalena_Marczewska_CV.pdf", label: "Resume", chevron: true },
   {
     key: "contact",
     href: "mailto:magssydesigns@gmail.com",

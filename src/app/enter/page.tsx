@@ -64,7 +64,7 @@ export default async function EnterPage({
 
           <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
             You can find it on my{" "}
-            <a href="/resume.pdf" target="_blank" rel="noreferrer" className="link-underline text-ink">
+            <a href="/Magdalena_Marczewska_CV.pdf" target="_blank" rel="noreferrer" className="link-underline text-ink">
               Resume
             </a>
             . Can&rsquo;t find it?
