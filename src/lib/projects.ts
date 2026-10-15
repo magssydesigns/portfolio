@@ -1836,9 +1836,9 @@ export const projects: Project[] = [
         { value: "96.8%", label: "of customers who started payment completed it" },
         { value: "82.9%", label: "progressed from Parcel Details to Recipient Details" },
         {
-          value: "~2.5pp",
+          value: "~3pp",
           label:
-            "estimated reduction in recipient-step drop-off after introducing address lookup. Historical reporting is no longer available, so this is a conservative approximation based on the observed post-release improvement.",
+            "lower recipient-step drop-off after introducing postcode-based address lookup. Historical reporting is no longer available, so this is a conservative estimate based on the observed post-release improvement.",
         },
       ],
       keyOutcomeBullets: [
@@ -1856,7 +1856,7 @@ export const projects: Project[] = [
           eyebrow: "Reduced friction",
           title: "Reducing friction in address entry",
           body: "The original journey required customers to enter considerably more address information manually. Funnel data showed meaningful abandonment around recipient details, while postcode-based address lookup was already a familiar UK pattern. We introduced address lookup to reduce typing, improve address accuracy and make the journey feel more consistent with customer expectations.",
-          evidence: "~2.5pp estimated reduction in step abandonment.",
+          evidence: "~3pp estimated reduction in step abandonment.",
         },
         {
           eyebrow: "Measurement",
@@ -2061,16 +2061,11 @@ export const projects: Project[] = [
         items: [
           {
             value: "74.2%",
-            label: "Recipient Details → Sender Details. The clearest drop-off inside the committed journey.",
+            label: "Recipient Details → Sender Details. The clearest friction point inside the committed journey.",
           },
           {
             value: "96.8%",
             label: "Payment Started → Payment Completed. Once customers reached payment, almost all completed it.",
-          },
-          {
-            value: "682k+",
-            label:
-              "Entered Send. Many customers entered Send simply to explore the service rather than begin a transaction.",
           },
         ],
       },
@@ -2079,7 +2074,7 @@ export const projects: Project[] = [
         paddingTop: 24,
         paragraphs: [
           "The headline funnel initially looked weaker because many customers entered Send simply to explore the service. I separated this exploratory behaviour from customers who had actually begun creating a parcel.",
-          "The clearest friction inside the committed journey was around recipient details, which later became a focus for improvements including postcode-based address lookup.",
+          "The more meaningful friction appeared around recipient details, which later became a focus for improvements including postcode-based address lookup.",
         ],
       },
       {
@@ -2165,7 +2160,7 @@ export const projects: Project[] = [
         },
         mobileSrc: "/projects/send-parcel-in-app/send-address-mobile.mp4",
         caption:
-          "~2.5pp estimated reduction in recipient-step drop-off. Historical reporting is no longer available, so this is a conservative approximation based on the observed post-release improvement.",
+          "~3pp lower recipient-step drop-off after introducing postcode-based address lookup. Historical reporting is no longer available, so this is a conservative estimate based on the observed post-release improvement.",
       },
       { kind: "divider" },
       {
@@ -2203,8 +2198,9 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
-        width: "reduced-40",
         bordered: true,
+        caption:
+          "Metrics Design workshop I established to define the questions, hypotheses and measures we needed across the Send journey.",
         link: {
           href: "/projects/send-parcel-in-app/C2X%20-%20design%20metrics%20workshop.pdf",
           label: "View workshop in PDF",
@@ -2231,9 +2227,16 @@ export const projects: Project[] = [
         kind: "stats",
         items: [
           { value: "96.8%", label: "of customers who started payment completed it" },
-          { value: "82.9%", label: "progressed from Parcel Details to Recipient Details" },
-          { value: "~2.5pp", label: "estimated reduction in recipient-step abandonment after address lookup" },
-          { value: "Stable conversion", label: "after introducing an additional Parcel Details and insurance step" },
+          {
+            value: "~3pp",
+            label:
+              "lower recipient-step drop-off after introducing postcode-based address lookup. This is an estimate, not a precise historical measurement.",
+          },
+          { value: "Stable conversion", label: "after introducing the additional Parcel Details and insurance step" },
+          {
+            value: "Metrics framework",
+            label: "established a cross-functional workshop to define how we would evaluate the Send journey",
+          },
         ],
       },
       {
