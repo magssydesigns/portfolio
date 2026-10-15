@@ -284,6 +284,9 @@ export default function QuickRead({
                   <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{item.eyebrow}</p>
                   <p className="mt-2 font-semibold text-ink">{item.title}</p>
                   <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{item.body}</p>
+                  {item.evidence && (
+                    <p className="mt-3 text-[13px] font-semibold text-ink">{item.evidence}</p>
+                  )}
                 </div>
               ))}
             </div>
