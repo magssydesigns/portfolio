@@ -1837,13 +1837,12 @@ export const projects: Project[] = [
         { value: "82.9%", label: "progressed from Parcel Details to Recipient Details" },
         {
           value: "~3pp",
-          label:
-            "lower recipient-step drop-off after introducing postcode-based address lookup. Historical reporting is no longer available, so this is a conservative estimate based on the observed post-release improvement.",
+          label: "lower recipient-step drop-off after introducing postcode-based address lookup.",
         },
       ],
       keyOutcomeBullets: [
         "Conversion remained stable after we added an additional Parcel Details and insurance step.",
-        "The top-level Send funnel initially appeared much weaker because many customers opened Send simply to explore the service. I therefore separated exploratory entry behaviour from customers who had actually begun creating a parcel.",
+        "The top-level Send funnel initially appeared much weaker because many customers opened Send simply to explore the service. I separated exploratory entry behaviour from customers who had actually started creating a parcel.",
       ],
       keyDecisionsItems: [
         {
