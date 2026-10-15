@@ -162,12 +162,16 @@ export type QuickRead = {
   keyDecisionsShowArrow?: boolean;
   /** Richer alternative to keyDecisions: an eyebrow tag + bold title + one-line rationale per item, for previewing trade-off decisions. Takes precedence over keyDecisions when present. */
   keyDecisionsItems?: { eyebrow: string; title: string; body: string; evidence?: string }[];
+  /** Forces keyDecisionsItems onto a 3-equal-column desktop grid (default is a 2-column grid) and widens the wrapper to fit them. */
+  keyDecisionsColumns?: 3;
   outcomes: { value: string; label: string }[];
   /** Bold arrow-prefixed bullets rendered in the "Key outcomes" section of the split (roleDetails) layout. */
   keyOutcomeBullets?: string[];
   qualitative?: { title?: string; body: string }[];
   impactStats?: { items: { label: string; before: string; after: string; description: string }[] };
   impactQuote?: { label?: string; text: string; attribution?: string };
+  /** Overrides the "Continue to full case study" button's top margin (px). Use when the preceding section is short enough that the default spacing looks cramped. */
+  continueTopPadding?: number;
 };
 
 export type TocEntry = { id: string; label: string };
@@ -1797,18 +1801,15 @@ export const projects: Project[] = [
     heroImageMobileZoom: "sm",
     heroDividerBelow: true,
     toc: [
-      { id: "my-role", label: "My role" },
-      { id: "why-send-mattered", label: "Why Send mattered" },
-      { id: "the-problem", label: "The problem" },
-      { id: "designing-the-first-journey", label: "Designing the first journey" },
-      { id: "testing-before-release", label: "Testing before wider release" },
-      { id: "what-the-funnel-told-us", label: "What the funnel told us" },
-      { id: "adding-parcel-details", label: "Adding Parcel Details" },
-      { id: "reducing-address-friction", label: "Reducing address friction" },
-      { id: "measurement-framework", label: "Building the measurement framework" },
-      { id: "results", label: "Results" },
-      { id: "challenges", label: "Challenges" },
-      { id: "retrospective", label: "Retrospective" },
+      { id: "the-challenge", label: "The challenge" },
+      { id: "business-goals", label: "Business goals" },
+      { id: "final-experience", label: "Final experience" },
+      { id: "design-process", label: "Design process" },
+      { id: "how-the-experience-evolved", label: "How the experience evolved" },
+      { id: "validation-and-refinement", label: "Validation and refinement" },
+      { id: "outcome", label: "Outcome" },
+      { id: "making-the-experience-measurable", label: "Making the experience measurable" },
+      { id: "reflection", label: "Reflection" },
     ],
     quickRead: {
       tagline:
@@ -1834,26 +1835,26 @@ export const projects: Project[] = [
       },
       outcomes: [
         { value: "96.8%", label: "of customers who started payment completed it" },
-        { value: "82.9%", label: "progressed from Parcel Details to Recipient Details" },
         {
           value: "~3pp",
-          label: "lower recipient-step drop-off after introducing postcode-based address lookup.",
+          label: "lower recipient-step drop-off after introducing postcode-based address lookup. Estimated from historical reporting.",
         },
+        { value: "Stable conversion", label: "after introducing the additional Parcel Details and insurance step" },
       ],
-      keyOutcomeBullets: [
-        "Conversion remained stable after we added an additional Parcel Details and insurance step.",
-        "The top-level Send funnel initially appeared much weaker because many customers opened Send simply to explore the service. I separated exploratory entry behaviour from customers who had actually started creating a parcel.",
-      ],
+      keyDecisionsColumns: 3,
+      continueTopPadding: 64,
       keyDecisionsItems: [
         {
           eyebrow: "Added a step",
           title: "Adding a step without hurting conversion",
           body: "The UK flow needed an extra Parcel Details and insurance step. We added it despite concerns about friction, and conversion remained broadly stable.",
+          evidence: "82.9% continued into Recipient Details.",
         },
         {
           eyebrow: "Reduced friction",
           title: "Reducing friction in address entry",
           body: "Recipient details showed one of the clearest drop-off points, so we introduced postcode-based address lookup to reduce typing and make the flow more familiar for UK customers.",
+          evidence: "~3pp estimated reduction in step abandonment.",
         },
         {
           eyebrow: "Measurement",
@@ -1865,90 +1866,41 @@ export const projects: Project[] = [
     fullCaseStudy: [
       {
         kind: "heading",
-        id: "my-role",
-        text: "My role",
+        id: "the-challenge",
+        text: "The challenge",
         spacing: "tight",
       },
       {
         kind: "richText",
         paragraphs: [
-          "I owned the product design for the UK Send journey across the mobile app, working with Product and Engineering from flow definition through detailed interaction design, validation, release and subsequent optimisation.",
-          "I also established a metrics workshop with Product to define what we needed to measure across the journey as the UK analytics capability matured.",
+          "The UK InPost app didn't support parcel sending, despite the feature already existing in the Polish product.",
+          "The challenge wasn't to redesign the experience from scratch. Instead, I needed to adapt an existing journey for UK customers while working within a short delivery timeline, existing technical constraints and limited engineering capacity.",
+          "The goal was to identify where targeted UX improvements would have the greatest impact while preserving the existing product architecture.",
         ],
       },
       { kind: "divider" },
       {
         kind: "heading",
-        id: "why-send-mattered",
-        text: "Why Send mattered",
+        id: "business-goals",
+        text: "Business goals",
         spacing: "tight",
-      },
-      {
-        kind: "richText",
-        paragraphs: [
-          "Before Send, the UK app was primarily a tracking and collection tool: customers used it to follow parcels other people had sent to them.",
-          "Send expanded the app into a transactional product. Customers could now create a shipment, choose how it should be delivered and pay for it directly from their phone, turning the app into a more complete part of the InPost service rather than a companion to it.",
-        ],
-      },
-      { kind: "divider" },
-      {
-        kind: "heading",
-        id: "the-problem",
-        text: "The problem",
-        spacing: "tight",
-      },
-      {
-        kind: "richText",
-        paragraphs: [
-          "The Polish app already had a working Send journey, which gave us a useful starting point rather than a blank page.",
-          "The UK proposition could not simply reuse it. UK customers expected additional information before paying, including parcel cover, and were more accustomed to postcode-based address lookup than fully manual address entry. The two journeys were not identical, so the Polish funnel was treated as a directional benchmark rather than a direct comparison.",
-        ],
-      },
-      { kind: "divider" },
-      {
-        kind: "heading",
-        id: "designing-the-first-journey",
-        text: "Designing the first journey",
-        spacing: "tight",
-      },
-      {
-        kind: "richText",
-        paragraphs: [
-          "At a high level, the journey moved customers from Send entry through Parcel Details, Recipient Details, Sender Details, a Summary step, Payment and finally Success, where the shipping label was created.",
-        ],
       },
       {
         kind: "arrowList",
-        bold: true,
-        paddingTop: 24,
         items: [
-          "Send entry",
-          "Parcel Details",
-          "Recipient Details",
-          "Sender Details",
-          "Summary",
-          "Payment",
-          "Success / label creation",
+          "Launch parcel sending for UK customers using the existing Polish product as the foundation.",
+          "Introduce UK-specific functionality, including parcel cover, to better meet local customer expectations.",
+          "Improve clarity, usability and conversion without rebuilding the entire journey.",
+          "Deliver the feature within a tight release timeline.",
         ],
       },
-      {
-        kind: "media",
-        width: "reduced-70",
-        bordered: true,
-        media: {
-          kind: "image",
-          image: {
-            src: "/projects/send-parcel-in-app/flow-overview.png",
-            width: 1470,
-            height: 1710,
-            alt: "High-level overview of the UK Send journey from entry to label creation",
-          },
-        },
-      },
+      { kind: "divider" },
       {
         kind: "richText",
+        id: "final-experience",
+        heading: "Final experience",
         paragraphs: [
-          "Rather than explaining every screen, the more useful story is in the handful of decisions that were genuinely difficult: how much to ask for before payment, how to let customers correct mistakes without restarting, and how to introduce a new UK-only product, parcel cover, without making it feel like an obstacle.",
+          "The final experience reused the existing Polish flow while introducing targeted improvements for the UK market. Rather than redesigning every screen, I focused on reducing friction at key decision points, improving clarity and supporting confident decision making throughout the journey.",
         ],
       },
       {
@@ -2000,146 +1952,57 @@ export const projects: Project[] = [
       { kind: "divider" },
       {
         kind: "heading",
-        id: "testing-before-release",
-        text: "Testing the real journey exposed issues the happy path didn't",
+        id: "design-process",
+        text: "Design process",
         spacing: "tight",
       },
       {
-        kind: "richText",
-        paragraphs: [
-          "Before wider release, we ran a friends and family test using the production-like app journey. The team completed real parcel-send scenarios and logged problems encountered along the way.",
-        ],
-      },
-      {
-        kind: "beforeAfterImages",
-        bordered: true,
+        kind: "steps",
+        spacing: "tight",
         items: [
           {
-            label: "Hidden validation",
-            media: { kind: "placeholder", label: "HIDDEN VALIDATION EXAMPLE" },
-            caption:
-              "Users could tap Continue and appear to get no response because required fields were below the fold and there was no cue to scroll.",
+            title: "Discovery",
+            body: "Aligned with stakeholders on business goals, technical constraints and success criteria.",
           },
           {
-            label: "Misleading error state",
-            media: { kind: "placeholder", label: "MISLEADING ERROR STATE EXAMPLE" },
-            caption:
-              "An incorrectly formatted postcode could trigger a ‘Payment failed’ message before payment had even been attempted.",
+            title: "Research",
+            body: "Reviewed competitor journeys, UX best practices and existing customer pain points.",
           },
           {
-            label: "UI obstruction",
-            media: { kind: "placeholder", label: "UI OBSTRUCTION EXAMPLE" },
-            caption:
-              "The Send tooltip could remain visible after parcel creation and obstruct the tracking experience.",
+            title: "Exploration",
+            body: "Created concepts and wireframes to validate improvements before investing in final UI.",
           },
-        ],
-      },
-      {
-        kind: "richText",
-        paragraphs: [
-          "These findings helped us refine validation, error handling and post-creation behaviour before broader use.",
+          {
+            title: "Validation",
+            body: "Tested prototypes with users and iterated based on findings.",
+          },
+          {
+            title: "Delivery",
+            body: "Final UI design, stakeholder reviews and engineering handoff.",
+          },
+          {
+            title: "Measuring success",
+            body: "Established the foundation for future UX metrics, later expanded through a dedicated Design Metrics Workshop.",
+          },
         ],
       },
       { kind: "divider" },
       {
         kind: "heading",
-        id: "what-the-funnel-told-us",
-        text: "What the funnel told us",
+        id: "how-the-experience-evolved",
+        text: "How the experience evolved",
         spacing: "tight",
-      },
-      {
-        kind: "richText",
-        paragraphs: [
-          "Once the journey was live, funnel data helped us separate genuine transaction friction from customers who were simply exploring the service.",
-        ],
-      },
-      {
-        kind: "stats",
-        items: [
-          {
-            value: "74.2%",
-            label: "Recipient Details → Sender Details. The clearest friction point inside the committed journey.",
-          },
-          {
-            value: "96.8%",
-            label: "Payment Started → Payment Completed. Once customers reached payment, almost all completed it.",
-          },
-        ],
-      },
-      {
-        kind: "richText",
-        paddingTop: 24,
-        paragraphs: [
-          "The headline funnel initially looked weaker because many customers entered Send simply to explore the service. I separated this exploratory behaviour from customers who had actually begun creating a parcel.",
-          "The more meaningful friction appeared around recipient details, which later became a focus for improvements including postcode-based address lookup.",
-        ],
       },
       {
         kind: "twoCol",
         spacing: "tight",
-        paddingTop: 24,
+        heading: "Making address entry easier",
         items: [
+          { label: "Problem", body: "Users had to type the address manually." },
           {
-            label: "Directional benchmark",
-            body: "The Polish journey showed stronger early-step completion, but it was shorter and required less information. I used it as context rather than treating it as a like-for-like conversion benchmark.",
+            label: "Decision",
+            body: "Added a address lookup which enabled users to select address faster and avoid any spelling mistakes.",
           },
-        ],
-      },
-      { kind: "divider" },
-      {
-        kind: "heading",
-        id: "adding-parcel-details",
-        text: "More steps did not automatically mean worse conversion",
-        spacing: "tight",
-      },
-      {
-        kind: "richText",
-        paragraphs: [
-          "We later introduced a dedicated Parcel Details step to support parcel cover and additional shipment information. The team was concerned that increasing the length of the flow would hurt completion.",
-          "After release, conversion remained broadly stable. It reinforced that reducing the number of screens was not always the right optimisation. The quality, relevance and clarity of each step mattered more than the raw step count.",
-        ],
-      },
-      {
-        kind: "twoCol",
-        spacing: "tight",
-        paddingTop: 24,
-        items: [
-          {
-            label: "Before",
-            body: "Parcel size and basic details were captured in a single early step, with no dedicated moment for parcel cover or additional shipment information.",
-          },
-          {
-            label: "After",
-            body: "A dedicated Parcel Details step introduced parcel cover and extra shipment information as its own clear stage, ahead of Recipient Details.",
-          },
-        ],
-      },
-      {
-        kind: "media",
-        width: "reduced",
-        bordered: true,
-        media: {
-          kind: "image",
-          image: {
-            src: "/projects/send-parcel-in-app/parcel-cover.png",
-            width: 625,
-            height: 925,
-            alt: "Parcel Details step showing the parcel cover option",
-          },
-        },
-      },
-      { kind: "divider" },
-      {
-        kind: "heading",
-        id: "reducing-address-friction",
-        text: "Reducing friction in address entry",
-        spacing: "tight",
-      },
-      {
-        kind: "richText",
-        paragraphs: [
-          "Address entry became one of the clearest remaining opportunities for improvement. The original flow required more manual input, while UK customers were already accustomed to postcode-based address lookup across ecommerce and delivery services.",
-          "We introduced address lookup to reduce typing, improve address accuracy and make the flow feel more familiar.",
         ],
       },
       {
@@ -2157,40 +2020,202 @@ export const projects: Project[] = [
         },
         mobileSrc: "/projects/send-parcel-in-app/send-address-mobile.mp4",
         caption:
-          "~3pp lower recipient-step drop-off after introducing postcode-based address lookup. Historical reporting is no longer available, so this is a conservative estimate based on the observed post-release improvement.",
+          "~3pp estimated reduction in recipient-step drop-off after introducing address lookup. Historical reporting is no longer available, so this is a conservative estimate based on the observed post-release improvement.",
       },
       { kind: "divider" },
       {
-        kind: "heading",
-        id: "measurement-framework",
-        text: "Defining how we would know whether Send was working",
+        kind: "twoCol",
         spacing: "tight",
-      },
-      {
-        kind: "richText",
-        paragraphs: [
-          "Analytics capability across the UK product was still developing, so I worked with Product to define the behaviours and failure points we wanted to understand rather than waiting for a mature measurement framework to already exist.",
-          "I established a cross-functional metrics workshop around the Send journey, mapping product questions against each stage of the experience.",
-        ],
-      },
-      {
-        kind: "arrowList",
-        bold: true,
-        paddingTop: 24,
+        heading: "Summary page",
         items: [
-          "Funnel: Where do customers abandon Send?",
-          "Efficiency: How long does recipient and address entry take?",
-          "Address quality: How many unsuccessful deliveries or returns are caused by bad address information?",
-          "Editing behaviour: What information do customers most frequently change before payment?",
-          "Post-purchase behaviour: How long passes between label creation and parcel drop-off?",
-          "Locker availability: Does limited locker capacity delay sending?",
+          { label: "Problem", body: "Users needed to correct mistakes without restarting checkout." },
+          {
+            label: "Decision",
+            body: "Made parcel details, addresses and parcel size editable directly from the Summary page.",
+          },
         ],
       },
       {
+        kind: "media",
+        bordered: true,
+        media: {
+          kind: "video",
+          video: {
+            src: "/projects/send-parcel-in-app/Send-change-size-desktop.mp4",
+            width: 1412,
+            height: 1080,
+          },
+          alt: "Editable Summary page showing parcel details, address and size",
+        },
+        mobileSrc: "/projects/send-parcel-in-app/Send-change-size-mobile.mp4",
+      },
+      { kind: "divider" },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        heading: "Parcel cover",
+        items: [
+          {
+            label: "Problem",
+            body: "Parcel cover was a new UK-specific feature that needed to feel valuable without becoming intrusive.",
+          },
+          {
+            label: "Decision",
+            body: "Designed contextual education, optional upsell moments and supporting information that allowed users to make informed decisions.",
+          },
+        ],
+      },
+      {
+        kind: "media",
+        width: "reduced",
+        bordered: true,
+        media: {
+          kind: "video",
+          video: {
+            src: "/projects/send-parcel-in-app/parcel-cover.mp4",
+            width: 1412,
+            height: 1080,
+          },
+          alt: "Parcel cover add-on and up-sell moment in the send flow",
+        },
+        mobileSrc: "/projects/send-parcel-in-app/parcel-cover-mobile.mp4",
+        caption:
+          "This introduced an additional Parcel Details and insurance step ahead of Recipient Details. Conversion remained broadly stable after launch.",
+      },
+      { kind: "divider" },
+      {
+        kind: "twoCol",
+        spacing: "tight",
+        heading: "Pricing & ETA",
+        items: [
+          {
+            label: "Problem",
+            body: "Users relied heavily on delivery estimates and wanted reassurance that pricing updated correctly.",
+          },
+          {
+            label: "Decision",
+            body: "Surfaced ETA earlier, improved pricing visibility and clearly communicated changes throughout the journey.",
+          },
+        ],
+      },
+      {
+        kind: "media",
+        bordered: true,
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/send-parcel-in-app/Send-timeandprice.webp",
+            width: 2600,
+            height: 1785,
+            alt: "Pricing and ETA surfaced earlier in the send flow",
+          },
+        },
+        mobileCarousel: [
+          {
+            src: "/projects/send-parcel-in-app/send-timeandprice-1.png",
+            width: 2590,
+            height: 5111,
+            alt: "Pricing and ETA surfaced earlier in the send flow, screen 1",
+          },
+          {
+            src: "/projects/send-parcel-in-app/send-timeandprice-2.png",
+            width: 2590,
+            height: 5111,
+            alt: "Pricing and ETA surfaced earlier in the send flow, screen 2",
+          },
+          {
+            src: "/projects/send-parcel-in-app/send-timeandprice-3.png",
+            width: 2590,
+            height: 5111,
+            alt: "Pricing and ETA surfaced earlier in the send flow, screen 3",
+          },
+        ],
+      },
+      { kind: "divider" },
+      {
         kind: "richText",
-        paddingTop: 24,
+        id: "validation-and-refinement",
+        heading: "Validation and refinement",
         paragraphs: [
-          "Product Managers developed the detailed analytics specification from this work, linking tracked events back to the relevant Figma screens and interactions.",
+          "The final concepts were tested with users in prototype usability testing to validate key assumptions before development. Before wider release, we also ran a friends and family test using the production-like app journey, where the team completed real parcel-send scenarios and logged problems encountered along the way.",
+        ],
+      },
+      {
+        kind: "validationItem",
+        question: "Can users understand delivery expectations?",
+        status: "warning",
+        finding: "Users looked for estimated delivery information throughout the journey.",
+        update: "Made ETA more prominent on both the first and Summary screens.",
+      },
+      { kind: "divider" },
+      {
+        kind: "validationItem",
+        question: "Is parcel sizing understandable?",
+        status: "success",
+        finding: "Visual size guidance significantly reduced uncertainty when selecting parcel dimensions.",
+        update: "Expanded sizing information and supporting illustrations remained part of the redesign.",
+      },
+      { kind: "divider" },
+      {
+        kind: "validationItem",
+        question: "Can users edit parcel details?",
+        status: "success",
+        finding: "9 out of 10 participants successfully edited parcel details without restarting the journey.",
+        update: "Editable Summary page retained in the final design.",
+      },
+      { kind: "divider" },
+      {
+        kind: "validationItem",
+        question: "Was required validation always visible to customers?",
+        status: "warning",
+        finding: "Required fields could sit below the fold with no cue to scroll, so tapping Continue could appear to do nothing.",
+        update: "Added clearer validation cues so customers could always see what needed fixing.",
+      },
+      { kind: "divider" },
+      {
+        kind: "validationItem",
+        question: "Were error states always accurate?",
+        status: "warning",
+        finding: "An incorrectly formatted postcode could trigger a misleading ‘Payment failed’ message before payment had even been attempted.",
+        update: "Corrected the error state to reflect the real cause before payment was attempted.",
+      },
+      { kind: "divider" },
+      {
+        kind: "validationItem",
+        question: "Did supporting UI ever get in the way?",
+        status: "warning",
+        finding: "The Send tooltip could remain visible after parcel creation and obstruct the tracking experience.",
+        update: "Ensured the tooltip dismissed once the parcel had been created.",
+      },
+      { kind: "divider" },
+      {
+        kind: "stats",
+        id: "outcome",
+        heading: "Outcome",
+        items: [
+          {
+            value: "25–30%",
+            label: "reduction in address entry time after introducing address lookup, which also helped prevent errors",
+          },
+          {
+            value: "~15%",
+            label: "fewer abandoned parcels after making the summary editable, so users could fix issues without restarting",
+          },
+          { value: "9/10", label: "Participants successfully edited parcel details during usability testing." },
+        ],
+        bullets: [
+          "Enabled additional revenue opportunities through parcel cover and promotional functionality.",
+          "Improved clarity around ETA, parcel value and delivery expectations for UK customers.",
+          "Established the foundation for measuring the Send flow experience, later expanded through a cross-functional UX Metrics Workshop.",
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "making-the-experience-measurable",
+        heading: "Making the experience measurable",
+        paragraphs: [
+          "To ensure the Send journey could be evaluated beyond launch, I established a cross-functional metrics workshop to define what success should look like across the experience. We mapped the end-to-end journey, prioritised the moments that mattered most and translated them into actionable behavioural and experience questions.",
         ],
       },
       {
@@ -2209,66 +2234,52 @@ export const projects: Project[] = [
             src: "/projects/send-parcel-in-app/workshop-image.webp",
             width: 2600,
             height: 1881,
-            alt: "Metrics workshop mapping the Send journey and defining success measures",
+            alt: "UX Metrics Workshop mapping the Send journey and defining success measures",
           },
         },
       },
-      { kind: "divider" },
-      {
-        kind: "heading",
-        id: "results",
-        text: "Results",
-        spacing: "tight",
-      },
-      {
-        kind: "stats",
-        items: [
-          { value: "96.8%", label: "of customers who started payment completed it" },
-          {
-            value: "~3pp",
-            label:
-              "lower recipient-step drop-off after introducing postcode-based address lookup. This is an estimate, not a precise historical measurement.",
-          },
-          { value: "Stable conversion", label: "after introducing the additional Parcel Details and insurance step" },
-          {
-            value: "Metrics framework",
-            label: "established a cross-functional workshop to define how we would evaluate the Send journey",
-          },
-        ],
-      },
       {
         kind: "richText",
-        paddingTop: 24,
         paragraphs: [
-          "Send evolved from a newly launched transaction flow into a journey we could increasingly evaluate through real behaviour.",
-          "The funnel also taught us to distinguish customer intent from raw abandonment. Many customers entered Send simply to explore the service, while completion among customers who moved into the transaction was much stronger.",
+          "The work created a shared measurement framework for the Send journey and a reusable workshop format that could be applied to other product areas. Product Managers later developed the detailed analytics specification from this work, linking tracked events back to the relevant Figma screens and interactions.",
         ],
       },
-      { kind: "divider" },
       {
-        kind: "heading",
-        id: "challenges",
-        text: "Challenges",
-        spacing: "tight",
-      },
-      {
-        kind: "arrowList",
-        paddingTop: 24,
+        kind: "metrics",
+        intro: "Example of some metrics established:",
         items: [
-          "Analytics infrastructure across the UK app was still maturing alongside the feature itself.",
-          "Not every product question had an existing event or report, so some answers took longer to reach than we would have liked.",
-          "Cross-market funnel comparisons were imperfect, since the Polish and UK journeys were not identical.",
-          "Top-of-funnel behaviour could easily be misread without first separating exploratory entries from committed checkout intent.",
+          {
+            title: "Metric 1 — Time on task (Address Lookup)",
+            definition:
+              "Time spent searching for the recipient's address - measured from the moment the user starts typing until selecting an address from the list.",
+            whyItMatters:
+              "This metric helps evaluate the efficiency and usability of the address lookup field. A long completion time may indicate issues such as low accuracy of search results, or confusing UI hierarchy.",
+          },
+          {
+            title: "Metric 2 — % of Users Editing Parcel Details on Summary Screen",
+            definition:
+              "Percentage of users who return to edit parcel details (e.g., size or cover) after reaching the summary step.",
+            whyItMatters:
+              "Frequent edits at this stage may suggest earlier steps lack clarity or users are unsure about their previous choices.",
+          },
+          {
+            title: "Metric 3 — % of Undelivered or Returned Parcels Due to Bad Address",
+            definition:
+              "Proportion of parcels marked as undelivered or returned because of incorrect or incomplete address data.",
+            whyItMatters:
+              "A high rate here signals that input validation and address accuracy need improvement. It also impacts customer satisfaction and support costs.",
+          },
         ],
       },
       { kind: "divider" },
       {
         kind: "richText",
-        id: "retrospective",
-        heading: "Retrospective",
+        id: "reflection",
+        heading: "Reflection",
         paragraphs: [
-          "Send changed how I thought about funnel optimisation. A shorter flow was not automatically a better flow, and a high drop-off number did not necessarily indicate a usability problem without understanding customer intent.",
-          "The most useful work came from combining qualitative testing with behavioural data: identifying where customers struggled, understanding why a metric looked the way it did and then deciding which friction was worth removing.",
+          "Working within an existing product taught me that successful product design isn't always about redesigning entire experiences.",
+          "The biggest impact often comes from identifying a handful of high-value improvements that balance user needs, business goals and technical constraints.",
+          "Rather than starting from a blank canvas, this project focused on making thoughtful decisions within real-world limitations. This approach ultimately led to a faster launch and a better experience for UK customers.",
         ],
         paddingBottom: 72,
       },
