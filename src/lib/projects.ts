@@ -1809,7 +1809,7 @@ export const projects: Project[] = [
       { id: "validation-and-refinement", label: "Validation and refinement" },
       { id: "making-the-experience-measurable", label: "Making the experience measurable" },
       { id: "what-changed-after-launch", label: "What changed after launch" },
-      { id: "challenges", label: "Challenges" },
+      { id: "challenges", label: "Measurement limitations" },
       { id: "reflection", label: "Reflection" },
     ],
     quickRead: {
@@ -2265,7 +2265,7 @@ export const projects: Project[] = [
       {
         kind: "heading",
         id: "challenges",
-        text: "Challenges",
+        text: "Measurement limitations",
         spacing: "tight",
       },
       {
@@ -2273,8 +2273,7 @@ export const projects: Project[] = [
         items: [
           "Analytics infrastructure across the UK app was still maturing.",
           "Not every product question had an existing event or report.",
-          "The UK and Polish journeys were not directly comparable.",
-          "Top-of-funnel behaviour could be misread without separating exploration from committed transaction intent.",
+          "UK and Polish journeys were not directly comparable, so I treated cross-market data as directional rather than like-for-like.",
         ],
       },
       { kind: "divider" },
