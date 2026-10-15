@@ -1836,11 +1836,13 @@ export const projects: Project[] = [
       },
       outcomes: [
         { value: "96.8%", label: "of customers who started payment completed it" },
-        {
-          value: "~3pp",
-          label: "lower recipient-step drop-off after introducing postcode-based address lookup. Estimated from historical reporting.",
-        },
-        { value: "Stable conversion", label: "after introducing the additional Parcel Details and insurance step" },
+        { value: "25–30%", label: "reduction in address entry time after introducing address lookup" },
+        { value: "~15%", label: "fewer abandoned parcels after making the summary editable" },
+        { value: "9/10", label: "participants successfully edited parcel details during usability testing" },
+      ],
+      keyOutcomeBullets: [
+        "Enabled additional revenue opportunities through parcel cover and promotional functionality.",
+        "Improved clarity around ETA, parcel value and delivery expectations for UK customers.",
       ],
       keyDecisionsColumns: 3,
       continueTopPadding: 64,
@@ -2221,6 +2223,7 @@ export const projects: Project[] = [
       {
         kind: "richText",
         paragraphs: [
+          "Established the foundation for measuring the Send flow experience, later expanded through a cross-functional UX Metrics Workshop.",
           "The work created a shared measurement framework for the Send journey and a reusable workshop format that could be applied to other product areas. Product Managers later developed the detailed analytics specification from this work, linking tracked events back to the relevant Figma screens and interactions.",
         ],
       },
