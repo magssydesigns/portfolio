@@ -297,7 +297,11 @@ function BlockRenderer({
     case "stats":
       return (
         <Reveal>
-          <div id={block.id} className="scroll-mt-40 lg:scroll-mt-28">
+          <div
+            id={block.id}
+            className="scroll-mt-40 lg:scroll-mt-28"
+            style={block.paddingTop !== undefined ? { paddingTop: block.paddingTop } : undefined}
+          >
             {block.heading && (
               <h2 className="font-display text-3xl tracking-tight sm:text-4xl">{block.heading}</h2>
             )}
@@ -323,6 +327,36 @@ function BlockRenderer({
                 ))}
               </ul>
             )}
+            {block.caption && (
+              <p className="mt-6 max-w-2xl text-[13px] leading-relaxed text-muted">{block.caption}</p>
+            )}
+          </div>
+        </Reveal>
+      );
+
+    case "researchNote":
+      return (
+        <Reveal>
+          <div
+            id={block.id}
+            className="max-w-2xl scroll-mt-40 lg:scroll-mt-28"
+            style={block.paddingTop !== undefined ? { paddingTop: block.paddingTop } : undefined}
+          >
+            <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{block.label ?? "Research signal"}</p>
+            <div className="mt-3 space-y-2">
+              {block.lines.map((line, i) => (
+                <p
+                  key={i}
+                  className={
+                    i === 0
+                      ? "text-[15px] font-semibold leading-relaxed text-ink"
+                      : "text-[15px] leading-relaxed text-ink-soft"
+                  }
+                >
+                  {line}
+                </p>
+              ))}
+            </div>
           </div>
         </Reveal>
       );

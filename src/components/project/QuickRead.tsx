@@ -386,6 +386,26 @@ export default function QuickRead({
         </Reveal>
       )}
 
+      {data.researchSignals && (
+        <Reveal delay={0.175}>
+          <div className={wrapClass}>
+            <SectionLabel headingStyle={headingStyle} text={data.researchSignals.heading} />
+            <div className={contentClass}>
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                {data.researchSignals.items.map((item) => (
+                  <div key={item.label}>
+                    <p className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+                      {item.value}
+                    </p>
+                    <p className="mt-3 max-w-xs text-lg leading-relaxed text-ink-soft">{item.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      )}
+
       {!hideContinue && (
         <Reveal delay={0.18}>
           {onContinue ? (

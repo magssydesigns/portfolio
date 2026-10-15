@@ -95,7 +95,8 @@ export type Block =
       mobileSrc?: string;
     }
   | { kind: "validationItem"; id?: string; question: string; status: "success" | "warning"; finding: string; update: string; paddingTop?: number }
-  | { kind: "stats"; id?: string; heading?: string; items: { value: string; label: string }[]; bullets?: string[] }
+  | { kind: "stats"; id?: string; heading?: string; items: { value: string; label: string }[]; bullets?: string[]; caption?: string; paddingTop?: number }
+  | { kind: "researchNote"; id?: string; label?: string; paddingTop?: number; lines: string[] }
   | {
       kind: "metrics";
       id?: string;
@@ -172,6 +173,8 @@ export type QuickRead = {
   impactQuote?: { label?: string; text: string; attribution?: string };
   /** Overrides the "Continue to full case study" button's top margin (px). Use when the preceding section is short enough that the default spacing looks cramped. */
   continueTopPadding?: number;
+  /** Compact research-evidence strip rendered just above "Continue to full case study" (e.g. a handful of key research stats, shown before the reader enters the full study). */
+  researchSignals?: { heading: string; items: { value: string; label: string }[] };
 };
 
 export type TocEntry = { id: string; label: string };
@@ -358,6 +361,15 @@ export const projects: Project[] = [
         label: "What users said",
         text: "This seems to be more comprehensive in terms of details\nof features when compared to major firm parcel apps\nI've seen in the UK",
       },
+      researchSignals: {
+        heading: "What the research told us",
+        items: [
+          { value: "90.9%", label: "mentioned delivery date or time as important after purchase" },
+          { value: "9/11", label: "checked delivery date or time first once the parcel had shipped" },
+          { value: "85.7%", label: "expected collection location to be prominent on parcel details" },
+          { value: "66%", label: "identified poor visual hierarchy in the existing detail experience" },
+        ],
+      },
     },
     fullCaseStudy: [
       {
@@ -415,6 +427,18 @@ export const projects: Project[] = [
         ],
       },
       {
+        kind: "richText",
+        paragraphs: [
+          "Across the research, timing consistently mattered more than technical tracking detail. Users wanted to know when the parcel would arrive, what state it was currently in and what they needed to do next.",
+          "At collection, the priority shifted to where to go, how to access the parcel and how much time remained. The existing interface did not reflect that hierarchy consistently, so the redesign focused on surfacing the most actionable information first.",
+        ],
+      },
+      {
+        kind: "media",
+        media: { kind: "placeholder", label: "Research synthesis" },
+        caption: "Research synthesis across parcel journey, parcel list and parcel detail tasks.",
+      },
+      {
         kind: "heading",
         id: "design-changes",
         text: "Design changes",
@@ -452,6 +476,25 @@ export const projects: Project[] = [
             alt: "Annotated parcel info screen showing location, contextual actions, status and collection deadline, and CTA to view full tracking",
           },
         },
+      },
+      {
+        kind: "researchNote",
+        lines: [
+          "90.9% mentioned delivery date/time as important, compared with 54.5% who mentioned current status/location and 18.2% who mentioned delivery flexibility or control.",
+          "This helped prioritise timing, status and planning information over secondary controls and technical detail.",
+        ],
+      },
+      {
+        kind: "stats",
+        paddingTop: 32,
+        items: [
+          { value: "85.7%", label: "Collection location" },
+          { value: "71.4%", label: "Collection requirements / access information" },
+          { value: "57.1%", label: "Timing information" },
+          { value: "57.1%", label: "Package identification" },
+        ],
+        caption:
+          "When participants described what they expected on parcel details, location and access information came first.",
       },
       {
         kind: "calloutSection",
@@ -523,6 +566,13 @@ export const projects: Project[] = [
         },
       },
       {
+        kind: "researchNote",
+        lines: [
+          "The research also helped define what not to foreground. ETA, parcel status and collection timing were consistently important, while delivery method and sender were rated low by 54.5% of participants in the ranking task.",
+          "This supported moving lower-priority information behind progressive disclosure while keeping timing, status and urgency visible.",
+        ],
+      },
+      {
         kind: "numberedShowcase",
         heading: "Parcel list: Clearer way of sorting incoming parcels",
         bordered: true,
@@ -585,6 +635,13 @@ export const projects: Project[] = [
             title: "9. Clearer hierarchy across parcel states",
             body: "The redesigned cards use stronger hierarchy to distinguish what matters for each parcel state — current status, location, timing and the most relevant action. Rather than giving every piece of information equal prominence, the card adapts to what the user is most likely to need at that moment.",
           },
+        ],
+      },
+      {
+        kind: "researchNote",
+        lines: [
+          "Research showed that collection location was often not prominent enough and sometimes required additional clicks. Users also relied on visual position in the list rather than actual urgency when deciding which parcel to collect first.",
+          "This reinforced the need to make collection location and time-sensitive information more explicit.",
         ],
       },
       {
