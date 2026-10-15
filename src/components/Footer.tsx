@@ -17,7 +17,7 @@ export default function Footer({ intro }: { intro?: React.ReactNode }) {
           )}
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Button href="/resume.pdf" shape="pill" chevron>
+          <Button href="/Magdalena_Marczewska_CV.pdf" shape="pill" chevron>
             Download my resume
           </Button>
           <Button href="https://www.linkedin.com/in/magdalena-marczewska-3b33b750/" shape="pill">
