@@ -94,7 +94,7 @@ export type Block =
       /** Video only: swaps in this source below 768px via a native <source media> query. Desktop keeps the video's own src unchanged. */
       mobileSrc?: string;
     }
-  | { kind: "validationItem"; id?: string; question: string; status: "success" | "warning"; finding: string; update: string }
+  | { kind: "validationItem"; id?: string; question: string; status: "success" | "warning"; finding: string; update: string; paddingTop?: number }
   | { kind: "stats"; id?: string; heading?: string; items: { value: string; label: string }[]; bullets?: string[] }
   | {
       kind: "metrics";
@@ -1807,8 +1807,9 @@ export const projects: Project[] = [
       { id: "design-process", label: "Design process" },
       { id: "how-the-experience-evolved", label: "How the experience evolved" },
       { id: "validation-and-refinement", label: "Validation and refinement" },
-      { id: "outcome", label: "Outcome" },
       { id: "making-the-experience-measurable", label: "Making the experience measurable" },
+      { id: "what-changed-after-launch", label: "What changed after launch" },
+      { id: "challenges", label: "Challenges" },
       { id: "reflection", label: "Reflection" },
     ],
     quickRead: {
@@ -2146,6 +2147,7 @@ export const projects: Project[] = [
         status: "warning",
         finding: "Users looked for estimated delivery information throughout the journey.",
         update: "Made ETA more prominent on both the first and Summary screens.",
+        paddingTop: 24,
       },
       { kind: "divider" },
       {
@@ -2186,28 +2188,6 @@ export const projects: Project[] = [
         status: "warning",
         finding: "The Send tooltip could remain visible after parcel creation and obstruct the tracking experience.",
         update: "Ensured the tooltip dismissed once the parcel had been created.",
-      },
-      { kind: "divider" },
-      {
-        kind: "stats",
-        id: "outcome",
-        heading: "Outcome",
-        items: [
-          {
-            value: "25–30%",
-            label: "reduction in address entry time after introducing address lookup, which also helped prevent errors",
-          },
-          {
-            value: "~15%",
-            label: "fewer abandoned parcels after making the summary editable, so users could fix issues without restarting",
-          },
-          { value: "9/10", label: "Participants successfully edited parcel details during usability testing." },
-        ],
-        bullets: [
-          "Enabled additional revenue opportunities through parcel cover and promotional functionality.",
-          "Improved clarity around ETA, parcel value and delivery expectations for UK customers.",
-          "Established the foundation for measuring the Send flow experience, later expanded through a cross-functional UX Metrics Workshop.",
-        ],
       },
       { kind: "divider" },
       {
@@ -2269,6 +2249,32 @@ export const projects: Project[] = [
             whyItMatters:
               "A high rate here signals that input validation and address accuracy need improvement. It also impacts customer satisfaction and support costs.",
           },
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "richText",
+        id: "what-changed-after-launch",
+        heading: "What changed after launch",
+        paragraphs: [
+          "Send moved from a newly launched transaction flow into a product we could increasingly evaluate through real customer behaviour.",
+          "Testing and funnel data helped us distinguish genuine friction from exploratory behaviour, then focus subsequent improvements on areas such as recipient details and address entry.",
+        ],
+      },
+      { kind: "divider" },
+      {
+        kind: "heading",
+        id: "challenges",
+        text: "Challenges",
+        spacing: "tight",
+      },
+      {
+        kind: "arrowList",
+        items: [
+          "Analytics infrastructure across the UK app was still maturing.",
+          "Not every product question had an existing event or report.",
+          "The UK and Polish journeys were not directly comparable.",
+          "Top-of-funnel behaviour could be misread without separating exploration from committed transaction intent.",
         ],
       },
       { kind: "divider" },

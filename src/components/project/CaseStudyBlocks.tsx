@@ -266,7 +266,11 @@ function BlockRenderer({
     case "validationItem":
       return (
         <Reveal>
-          <div id={block.id} className="scroll-mt-40 lg:scroll-mt-28">
+          <div
+            id={block.id}
+            className="scroll-mt-40 lg:scroll-mt-28"
+            style={block.paddingTop !== undefined ? { paddingTop: block.paddingTop } : undefined}
+          >
             <p className="font-sans text-lg font-semibold sm:text-xl">{block.question}</p>
             <div className="mt-3 flex items-start gap-3">
               <span
