@@ -57,11 +57,12 @@ export default function QuickRead({
   // Impact stays full-width (its grids need the room), so it isn't wrapped in the narrow centred column.
   const wideWrapClass = "mt-16";
   // Key design decisions has no divider above it.
+  const keyDecisionsMaxWidth = data.keyDecisionsColumns === 3 ? "max-w-4xl" : "max-w-2xl";
   const keyDecisionsWrapClass =
     headingStyle === "heading"
       ? data.midMedia
-        ? "mx-auto mt-8 max-w-2xl"
-        : "mx-auto mt-16 max-w-2xl"
+        ? `mx-auto mt-8 ${keyDecisionsMaxWidth}`
+        : `mx-auto mt-16 ${keyDecisionsMaxWidth}`
       : "mt-16 grid grid-cols-1 gap-8 lg:grid-cols-[200px_1fr]";
   const contentClass = headingStyle === "heading" ? "mt-6" : "";
   // In the split (roleDetails) layout the hero divider above owns the 32px gap,
@@ -278,12 +279,19 @@ export default function QuickRead({
         <Reveal delay={0.1}>
           <div className={keyDecisionsWrapClass}>
             <SectionLabel headingStyle={headingStyle} text={data.keyDecisionsLabel ?? "Key design decisions"} />
-            <div className={`${contentClass} grid max-w-2xl grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2`}>
+            <div
+              className={`${contentClass} grid ${keyDecisionsMaxWidth} grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 ${
+                data.keyDecisionsColumns === 3 ? "lg:grid-cols-3" : ""
+              }`}
+            >
               {data.keyDecisionsItems.map((item) => (
-                <div key={item.title}>
+                <div key={item.title} className="self-start">
                   <p className="text-[13px] uppercase tracking-[0.14em] text-muted">{item.eyebrow}</p>
                   <p className="mt-2 font-semibold text-ink">{item.title}</p>
                   <p className="mt-2 text-[15px] leading-relaxed text-ink-soft">{item.body}</p>
+                  {item.evidence && (
+                    <p className="mt-3 text-[13px] font-semibold text-ink">{item.evidence}</p>
+                  )}
                 </div>
               ))}
             </div>
@@ -317,11 +325,31 @@ export default function QuickRead({
         )
       )}
 
+      {data.researchSignals && (
+        <Reveal delay={0.12}>
+          <div className={wrapClass}>
+            <SectionLabel headingStyle={headingStyle} text={data.researchSignals.heading} />
+            <div className={contentClass}>
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                {data.researchSignals.items.map((item) => (
+                  <div key={item.label}>
+                    <p className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+                      {item.value}
+                    </p>
+                    <p className="mt-3 max-w-xs text-lg leading-relaxed text-ink-soft">{item.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      )}
+
       {/* In the split (roleDetails) layout the outcomes already rendered up top as "Key outcomes". */}
       {!data.roleDetails && (data.outcomes.length > 0 || data.qualitative) && (
       <Reveal delay={0.14}>
         <div className={headingStyle === "heading" ? wideWrapClass : wrapClass}>
-          <SectionLabel headingStyle={headingStyle} id="impact" text="Impact" />
+          <SectionLabel headingStyle={headingStyle} id="impact" text={data.impactLabel ?? "Impact"} />
           <div className={contentClass}>
             {data.outcomes.length > 0 && (
               <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
@@ -385,8 +413,9 @@ export default function QuickRead({
               type="button"
               onClick={onContinue}
               className={`link-underline mx-auto block w-fit cursor-pointer bg-transparent p-0 font-display text-xl text-ink ${
-                data.roleDetails ? "mt-0" : "mt-20"
+                data.continueTopPadding !== undefined ? "" : data.roleDetails ? "mt-0" : "mt-20"
               }`}
+              style={data.continueTopPadding !== undefined ? { marginTop: data.continueTopPadding } : undefined}
             >
               Continue to full case study ↓
             </button>
