@@ -1847,20 +1847,18 @@ export const projects: Project[] = [
       keyDecisionsItems: [
         {
           eyebrow: "Added a step",
-          title: "Adding another step without losing conversion",
-          body: "The UK proposition required a dedicated Parcel Details step, including parcel-cover information. We were concerned that making the journey longer would increase abandonment, but removing the information was not an option. We introduced the step and monitored progression through the funnel. Conversion remained broadly stable, reinforcing that fewer screens were not automatically better when each step had a clear purpose.",
-          evidence: "82.9% continued into Recipient Details.",
+          title: "Adding a step without hurting conversion",
+          body: "The UK flow needed an extra Parcel Details and insurance step. We added it despite concerns about friction, and conversion remained broadly stable.",
         },
         {
           eyebrow: "Reduced friction",
           title: "Reducing friction in address entry",
-          body: "The original journey required customers to enter considerably more address information manually. Funnel data showed meaningful abandonment around recipient details, while postcode-based address lookup was already a familiar UK pattern. We introduced address lookup to reduce typing, improve address accuracy and make the journey feel more consistent with customer expectations.",
-          evidence: "~3pp estimated reduction in step abandonment.",
+          body: "Recipient details showed one of the clearest drop-off points, so we introduced postcode-based address lookup to reduce typing and make the flow more familiar for UK customers.",
         },
         {
           eyebrow: "Measurement",
           title: "Designing measurement into the product",
-          body: "Analytics capability across the UK app was still developing, so I established a metrics workshop with Product rather than treating measurement as something that happened after design. We mapped questions across the entire journey, including conversion, time on task, address quality, editing behaviour, locker availability and the delay between creating a label and physically dropping off a parcel. Product Managers then translated these into detailed analytics specifications linked directly to the relevant Figma screens and interactions.",
+          body: "As analytics capability matured, I established a metrics workshop with Product to define the questions, behaviours and failure points we wanted to track across Send.",
         },
       ],
     },
