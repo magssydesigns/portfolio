@@ -438,7 +438,16 @@ export const projects: Project[] = [
       },
       {
         kind: "media",
-        media: { kind: "placeholder", label: "Research synthesis" },
+        media: {
+          kind: "image",
+          image: {
+            src: "/projects/scaling-parcel-tracking/research-analysis.png",
+            width: 2584,
+            height: 1108,
+            alt: "Research synthesis board summarising findings across parcel journey, parcel list and parcel detail tasks",
+          },
+        },
+        bordered: true,
         caption: "Research synthesis across parcel journey, parcel list and parcel detail tasks.",
       },
       {
