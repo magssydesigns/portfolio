@@ -358,7 +358,7 @@ export const projects: Project[] = [
         ],
       },
       impactQuote: {
-        label: "What users said",
+        label: "What users said after redesign",
         text: "This seems to be more comprehensive in terms of details\nof features when compared to major firm parcel apps\nI've seen in the UK",
       },
       researchSignals: {
