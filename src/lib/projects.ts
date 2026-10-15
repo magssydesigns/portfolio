@@ -169,11 +169,13 @@ export type QuickRead = {
   /** Bold arrow-prefixed bullets rendered in the "Key outcomes" section of the split (roleDetails) layout. */
   keyOutcomeBullets?: string[];
   qualitative?: { title?: string; body: string }[];
+  /** Overrides the "Impact" section label (default "Impact"). */
+  impactLabel?: string;
   impactStats?: { items: { label: string; before: string; after: string; description: string }[] };
   impactQuote?: { label?: string; text: string; attribution?: string };
   /** Overrides the "Continue to full case study" button's top margin (px). Use when the preceding section is short enough that the default spacing looks cramped. */
   continueTopPadding?: number;
-  /** Compact research-evidence strip rendered just above "Continue to full case study" (e.g. a handful of key research stats, shown before the reader enters the full study). */
+  /** Compact research-evidence strip rendered just below "Key design decisions" (e.g. a handful of key research stats, shown before the reader enters the full study). */
   researchSignals?: { heading: string; items: { value: string; label: string }[] };
 };
 
@@ -321,6 +323,7 @@ export const projects: Project[] = [
         "Added more transparency when communicating parcels' delays",
       ],
       outcomes: [],
+      impactLabel: "Impact of redesign",
       qualitative: [
         {
           title: "Faster decision-making",
