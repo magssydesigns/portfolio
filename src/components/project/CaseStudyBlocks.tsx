@@ -48,7 +48,6 @@ function BlockRenderer({
                 ? "scroll-mt-40 lg:scroll-mt-28"
                 : "mx-auto max-w-[1400px] scroll-mt-28 px-6 py-16 sm:px-10 sm:py-20"
             }
-            style={block.paddingTop !== undefined ? { paddingTop: block.paddingTop } : undefined}
           >
             <div className={`grid grid-cols-1 gap-10 sm:gap-16 ${leadColsClass}`}>
               {block.items.map((item) => (
