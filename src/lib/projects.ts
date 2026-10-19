@@ -26,7 +26,7 @@ export type MediaSlot =
   | { kind: "placeholder"; label: string };
 
 export type Block =
-  | { kind: "lead"; id?: string; spacing?: "tight"; items: { label: string; body: string }[] }
+  | { kind: "lead"; id?: string; spacing?: "tight"; paddingTop?: number; items: { label: string; body: string }[] }
   | { kind: "heading"; id?: string; text: string; tone?: "dark" | "light"; spacing?: "tight"; paddingTop?: number; paddingBottom?: number; eyebrow?: string }
   | { kind: "statement"; id?: string; text: string; tone?: "dark" | "light"; eyebrow?: string }
   | { kind: "numbered"; id?: string; heading?: string; intro?: string; showArrow?: boolean; itemStyle?: "plain"; spacing?: "tight"; paddingTop?: number; paddingBottom?: number; items: { title: string; body: string }[] }
@@ -1401,6 +1401,17 @@ export const projects: Project[] = [
         ],
       },
       {
+        kind: "statement",
+        text: "The interface was only one part of the experience.",
+      },
+      {
+        kind: "richText",
+        paddingTop: 16,
+        paragraphs: [
+          "A customer action in the app could trigger a physical locker door, while a decision made by the locker software could assign a compartment the customer could not use. I had to design across software state, physical state and what the customer could actually see happening around them.",
+        ],
+      },
+      {
         kind: "richText",
         paddingTop: 24,
         paragraphs: [
@@ -1422,6 +1433,32 @@ export const projects: Project[] = [
         paddingTop: 24,
         items: ["“Can I change the compartment?”", "“My parcel doesn't fit.”", "“What do I do now?”"],
       },
+      {
+        kind: "heading",
+        text: "What made this hard",
+        spacing: "tight",
+        paddingTop: 48,
+        paddingBottom: 0,
+      },
+      {
+        kind: "lead",
+        spacing: "tight",
+        paddingTop: 24,
+        items: [
+          {
+            label: "Digital state",
+            body: "The software had to understand where the customer was, which action was available and what state the journey was currently in.",
+          },
+          {
+            label: "Physical state",
+            body: "A digital command could open a real compartment, fail to open it, reopen it or trigger a different physical assignment.",
+          },
+          {
+            label: "Real-world context",
+            body: "Customers were standing at a physical machine, dealing with parcel size, compartment height, outdoor visibility and whatever happened after they tapped a button.",
+          },
+        ],
+      },
       { kind: "divider" },
       {
         kind: "heading",
@@ -1431,6 +1468,28 @@ export const projects: Project[] = [
         paddingTop: 24,
         paddingBottom: 0,
         eyebrow: "Mobile app experience",
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "Why this interaction mattered",
+        paddingTop: 32,
+        paragraphs: [
+          "Remote opening was moving from an additional convenience to a core collection behaviour.",
+          "Internal planning projected remote collections to grow from around 25% of APM volume in Q1 to around 65% by the end of 2026 across markets.",
+          "At that scale, the experience could not only work on the happy path. Customers needed to understand whether they were at the right locker, whether the physical action had succeeded and what to do when it had not.",
+        ],
+      },
+      {
+        kind: "stats",
+        paddingTop: 24,
+        items: [
+          {
+            value: "25% → 65% projected",
+            label: "Remote collections as a share of APM volume, Q1 to end of 2026",
+          },
+          { value: ">99.5%", label: "Remote-opening success rate" },
+        ],
       },
       {
         kind: "richText",
@@ -1517,6 +1576,7 @@ export const projects: Project[] = [
         paragraphs: [
           "Even when remote opening was available, the physical action could still fail. I designed the failure state to explain what had happened and give customers two clear ways forward: try again or continue the journey on the locker screen.",
           "The aim was to prevent a failed command from becoming a dead end while keeping the customer in control of how to continue.",
+          "With remote opening expected to support a large share of collections, failure recovery could not be treated as an edge case. I designed explicit recovery paths so a failed physical command did not leave the customer stranded between the app and the locker.",
         ],
       },
       {
@@ -1540,6 +1600,24 @@ export const projects: Project[] = [
               },
             },
           },
+        ],
+      },
+      {
+        kind: "richText",
+        headingLevel: "h3",
+        heading: "The remote-opening state model",
+        paddingTop: 32,
+        paragraphs: [
+          "Underneath the screens, remote opening was a chain of software state, physical action, observed outcome and recovery. This is the compact version of that model.",
+        ],
+      },
+      {
+        kind: "arrowList",
+        paddingTop: 16,
+        items: [
+          "Main path: at the correct locker? → open remotely → command sent → door opens → collect parcel → door closed → complete",
+          "Recovery branch: opening fails → try again, or continue on locker screen",
+          "Reopen branch: need access again → confirm reopen → reopen compartment",
         ],
       },
       {
@@ -1660,8 +1738,24 @@ export const projects: Project[] = [
         kind: "richText",
         paddingTop: 32,
         paragraphs: [
-          "The return journey had a different version of the same problem. After scanning a parcel, the system could automatically suggest a compartment size.",
-          "Customers did not always realise that this recommendation could be changed, and sometimes only discovered that the compartment was unsuitable after a physical door had already opened.",
+          "The system was making a physical decision for the customer.",
+          "It could recommend and assign a compartment, but the physical reality might not match that assumption. The parcel might not fit, the compartment might be inaccessible, or the customer might need a different size.",
+        ],
+      },
+      {
+        kind: "richText",
+        paddingTop: 24,
+        paragraphs: [
+          "The return journey introduced a different kind of uncertainty. If the customer selected a small compartment but none were available, the locker could recommend a medium one instead. Some customers worried that accepting the larger size would increase the price, even though there was no additional charge. The experience needed to explain why the recommendation had changed and reassure customers before they continued.",
+        ],
+      },
+      {
+        kind: "researchNote",
+        label: "Designing for an outdoor screen",
+        paddingTop: 24,
+        lines: [
+          "The locker interface was used outdoors, so we tested the screen in daylight rather than judging legibility only in Figma.",
+          "Glare made contrast, hierarchy and the prominence of the next action more important, which informed how I treated key text and controls.",
         ],
       },
       {
@@ -1678,7 +1772,7 @@ export const projects: Project[] = [
       {
         kind: "statement",
         eyebrow: "Design principle",
-        text: "System suggests. Customer stays in control.",
+        text: "When the system changes something on the customer's behalf, explain why and make the consequence clear.",
       },
       {
         kind: "beforeAfterImages",
@@ -1710,6 +1804,13 @@ export const projects: Project[] = [
               },
             },
           },
+        ],
+      },
+      {
+        kind: "richText",
+        paddingTop: 16,
+        paragraphs: [
+          "Before the locker acts: customer selects a compartment size → requested size is unavailable → system recommends another available size → customer understands why it changed → customer is reassured there is no additional charge → continue.",
         ],
       },
       {
@@ -1761,8 +1862,13 @@ export const projects: Project[] = [
         kind: "richText",
         paddingTop: 24,
         paragraphs: [
-          "Compartment opens, parcel does not fit, request another size, new compartment assigned, new door opens, journey continues.",
+          "After the locker acts: door opens → parcel does not fit or compartment is unsuitable → customer requests another size → new compartment is assigned → new physical door opens → journey continues.",
         ],
+      },
+      {
+        kind: "statement",
+        eyebrow: "Design principle",
+        text: "Physical decisions should be reversible when reality does not match the system's assumption.",
       },
       {
         kind: "richText",
@@ -1772,6 +1878,7 @@ export const projects: Project[] = [
         paragraphs: [
           "Compartment size was not the only thing that could make an assignment unsuitable. A compartment could fit the parcel but still be difficult or impossible for the customer to reach.",
           "I introduced an “I need a low compartment” preference so that the customer's physical needs could influence which compartment the system assigned.",
+          "Accessibility changed the machine's behaviour, not just the interface. Selecting “I need a low compartment” affected which physical compartment the system should assign.",
         ],
       },
       {
@@ -1837,6 +1944,13 @@ export const projects: Project[] = [
         ],
       },
       { kind: "divider" },
+      {
+        kind: "richText",
+        paragraphs: [
+          "Across both journeys, the hardest moments happened when the software's expected state and the customer's physical reality stopped matching.",
+          "The strongest solutions gave customers enough feedback to understand what had happened and enough control to recover.",
+        ],
+      },
       {
         kind: "richText",
         id: "outcome",
