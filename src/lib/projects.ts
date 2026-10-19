@@ -1401,6 +1401,10 @@ export const projects: Project[] = [
         ],
       },
       {
+        kind: "statement",
+        text: "The interface was only one part of the experience.",
+      },
+      {
         kind: "richText",
         paddingTop: 24,
         paragraphs: [
@@ -1662,6 +1666,15 @@ export const projects: Project[] = [
         paragraphs: [
           "The return journey had a different version of the same problem. After scanning a parcel, the system could automatically suggest a compartment size.",
           "Customers did not always realise that this recommendation could be changed, and sometimes only discovered that the compartment was unsuitable after a physical door had already opened.",
+        ],
+      },
+      {
+        kind: "researchNote",
+        label: "Designing for an outdoor screen",
+        paddingTop: 24,
+        lines: [
+          "The locker interface was used outdoors, so we tested the screen in daylight rather than judging legibility only in Figma.",
+          "Glare made contrast, hierarchy and the prominence of the next action more important, which informed how I treated key text and controls.",
         ],
       },
       {
